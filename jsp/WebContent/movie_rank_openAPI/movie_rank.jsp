@@ -25,7 +25,7 @@
 	String wideAreaCd = request.getParameter("wideAreaCd") == null ? "" : request.getParameter("wideAreaCd"); //“0105000000” 로서 조회된 지역코드
 
 	// 발급키
-	String key = "430156241533f1d058c603178cc3ca0e";
+	String key = "e6de7638b492bfab3dff9ab47c1f62c8";
 	// KOBIS 오픈 API Rest Client를 통해 호출
 	KobisOpenAPIRestService service = new KobisOpenAPIRestService(key);
 
