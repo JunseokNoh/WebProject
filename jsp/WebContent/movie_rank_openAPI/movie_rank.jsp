@@ -16,7 +16,7 @@
 -->
 <%
 	// 파라메터 설정
-	String targetDt = request.getParameter("targetDt") == null ? "20200501" : request.getParameter("targetDt"); //조회일자
+	String targetDt = request.getParameter("targetDt") == null ? "20200531" : request.getParameter("targetDt"); //조회일자
 	String itemPerPage = request.getParameter("itemPerPage") == null ? "10"
 			: request.getParameter("itemPerPage"); //결과row수
 	String multiMovieYn = request.getParameter("multiMovieYn") == null ? ""
