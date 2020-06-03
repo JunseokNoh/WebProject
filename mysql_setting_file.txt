@@ -1,0 +1,37 @@
+::: CONTENTS :::
+Project		: php_website
+Version		: 1.0
+Filename	: mysql_setting_file.txt
+Date		: 2020/01/09
+Purpose		: Ready for studying secure coding of WEB(PHP)
+Programmer	: Yoobi (ubyung1@gmail.com)
+Reviewer	:
+
+STEP1
+MYSQL userid  : yoobi
+MYSQL userpw  : toor
+MYSQL DB name : jsp_db
+
+::command::
+mysql> mysql -u root -p
+mysql> use mysql;
+mysql> create user 'yoobi'@localhost identified by 'toor';
+
+STEP2
+MYSQL DB : jsp_db
+
+::command::
+mysql> create database jsp_db default character set uft8;
+mysql> grant all privileges on jsp_db.* to yoobi@localhost identified by 'toor';
+
+STEP3
+MYSQL TABLE : member & board
+
+::command::
+mysql>
+create table `naver_movie_rank`
+(
+	`rank` int(10) not null,
+	`title` varchar(150) not null,
+	`url` text not null
+);
