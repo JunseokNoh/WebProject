@@ -1,10 +1,10 @@
 ::: CONTENTS :::
-Project		: php_website
+Project		: jsp_website
 Version		: 1.0
 Filename	: mysql_setting_file.txt
-Date		: 2020/01/09
-Purpose		: Ready for studying secure coding of WEB(PHP)
-Programmer	: Yoobi (ubyung1@gmail.com)
+Date		: 2020/06/04
+Purpose		: jsp web project
+Programmer	: Yoobi (hackery00bi@gmail.com)
 Reviewer	:
 
 STEP1
@@ -25,7 +25,7 @@ mysql> create database jsp_db default character set uft8;
 mysql> grant all privileges on jsp_db.* to yoobi@localhost identified by 'toor';
 
 STEP3
-MYSQL TABLE : member & board
+MYSQL TABLE : board
 
 ::command::
 mysql>

@@ -9,7 +9,8 @@ Programmer	: Yoobi (hackery00bi@gmail.com)
 Reviewer	:
 PatchNote   :
 - ver.20200603 -
-
+(1) crawling naver movie rank data
+(2) connect DB & insert data to MYSQL
 
 """
 
