@@ -13,6 +13,7 @@ PatchNote   :
 
 """
 
+import pymysql
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -45,8 +46,8 @@ def crawler():
         for i in range(len(soup)):
             RANK_URL = soup[i].find("a")["href"]
             RANK_NAME = soup[i].find("a")["title"]
+            connect_db(i, RANK_NAME, RANK_URL)
             print(str(i + 1) +" : " + RANK_NAME + " : " + RANK_URL)
-            #get_news(MAIN_URL + ARTICLE_URL)
 
 
     except Exception as e:
@@ -79,5 +80,15 @@ def error_logging(text):
     fe.write("{} {} {}\n".format(datetime.now(), ARTICLE_URL, text))
     fe.close()
 
+def connect_db(i, movie_title, movie_info_url):
+	rank_number = i + 1
+	conn = pymysql.connect(host='localhost', user='yoobi', password='toor', db='jsp_db', charset='utf8')
+
+	curs = conn.cursor()
+
+	sql = """insert into naver_movie_rank(rank, title, url) values (%s, %s, %s)"""
+	curs.execute(sql, (rank_number, movie_title, movie_info_url))
+	conn.commit()
+	conn.close()
 
 main()

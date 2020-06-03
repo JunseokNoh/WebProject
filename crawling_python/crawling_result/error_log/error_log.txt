@@ -1,0 +1,14 @@
+2020-06-04 01:02:22.779589  Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
+2020-06-04 01:03:18.205240  Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
+2020-06-04 01:04:19.977615  Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
+2020-06-04 01:47:39.264408  name 'db_connect' is not defined
+2020-06-04 01:47:55.543282  name 'db_connect' is not defined
+2020-06-04 01:48:30.261140  must be str, not int
+2020-06-04 01:49:23.955872  'Cursor' object has no attribute 'excute'
+2020-06-04 01:49:48.439722  (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/movie/bi/mi/basic.nhn?code=160437)' at line 1")
+2020-06-04 01:55:05.845069  execute() takes from 2 to 3 positional arguments but 5 were given
+2020-06-04 01:55:57.318199  execute() takes from 2 to 3 positional arguments but 5 were given
+2020-06-04 01:56:45.432259  %d format: a number is required, not str
+2020-06-04 01:57:17.159094  %d format: a number is required, not str
+2020-06-04 01:57:40.066931  %d format: a number is required, not str
+2020-06-04 01:58:29.602999  %d format: a number is required, not str
