@@ -6,7 +6,7 @@ from abc import *
 import crawling
 
 
-class NaverMovieCrawling(crawling.Crawling, ABC):
+class ZumTrendsCrawling(crawling.Crawling, ABC):
     def __init__(self, main_url, article_url, db_host, db_user, db_pw, db_name, db_charset):
         super().__init__(main_url, article_url, db_host, db_user, db_pw, db_name, db_charset)
 
@@ -18,25 +18,14 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
             soup = BeautifulSoup(cont, 'lxml')
 
             # print(soup)
-            soup = soup.select("div#wrap > " +
-                               "div#container > " +
-                               "div#content > " +
-                               "div.article > " +
-                               "div.old_layout.old_super_db > " +
-                               "div#cbody > " +
-                               "div#old_content > " +
-                               "table.list_ranking > " +
-                               "tbody > " +
-                               "tr > " +
-                               "td.title > " +
-                               "div.tit3")
+            soup = soup.select("div.inner > ul.ranking_list > li.inner_cont")
             # print(soup)
 
             for i in range(len(soup)):
-                RANK_URL = soup[i].find("a")["href"]
-                RANK_NAME = soup[i].find("a")["title"]
+                RANK_URL = soup[i].find("a", {"class": "btn_search"})["href"]
+                RANK_NAME = soup[i].find("a", {"class": "daily-keyword"}).find("span", {"class": "word"}).get_text()
                 self.connect_db(i, RANK_NAME, RANK_URL)
-            # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
+                print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
 
         except Exception as e:
             super().error_logging(str(e))
@@ -51,13 +40,13 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """select title from naver_movie_rank where rank = %s"""
+        sql = """select title from zum_trends_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == movie_title:
             print("same")
         else:
-            sql = """update naver_movie_rank set title=%s, url=%s where rank=%s"""
+            sql = """update zum_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (movie_title, movie_info_url, rank_number))
 
         conn.commit()
