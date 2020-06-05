@@ -13,7 +13,7 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
 
     def crawler(self):
         try:
-            url = super().__MAIN_URL
+            url = super().MAIN_URL()
             req = requests.get(url)
             cont = req.content
             soup = BeautifulSoup(cont, 'lxml')
@@ -36,8 +36,8 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
             for i in range(len(soup)):
                 RANK_URL = soup[i].find("a")["href"]
                 RANK_NAME = soup[i].find("a")["title"]
-                # connect_db(i, RANK_NAME, RANK_URL)
-                print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
+                self.connect_db(i, RANK_NAME, RANK_URL)
+				#print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
 
         except Exception as e:
             super().error_logging(str(e))
@@ -51,8 +51,16 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
                                db=super().DB_NAME(),
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
-
-        sql = """insert into naver_movie_rank(rank, title, url) values (%s, %s, %s)"""
-        curs.execute(sql, (rank_number, movie_title, movie_info_url))
+		
+        sql = """select title from naver_movie_rank where rank = %s"""
+        curs.execute(sql, rank_number)
+        row = curs.fetchone()
+       	if row[0] == movie_title:
+            print("same")
+        else:
+            sql = """insert into naver_movie_rank(rank, title, url) values (%s, %s, %s)"""
+            curs.execute(sql, (rank_number, movie_title, movie_info_url))
+		
         conn.commit()
         conn.close()
+		

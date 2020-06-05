@@ -12,3 +12,5 @@
 2020-06-04 01:57:17.159094  %d format: a number is required, not str
 2020-06-04 01:57:40.066931  %d format: a number is required, not str
 2020-06-04 01:58:29.602999  %d format: a number is required, not str
+2020-06-05 17:31:42.758747 'super' object has no attribute '_NaverMovieCrawling__MAIN_URL'
+2020-06-05 17:48:37.970830 name 'connect_db' is not defined
