@@ -14,7 +14,7 @@ PatchNote   :
 
 """
 
-import pymysql
+#import pymysql
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -47,7 +47,7 @@ def crawler():
         for i in range(len(soup)):
             RANK_URL = soup[i].find("a")["href"]
             RANK_NAME = soup[i].find("a")["title"]
-            connect_db(i, RANK_NAME, RANK_URL)
+            #connect_db(i, RANK_NAME, RANK_URL)
             print(str(i + 1) +" : " + RANK_NAME + " : " + RANK_URL)
 
 
