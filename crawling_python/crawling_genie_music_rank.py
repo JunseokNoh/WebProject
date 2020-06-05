@@ -56,10 +56,10 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """select title from genie_music_rank where rank = %s"""
+        sql = """select song_title from genie_music_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
-        if row[3] == song_title:
+        if row[0] == song_title:
             print("same genie")
         else:
             sql = """update genie_music_rank set album_title=%s, album_url=%s, song_title=%s, song_artist=%s where rank=%s"""

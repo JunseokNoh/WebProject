@@ -45,10 +45,10 @@ class BugsMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """select title from bugs_music_rank where rank = %s"""
+        sql = """select song_title from bugs_music_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
-        if row[3] == song_title:
+        if row[0] == song_title:
             print("same bugs")
         else:
             sql = """update bugs_music_rank set album_title=%s, album_url=%s, song_title=%s, song_artist=%s where rank=%s"""

@@ -42,10 +42,10 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """select title from billboard_music_rank where rank = %s"""
+        sql = """select song_title from billboard_music_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
-        if row[1] == song_title:
+        if row[0] == song_title:
             print("same billboard")
         else:
             sql = """update billboard_music_rank set song_title=%s, song_artist=%s where rank=%s"""

@@ -43,7 +43,7 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
         sql = """select title from zum_trends_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
-        if row[1] == trends_title:
+        if row[0] == trends_title:
             print("same zum")
         else:
             sql = """update zum_trends_rank set title=%s, url=%s where rank=%s"""
