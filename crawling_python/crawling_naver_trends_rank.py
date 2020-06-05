@@ -6,24 +6,27 @@ from abc import *
 import crawling
 
 
-class ZumTrendsCrawling(crawling.Crawling, ABC):
+class NaverTrendsCrawling(crawling.Crawling, ABC):
     def __init__(self, main_url, article_url, db_host, db_user, db_pw, db_name, db_charset):
         super().__init__(main_url, article_url, db_host, db_user, db_pw, db_name, db_charset)
 
     def crawler(self):
         try:
-            url = super().MAIN_URL()
-            req = requests.get(url)
+            header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
+            req = requests.get(super().MAIN_URL(), headers=header)  ## 주간 차트를 크롤링 할 것임
             cont = req.content
             soup = BeautifulSoup(cont, 'lxml')
 
             # print(soup)
-            soup = soup.select("div.inner > ul.ranking_list > li.inner_cont")
+            soup = soup.select("div.ranking_box >" +
+                               "div.list_group >" +
+                               "ul.ranking_list >" +
+                               "li.ranking_item")
             # print(soup)
 
             for i in range(len(soup)):
-                RANK_URL = soup[i].find("a", {"class": "btn_search"})["href"]
-                RANK_NAME = soup[i].find("a", {"class": "daily-keyword"}).find("span", {"class": "word"}).get_text()
+                RANK_NAME = soup[i].find("span", {"class": "item_title"}).get_text()
+                RANK_URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=" + RANK_NAME
                 self.connect_db(i, RANK_NAME, RANK_URL)
 #                print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
 
@@ -40,13 +43,13 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """select title from zum_trends_rank where rank = %s"""
+        sql = """select title from naver_trends_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[1] == trends_title:
-            print("same zum")
+            print("same naver")
         else:
-            sql = """update zum_trends_rank set title=%s, url=%s where rank=%s"""
+            sql = """update naver_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (trends_title, trends_info_url, rank_number))
 
         conn.commit()
