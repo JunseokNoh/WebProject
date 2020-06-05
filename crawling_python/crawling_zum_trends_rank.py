@@ -25,7 +25,7 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
                 RANK_URL = soup[i].find("a", {"class": "btn_search"})["href"]
                 RANK_NAME = soup[i].find("a", {"class": "daily-keyword"}).find("span", {"class": "word"}).get_text()
                 self.connect_db(i, RANK_NAME, RANK_URL)
-                print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
+#                print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
 
         except Exception as e:
             super().error_logging(str(e))
@@ -44,7 +44,7 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == movie_title:
-            print("same")
+            print("same_zum")
         else:
             sql = """update zum_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (movie_title, movie_info_url, rank_number))

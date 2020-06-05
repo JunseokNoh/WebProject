@@ -55,7 +55,7 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == movie_title:
-            print("same")
+            print("same naver")
         else:
             sql = """update naver_movie_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (movie_title, movie_info_url, rank_number))
