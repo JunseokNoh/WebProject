@@ -45,11 +45,11 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
 
     def connect_db(self, i, movie_title, movie_info_url):
         rank_number = i + 1
-        conn = pymysql.connect(host=super().__DB_HOST,
-                               user=super().__DB_USER,
-                               password=super().__DB_PW,
-                               db=super().__DB_NAME,
-                               charset=super().__DB_CHARSET)
+        conn = pymysql.connect(host=super().DB_HOST(),
+                               user=super().DB_USER(),
+                               password=super().DB_PW(),
+                               db=super().DB_NAME(),
+                               charset=super().DB_CHARSET())
         curs = conn.cursor()
 
         sql = """insert into naver_movie_rank(rank, title, url) values (%s, %s, %s)"""
