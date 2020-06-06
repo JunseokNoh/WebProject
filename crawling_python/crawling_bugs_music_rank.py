@@ -7,8 +7,8 @@ import crawling
 
 
 class BugsMusicCrawling(crawling.Crawling, ABC):
-    def __init__(self, main_url, article_url, db_host, db_user, db_pw, db_name, db_charset):
-        super().__init__(main_url, article_url, db_host, db_user, db_pw, db_name, db_charset)
+    def __init__(self, main_url, db_host, db_port, db_user, db_pw, db_name, db_charset):
+        super().__init__(main_url, db_host, db_port, db_user, db_pw, db_name, db_charset)
 
     def crawler(self):
         try:
@@ -29,8 +29,8 @@ class BugsMusicCrawling(crawling.Crawling, ABC):
                 RANK_ALBUM_URL = soup[i].find("a", {"class": "thumbnail"})["href"]
                 RANK_SONG_TITLE = soup[i].find("p", {"class": "title"}).find("a").get_text()
                 RANK_SONG_ARTIST = soup[i].find("td", {"class": "left"}).find("p", {"class": "artist"}).find("a").get_text()
-                self.connect_db(SONG_RANK, RANK_ALBUM_TITLE, RANK_ALBUM_URL, RANK_SONG_TITLE, RANK_SONG_ARTIST)
-                #print(SONG_RANK + " : " + RANK_ALBUM_TITLE + " : " + RANK_ALBUM_URL + " : " + RANK_SONG_TITLE + " : " + RANK_SONG_ARTIST)
+                #self.connect_db(SONG_RANK, RANK_ALBUM_TITLE, RANK_ALBUM_URL, RANK_SONG_TITLE, RANK_SONG_ARTIST)
+                print(SONG_RANK + " : " + RANK_ALBUM_TITLE + " : " + RANK_ALBUM_URL + " : " + RANK_SONG_TITLE + " : " + RANK_SONG_ARTIST)
 
         except Exception as e:
             super().error_logging(str(e))
@@ -39,6 +39,7 @@ class BugsMusicCrawling(crawling.Crawling, ABC):
     def connect_db(self, rank_number, album_title, album_info_url, song_title, song_artist):
 
         conn = pymysql.connect(host=super().DB_HOST(),
+                               port=int(super().DB_PORT()),
                                user=super().DB_USER(),
                                password=super().DB_PW(),
                                db=super().DB_NAME(),

@@ -11,16 +11,18 @@ import crawling_zum_trends_rank
 def main():
     # Movie Fields
     naverMovieRank = crawling_naver_movie_rank.NaverMovieCrawling('https://movie.naver.com/movie/sdb/rank/rmovie.nhn',
-                                                                  'https://movie.naver.com/',
-                                                                  'localhost',
+                                                                  'hackery00bi.iptime.org',
+                                                                  '6666',
                                                                   'yoobi',
                                                                   'toor',
                                                                   'jsp_db',
                                                                   'utf8')
 
     # Trends Fields
+
     zumTrendsRank = crawling_zum_trends_rank.ZumTrendsCrawling('http://issue.zum.com/daily/',
-                                                               'http://issue.zum.com/daily/',
+                                                               'hackery00bi.iptime.org',
+                                                               '6666',
                                                                'yoobi',
                                                                'toor',
                                                                'jsp_db',
@@ -28,15 +30,16 @@ def main():
 
     naverTrendsRank = crawling_naver_trends_rank.NaverTrendsCrawling(
         'https://datalab.naver.com/keyword/realtimeList.naver?entertainment=-2&groupingLevel=0&marketing=-2&news=-2&sports=-2&where=main',
-        'https://datalab.naver.com/keyword/realtimeList.naver?entertainment=-2&groupingLevel=0&marketing=-2&news=-2&sports=-2&where=main',
-        'localhost',
+        'hackery00bi.iptime.org',
+        '6666',
         'yoobi',
         'toor',
         'jsp_db',
         'utf8')
 
     nateTrendsRank = crawling_nate_trends_rank.NateTrendsCrawling('https://www.nate.com/',
-                                                                  'https://www.nate.com/',
+                                                                  'hackery00bi.iptime.org',
+                                                                  '6666',
                                                                   'yoobi',
                                                                   'toor',
                                                                   'jsp_db',
@@ -45,19 +48,21 @@ def main():
     # Music Fields
     billboardMusicRank = crawling_billboard_music_rank.BillboardMusicCrawling(
         'https://www.billboard.com/charts/hot-100',
-        'https://www.billboard.com/charts/hot-100',
+        'hackery00bi.iptime.org',
+        '6666',
         'yoobi',
         'toor',
         'jsp_db',
         'utf8')
 
     bugsMusicRank = crawling_bugs_music_rank.BugsMusicCrawling('https://music.bugs.co.kr/chart',
-                                                               'https://music.bugs.co.kr/chart',
+                                                               'hackery00bi.iptime.org',
+                                                               '6666',
                                                                'yoobi',
                                                                'toor',
                                                                'jsp_db',
                                                                'utf8')
-
+    '''
     genieMusicRank = crawling_genie_music_rank.GenieMusicCrawling('https://www.genie.co.kr/chart/top200',
                                                                   'https://www.genie.co.kr/chart/top200',
                                                                   'yoobi',
@@ -71,17 +76,21 @@ def main():
                                                                   'toor',
                                                                   'jsp_db',
                                                                   'utf8')
+    '''
+    # naverMovieRank.crawler()
+    # zumTrendsRank.crawler()
+    # naverTrendsRank.crawler()
+    # nateTrendsRank.crawler()
 
-    naverMovieRank.crawler()
+    # billboardMusicRank.crawler()
 
-    zumTrendsRank.crawler()
-    naverTrendsRank.crawler()
-    nateTrendsRank.crawler()
-
-    billboardMusicRank.crawler()
-    bugsMusicRank.crawler()
+    #bugsMusicRank.crawler()
+    '''
     genieMusicRank.crawler()
     melonMusicRank.crawler()
+    '''
 
+def set_time_db():
+    pass
 
 main()
