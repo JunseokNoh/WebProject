@@ -1,5 +1,9 @@
 PROBLEMS_FILTERS_MIGRATE=true
 eclipse.preferences.version=1
+<<<<<<< Updated upstream
 platformState=1584376699937
+=======
+platformState=1580202736095
+>>>>>>> Stashed changes
 quickStart=false
 tipsAndTricks=true

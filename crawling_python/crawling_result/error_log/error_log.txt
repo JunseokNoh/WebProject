@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 2020-06-04 01:02:22.779589  Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
 2020-06-04 01:03:18.205240  Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
 2020-06-04 01:04:19.977615  Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
@@ -14,3 +15,8 @@
 2020-06-04 01:58:29.602999  %d format: a number is required, not str
 2020-06-05 17:31:42.758747 'super' object has no attribute '_NaverMovieCrawling__MAIN_URL'
 2020-06-05 17:48:37.970830 name 'connect_db' is not defined
+=======
+2020-06-06 14:50:17.288249 %d format: a number is required, not str
+2020-06-06 14:51:54.754256 %d format: a number is required, not str
+2020-06-06 15:22:17.407054 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")
+>>>>>>> Stashed changes

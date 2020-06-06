@@ -35,3 +35,61 @@ create table `naver_movie_rank`
 	`title` varchar(150) not null,
 	`url` text not null
 );
+<<<<<<< Updated upstream
+=======
+
+create table zum_trends_rank
+(
+	`rank` int(10) not null,
+	`title` varchar(150) not null,
+	`url` text not null
+);
+
+create table nate_trends_rank
+(
+	`rank` int(10) not null,
+	`title` varchar(150) not null,
+	`url` text not null
+);
+
+create table naver_trends_rank
+(
+	`rank` int(10) not null,
+	`title` varchar(150) not null,
+	`url` text not null
+);
+
+create table billboard_music_rank
+(
+	`rank` int(10) not null,
+	`song_title` varchar(150) not null,
+	`song_artist` varchar(150) not null
+);
+
+create table bugs_music_rank
+(
+	`rank` varchar(20) not null,
+	`album_title` varchar(150) not null,
+	`album_url` text not null,
+	`song_title` varchar(150) not null,
+	`song_artist` varchar(150) not null,
+);
+
+create table genie_music_rank
+(
+	`rank` varchar(20) not null,
+	`album_title` varchar(150) not null,
+	`album_url` text not null,
+	`song_title` varchar(150) not null,
+	`song_artist` varchar(150) not null,
+);
+
+create table melon_music_rank
+(
+	`rank` varchar(20) not null,
+	`album_title` varchar(150) not null,
+	`album_url` text not null,
+	`song_title` varchar(150) not null,
+	`song_artist` varchar(150) not null,
+);
+>>>>>>> Stashed changes
