@@ -22,14 +22,13 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 
-			String query = "select timedata from time_data where type='1w'";
+			String query = "select timedata from time_data where type='1d'";
 			PS = con.prepareStatement(query);
 			RS = PS.executeQuery();
 			RS.next();
 			String time = RS.getString("timedata");	
 			
-			
-			query = "select * from billboard_music_rank";
+			query = "select * from naver_movie_rank";
 			PS = con.prepareStatement(query);
 			RS = PS.executeQuery();
 	%>
@@ -38,7 +37,6 @@
 				<tr>
 					<td>rank</td>
 					<td>title</td>
-					<td>artist</td>
 				</tr>
 	<%
 			int count = 0;
@@ -46,12 +44,11 @@
 			{
 				String rank = RS.getString("rank");
 				String title = RS.getString("title");
-				String artist = RS.getString("artist");
+				String url = "https://movie.naver.com" + RS.getString("url");
 	%>
 				<tr>
 					<td><%=rank%></td>
-					<td><%=title%></td>
-					<td><%=artist%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;

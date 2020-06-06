@@ -22,23 +22,22 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 
-			String query = "select timedata from time_data where type='1w'";
+			String query = "select timedata from time_data where type='10m'";
 			PS = con.prepareStatement(query);
 			RS = PS.executeQuery();
 			RS.next();
 			String time = RS.getString("timedata");	
 			
-			
-			query = "select * from billboard_music_rank";
+			query = "select * from nate_trends_rank";
 			PS = con.prepareStatement(query);
 			RS = PS.executeQuery();
+
 	%>
 			기준 날짜 : <%=time%>
 			<table border="1">
 				<tr>
 					<td>rank</td>
 					<td>title</td>
-					<td>artist</td>
 				</tr>
 	<%
 			int count = 0;
@@ -46,12 +45,11 @@
 			{
 				String rank = RS.getString("rank");
 				String title = RS.getString("title");
-				String artist = RS.getString("artist");
+				String url = "https://search.daum.net/nate?thr=sbma&w=tot&q=" + title.replaceAll(" ","+");
 	%>
 				<tr>
 					<td><%=rank%></td>
-					<td><%=title%></td>
-					<td><%=artist%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;

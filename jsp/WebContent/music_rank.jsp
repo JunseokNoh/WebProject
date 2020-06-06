@@ -20,6 +20,15 @@
 -->
 <%
 	Connection con = null;
+	PreparedStatement Melon_PS = null;
+	ResultSet Melon_RS = null;
+	
+	PreparedStatement Bugs_PS = null;
+	ResultSet Bugs_RS = null;
+	
+	PreparedStatement Genie_PS = null;
+	ResultSet Genie_RS = null;
+	
 	PreparedStatement Billboard_PS = null;
 	ResultSet Billboard_RS = null;
 	
@@ -30,7 +39,41 @@
 	String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
 	Class.forName("com.mysql.jdbc.Driver");
 	con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
-
+	
+	/*멜론*/
+	String Melon_query = "select timedata from time_data where type='10m'";
+	Melon_PS = con.prepareStatement(Melon_query);
+	Melon_RS = Melon_PS.executeQuery();
+	Melon_RS.next();
+	String time = Melon_RS.getString("timedata");	
+		
+	Melon_query = "select * from melon_music_rank";
+	Melon_PS = con.prepareStatement(Melon_query);
+	Melon_RS = Melon_PS.executeQuery();
+	
+	/*벅스*/
+	String Bugs_query = "select timedata from time_data where type='10m'";
+	Bugs_PS = con.prepareStatement(Bugs_query);
+	Bugs_RS = Bugs_PS.executeQuery();
+	Bugs_RS.next();
+	String Bugs_time = Bugs_RS.getString("timedata");	
+		
+	Bugs_query = "select * from bugs_music_rank";
+	Bugs_PS = con.prepareStatement(Bugs_query);
+	Bugs_RS = Bugs_PS.executeQuery();
+	
+	/*지니 뮤직*/
+	String Genie_query = "select timedata from time_data where type='10m'";
+	Genie_PS = con.prepareStatement(Genie_query);
+	Genie_RS = Genie_PS.executeQuery();
+	Genie_RS.next();
+	String Genie_time = Genie_RS.getString("timedata");	
+		
+	Genie_query = "select * from genie_music_rank";
+	Genie_PS = con.prepareStatement(Genie_query);
+	Genie_RS = Genie_PS.executeQuery();
+			
+	/*빌보드*/
 	String Billboard_query = "select * from billboard_music_rank";
 	Billboard_PS = con.prepareStatement(Billboard_query);
 	Billboard_RS = Billboard_PS.executeQuery();
@@ -150,6 +193,115 @@
 <div class="row">
 
 	<div class="col-md-3 templates" style="width:100%;">
+	<h3 class="py-4 poppins"><span class="text-primary">멜론 차트</span> </h3>
+		<div>기준 날짜 : <%=time%></div>
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>artist</td>
+					
+				</tr>
+	<%
+			int count = 0;
+			while(Melon_RS.next())
+			{
+				String rank = Melon_RS.getString("rank");
+				String title = Melon_RS.getString("song_title");
+				String title_url = Melon_RS.getString("song_url");
+				String artist = Melon_RS.getString("song_artist");
+				String artist_url = Melon_RS.getString("artist_url");
+				String album = Melon_RS.getString("album_title");
+				String album_url = Melon_RS.getString("album_url");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
+					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
+									</tr>
+	<%
+				count++;
+			}
+			
+	%>
+		</table>
+		<br><br>
+	</div>
+
+	<br>
+	<div class="col-md-3 templates" style="width:100%;">
+	<h3 class="py-4 poppins"><span class="text-primary">벅스 차트</span> </h3>
+		<div>기준 날짜 : <%=Bugs_time%></div>
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>artist</td>
+
+				</tr>
+	<%
+			count = 0;
+			while(Bugs_RS.next())
+			{
+				String rank = Bugs_RS.getString("rank");
+				String title = Bugs_RS.getString("song_title");
+				String title_url = Bugs_RS.getString("song_url");
+				String artist = Bugs_RS.getString("song_artist");
+				String artist_url = Bugs_RS.getString("artist_url");
+				String album = Bugs_RS.getString("album_title");
+				String album_url = Bugs_RS.getString("album_url");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
+					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
+									</tr>
+	<%
+				count++;
+			}
+	
+	%>
+		</table>
+		<br><br>
+	</div>
+
+	<br>
+	<div class="col-md-3 templates" style="width:100%;">
+	<h3 class="py-4 poppins"><span class="text-primary">지니 차트</span> </h3>
+		<div>기준 날짜 : <%=Genie_time%></div>
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>artist</td>
+				</tr>
+	<%
+			count = 0;
+			while(Genie_RS.next())
+			{
+				String rank = Genie_RS.getString("rank");
+				String title = Genie_RS.getString("song_title");
+				String title_url = Genie_RS.getString("song_url");
+				String artist = Genie_RS.getString("song_artist");
+				String artist_url = Genie_RS.getString("artist_url");
+				String album = Genie_RS.getString("album_title");
+				String album_url = Genie_RS.getString("album_url");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
+					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
+				</tr>
+	<%
+				count++;
+			}
+	%>
+		</table>
+		<br><br>
+	</div>
+
+	<br>
+	<div class="col-md-3 templates" style="width:100%;">
 		<h3 class="py-4 poppins"><span class="text-primary">빌보드 차트</span> </h3>
 			기준 날짜 : <%= sf.format(nowTime) %>
 			<table border="1">
@@ -159,7 +311,7 @@
 					<td>artist</td>
 				</tr>
 	<%
-			int count = 0;
+			count = 0;
 			while(Billboard_RS.next())
 			{
 				String rank = Billboard_RS.getString("rank");
@@ -176,24 +328,6 @@
 			}
 	%>
 			</table>
-		<br><br>
-	</div>
-
-	<br>
-	<div class="col-md-3 templates" style="width:100%;">
-		
-		<br><br>
-	</div>
-
-	<br>
-	<div class="col-md-3 templates" style="width:100%;">
-		
-		<br><br>
-	</div>
-
-	<br>
-	<div class="col-md-3 templates" style="width:100%;">
-		
 		<br><br>
 	</div>
 

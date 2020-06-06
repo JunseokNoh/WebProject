@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
 <%@page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService"%>
 <%@page import="org.codehaus.jackson.map.ObjectMapper"%>
 <%@page import="java.util.Map"%>
@@ -7,13 +8,82 @@
 <%@page import="net.sf.json.JSONObject"%>
 <%@page import="net.sf.json.util.JSONBuilder"%>
 <%@page import="net.sf.json.JSONArray"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
 <!--
 ------------------------------------------------------------
 * @설명 : 일별 박스오피스 REST 호출 - 서버측에서 호출하는 방식 예제
 ------------------------------------------------------------
 -->
+<%
+		Connection con = null;
+		PreparedStatement Inter_PS = null;
+		ResultSet Inter_RS = null;
+		
+		PreparedStatement Kyobo_PS = null;
+		ResultSet Kyobo_RS = null;
+		
+		PreparedStatement Yes_PS = null;
+		ResultSet Yes_RS = null;
+		
+		PreparedStatement Aladin_PS = null;
+		ResultSet Aladin_RS = null;
+		
+		String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
+		String MYSQL_SERVER_USERNAME = "yoobi";
+		String MYSQL_SERVER_PASSWORD = "toor";
+		String MYSQL_DATABASE = "jsp_db";
+		String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
+		Class.forName("com.mysql.jdbc.Driver");
+		con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
+
+		/*인터 파크*/
+		String Inter_query = "select timedata from time_data where type='10m'";
+		Inter_PS = con.prepareStatement(Inter_query);
+		Inter_RS = Inter_PS.executeQuery();
+		Inter_RS.next();
+		String Inter_time = Inter_RS.getString("timedata");	
+			
+		Inter_query = "select * from interpark_book_rank";
+		Inter_PS = con.prepareStatement(Inter_query);
+		Inter_RS = Inter_PS.executeQuery();
+		
+		/*교보 문고*/
+		String Kyobo_query = "select timedata from time_data where type='10m'";
+		Kyobo_PS = con.prepareStatement(Kyobo_query);
+		Kyobo_RS = Kyobo_PS.executeQuery();
+		Kyobo_RS.next();
+		String Kyobo_time = Kyobo_RS.getString("timedata");	
+			
+		Kyobo_query = "select * from kyobo_book_rank";
+		Kyobo_PS = con.prepareStatement(Kyobo_query);
+		Kyobo_RS = Kyobo_PS.executeQuery();
+		
+		/*예스24*/
+		String Yes_query = "select timedata from time_data where type='10m'";
+		Yes_PS = con.prepareStatement(Yes_query);
+		Yes_RS = Yes_PS.executeQuery();
+		Yes_RS.next();
+		String Yes_time = Yes_RS.getString("timedata");	
+			
+		Yes_query = "select * from yes24_book_rank";
+		Yes_PS = con.prepareStatement(Yes_query);
+		Yes_RS = Yes_PS.executeQuery();
+		
+		/*알라딘*/
+		String Aladin_query = "select timedata from time_data where type='10m'";
+		Aladin_PS = con.prepareStatement(Aladin_query);
+		Aladin_RS = Aladin_PS.executeQuery();
+		Aladin_RS.next();
+		String Aladin_time = Aladin_RS.getString("timedata");	
+			
+		Aladin_query = "select * from aladin_book_rank";
+		Aladin_PS = con.prepareStatement(Aladin_query);
+		Aladin_RS = Aladin_PS.executeQuery();
+	%>
+	
 <%
 	// 파라메터 설정
 	String targetDt = request.getParameter("targetDt") == null ? "20200531" : request.getParameter("targetDt"); //조회일자
@@ -44,6 +114,7 @@
 	HashMap<String, Object> codeResult = mapper.readValue(codeResponse, HashMap.class);
 	request.setAttribute("codeResult", codeResult);
 %>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -100,10 +171,7 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
 
 <ul class="navbar-nav mr-auto"> 
-	<li class="nav-item"> 
-	<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
-	</li> 
-		
+	
 
 	<li class="nav-item dropdown"> 
 	<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="category-dropdown"> 카테고리 </a> 
@@ -112,12 +180,12 @@
 	<a class="dropdown-item " href="./music_rank.jsp" >음악 차트</a> 
 	<a class="dropdown-item " href="./movie_rank.jsp" >영화 차트</a> 
 	<a class="dropdown-item " href="./book_rank.jsp" >도서 차트</a> 
-
 	</div> 
 	</li> 
-
+	<li class="nav-item"> 
+	<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
+	</li> 
 </ul> 
-
 
 <ul class="navbar-nav ml-auto"> 
 <li class="nav-item"> 
@@ -138,13 +206,10 @@
 
 <div class="container"> 
 
-<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span id="keyword">포털 &nbsp</span>순위</h1> 
+<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>도서&nbsp</span>순위</h1> 
 
 <h2 class="lead text-muted">부제목 </h2> 
-<!-- 
-<a class="btn btn-primary my-2" href="https://www.velosofy.com/templates">Find a template</a> 
-<a class="btn btn-secondary my-2" href="https://www.velosofy.com/submit">Submit a template</a> 
- -->
+
 </div> 
 </section> 
 
@@ -152,146 +217,153 @@
 
 
 
-<h3 class="py-4 poppins"><span class="text-primary">영화 차트</span> </h3>
+
 
 
 <div class="row">
 
-<!-- 
-
-<div class="col-md-3 templates">
-<a class="card mb-4 shadow-sm" href="/template/intro-template-130" title="FREE 2D Intro #130 | After Effects Template">
-<img alt="FREE 2D Intro #130 | After Effects Template" class="hoverable" loading="lazy" src="https://i.ytimg.com/vi/vtucu0vNnl8/mqdefault.jpg" title="FREE 2D Intro #130 | After Effects Template" width="100%"/>
-</a>
-</div>
-
-<div class="col-md-3 templates">
-<a class="card mb-4 shadow-sm" href="/template/c4d-template-69" title="FREE 3D Intro #69 | Cinema 4D/AE Template">
-<img alt="FREE 3D Intro #69 | Cinema 4D/AE Template" class="hoverable" loading="lazy" src="https://i.ytimg.com/vi/xCA1UJbR6P8/mqdefault.jpg" title="FREE 3D Intro #69 | Cinema 4D/AE Template" width="100%"/>
-</a>
-</div>
-
-<div class="col-md-3 templates">
-<a class="card mb-4 shadow-sm" href="/template/intro-template-129" title="FREE 2D Intro #129 | Sony Vegas/After Effects Template">
-<img alt="FREE 2D Intro #129 | Sony Vegas/After Effects Template" class="hoverable" loading="lazy" src="https://i.ytimg.com/vi/6RYDBuX-qvE/mqdefault.jpg" title="FREE 2D Intro #129 | Sony Vegas/After Effects Template" width="100%"/>
-</a>
-</div>
-
-<div class="col-md-3 templates">
-<a class="card mb-4 shadow-sm" href="/template/c4d-template-68" title="FREE 3D Intro #68 | Cinema 4D/AE Template">
-<img alt="FREE 3D Intro #68 | Cinema 4D/AE Template" class="hoverable" loading="lazy" src="https://i.ytimg.com/vi/71R1MC8Is44/mqdefault.jpg" title="FREE 3D Intro #68 | Cinema 4D/AE Template" width="100%"/>
-</a>
-</div>
- -->
- 
 <div class="col-md-3 templates" style="width:100%;">
-	<table   border="1" id="movie_1" style="">
-		<tr style="width:100%;">
-			<td>순위</td>
-			<td>영화명</td>
-		</tr>
-		<c:if test="${not empty dailyResult.boxOfficeResult.dailyBoxOfficeList}">
-			<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
-				<tr style="width:100%;">
-					<td style="width:10%;">
-						<c:out value="${boxoffice.rank }" />
-					</td>
-					<td style="width:90%;">
-						<c:out value="${boxoffice.movieNm }" />
-					</td>
+	<h3 class="py-4 poppins"><span class="text-primary">인터 파크</span> </h3>
+		<div>기준 날짜 : <%=Inter_time%></div>
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>대표저자</td>
+					<td>출판사</td>
 				</tr>
-			</c:forEach>
-		</c:if>
+	<%
+			int count = 0;
+			while(Inter_RS.next())
+			{
+				String rank = Inter_RS.getString("rank");
+				String title = Inter_RS.getString("title");
+				String url = Inter_RS.getString("url");
+				String author = Inter_RS.getString("author");
+				String publisher = Inter_RS.getString("publisher");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=author%></td>
+					<td><%=publisher%></td>
+				</tr>
+	<%
+				count++;
+			}
+	%>
 	</table>
-	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.boxofficeType}" /></span>
-	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.showRange}" /></span>
 	<br><br>
 </div>
 
 <br>
 <div class="col-md-3 templates" style="width:100%;">
-	<table   border="1" id="movie_1" style="">
-		<tr style="width:100%;">
-			<td>순위</td>
-			<td>영화명</td>
-		</tr>
-		<c:if test="${not empty dailyResult.boxOfficeResult.dailyBoxOfficeList}">
-			<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
-				<tr style="width:100%;">
-					<td style="width:10%;">
-						<c:out value="${boxoffice.rank }" />
-					</td>
-					<td style="width:90%;">
-						<c:out value="${boxoffice.movieNm }" />
-					</td>
+	<h3 class="py-4 poppins"><span class="text-primary">교보 문고</span> </h3>
+		<div>기준 날짜 : <%=Kyobo_time%></div>
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>대표저자</td>
+					<td>출판사</td>
 				</tr>
-			</c:forEach>
-		</c:if>
+	<%
+			count = 0;
+			while(Kyobo_RS.next())
+			{
+				String rank = Kyobo_RS.getString("rank");
+				String title = Kyobo_RS.getString("title");
+				String url = Kyobo_RS.getString("url");
+				String author = Kyobo_RS.getString("author");
+				String publisher = Kyobo_RS.getString("publisher");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=author%></td>
+					<td><%=publisher%></td>
+				</tr>
+	<%
+				count++;
+			}
+	%>
 	</table>
-	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.boxofficeType}" /></span>
-	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.showRange}" /></span>
 	<br><br>
 </div>
 
 <br>
 <div class="col-md-3 templates" style="width:100%;">
-	<table   border="1" id="movie_1" style="">
-		<tr style="width:100%;">
-			<td>순위</td>
-			<td>영화명</td>
-		</tr>
-		<c:if test="${not empty dailyResult.boxOfficeResult.dailyBoxOfficeList}">
-			<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
-				<tr style="width:100%;">
-					<td style="width:10%;">
-						<c:out value="${boxoffice.rank }" />
-					</td>
-					<td style="width:90%;">
-						<c:out value="${boxoffice.movieNm }" />
-					</td>
+	<h3 class="py-4 poppins"><span class="text-primary">YES24</span> </h3>
+		<div>기준 날짜 : <%=Yes_time%></div>
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>대표저자</td>
+					<td>출판사</td>
 				</tr>
-			</c:forEach>
-		</c:if>
+	<%
+			count = 0;
+			while(Yes_RS.next())
+			{
+				String rank = Yes_RS.getString("rank");
+				String title = Yes_RS.getString("title");
+				String url = Yes_RS.getString("url");
+				String author = Yes_RS.getString("author");
+				String publisher = Yes_RS.getString("publisher");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=author%></td>
+					<td><%=publisher%></td>
+				</tr>
+	<%
+				count++;
+			}
+	%>
 	</table>
-	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.boxofficeType}" /></span>
-	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.showRange}" /></span>
 	<br><br>
 </div>
 
 <br>
 <div class="col-md-3 templates" style="width:100%;">
-	<table   border="1" id="movie_1" style="">
-		<tr style="width:100%;">
-			<td>순위</td>
-			<td>영화명</td>
-		</tr>
-		<c:if test="${not empty dailyResult.boxOfficeResult.dailyBoxOfficeList}">
-			<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
-				<tr style="width:100%;">
-					<td style="width:10%;">
-						<c:out value="${boxoffice.rank }" />
-					</td>
-					<td style="width:90%;">
-						<c:out value="${boxoffice.movieNm }" />
-					</td>
+	<h3 class="py-4 poppins"><span class="text-primary">알라딘</span> </h3>
+		<div>기준 날짜 : <%=Aladin_time%></div>
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>대표저자</td>
+					<td>출판사</td>
 				</tr>
-			</c:forEach>
-		</c:if>
+	<%
+			count = 0;
+			while(Aladin_RS.next())
+			{
+				String rank = Aladin_RS.getString("rank");
+				String title = Aladin_RS.getString("title");
+				String url = Aladin_RS.getString("url");
+				String author = Aladin_RS.getString("author");
+				String publisher = Aladin_RS.getString("publisher");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=author%></td>
+					<td><%=publisher%></td>
+				</tr>
+	<%
+				count++;
+			}
+	%>
 	</table>
-	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.boxofficeType}" /></span>
-	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.showRange}" /></span>
 	<br><br>
 </div>
 
 
 </div>
-<!-- 
-<div class="text-right">
-<a class="btn btn-primary" href="/templates/featured">
-                Show 200 more featured templates
-            </a>
-</div>
- -->
+
  
 </div>
 
@@ -317,41 +389,6 @@
     });
 </script>
 
-	<!--
-	<c:out value="${dailyResult.boxOfficeResult.boxofficeType}" />
-	<c:out value="${dailyResult.boxOfficeResult.showRange}" />
-	<br />
-
 	
-	<form action="">
-		일자:
-		<input type="text" name="targetDt" value="<%=targetDt%>">
-		최대 출력갯수:
-		<input type="text" name="itemPerPage" value="<%=itemPerPage%>">
-		영화구분:
-		<select name="multiMovieYn">
-			<option value="">-전체-</option>
-			<option value="Y" <c:if test="${param.multiMovieYn eq 'Y'}"> selected="seleted"</c:if>>다양성영화</option>
-			<option value="N" <c:if test="${param.multiMovieYn eq 'N'}"> selected="seleted"</c:if>>상업영화</option>
-		</select>
-		국적:
-		<select name="repNationCd">
-			<option value="">-전체-</option>
-			<option value="K" <c:if test="${param.repNationCd eq 'K'}"> selected="seleted"</c:if>>한국</option>
-			<option value="F" <c:if test="${param.repNationCd eq 'F'}"> selected="seleted"</c:if>>외국</option>
-		</select>
-		지역:
-		<select name="wideAreaCd">
-			<option value="">-전체-</option>
-			<c:forEach items="${codeResult.codes}" var="code">
-				<option value="<c:out value="${code.fullCd}"/>"
-					<c:if test="${param.wideAreaCd eq code.fullCd}"> selected="seleted"</c:if>
-				><c:out value="${code.korNm}" /></option>
-			</c:forEach>
-		</select>
-		</br>
-		<input type="submit" name="" value="조회">
-		
-	</form> -->
 </body>
 </html>
