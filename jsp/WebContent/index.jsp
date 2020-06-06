@@ -87,7 +87,7 @@
 
 <div id="app"> 
 
-<nav class="navbar navbar-expand-md navbar-light navbar-velosofy"> 
+<nav class="navbar navbar-expand-md navbar-light navbar-velosofy" style="background-color : yellow;"> 
 	<div class="container"> 
 <nav class="navbar navbar-light"> 
 	<a class="navbar-brand " href="./index.jsp"> 
@@ -138,7 +138,7 @@
 
 <div class="container"> 
 
-<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span id="keyword">포털 &nbsp</span>순위</h1> 
+<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span id="keyword">포털&nbsp</span>순위</h1> 
 
 <h2 class="lead text-muted">부제목 </h2> 
 <!-- 
