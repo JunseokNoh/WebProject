@@ -81,7 +81,7 @@ create table genie_music_rank
 	`song_title` varchar(150) not null,
 	`song_url` text not null,
 	`song_artist` varchar(150) not null,
-	`artist_url' text not null,
+	`artist_url` text not null,
 	`album_title` varchar(150) not null,
 	`album_url` text not null
 );
@@ -92,7 +92,7 @@ create table melon_music_rank
 	`song_title` varchar(150) not null,
 	`song_url` text not null,
 	`song_artist` varchar(150) not null,
-	`artist_url' text not null,
+	`artist_url` text not null,
 	`album_title` varchar(150) not null,
 	`album_url` text not null
 );
@@ -101,27 +101,27 @@ create table aladin_book_rank
 (
 	`rank` varchar(20) not null,
 	`title` varchar(150) not null,
-	`url' text not null,
+	`url` text not null,
 	`author` varchar(150) not null,
 	`publisher` varchar(150) not null,
-	`date' varchar(20) not null
+	`date` varchar(20) not null
 );
 
 create table kyobo_book_rank
 (
 	`rank` varchar(20) not null,
 	`title` varchar(150) not null,
-	`url' text not null,
+	`url` text not null,
 	`author` varchar(150) not null,
 	`publisher` varchar(150) not null,
-	`date' varchar(20) not null
+	`date` varchar(20) not null
 );
 
 create table yes24_book_rank
 (
 	`rank` varchar(20) not null,
 	`title` varchar(150) not null,
-	`url' text not null,
+	`url` text not null,
 	`author` varchar(150) not null,
 	`publisher` varchar(150) not null
 );
@@ -130,7 +130,7 @@ create table interpark_book_rank
 (
 	`rank` varchar(20) not null,
 	`title` varchar(150) not null,
-	`url' text not null,
+	`url` text not null,
 	`author` varchar(150) not null,
 	`publisher` varchar(150) not null
 );
