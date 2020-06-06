@@ -6,7 +6,7 @@ from abc import *
 import crawling
 
 
-class KyoboBookCrawling(crawling.Crawling, ABC):
+class Yes24BookCrawling(crawling.Crawling, ABC):
     def __init__(self, main_url, article_url, db_host, db_user, db_pw, db_name, db_charset):
         super().__init__(main_url, article_url, db_host, db_user, db_pw, db_name, db_charset)
 
