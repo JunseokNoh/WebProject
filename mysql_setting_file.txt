@@ -116,3 +116,13 @@ create table kyobo_book_rank
 	`publisher` varchar(150) not null,
 	`date' varchar(20) not null
 );
+
+create table yes24_book_rank
+(
+	`rank` varchar(20) not null,
+	`title` varchar(150) not null,
+	`url' text not null,
+	`author` varchar(150) not null,
+	`publisher` varchar(150) not null
+);
+
