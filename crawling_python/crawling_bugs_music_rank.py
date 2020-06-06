@@ -7,8 +7,8 @@ import crawling
 
 
 class BugsMusicCrawling(crawling.Crawling, ABC):
-    def __init__(self, main_url, db_host, db_port, db_user, db_pw, db_name, db_charset):
-        super().__init__(main_url, db_host, db_port, db_user, db_pw, db_name, db_charset)
+    def __init__(self, main_url, article_url, db_host, db_user, db_pw, db_name, db_charset):
+        super().__init__(main_url, article_url, db_host, db_user, db_pw, db_name, db_charset)
 
     def crawler(self):
         try:
@@ -25,21 +25,23 @@ class BugsMusicCrawling(crawling.Crawling, ABC):
 
             for i in range(len(soup)):
                 SONG_RANK = soup[i].find("div", {"class": "ranking"}).find("strong").get_text()
-                RANK_ALBUM_TITLE = soup[i].find("a", {"class": "album"}).get_text()
-                RANK_ALBUM_URL = soup[i].find("a", {"class": "thumbnail"})["href"]
-                RANK_SONG_TITLE = soup[i].find("p", {"class": "title"}).find("a").get_text()
-                RANK_SONG_ARTIST = soup[i].find("td", {"class": "left"}).find("p", {"class": "artist"}).find("a").get_text()
-                #self.connect_db(SONG_RANK, RANK_ALBUM_TITLE, RANK_ALBUM_URL, RANK_SONG_TITLE, RANK_SONG_ARTIST)
-                print(SONG_RANK + " : " + RANK_ALBUM_TITLE + " : " + RANK_ALBUM_URL + " : " + RANK_SONG_TITLE + " : " + RANK_SONG_ARTIST)
+                SONG_TITLE = soup[i].find("p", {"class": "title"}).find("a").get_text()
+                SONG_URL = soup[i].find("a", {"class": "trackInfo"})["href"]
+                SONG_ARTIST = soup[i].find("p", {"class": "artist"}).find("a").get_text()
+                ARTIST_URL = soup[i].find("p", {"class": "artist"}).find("a")["href"]
+                ALBUM_TITLE = soup[i].find("a", {"class": "album"}).get_text()
+                ALBUM_URL = soup[i].find("a", {"class": "album"})["href"]
+                self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL)
+                #print(SONG_RANK + " : " + SONG_TITLE + " : " + SONG_ARTIST + " : " + ALBUM_TITLE
+                #  + "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
 
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, rank_number, album_title, album_info_url, song_title, song_artist):
+    def connect_db(self, rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url):
 
         conn = pymysql.connect(host=super().DB_HOST(),
-                               port=int(super().DB_PORT()),
                                user=super().DB_USER(),
                                password=super().DB_PW(),
                                db=super().DB_NAME(),
@@ -52,8 +54,8 @@ class BugsMusicCrawling(crawling.Crawling, ABC):
         if row[0] == song_title:
             print("same bugs")
         else:
-            sql = """update bugs_music_rank set album_title=%s, album_url=%s, song_title=%s, song_artist=%s where rank=%s"""
-            curs.execute(sql, (album_title, album_info_url, song_title, song_artist, rank_number))
+            sql = """update bugs_music_rank set song_title=%s, song_url=%s, song_artist=%s, artist_url=%s, album_title=%s, album_url=%s where rank=%s"""
+            curs.execute(sql, (song_title, song_url, song_artist, artist_url, album_title, album_url, rank_number))
 
         conn.commit()
         conn.close()

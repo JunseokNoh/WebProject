@@ -67,26 +67,32 @@ create table billboard_music_rank
 create table bugs_music_rank
 (
 	`rank` varchar(20) not null,
-	`album_title` varchar(150) not null,
-	`album_url` text not null,
 	`song_title` varchar(150) not null,
+	`song_url` text not null,
 	`song_artist` varchar(150) not null,
+	`artist_url' text not null,
+	`album_title` varchar(150) not null,
+	`album_url` text not null
 );
 
 create table genie_music_rank
 (
 	`rank` varchar(20) not null,
-	`album_title` varchar(150) not null,
-	`album_url` text not null,
 	`song_title` varchar(150) not null,
+	`song_url` text not null,
 	`song_artist` varchar(150) not null,
+	`artist_url' text not null,
+	`album_title` varchar(150) not null,
+	`album_url` text not null
 );
 
 create table melon_music_rank
 (
 	`rank` varchar(20) not null,
-	`album_title` varchar(150) not null,
-	`album_url` text not null,
 	`song_title` varchar(150) not null,
+	`song_url` text not null,
 	`song_artist` varchar(150) not null,
+	`artist_url' text not null,
+	`album_title` varchar(150) not null,
+	`album_url` text not null
 );
