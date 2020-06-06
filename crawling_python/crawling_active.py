@@ -6,6 +6,10 @@ import crawling_nate_trends_rank
 import crawling_naver_movie_rank
 import crawling_naver_trends_rank
 import crawling_zum_trends_rank
+import db_time_value_set
+
+import datetime
+import time
 
 
 def main():
@@ -76,21 +80,58 @@ def main():
                                                                   'toor',
                                                                   'jsp_db',
                                                                   'utf8')
+                                                                  
+    
     '''
-    # naverMovieRank.crawler()
-    # zumTrendsRank.crawler()
-    # naverTrendsRank.crawler()
-    # nateTrendsRank.crawler()
+    setTimeDate = db_time_value_set.DBTimeValueSet('hackery00bi.iptime.org',
+                                                   '6666',
+                                                   'yoobi',
+                                                   'toor',
+                                                   'jsp_db',
+                                                   'utf8')
 
-    # billboardMusicRank.crawler()
+    while True:
+        onehundredsixtyeightTime = 0
+        while onehundredsixtyeightTime < 168:
+            twentyfourTime = 0
+            while twentyfourTime < 24:
+                sixTime = 0
+                while sixTime < 6:
+                    tenTime = 0
+                    while tenTime < 10:
+                        # 1m
+                        # naverTrendsRank.crawler()
+                        setTimeDate.connect_db("1m")
+                        time.sleep(60)
+                        tenTime += 1
+                    # 10m
+                    # zumTrendsRank.crawler()
+                    # nateTrendsRank.crawler()
+                    setTimeDate.connect_db("10m")
+                    sixTime += 1
 
-    #bugsMusicRank.crawler()
-    '''
-    genieMusicRank.crawler()
-    melonMusicRank.crawler()
-    '''
+                # 1h
+                now = time.localtime()
+                if 1 < now.tm_hour < 7:
+                    continue
+                # bugsMusicRank.crawler()
+                '''
+                genieMusicRank.crawler()
+                melonMusicRank.crawler()
+                '''
+                setTimeDate.connect_db("1h")
+                twentyfourTime += 1
+            # 1d
+            # naverMovieRank.crawler()
+            setTimeDate.connect_db("1d")
+            onehundredsixtyeightTime += 1
+        # 1w
+        # billboardMusicRank.crawler()
+        setTimeDate.connect_db("1w")
+
 
 def set_time_db():
     pass
+
 
 main()

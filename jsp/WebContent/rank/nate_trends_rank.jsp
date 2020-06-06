@@ -22,15 +22,18 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 
-			String query = "select * from nate_trends_rank";
+			String query = "select timedata from time_data where type='10m'";
+			PS = con.prepareStatement(query);
+			RS = PS.executeQuery();
+			RS.next();
+			String time = RS.getString("timedata");	
+			
+			query = "select * from nate_trends_rank";
 			PS = con.prepareStatement(query);
 			RS = PS.executeQuery();
 
-			Date nowTime = new Date();
-			SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
-
 	%>
-			기준 날짜 : <%= sf.format(nowTime) %>
+			기준 날짜 : <%=time%>
 			<table border="1">
 				<tr>
 					<td>rank</td>
