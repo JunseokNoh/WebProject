@@ -38,6 +38,7 @@
 				<tr>
 					<td>rank</td>
 					<td>title</td>
+					<td>artist</td>
 				</tr>
 	<%
 			int count = 0;
