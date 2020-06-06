@@ -30,24 +30,28 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
                 SONG_RANK = soup[i].find("td", {"class": "number"}).get_text()
                 SONG_RANK = SONG_RANK[0:SONG_RANK.find('\n')]
 
-                RANK_ALBUM_TITLE = soup[i].find("a", {"class": "albumtitle"}).get_text()
+                SONG_TITLE = soup[i].find("a", {"class": "title"}).get_text()
+                SONG_TITLE = SONG_TITLE.lstrip()
+                SONG_URL = "https://www.genie.co.kr/detail/songInfo?xgnm=" + \
+                           soup[i].find("td", {"class": "link"}).find("a")["onclick"][16:24]
 
-                RANK_ALBUM_URL = "https://www.genie.co.kr/detail/albumInfo?axnm=" \
-                                 + soup[i].find("a", {"class": "cover"})["onclick"][18:26]
+                SONG_ARTIST = soup[i].find("a", {"class": "artist"}).get_text()
+                ARTIST_URL = "https://www.genie.co.kr/detail/artistInfo?xxnm=" + soup[i].find("a", {"class": "artist"})[
+                                                                                     "onclick"][14:22]
 
-                RANK_SONG_TITLE = soup[i].find("a", {"class": "title"}).get_text()
-                RANK_SONG_TITLE = RANK_SONG_TITLE.lstrip()
+                ALBUM_TITLE = soup[i].find("a", {"class": "albumtitle"}).get_text()
+                ALBUM_URL = "https://www.genie.co.kr/detail/albumInfo?axnm=" + soup[i].find("a", {"class": "cover"})[
+                                                                                   "onclick"][18:26]
 
-                RANK_SONG_ARTIST = soup[i].find("a", {"class": "artist"}).get_text()
-
-                self.connect_db(SONG_RANK, RANK_ALBUM_TITLE, RANK_ALBUM_URL, RANK_SONG_TITLE, RANK_SONG_ARTIST)
-                #print(SONG_RANK + " : " + RANK_ALBUM_TITLE + " : " + RANK_ALBUM_URL + " : " + RANK_SONG_TITLE + " : " + RANK_SONG_ARTIST)
+                self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL)
+                # print(SONG_RANK + " : " + SONG_TITLE + " : " + SONG_ARTIST + " : " + ALBUM_TITLE
+                #  + "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
 
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, rank_number, album_title, album_info_url, song_title, song_artist):
+    def connect_db(self, rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url):
 
         conn = pymysql.connect(host=super().DB_HOST(),
                                user=super().DB_USER(),
@@ -62,8 +66,8 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
         if row[0] == song_title:
             print("same genie")
         else:
-            sql = """update genie_music_rank set album_title=%s, album_url=%s, song_title=%s, song_artist=%s where rank=%s"""
-            curs.execute(sql, (album_title, album_info_url, song_title, song_artist, rank_number))
+            sql = """update genie_music_rank set song_title=%s, song_url=%s, song_artist=%s, artist_url=%s, album_title=%s, album_url=%s where rank=%s"""
+            curs.execute(sql, (song_title, song_url, song_artist, artist_url, album_title, album_url, rank_number))
 
         conn.commit()
         conn.close()
