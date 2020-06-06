@@ -14,7 +14,7 @@ PatchNote   :
 
 """
 
-#import pymysql
+import pymysql
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -39,17 +39,17 @@ def crawler():
         cont = req.content
         soup = BeautifulSoup(cont, 'lxml')
 
-        #print(soup)
-        soup = soup.select("div#wrap > div#container > div#content > div.article > div.old_layout.old_super_db > div#cbody > div#old_content > table.list_ranking > tbody > tr > td.title > div.tit3")  # > ul.tp_5 > div.listBoxType_3")
+        # print(soup)
+        soup = soup.select(
+            "div#wrap > div#container > div#content > div.article > div.old_layout.old_super_db > div#cbody > div#old_content > table.list_ranking > tbody > tr > td.title > div.tit3")  # > ul.tp_5 > div.listBoxType_3")
 
-       # print(soup)
+        # print(soup)
 
         for i in range(len(soup)):
             RANK_URL = soup[i].find("a")["href"]
             RANK_NAME = soup[i].find("a")["title"]
-            #connect_db(i, RANK_NAME, RANK_URL)
-            print(str(i + 1) +" : " + RANK_NAME + " : " + RANK_URL)
-
+            # connect_db(i, RANK_NAME, RANK_URL)
+            print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
 
     except Exception as e:
         error_logging(str(e))
@@ -64,16 +64,17 @@ def get_news(n_url):
     date = bsoup.select("div#wrap > div#content > div.clear.tp_5 > p.conTop2 > span")
     date = date[0]
     date = str(date)[68:75]
-    #print(date)
+    # print(date)
 
     text = bsoup.select("div#wrap > div#content > div.bodyarea")
     text = text[0]
-    #print(text)
+    # print(text)
     f = open(RESULT_PATH + date + ".txt", 'a', encoding='utf-8')
 
     f.write("{}\n".format(text))
 
     f.close()
+
 
 # error logging
 def error_logging(text):
@@ -81,15 +82,17 @@ def error_logging(text):
     fe.write("{} {} {}\n".format(datetime.now(), ARTICLE_URL, text))
     fe.close()
 
+
 def connect_db(i, movie_title, movie_info_url):
-	rank_number = i + 1
-	conn = pymysql.connect(host='localhost', user='yoobi', password='toor', db='jsp_db', charset='utf8')
+    rank_number = i + 1
+    conn = pymysql.connect(host='localhost', user='yoobi', password='toor', db='jsp_db', charset='utf8')
 
-	curs = conn.cursor()
+    curs = conn.cursor()
 
-	sql = """insert into naver_movie_rank(rank, title, url) values (%s, %s, %s)"""
-	curs.execute(sql, (rank_number, movie_title, movie_info_url))
-	conn.commit()
-	conn.close()
+    sql = """insert into naver_movie_rank(rank, title, url) values (%s, %s, %s)"""
+    curs.execute(sql, (rank_number, movie_title, movie_info_url))
+    conn.commit()
+    conn.close()
+
 
 main()

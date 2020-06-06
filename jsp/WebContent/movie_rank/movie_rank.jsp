@@ -14,11 +14,11 @@
 		ResultSet RS = null;
 		try
 		{
-			String MYSQL_SERVER ="192.168.0.10:3306";
+			String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
 			String MYSQL_SERVER_USERNAME = "yoobi";
 			String MYSQL_SERVER_PASSWORD = "toor";
 			String MYSQL_DATABASE = "jsp_db";
-			String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE;
+			String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 
