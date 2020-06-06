@@ -26,7 +26,7 @@ class Crawling:
         fe.close()
 
     @abstractmethod
-    def connect_db(self, i, movie_title, movie_info_url):
+    def connect_db(self, rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url):
         pass
 
     def RESULT_PATH(self):

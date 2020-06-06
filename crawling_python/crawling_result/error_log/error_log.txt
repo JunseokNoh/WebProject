@@ -1,3 +1,20 @@
 2020-06-06 14:50:17.288249 %d format: a number is required, not str
 2020-06-06 14:51:54.754256 %d format: a number is required, not str
 2020-06-06 15:22:17.407054 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")
+2020-06-06 23:58:38.865184 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")
+2020-06-07 00:00:25.769091 'NoneType' object is not subscriptable
+2020-06-07 00:03:50.233989 'NoneType' object is not subscriptable
+2020-06-07 00:21:09.240418 Unsupported or invalid CSS selector: ">chart-list__elements"
+2020-06-07 00:23:38.972743 Final combinator ">" is missing an argument.
+2020-06-07 00:25:46.363828 Unsupported or invalid CSS selector: ">tbody"
+2020-06-07 00:33:48.207031 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")
+2020-06-07 00:38:11.843077 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")
+2020-06-07 01:01:47.398984 connect_db() missing 1 required positional argument: 'tmp7'
+2020-06-07 01:03:25.735327 connect_db() missing 1 required positional argument: 'tmp7'
+2020-06-07 01:03:43.851726 connect_db() missing 1 required positional argument: 'tmp7'
+2020-06-07 01:05:04.114120 connect_db() missing 1 required positional argument: 'tmp'
+2020-06-07 01:05:22.894059 connect_db() missing 4 required positional arguments: 'tmp0', 'tmp1', 'tmp2', and 'tmp3'
+2020-06-07 01:05:23.061541 connect_db() missing 4 required positional arguments: 'tmp4', 'tmp5', 'tmp6', and 'tmp7'
+2020-06-07 01:05:23.495689 connect_db() missing 5 required positional arguments: 'tmp3', 'tmp4', 'tmp5', 'tmp6', and 'tmp7'
+2020-06-07 01:05:24.055745 connect_db() missing 4 required positional arguments: 'tmp4', 'tmp5', 'tmp6', and 'tmp7'
+2020-06-07 01:15:15.322969 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")

@@ -7,8 +7,8 @@ import crawling
 
 
 class ZumTrendsCrawling(crawling.Crawling, ABC):
-    def __init__(self, main_url, article_url, db_host, db_user, db_pw, db_name, db_charset):
-        super().__init__(main_url, article_url, db_host, db_user, db_pw, db_name, db_charset)
+    def __init__(self, main_url, db_host, db_port, db_user, db_pw, db_name, db_charset):
+        super().__init__(main_url, db_host, db_port, db_user, db_pw, db_name, db_charset)
 
     def crawler(self):
         try:
@@ -24,30 +24,34 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
             for i in range(len(soup)):
                 RANK_URL = soup[i].find("a", {"class": "cont"})["href"]
                 RANK_NAME = soup[i].find("a", {"class": "cont"}).find("span", {"class": "word"}).get_text()
-                self.connect_db(i, RANK_NAME, RANK_URL)
-#                print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
+                self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
+                # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
 
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, trends_title, trends_info_url):
+    def connect_db(self, i, title, info_url, tmp4, tmp5, tmp6, tmp7):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
+                               port=int(super().DB_PORT()),
                                user=super().DB_USER(),
                                password=super().DB_PW(),
                                db=super().DB_NAME(),
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
+        # sql = """insert into zum_trends_rank (rank, title, url) values (%s, %s, %s)"""
+        # curs.execute(sql, (rank_number, title, info_url))
+
         sql = """select title from zum_trends_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
-        if row[0] == trends_title:
-            print("same zum")
+        if row[0] == title:
+            print("same zum trend")
         else:
             sql = """update zum_trends_rank set title=%s, url=%s where rank=%s"""
-            curs.execute(sql, (trends_title, trends_info_url, rank_number))
+            curs.execute(sql, (title, info_url, rank_number))
 
         conn.commit()
         conn.close()

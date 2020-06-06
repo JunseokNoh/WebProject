@@ -71,16 +71,32 @@ def main():
                                                                'jsp_db',
                                                                'utf8')
 
+    melonMusicRank = crawling_melon_music_rank.MelonMusicCrawling('https://www.melon.com/chart/index.htm',
+                                                                  'hackery00bi.iptime.org',
+                                                                  '6666',
+                                                                  'yoobi',
+                                                                  'toor',
+                                                                  'jsp_db',
+                                                                  'utf8')
+
+    genieMusicRank = crawling_genie_music_rank.GenieMusicCrawling('https://www.genie.co.kr/chart/top200',
+                                                                  'hackery00bi.iptime.org',
+                                                                  '6666',
+                                                                  'yoobi',
+                                                                  'toor',
+                                                                  'jsp_db',
+                                                                  'utf8')
+
     # Book Fields
-    AladinMusicRank = crawling_aladin_book_rank.AladinBookCrawling('https://www.aladin.co.kr/shop/common/wbest.aspx?BestType=Bestseller&BranchType=1&CID=0',
-                                                                   'hackery00bi.iptime.org',
-                                                                   '6666',
-                                                                   'yoobi',
-                                                                   'toor',
-                                                                   'jsp_db',
-                                                                   'utf8')
+    aladinBookRank = crawling_aladin_book_rank.AladinBookCrawling('https://www.aladin.co.kr/shop/common/wbest.aspx?BestType=Bestseller&BranchType=1&CID=0',
+                                                                  'hackery00bi.iptime.org',
+                                                                  '6666',
+                                                                  'yoobi',
+                                                                  'toor',
+                                                                  'jsp_db',
+                                                                  'utf8')
 
-    KyoboBookRank = crawling_kyobo_book_rank.KyoboBookCrawling('http://www.kyobobook.co.kr/bestSellerNew/bestseller.laf',
+    kyoboBookRank = crawling_kyobo_book_rank.KyoboBookCrawling('http://www.kyobobook.co.kr/bestSellerNew/bestseller.laf',
                                                                'hackery00bi.iptime.org',
                                                                '6666',
                                                                'yoobi',
@@ -88,7 +104,7 @@ def main():
                                                                'jsp_db',
                                                                'utf8')
 
-    Yes24BookRank = crawling_yes24_book_rank.Yes24BookCrawling('http://www.yes24.com/24/Category/BestSeller',
+    yes24BookRank = crawling_yes24_book_rank.Yes24BookCrawling('http://www.yes24.com/24/Category/BestSeller',
                                                                'hackery00bi.iptime.org',
                                                                '6666',
                                                                'yoobi',
@@ -96,7 +112,7 @@ def main():
                                                                'jsp_db',
                                                                'utf8')
 
-    InterBookRank = crawling_interpark_book_rank.InterparkBookCrawling('http://book.interpark.com/display/collectlist.do?_method=bestsellerHourNew&bookblockname=b_gnb&booklinkname=%BA%A3%BD%BA%C6%AE%C1%B8&bid1=bgnb_mn&bid2=LiveRanking&bid3=main&bid4=001#',
+    interBookRank = crawling_interpark_book_rank.InterparkBookCrawling('http://book.interpark.com/display/collectlist.do?_method=bestsellerHourNew&bookblockname=b_gnb&booklinkname=%BA%A3%BD%BA%C6%AE%C1%B8&bid1=bgnb_mn&bid2=LiveRanking&bid3=main&bid4=001#',
                                                                        'hackery00bi.iptime.org',
                                                                        '6666',
                                                                        'yoobi',
@@ -104,23 +120,7 @@ def main():
                                                                        'jsp_db',
                                                                        'utf8')
 
-    '''
-    genieMusicRank = crawling_genie_music_rank.GenieMusicCrawling('https://www.genie.co.kr/chart/top200',
-                                                                  'https://www.genie.co.kr/chart/top200',
-                                                                  'yoobi',
-                                                                  'toor',
-                                                                  'jsp_db',
-                                                                  'utf8')
 
-    melonMusicRank = crawling_melon_music_rank.MelonMusicCrawling('https://www.melon.com/chart/index.htm',
-                                                                  'https://www.melon.com/chart/index.htm',
-                                                                  'yoobi',
-                                                                  'toor',
-                                                                  'jsp_db',
-                                                                  'utf8')
-                                                                  
-    
-    '''
     setTimeDate = db_time_value_set.DBTimeValueSet('hackery00bi.iptime.org',
                                                    '6666',
                                                    'yoobi',
@@ -128,48 +128,17 @@ def main():
                                                    'jsp_db',
                                                    'utf8')
 
-    while True:
-        onehundredsixtyeightTime = 0
-        while onehundredsixtyeightTime < 168:
-            twentyfourTime = 0
-            while twentyfourTime < 24:
-                sixTime = 0
-                while sixTime < 6:
-                    tenTime = 0
-                    while tenTime < 10:
-                        # 1m
-                        # naverTrendsRank.crawler()
-                        setTimeDate.connect_db("1m")
-                        time.sleep(60)
-                        tenTime += 1
-                    # 10m
-                    # zumTrendsRank.crawler()
-                    # nateTrendsRank.crawler()
-                    setTimeDate.connect_db("10m")
-                    sixTime += 1
-
-                # 1h
-                now = time.localtime()
-                if 1 < now.tm_hour < 7:
-                    continue
-                # bugsMusicRank.crawler()
-                '''
-                genieMusicRank.crawler()
-                melonMusicRank.crawler()
-                '''
-                setTimeDate.connect_db("1h")
-                twentyfourTime += 1
-            # 1d
-            # naverMovieRank.crawler()
-            setTimeDate.connect_db("1d")
-            onehundredsixtyeightTime += 1
-        # 1w
-        # billboardMusicRank.crawler()
-        setTimeDate.connect_db("1w")
-
-
-def set_time_db():
-    pass
-
+    #naverMovieRank.crawler()
+    #zumTrendsRank.crawler()
+    #naverTrendsRank.crawler()
+    #nateTrendsRank.crawler()
+    #billboardMusicRank.crawler()
+    #bugsMusicRank.crawler()
+    #melonMusicRank.crawler()
+    #genieMusicRank.crawler()
+    #aladinBookRank.crawler()
+    #kyoboBookRank.crawler()
+    #yes24BookRank.crawler()
+    interBookRank.crawler()
 
 main()

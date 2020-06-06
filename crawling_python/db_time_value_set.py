@@ -1,6 +1,7 @@
 import pymysql
 import time
 
+
 class DBTimeValueSet:
     def __init__(self, db_host, db_port, db_user, db_pw, db_name, db_charset):
         self.__DB_HOST = db_host

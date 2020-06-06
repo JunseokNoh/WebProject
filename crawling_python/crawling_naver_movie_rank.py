@@ -35,14 +35,14 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
             for i in range(len(soup)):
                 RANK_URL = soup[i].find("a")["href"]
                 RANK_NAME = soup[i].find("a")["title"]
-                self.connect_db(i, RANK_NAME, RANK_URL)
+                self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
             # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
 
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, title, info_url):
+    def connect_db(self, i, title, info_url, tmp4, tmp5, tmp6, tmp7):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),

@@ -7,8 +7,8 @@ import crawling
 
 
 class MelonMusicCrawling(crawling.Crawling, ABC):
-    def __init__(self, main_url, article_url, db_host, db_user, db_pw, db_name, db_charset):
-        super().__init__(main_url, article_url, db_host, db_user, db_pw, db_name, db_charset)
+    def __init__(self, main_url, db_host, db_port, db_user, db_pw, db_name, db_charset):
+        super().__init__(main_url, db_host, db_port, db_user, db_pw, db_name, db_charset)
 
     def crawler(self):
         try:
@@ -18,9 +18,9 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
             soup = BeautifulSoup(cont, 'lxml')
 
             # print(soup)
-            soup = soup.select("div.service_list_song.type02.d_song_list >" +
-                               "table >" +
-                               "tbody >" +
+            soup = soup.select("div.service_list_song.type02.d_song_list > " +
+                               "table > " +
+                               "tbody > " +
                                "tr.lst50")
             # print(soup)
 
@@ -42,8 +42,8 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
                 ALBUM_URL = "https://www.melon.com/album/detail.htm?albumId=" + ALBUM_URL[37:45]
 
                 self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL)
-                # print(SONG_RANK + " : " + SONG_TITLE + " : " + SONG_ARTIST + " : " + ALBUM_TITLE
-                #  + "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
+                #print(SONG_RANK + " : " + SONG_TITLE + " : " + SONG_ARTIST + " : " + ALBUM_TITLE +
+                #      "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
 
         except Exception as e:
             super().error_logging(str(e))
@@ -52,11 +52,15 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
     def connect_db(self, rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url):
 
         conn = pymysql.connect(host=super().DB_HOST(),
+                               port=int(super().DB_PORT()),
                                user=super().DB_USER(),
                                password=super().DB_PW(),
                                db=super().DB_NAME(),
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
+
+        #sql = """insert into melon_music_rank (rank, song_title, song_url, song_artist, artist_url, album_title, album_url) values (%s, %s, %s, %s, %s, %s, %s)"""
+        #curs.execute(sql, (rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url))
 
         sql = """select song_title from melon_music_rank where rank = %s"""
         curs.execute(sql, rank_number)
