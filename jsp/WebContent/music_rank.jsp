@@ -19,26 +19,24 @@
 ------------------------------------------------------------
 -->
 <%
-		// 네이버 실검
-		Connection con = null;
-		PreparedStatement PS = null;
-		ResultSet RS = null;
-		try
-		{
-			String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
-			String MYSQL_SERVER_USERNAME = "yoobi";
-			String MYSQL_SERVER_PASSWORD = "toor";
-			String MYSQL_DATABASE = "jsp_db";
-			String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
+	Connection con = null;
+	PreparedStatement Billboard_PS = null;
+	ResultSet Billboard_RS = null;
+	
+	String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
+	String MYSQL_SERVER_USERNAME = "yoobi";
+	String MYSQL_SERVER_PASSWORD = "toor";
+	String MYSQL_DATABASE = "jsp_db";
+	String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
+	Class.forName("com.mysql.jdbc.Driver");
+	con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 
-			String query = "select * from naver_movie_rank";
-			PS = con.prepareStatement(query);
-			RS = PS.executeQuery();
+	String Billboard_query = "select * from billboard_music_rank";
+	Billboard_PS = con.prepareStatement(Billboard_query);
+	Billboard_RS = Billboard_PS.executeQuery();
 
-			Date nowTime = new Date();
-			SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
 
 %>
 <html>
@@ -97,10 +95,7 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
 
 <ul class="navbar-nav mr-auto"> 
-	<li class="nav-item"> 
-	<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
-	</li> 
-		
+	
 
 	<li class="nav-item dropdown"> 
 	<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="category-dropdown"> 카테고리 </a> 
@@ -109,10 +104,11 @@
 	<a class="dropdown-item " href="./music_rank.jsp" >음악 차트</a> 
 	<a class="dropdown-item " href="./movie_rank.jsp" >영화 차트</a> 
 	<a class="dropdown-item " href="./book_rank.jsp" >도서 차트</a> 
-
 	</div> 
 	</li> 
-
+	<li class="nav-item"> 
+	<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
+	</li> 
 </ul> 
 
 
@@ -135,7 +131,7 @@
 
 <div class="container"> 
 
-<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span id="keyword">포털 &nbsp</span>순위</h1> 
+<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>음악&nbsp</span>순위</h1> 
 
 <h2 class="lead text-muted">부제목 </h2> 
 <!-- 
@@ -149,43 +145,36 @@
 
 
 
-<h3 class="py-4 poppins"><span class="text-primary">트렌드 차트</span> </h3>
 
 
 <div class="row">
 
 	<div class="col-md-3 templates" style="width:100%;">
+		<h3 class="py-4 poppins"><span class="text-primary">빌보드 차트</span> </h3>
 			기준 날짜 : <%= sf.format(nowTime) %>
-				<table border="1">
-					<tr>
-						<td>순 위</td>
-						<td>제 목</td>
-					</tr>
-		<%
-				int count = 0;
-				while(RS.next())
-				{
-					String rank = RS.getString("rank");
-					String title = RS.getString("title");
-					String url = RS.getString("url");
-					url = url.replaceAll(" ", "+");
-		%>
-					<tr>
-						<td><%=rank%></td>
-						<td><a href=<%=url%> target="_blank"><%=title%></a></td>
-					</tr>
-		<%
-					count++;
-				}
-				
-			}
-			catch(Exception ErrMsg)
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>artist</td>
+				</tr>
+	<%
+			int count = 0;
+			while(Billboard_RS.next())
 			{
-	//			ErrMsg.printStackTrace();
-				out.println(ErrMsg);
+				String rank = Billboard_RS.getString("rank");
+				String title = Billboard_RS.getString("title");
+				String artist = Billboard_RS.getString("artist");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><%=title%></td>
+					<td><%=artist%></td>
+				</tr>
+	<%
+				count++;
 			}
-		
-		%>
+	%>
 			</table>
 		<br><br>
 	</div>

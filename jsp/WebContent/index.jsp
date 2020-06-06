@@ -9,6 +9,7 @@
 <%@page import="net.sf.json.JSONArray"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!--
 ------------------------------------------------------------
 * @설명 : 일별 박스오피스 REST 호출 - 서버측에서 호출하는 방식 예제
@@ -54,8 +55,9 @@
 <meta content="228490107301532" property="fb:admins"/> 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
-
-	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
+<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 	  
 
 <style type="text/css">
@@ -89,7 +91,7 @@
 	<div class="container"> 
 <nav class="navbar navbar-light"> 
 	<a class="navbar-brand " href="./index.jsp"> 
-	<img alt="Free Video Templates" class="d-inline-block align-top" height="30" src="https://www.velosofy.com/img/logo.png" title="Free Video Templates" width="30"/> 
+	<i class="fa fa-trophy" aria-hidden="true" style="width:30px"]></i>
 	홈페이지이름
 	</a> 
 </nav> 
@@ -100,10 +102,7 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
 
 <ul class="navbar-nav mr-auto"> 
-	<li class="nav-item"> 
-	<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
-	</li> 
-		
+	
 
 	<li class="nav-item dropdown"> 
 	<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="category-dropdown"> 카테고리 </a> 
@@ -112,10 +111,11 @@
 	<a class="dropdown-item " href="./music_rank.jsp" >음악 차트</a> 
 	<a class="dropdown-item " href="./movie_rank.jsp" >영화 차트</a> 
 	<a class="dropdown-item " href="./book_rank.jsp" >도서 차트</a> 
-
 	</div> 
 	</li> 
-
+	<li class="nav-item"> 
+	<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
+	</li> 
 </ul> 
 
 
