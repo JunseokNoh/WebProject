@@ -1,0 +1,10 @@
+@charset "UTF-8";
+	table{
+		border-right:none;
+		border-left:none;
+		border-radius:10%;
+	}
+	
+	.table-hover tbody tr:hover{
+		background-color:rgba(190,229,235,0.2);
+	}

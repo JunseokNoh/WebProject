@@ -19,8 +19,17 @@
 -->
 <%
 		Connection con = null;
-		PreparedStatement naver_movie_PS = null;
-		ResultSet naver_movie_RS = null;
+		PreparedStatement Inter_PS = null;
+		ResultSet Inter_RS = null;
+		
+		PreparedStatement Kyobo_PS = null;
+		ResultSet Kyobo_RS = null;
+		
+		PreparedStatement Yes_PS = null;
+		ResultSet Yes_RS = null;
+		
+		PreparedStatement Aladin_PS = null;
+		ResultSet Aladin_RS = null;
 		
 		String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
 		String MYSQL_SERVER_USERNAME = "yoobi";
@@ -30,13 +39,49 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 
-		String naver_movie_query = "select * from naver_movie_rank";
-		naver_movie_PS = con.prepareStatement(naver_movie_query);
-		naver_movie_RS = naver_movie_PS.executeQuery();
-
-		Date nowTime = new Date();
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
-
+		/*인터 파크*/
+		String Inter_query = "select timedata from time_data where type='10m'";
+		Inter_PS = con.prepareStatement(Inter_query);
+		Inter_RS = Inter_PS.executeQuery();
+		Inter_RS.next();
+		String Inter_time = Inter_RS.getString("timedata");	
+			
+		Inter_query = "select * from interpark_book_rank";
+		Inter_PS = con.prepareStatement(Inter_query);
+		Inter_RS = Inter_PS.executeQuery();
+		
+		/*교보 문고*/
+		String Kyobo_query = "select timedata from time_data where type='10m'";
+		Kyobo_PS = con.prepareStatement(Kyobo_query);
+		Kyobo_RS = Kyobo_PS.executeQuery();
+		Kyobo_RS.next();
+		String Kyobo_time = Kyobo_RS.getString("timedata");	
+			
+		Kyobo_query = "select * from kyobo_book_rank";
+		Kyobo_PS = con.prepareStatement(Kyobo_query);
+		Kyobo_RS = Kyobo_PS.executeQuery();
+		
+		/*예스24*/
+		String Yes_query = "select timedata from time_data where type='10m'";
+		Yes_PS = con.prepareStatement(Yes_query);
+		Yes_RS = Yes_PS.executeQuery();
+		Yes_RS.next();
+		String Yes_time = Yes_RS.getString("timedata");	
+			
+		Yes_query = "select * from yes24_book_rank";
+		Yes_PS = con.prepareStatement(Yes_query);
+		Yes_RS = Yes_PS.executeQuery();
+		
+		/*알라딘*/
+		String Aladin_query = "select timedata from time_data where type='10m'";
+		Aladin_PS = con.prepareStatement(Aladin_query);
+		Aladin_RS = Aladin_PS.executeQuery();
+		Aladin_RS.next();
+		String Aladin_time = Aladin_RS.getString("timedata");	
+			
+		Aladin_query = "select * from aladin_book_rank";
+		Aladin_PS = con.prepareStatement(Aladin_query);
+		Aladin_RS = Aladin_PS.executeQuery();
 	%>
 	
 <%
@@ -82,24 +127,22 @@
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
 
 	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
-	  
+	
+<!-- 추가해야할거 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./css/table.css">
 
 <style type="text/css">
 
-	#movie_1{
-		width:100%;
-	}
-	
-	#landing .container{
-		padding-top:10px;
-		padding-bottom:10px
-	}
 </style>
 	
 </head>
 
 <body>
-
+ 	<!-- 추가해야할거 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -126,18 +169,20 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
 
 <ul class="navbar-nav mr-auto"> 
-<li class="nav-item dropdown"> 
-<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="category-dropdown"> 카테고리 </a> 
-<div aria-labelledby="category-dropdown" class="dropdown-menu dropdown-menu-right mt-n1"> 
-<a class="dropdown-item " href="./trend_rank.jsp" >실시간 랭킹</a> 
-<a class="dropdown-item " href="./music_rank.jsp" >음악 차트</a> 
-<a class="dropdown-item " href="./movie_rank.jsp" >영화 차트</a> 
-<a class="dropdown-item " href="./book_rank.jsp" >도서 차트</a> 
-</div> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
-</li> 
+	
+
+	<li class="nav-item dropdown"> 
+	<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="category-dropdown"> 카테고리 </a> 
+	<div aria-labelledby="category-dropdown" class="dropdown-menu dropdown-menu-right mt-n1"> 
+	<a class="dropdown-item " href="./trend_rank.jsp" >실시간 랭킹</a> 
+	<a class="dropdown-item " href="./music_rank.jsp" >음악 차트</a> 
+	<a class="dropdown-item " href="./movie_rank.jsp" >영화 차트</a> 
+	<a class="dropdown-item " href="./book_rank.jsp" >도서 차트</a> 
+	</div> 
+	</li> 
+	<li class="nav-item"> 
+	<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
+	</li> 
 </ul> 
 
 <ul class="navbar-nav ml-auto"> 
@@ -159,7 +204,7 @@
 
 <div class="container"> 
 
-<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>영화&nbsp</span>순위</h1> 
+<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>도서&nbsp</span>순위</h1> 
 
 <h2 class="lead text-muted">부제목 </h2> 
 
@@ -171,37 +216,78 @@
 
 
 
-
-
 <div class="row">
 
 <div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">네이버 영화</span> </h3>
-	기준 날짜 : <%= sf.format(nowTime) %>
+	<h3 class="py-4 poppins"><span class="text-primary">인터 파크</span> </h3>
+		<div>기준 날짜 : <%=Inter_time%></div>
+		<!-- 추가해야할거 -->
+			<table class="table table-hover" border="1">
+				<thead >
+					<tr class="table-info">
+						<td>rank</td>
+						<td>title</td>
+						<td>대표저자</td>
+						<td>출판사</td>
+					</tr>
+				</thead>
+	<%
+			
+			int count = 0;
+			while(Inter_RS.next())
+			{
+				String rank = Inter_RS.getString("rank");
+				String title = Inter_RS.getString("title");
+				String url = Inter_RS.getString("url");
+				String author = Inter_RS.getString("author");
+				String publisher = Inter_RS.getString("publisher");
+	%>
+			<tbody>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=author%></td>
+					<td><%=publisher%></td>
+				</tr>
+	<%
+				count++;
+			}
+	%>
+			</tbody>
+	</table>
+	<br><br>
+</div>
+
+<br>
+<div class="col-md-3 templates" style="width:100%;">
+	<h3 class="py-4 poppins"><span class="text-primary">교보 문고</span> </h3>
+		<div>기준 날짜 : <%=Kyobo_time%></div>
 			<table border="1">
 				<tr>
 					<td>rank</td>
 					<td>title</td>
+					<td>대표저자</td>
+					<td>출판사</td>
 				</tr>
 	<%
-			int count = 0;
-			while(naver_movie_RS.next())
+			count = 0;
+			while(Kyobo_RS.next())
 			{
-				String rank = naver_movie_RS.getString("rank");
-				String title = naver_movie_RS.getString("title");
-				String url = "https://movie.naver.com" + naver_movie_RS.getString("url");
+				String rank = Kyobo_RS.getString("rank");
+				String title = Kyobo_RS.getString("title");
+				String url = Kyobo_RS.getString("url");
+				String author = Kyobo_RS.getString("author");
+				String publisher = Kyobo_RS.getString("publisher");
 	%>
 				<tr>
 					<td><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=author%></td>
+					<td><%=publisher%></td>
 				</tr>
 	<%
 				count++;
-				if(count >= 20){
-					break;
-				}
 			}
-	
 	%>
 	</table>
 	<br><br>
@@ -209,16 +295,71 @@
 
 <br>
 <div class="col-md-3 templates" style="width:100%;">
+	<h3 class="py-4 poppins"><span class="text-primary">YES24</span> </h3>
+		<div>기준 날짜 : <%=Yes_time%></div>
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>대표저자</td>
+					<td>출판사</td>
+				</tr>
+	<%
+			count = 0;
+			while(Yes_RS.next())
+			{
+				String rank = Yes_RS.getString("rank");
+				String title = Yes_RS.getString("title");
+				String url = Yes_RS.getString("url");
+				String author = Yes_RS.getString("author");
+				String publisher = Yes_RS.getString("publisher");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=author%></td>
+					<td><%=publisher%></td>
+				</tr>
+	<%
+				count++;
+			}
+	%>
+	</table>
 	<br><br>
 </div>
 
 <br>
 <div class="col-md-3 templates" style="width:100%;">
-<br><br>
-</div>
-
-<br>
-<div class="col-md-3 templates" style="width:100%;">
+	<h3 class="py-4 poppins"><span class="text-primary">알라딘</span> </h3>
+		<div>기준 날짜 : <%=Aladin_time%></div>
+			<table border="1">
+				<tr>
+					<td>rank</td>
+					<td>title</td>
+					<td>대표저자</td>
+					<td>출판사</td>
+				</tr>
+	<%
+			count = 0;
+			while(Aladin_RS.next())
+			{
+				String rank = Aladin_RS.getString("rank");
+				String title = Aladin_RS.getString("title");
+				String url = Aladin_RS.getString("url");
+				String author = Aladin_RS.getString("author");
+				String publisher = Aladin_RS.getString("publisher");
+	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=author%></td>
+					<td><%=publisher%></td>
+				</tr>
+	<%
+				count++;
+			}
+	%>
+	</table>
 	<br><br>
 </div>
 
@@ -253,3 +394,7 @@
 	
 </body>
 </html>
+
+
+
+

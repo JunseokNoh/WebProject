@@ -195,7 +195,7 @@
 	<div class="col-md-3 templates" style="width:100%;">
 	<h3 class="py-4 poppins"><span class="text-primary">멜론 차트</span> </h3>
 		<div>기준 날짜 : <%=time%></div>
-			<table border="1">
+			<table class="table table-striped table-hover" border="1">
 				<tr>
 					<td>rank</td>
 					<td>title</td>

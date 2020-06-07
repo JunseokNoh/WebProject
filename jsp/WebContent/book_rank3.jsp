@@ -7,9 +7,8 @@
 <%@page import="net.sf.json.JSONObject"%>
 <%@page import="net.sf.json.util.JSONBuilder"%>
 <%@page import="net.sf.json.JSONArray"%>
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!--
 ------------------------------------------------------------
 * @설명 : 일별 박스오피스 REST 호출 - 서버측에서 호출하는 방식 예제
@@ -47,6 +46,12 @@
 %>
 <html>
 <head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
@@ -55,10 +60,10 @@
 <meta content="228490107301532" property="fb:admins"/> 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
-<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-	 
+
+	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
+	  
+
 <style type="text/css">
 
 	#movie_1{
@@ -86,11 +91,11 @@
 
 <div id="app"> 
 
-<nav class="navbar navbar-expand-md navbar-light navbar-velosofy" style="background-color : #81ecec;"> 
+<nav class="navbar navbar-expand-md navbar-light navbar-velosofy"> 
 	<div class="container"> 
 <nav class="navbar navbar-light"> 
 	<a class="navbar-brand " href="./index.jsp"> 
-	<i class="fa fa-trophy" aria-hidden="true" style="width:30px"]></i>
+	<img alt="Free Video Templates" class="d-inline-block align-top" height="30" src="https://www.velosofy.com/img/logo.png" title="Free Video Templates" width="30"/> 
 	홈페이지이름
 	</a> 
 </nav> 
@@ -102,6 +107,7 @@
 
 <ul class="navbar-nav mr-auto"> 
 	
+		
 
 	<li class="nav-item dropdown"> 
 	<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="category-dropdown"> 카테고리 </a> 
@@ -110,11 +116,14 @@
 	<a class="dropdown-item " href="./music_rank.jsp" >음악 차트</a> 
 	<a class="dropdown-item " href="./movie_rank.jsp" >영화 차트</a> 
 	<a class="dropdown-item " href="./book_rank.jsp" >도서 차트</a> 
-	</div> 
-	</li> 
+	
 	<li class="nav-item"> 
 	<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
 	</li> 
+
+	</div> 
+	</li> 
+
 </ul> 
 
 
@@ -137,7 +146,7 @@
 
 <div class="container"> 
 
-<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span id="keyword">포털&nbsp</span>순위</h1> 
+<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span id="keyword">포털 &nbsp</span>순위</h1> 
 
 <h2 class="lead text-muted">부제목 </h2> 
 <!-- 
@@ -183,6 +192,107 @@
 </div>
  -->
  
+<div class="col-md-3 templates" style="width:100%;">
+	<table class="table table-striped table-hover" id="movie_1" style="">
+		<thead class="thead-dark">
+		<tr  style="width:100%;">
+			<th>순위</th>
+			<th>영화명</th>
+		</tr>
+		</thead>
+		<c:if test="${not empty dailyResult.boxOfficeResult.dailyBoxOfficeList}">
+			<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+				<tr  style="width:100%;">
+					<td style="width:25%;">
+						<c:out value="${boxoffice.rank }" />
+					</td>
+					<td style="width:90%;">
+						<c:out value="${boxoffice.movieNm }" />
+					</td>
+				</tr>
+			</c:forEach>
+		</c:if>
+	</table>
+	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.boxofficeType}" /></span>
+	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.showRange}" /></span>
+	<br><br>
+</div>
+
+<br>
+<div class="col-md-3 templates" style="width:100%;">
+	<table   border="1" id="movie_1" style="">
+		<tr style="width:100%;">
+			<td>순위</td>
+			<td>영화명</td>
+		</tr>
+		<c:if test="${not empty dailyResult.boxOfficeResult.dailyBoxOfficeList}">
+			<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+				<tr style="width:100%;">
+					<td style="width:10%;">
+						<c:out value="${boxoffice.rank }" />
+					</td>
+					<td style="width:90%;">
+						<c:out value="${boxoffice.movieNm }" />
+					</td>
+				</tr>
+			</c:forEach>
+		</c:if>
+	</table>
+	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.boxofficeType}" /></span>
+	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.showRange}" /></span>
+	<br><br>
+</div>
+
+<br>
+<div class="col-md-3 templates" style="width:100%;">
+	<table   border="1" id="movie_1" style="">
+		<tr style="width:100%;">
+			<td>순위</td>
+			<td>영화명</td>
+		</tr>
+		<c:if test="${not empty dailyResult.boxOfficeResult.dailyBoxOfficeList}">
+			<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+				<tr style="width:100%;">
+					<td style="width:10%;">
+						<c:out value="${boxoffice.rank }" />
+					</td>
+					<td style="width:90%;">
+						<c:out value="${boxoffice.movieNm }" />
+					</td>
+				</tr>
+			</c:forEach>
+		</c:if>
+	</table>
+	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.boxofficeType}" /></span>
+	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.showRange}" /></span>
+	<br><br>
+</div>
+
+<br>
+<div class="col-md-3 templates" style="width:100%;">
+	<table   border="1" id="movie_1" style="">
+		<tr style="width:100%;">
+			<td>순위</td>
+			<td>영화명</td>
+		</tr>
+		<c:if test="${not empty dailyResult.boxOfficeResult.dailyBoxOfficeList}">
+			<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+				<tr style="width:100%;">
+					<td style="width:10%;">
+						<c:out value="${boxoffice.rank }" />
+					</td>
+					<td style="width:90%;">
+						<c:out value="${boxoffice.movieNm }" />
+					</td>
+				</tr>
+			</c:forEach>
+		</c:if>
+	</table>
+	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.boxofficeType}" /></span>
+	<span class="text-primary"><c:out value="${dailyResult.boxOfficeResult.showRange}" /></span>
+	<br><br>
+</div>
+
 
 </div>
 <!-- 
