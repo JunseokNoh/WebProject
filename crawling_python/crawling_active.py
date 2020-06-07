@@ -2,6 +2,7 @@ import crawling_boxoffice_movie_rank
 import crawling_naver_movie_rank
 import crawling_naver_movie_rating_rank
 import crawling_daum_movie_rank
+import crawling_google_trends_rank
 import crawling_nate_trends_rank
 import crawling_naver_trends_rank
 import crawling_zum_trends_rank
@@ -54,6 +55,14 @@ def main():
                                                                'utf8')
 
     # Trends Fields
+
+    googleTrendsRank = crawling_google_trends_rank.GoogleTrendsCrawling('https://trends.google.co.kr//trends/api/dailytrends?hl=ko&tz=-540&geo=KR&ns=15',
+                                                                        'hackery00bi.iptime.org',
+                                                                        '6666',
+                                                                        'yoobi',
+                                                                        'toor',
+                                                                        'jsp_db',
+                                                                        'utf8')
 
     zumTrendsRank = crawling_zum_trends_rank.ZumTrendsCrawling('http://issue.zum.com/daily/',
                                                                'hackery00bi.iptime.org',
@@ -159,6 +168,7 @@ def main():
     #naverMovieRank.crawler()
     #naverMovieRatingRank.crawler()
     #daumMovieRank.crawler()
+    #googleTrendsRank.crawler()
     #zumTrendsRank.crawler()
     #naverTrendsRank.crawler()
     #nateTrendsRank.crawler()
