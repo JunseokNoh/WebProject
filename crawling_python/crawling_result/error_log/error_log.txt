@@ -18,3 +18,8 @@
 2020-06-07 01:05:23.495689 connect_db() missing 5 required positional arguments: 'tmp3', 'tmp4', 'tmp5', 'tmp6', and 'tmp7'
 2020-06-07 01:05:24.055745 connect_db() missing 4 required positional arguments: 'tmp4', 'tmp5', 'tmp6', and 'tmp7'
 2020-06-07 01:15:15.322969 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")
+2020-06-07 20:49:41.423282 unsupported operand type(s) for +: 'int' and 'str'
+2020-06-07 20:49:41.718119 unsupported operand type(s) for +: 'int' and 'str'
+2020-06-07 22:50:43.136017  0
+2020-06-08 01:03:25.572381  'list' object has no attribute 'split'
+2020-06-08 01:03:32.964622  'list' object has no attribute 'split'

@@ -50,7 +50,7 @@ class NateTrendsCrawling(crawling.Crawling, ABC):
         if row[0] == title:
             print("same nate trend")
         else:
-            print("new nate trend")
+            print(str(rank_number) + " : " + title)
             sql = """update nate_trends_rank set title=%s where rank=%s"""
             curs.execute(sql, (title, rank_number))
 

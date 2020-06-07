@@ -50,6 +50,7 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
         if row[0] == title:
             print("same zum trend")
         else:
+            print(str(rank_number) + " : " + title)
             sql = """update zum_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, rank_number))
 

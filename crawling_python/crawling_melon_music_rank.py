@@ -68,6 +68,7 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
         if row[0] == song_title:
             print("same melon")
         else:
+            print(str(rank_number) + " : " + song_title + " : " + song_artist + " : " + album_title)
             sql = """update melon_music_rank set song_title=%s, song_url=%s, song_artist=%s, artist_url=%s, album_title=%s, album_url=%s where rank=%s"""
             curs.execute(sql, (song_title, song_url, song_artist, artist_url, album_title, album_url, rank_number))
 

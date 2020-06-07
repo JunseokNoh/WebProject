@@ -53,6 +53,7 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
         if row[0] == title:
             print("same billboard")
         else:
+            print(str(i + 1) + " : " + title + " : " + artist)
             sql = """update billboard_music_rank set title=%s, artist=%s where rank=%s"""
             curs.execute(sql, (title, artist, rank_number))
 

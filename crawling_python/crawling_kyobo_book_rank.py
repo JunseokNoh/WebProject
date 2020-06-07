@@ -56,6 +56,7 @@ class KyoboBookCrawling(crawling.Crawling, ABC):
         if row[0] == book_title:
             print("same kyobo")
         else:
+            print(str(rank_number) + " : " + book_title + " : " + book_author + " : " + book_publisher + " : " + book_publication_date)
             sql = """update kyobo_book_rank set title=%s, url=%s, author=%s, publisher=%s, date=%s where rank=%s"""
             curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, book_publication_date, rank_number))
 

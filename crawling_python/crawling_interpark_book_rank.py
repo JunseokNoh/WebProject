@@ -54,6 +54,7 @@ class InterparkBookCrawling(crawling.Crawling, ABC):
         if row[0] == book_title:
             print("same interpark")
         else:
+            print(str(rank_number) + " : " + book_title + " : " + book_info_url + " : " + book_author + " : " + book_publisher)
             sql = """update interpark_book_rank set title=%s, url=%s, author=%s, publisher=%s where rank=%s"""
             curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, rank_number))
 

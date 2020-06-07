@@ -20,7 +20,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 RESULT_PATH = './crawling_result/'
-MAIN_URL = 'https://movie.naver.com/movie/sdb/rank/rmovie.nhn'
+MAIN_URL = 'https://trends.google.co.kr//trends/api/dailytrends?hl=ko&tz=-540&geo=KR&ns=15'
 DATE = 0
 ARTICLE_URL = ''
 
@@ -34,23 +34,43 @@ def crawler():
     global ARTICLE_URL
 
     try:
-        url = MAIN_URL
-        req = requests.get(url)
+        '''
+        header = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36',
+            'Content-type': 'application/x-www-form-urlencoded',
+            'Origin': 'http://www.kobis.or.kr',
+            'Referer': 'http://www.kobis.or.kr/kobis/business/main/main.do',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6,zh;q=0.5'
+        }
+        '''
+        req = requests.get(MAIN_URL)#, headers=header)  ## 주간 차트를 크롤링 할 것임
         cont = req.content
         soup = BeautifulSoup(cont, 'lxml')
 
-        # print(soup)
-        soup = soup.select(
-            "div#wrap > div#container > div#content > div.article > div.old_layout.old_super_db > div#cbody > div#old_content > table.list_ranking > tbody > tr > td.title > div.tit3")  # > ul.tp_5 > div.listBoxType_3")
+        #print(soup)
+
+        soup = str(soup)
+
+        soup = soup.split('"date"')
+        #soup = soup[1].split('"')
+        print(soup)
+        print("####")
+        print(soup[1])
+        #print(soup)
+
+
+        # soup = soup.select("span.ellip.per90")
 
         # print(soup)
-
+        '''
         for i in range(len(soup)):
             RANK_URL = soup[i].find("a")["href"]
             RANK_NAME = soup[i].find("a")["title"]
             # connect_db(i, RANK_NAME, RANK_URL)
             print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-
+        '''
     except Exception as e:
         error_logging(str(e))
         print("Error Detected")

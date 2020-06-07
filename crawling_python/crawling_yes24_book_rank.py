@@ -57,6 +57,7 @@ class Yes24BookCrawling(crawling.Crawling, ABC):
         if row[0] == book_title:
             print("same yes24")
         else:
+            print(str(rank_number) + " : " + book_title + " : " + " : " + book_author + " : " + book_publisher)
             sql = """update yes24_book_rank set title=%s, url=%s, author=%s, publisher=%s where rank=%s"""
             curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, rank_number))
 

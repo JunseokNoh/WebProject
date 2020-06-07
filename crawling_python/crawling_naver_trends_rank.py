@@ -54,7 +54,7 @@ class NaverTrendsCrawling(crawling.Crawling, ABC):
         if row[0] == title:
             print("same naver trend")
         else:
-            print("new naver trend")
+            print(str(rank_number) + " : " + title)
             sql = """update naver_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, rank_number))
 
