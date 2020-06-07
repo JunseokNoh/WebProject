@@ -1,4 +1,7 @@
+import crawling_boxoffice_movie_rank
 import crawling_naver_movie_rank
+import crawling_naver_movie_rating_rank
+import crawling_daum_movie_rank
 import crawling_nate_trends_rank
 import crawling_naver_trends_rank
 import crawling_zum_trends_rank
@@ -18,6 +21,14 @@ import time
 
 def main():
     # Movie Fields
+    boxofficeMovieRank = crawling_boxoffice_movie_rank.BoxofficeMovieCrawling('https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&query=%EB%B0%95%EC%8A%A4%EC%98%A4%ED%94%BC%EC%8A%A4%20%ED%9D%A5%ED%96%89%EC%88%9C%EC%9C%84',
+                                                                              'hackery00bi.iptime.org',
+                                                                              '6666',
+                                                                              'yoobi',
+                                                                              'toor',
+                                                                              'jsp_db',
+                                                                              'utf8')
+
     naverMovieRank = crawling_naver_movie_rank.NaverMovieCrawling('https://movie.naver.com/movie/sdb/rank/rmovie.nhn',
                                                                   'hackery00bi.iptime.org',
                                                                   '6666',
@@ -25,6 +36,22 @@ def main():
                                                                   'toor',
                                                                   'jsp_db',
                                                                   'utf8')
+
+    naverMovieRatingRank = crawling_naver_movie_rating_rank.NaverMovieRatingCrawling('https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=cur',
+                                                                                     'hackery00bi.iptime.org',
+                                                                                     '6666',
+                                                                                     'yoobi',
+                                                                                     'toor',
+                                                                                     'jsp_db',
+                                                                                     'utf8')
+
+    daumMovieRank = crawling_daum_movie_rank.DaumMovieCrawling('http://ticket2.movie.daum.net/Movie/MovieRankList.aspx',
+                                                               'hackery00bi.iptime.org',
+                                                               '6666',
+                                                               'yoobi',
+                                                               'toor',
+                                                               'jsp_db',
+                                                               'utf8')
 
     # Trends Fields
 
@@ -128,7 +155,10 @@ def main():
                                                    'jsp_db',
                                                    'utf8')
 
+    #boxofficeMovieRank.crawler()
     #naverMovieRank.crawler()
+    #naverMovieRatingRank.crawler()
+    #daumMovieRank.crawler()
     #zumTrendsRank.crawler()
     #naverTrendsRank.crawler()
     #nateTrendsRank.crawler()
