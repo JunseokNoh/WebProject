@@ -60,6 +60,13 @@ create table daum_movie_rank
 	`url` text not null
 );
 
+create table google_trends_rank
+(
+	`rank` int(10) not null,
+	`title` varchar(150) not null,
+	`url` text not null
+);
+
 create table zum_trends_rank
 (
 	`rank` int(10) not null,
