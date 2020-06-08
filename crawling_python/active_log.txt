@@ -65,3 +65,71 @@ table : naver_trends_rank UPDATED
 1m updated # time : 2020-06-08 15:58:02.627618
 table : naver_trends_rank UPDATED
 1m updated # time : 2020-06-08 15:59:03.527364
+##### start #####
+2020-06-08 17:07:59.488211
+
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 17:08:03.374787
+##### start #####
+2020-06-08 17:24:59.860349
+
+##### start #####
+2020-06-08 17:25:07.136408
+
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 17:26:03.284447
+table : bugs_music_rank UPDATED
+table : melon_music_rank UPDATED
+table : genie_music_rank UPDATED
+1h updated # time : 2020-06-08 17:26:20.028354
+##### start #####
+2020-06-08 17:27:59.694969
+
+1m updated # time : 2020-06-08 17:28:01.802220
+1m updated # time : 2020-06-08 17:29:01.216556
+1m updated # time : 2020-06-08 17:30:01.502841
+10m updated # time : 2020-06-08 17:30:01.596658
+1m updated # time : 2020-06-08 17:31:01.897021
+1m updated # time : 2020-06-08 17:32:01.212621
+1m updated # time : 2020-06-08 17:33:01.534070
+1m updated # time : 2020-06-08 17:34:01.830692
+1m updated # time : 2020-06-08 17:35:01.168311
+1m updated # time : 2020-06-08 17:36:01.476885
+1m updated # time : 2020-06-08 17:37:01.778969
+1m updated # time : 2020-06-08 17:38:01.109027
+1m updated # time : 2020-06-08 17:39:01.385037
+1m updated # time : 2020-06-08 17:40:01.685951
+10m updated # time : 2020-06-08 17:40:01.786318
+1m updated # time : 2020-06-08 17:41:01.051966
+1m updated # time : 2020-06-08 17:42:01.349104
+1m updated # time : 2020-06-08 17:43:02.560988
+1m updated # time : 2020-06-08 17:44:01.906865
+1m updated # time : 2020-06-08 17:45:01.270304
+1m updated # time : 2020-06-08 17:46:01.549063
+1m updated # time : 2020-06-08 17:47:01.853378
+1m updated # time : 2020-06-08 17:48:01.142073
+1m updated # time : 2020-06-08 17:49:01.447152
+1m updated # time : 2020-06-08 17:50:01.723538
+10m updated # time : 2020-06-08 17:50:01.808223
+1m updated # time : 2020-06-08 17:51:01.081780
+1m updated # time : 2020-06-08 17:52:01.361693
+1m updated # time : 2020-06-08 17:53:01.675115
+1m updated # time : 2020-06-08 17:54:01.942366
+1m updated # time : 2020-06-08 17:55:01.203598
+1m updated # time : 2020-06-08 17:56:01.495170
+1m updated # time : 2020-06-08 17:57:01.798610
+1m updated # time : 2020-06-08 17:58:01.093468
+1m updated # time : 2020-06-08 17:59:01.366983
+##### start #####
+2020-06-08 18:08:21.961859
+
+##### start #####
+2020-06-08 18:08:27.514700
+
+##### start #####
+2020-06-08 18:10:15.711908
+
+##### start #####
+2020-06-08 18:10:27.648507
+
+1m updated # time : 2020-06-08 18:11:01.849966
