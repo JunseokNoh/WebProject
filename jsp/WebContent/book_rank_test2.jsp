@@ -218,18 +218,16 @@
 
 <div class="row">
 
-<div class="col-md-3 templates" style="width:100%;">
+<div class="col-md-6 templates">
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">인터 파크</span> </h3> -->
-	<a href="http://book.interpark.com" target="_blank"><img src="logo/interpark.jpg"/></a>
-		<div>기준 날짜 : <%=Inter_time%></div>
-		<!-- 추가해야할거 -->
+				<!-- 추가해야할거 -->
+			<h3>인터파크</h3>
+			<h6>기준 날짜 : <%=Inter_time%></h6>
 			<table class="table table-hover">
 				<thead>
 					<tr class="table-info">
-						<th>rank</th>
-						<th>title</th>
-						<th>대표저자</th>
-						<th>출판사</th>
+						<th class="table-th" style="width:5%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
 	<%
@@ -242,13 +240,12 @@
 				String url = Inter_RS.getString("url");
 				String author = Inter_RS.getString("author");
 				String publisher = Inter_RS.getString("publisher");
+				author = "저자 : "+ author + "\n출판사 : " + publisher;
 	%>
 			<tbody>
 				<tr>
-					<td><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
-					<td><%=author%></td>
-					<td><%=publisher%></td>
+					<td style="text-align:center;" title='<%=author%>'><%=rank%></td>
+					<td title='<%=author%>'><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -256,22 +253,21 @@
 	%>
 			</tbody>
 	</table>
+	
 	<br><br>
 </div>
 
 
 <br>
-<div class="col-md-3 templates" style="width:100%; ">
+<div class="col-md-6 templates" >
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">교보 문고</span> </h3>  -->
-	<a href="http://www.kyobobook.co.kr/" target="_blank"><img src="logo/kyobo.png"/></a>
-		<div>기준 날짜 : <%=Kyobo_time%></div>
+			<h3>교보문고</h3>
+			<h6>기준 날짜 : <%=Kyobo_time%></h6>
 			<table class="table table-hover">
 				<thead>
 					<tr class="table-info">
-						<th>rank</th>
-						<th>title</th>
-						<th>대표저자</th>
-						<th>출판사</th>
+						<th style="width:5%; text-align:center;">순 위</th>
+						<th style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
 	<%
@@ -283,13 +279,12 @@
 				String url = Kyobo_RS.getString("url");
 				String author = Kyobo_RS.getString("author");
 				String publisher = Kyobo_RS.getString("publisher");
+				author = "저자 : "+ author + "\n출판사 : " + publisher;
 	%>		
 			<tbody>
 				<tr>
-					<td><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
-					<td><%=author%></td>
-					<td><%=publisher%></td>
+					<td style="text-align:center;" title='<%=author%>'><%=rank%></td>
+					<td title='<%=author%>'><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -301,17 +296,15 @@
 </div>
 
 <br>
-<div class="col-md-3 templates" style="width:100%;">
+<div class="col-md-6 templates" style="width:100%;">
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">YES24</span> </h3> -->
-	<a href="http://www.yes24.com/" target="_blank"><img src="logo/yes24.png"/></a>
-		<div>기준 날짜 : <%=Yes_time%></div>
+			<h3>YES24</h3>
+			<h6>기준 날짜 : <%=Yes_time%></h6>
 			<table class="table table-hover">
 				<thead>
 					<tr class="table-info">
-						<th>rank</th>
-						<th>title</th>
-						<th>대표저자</th>
-						<th>출판사</th>
+						<th style="width:5%; text-align:center;">순 위</th>
+						<th style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
 	<%
@@ -323,13 +316,12 @@
 				String url = Yes_RS.getString("url");
 				String author = Yes_RS.getString("author");
 				String publisher = Yes_RS.getString("publisher");
+				author = "저자 : "+ author + "\n출판사 : " + publisher;
 	%>
 			<tbody>
-				<tr>
-					<td><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
-					<td><%=author%></td>
-					<td><%=publisher%></td>
+				<tr >
+					<td style="text-align:center;" title='<%=author%>'><%=rank%></td>
+					<td title='<%=author%>'><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -341,17 +333,15 @@
 </div>
 
 <br>
-<div class="col-md-3 templates" style="width:100%;">
+<div class="col-md-6 templates" >
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">알라딘</span> </h3> -->
-	<a href="https://www.aladin.co.kr/" target="_blank"><img src="logo/aladin.jpg"/></a>
-		<div>기준 날짜 : <%=Aladin_time%></div>
-			<table class="table table-hover">
+			<h3>알라딘</h3>
+			<h6>기준 날짜 : <%=Aladin_time%></h6>
+			<table class="table table-hover" >
 				<thead>
 					<tr class="table-info">
-						<th>rank</th>
-						<th>title</th>
-						<th>대표저자</th>
-						<th>출판사</th>
+						<th style="width:5%; text-align:center;">순 위</th>
+						<th style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
 	<%
@@ -363,13 +353,12 @@
 				String url = Aladin_RS.getString("url");
 				String author = Aladin_RS.getString("author");
 				String publisher = Aladin_RS.getString("publisher");
+				author = "저자 : "+ author + "\n출판사 : " + publisher;
 	%>
 			<tbody>
 				<tr>
-					<td><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
-					<td><%=author%></td>
-					<td><%=publisher%></td>
+					<td style="text-align:center;" title='<%=author%>'><%=rank%></td>
+					<td title='<%=author%>'><a id="atag" href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;

@@ -3,8 +3,41 @@
 		border-right:none;
 		border-left:none;
 		border-radius:10%;
+		font-family:Open Sans;
 	}
 	
 	.table-hover tbody tr:hover{
 		background-color:rgba(190,229,235,0.2);
+		transform:scale(1.01);
 	}
+	
+
+	tr.table-th{
+		text-align:right;
+	}
+	
+	.table-hover tbody tr td a{
+		color: black;
+		
+			
+	}
+	
+	.table-hover tbody tr td a:hover{
+		color : #03A8D8;
+		text-decoration: underline;
+	}
+	
+	.col-md-6 h6{
+		margin-top:-5px;
+		text-align:right;
+	}
+	
+	h3{
+		font-family:Open Sans;
+		text-align:left;
+		font-weight:bold;
+	}
+
+	
+	
+	
