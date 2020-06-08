@@ -37,7 +37,10 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
                 RANK_NAME = soup[i].find("a")["title"]
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
             # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-
+            f = open("./active_log.txt", "a")
+            f.write("table : naver_movie_rank UPDATED" + "\n")
+            print("table : naver_movie_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -55,12 +58,13 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
         sql = """select title from naver_movie_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
-        if row[0] != title:
-            print("change value " + str(rank_number) + " : " + title)
+        if row[0] == title:
+            # print("same naver moive")
+            pass
+        else:
+            # print("change value " + str(rank_number) + " : " + title)
             sql = """update naver_movie_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, rank_number))
-        else:
-            print("same naver moive")
 
         conn.commit()
         conn.close()

@@ -31,7 +31,10 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
 
                 self.connect_db(i, RANK_NAME, RANK_TICKETING, RANK_URL, "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_TICKETING)
-
+            f = open("./active_log.txt", "a")
+            f.write("table : daum_movie_rank UPDATED" + "\n")
+            print("table : daum_movie_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -53,9 +56,10 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == movie_title:
-            print("same daum")
+            #print("same daum")
+            pass
         else:
-            print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_ticketing)
+            #print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_ticketing)
             sql = """update daum_movie_rank set title=%s, ticketing=%s, url=%s where rank=%s"""
             curs.execute(sql, (movie_title, movie_ticketing, movie_info_url, rank_number))
 

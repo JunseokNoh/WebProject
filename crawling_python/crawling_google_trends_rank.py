@@ -31,8 +31,11 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
                 soup[i] = soup[i].split("?geo")[1].split("#")[0]
                 RANK_NAME = parse.unquote(soup[i])[22:]
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
-                #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-
+                # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
+            f = open("./active_log.txt", "a")
+            f.write("table : google_trends_rank UPDATED" + "\n")
+            print("table : google_trends_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -47,18 +50,24 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        #sql = """insert into google_trends_rank (rank, title, url) values (%s, %s, %s)"""
-        #curs.execute(sql, (rank_number, title, info_url))
+        # sql = """insert into google_trends_rank (rank, title, url) values (%s, %s, %s)"""
+        # curs.execute(sql, (rank_number, title, info_url))
+        if rank_number == 1:
+            sql = """delete from google_trends_rank"""
+            curs.execute(sql)
 
-        sql = """select title from google_trends_rank where rank = %s"""
-        curs.execute(sql, rank_number)
+        sql = """insert into google_trends_rank (rank, title, url) values (%s, %s, %s)"""
+        curs.execute(sql, (rank_number, title, info_url))
+
+        '''
         row = curs.fetchone()
         if row[0] == title:
-            print("same google trend")
+            #print("same google trend")
+            pass
         else:
-            print(rank_number + " : " + title + " : " + info_url)
+            #print(rank_number + " : " + title + " : " + info_url)
             sql = """update google_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, rank_number))
-
+        '''
         conn.commit()
         conn.close()

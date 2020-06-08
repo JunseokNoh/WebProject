@@ -25,7 +25,10 @@ class NateTrendsCrawling(crawling.Crawling, ABC):
                 RANK_NAME = soup[i].find("a", {"class": "ik"}).find("span", {"class": "txt_rank"}).get_text()
                 self.connect_db(i, RANK_NAME, "", "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-
+            f = open("./active_log.txt", "a")
+            f.write("table : nate_trends_rank UPDATED" + "\n")
+            print("table : nate_trends_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -48,9 +51,10 @@ class NateTrendsCrawling(crawling.Crawling, ABC):
         row = curs.fetchone()
 
         if row[0] == title:
-            print("same nate trend")
+            #print("same nate trend")
+            pass
         else:
-            print(str(rank_number) + " : " + title)
+            #print(str(rank_number) + " : " + title)
             sql = """update nate_trends_rank set title=%s where rank=%s"""
             curs.execute(sql, (title, rank_number))
 

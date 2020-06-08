@@ -17,19 +17,22 @@ class NaverTrendsCrawling(crawling.Crawling, ABC):
             cont = req.content
             soup = BeautifulSoup(cont, 'lxml')
 
-            # print(soup)
-            soup = soup.select("div.ranking_box >" +
-                               "div.list_group >" +
-                               "ul.ranking_list >" +
+            #print(soup)
+            soup = soup.select("div.ranking_box > " +
+                               "div.list_group > " +
+                               "ul.ranking_list > " +
                                "li.ranking_item")
-            # print(soup)
+            #print(soup)
 
             for i in range(len(soup)):
                 RANK_NAME = soup[i].find("span", {"class": "item_title"}).get_text()
                 RANK_URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=" + RANK_NAME
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-
+            f = open("./active_log.txt", "a")
+            f.write("table : naver_trends_rank UPDATED" + "\n")
+            print("table : naver_trends_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -52,9 +55,10 @@ class NaverTrendsCrawling(crawling.Crawling, ABC):
         row = curs.fetchone()
         
         if row[0] == title:
-            print("same naver trend")
+            #print("same naver trend")
+            pass
         else:
-            print(str(rank_number) + " : " + title)
+            #print(str(rank_number) + " : " + title)
             sql = """update naver_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, rank_number))
 

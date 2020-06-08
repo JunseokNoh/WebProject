@@ -28,7 +28,10 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
 
                 self.connect_db(i, RANK_NAME, RANK_ATTENDANCE, RANK_URL, "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_ATTENDANCE)
-
+            f = open("./active_log.txt", "a")
+            f.write("table : boxoffice_movie_rank UPDATED" + "\n")
+            print("table : boxoffice_movie_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -50,9 +53,10 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == movie_title:
-            print("same boxoffice")
+            #print("same boxoffice")
+            pass
         else:
-            print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_attendance)
+            #print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_attendance)
             sql = """update boxoffice_movie_rank set title=%s, attendance=%s, url=%s where rank=%s"""
             curs.execute(sql, (movie_title, movie_attendance, movie_info_url, rank_number))
 

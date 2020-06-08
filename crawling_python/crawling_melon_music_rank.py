@@ -44,7 +44,10 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
                 self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL)
                 #print(SONG_RANK + " : " + SONG_TITLE + " : " + SONG_ARTIST + " : " + ALBUM_TITLE +
                 #      "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
-
+            f = open("./active_log.txt", "a")
+            f.write("table : melon_music_rank UPDATED" + "\n")
+            print("table : melon_music_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -66,9 +69,10 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == song_title:
-            print("same melon")
+            #print("same melon")
+            pass
         else:
-            print(str(rank_number) + " : " + song_title + " : " + song_artist + " : " + album_title)
+            #print(str(rank_number) + " : " + song_title + " : " + song_artist + " : " + album_title)
             sql = """update melon_music_rank set song_title=%s, song_url=%s, song_artist=%s, artist_url=%s, album_title=%s, album_url=%s where rank=%s"""
             curs.execute(sql, (song_title, song_url, song_artist, artist_url, album_title, album_url, rank_number))
 

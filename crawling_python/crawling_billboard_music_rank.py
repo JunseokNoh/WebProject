@@ -28,7 +28,10 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
                 RANK_SONG_ARTIST = soup[i].find("span", {"class": "chart-element__information__artist"}).get_text()
                 self.connect_db(i, RANK_SONG_TITLE, RANK_SONG_ARTIST, "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_SONG_TITLE + " : " + RANK_SONG_ARTIST)
-
+            f = open("./active_log.txt", "a")
+            f.write("table : billboard_music_rank UPDATED" + "\n")
+            print("table : billboard_music_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -51,9 +54,10 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
         row = curs.fetchone()
 
         if row[0] == title:
-            print("same billboard")
+            #print("same billboard")
+            pass
         else:
-            print(str(i + 1) + " : " + title + " : " + artist)
+            #print(str(i + 1) + " : " + title + " : " + artist)
             sql = """update billboard_music_rank set title=%s, artist=%s where rank=%s"""
             curs.execute(sql, (title, artist, rank_number))
 

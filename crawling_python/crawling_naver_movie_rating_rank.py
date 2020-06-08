@@ -20,7 +20,7 @@ class NaverMovieRatingCrawling(crawling.Crawling, ABC):
             # print(soup)
             soup_title = soup.select("table.list_ranking > tbody > tr > td.title > div.tit5 > a")
             soup_rating = soup.select("table.list_ranking > tbody > tr > td.point")
-            #print(soup)
+            # print(soup)
 
             for i in range(len(soup_title)):
                 RANK_NAME = soup_title[i]["title"]
@@ -28,8 +28,11 @@ class NaverMovieRatingCrawling(crawling.Crawling, ABC):
                 RANK_URL = "https://movie.naver.com" + soup_title[i]["href"]
 
                 self.connect_db(i, RANK_NAME, RANK_RATING, RANK_URL, "", "", "")
-                #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_RATING)
-
+                # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_RATING)
+            f = open("./active_log.txt", "a")
+            f.write("table : naver_movie_rating_rank UPDATED" + "\n")
+            print("table : naver_movie_rating_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -44,16 +47,17 @@ class NaverMovieRatingCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        #sql = """insert into naver_movie_rating_rank (rank, title, rating, url) values (%s, %s, %s, %s)"""
-        #curs.execute(sql, (rank_number, movie_title, movie_rating, movie_info_url))
+        # sql = """insert into naver_movie_rating_rank (rank, title, rating, url) values (%s, %s, %s, %s)"""
+        # curs.execute(sql, (rank_number, movie_title, movie_rating, movie_info_url))
 
         sql = """select title from naver_movie_rating_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == movie_title:
-            print("same naver_rating")
+            # print("same naver_rating")
+            pass
         else:
-            print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_rating)
+            # print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_rating)
             sql = """update naver_movie_rating_rank set title=%s, rating=%s, url=%s where rank=%s"""
             curs.execute(sql, (movie_title, movie_rating, movie_info_url, rank_number))
 

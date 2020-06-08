@@ -41,7 +41,10 @@ class AladinBookCrawling(crawling.Crawling, ABC):
 
                 self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, BOOK_PUBLICATION_DATE, "")
                 #print(str(i + 1) + " : " + BOOK_TITLE + " : " + BOOK_URL + " : " + BOOK_AUTHOR + " : " + BOOK_PUBLISHER + " : " + BOOK_PUBLICATION_DATE)
-
+            f = open("./active_log.txt", "a")
+            f.write("table : aladin_book_rank UPDATED" + "\n")
+            print("table : aladin_book_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -63,9 +66,10 @@ class AladinBookCrawling(crawling.Crawling, ABC):
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == book_title:
-            print("same aladin")
+            #print("same aladin")
+            pass
         else:
-            print(str(i + 1) + " : " + book_title + " : " + book_info_url + " : " + book_author + " : " + book_publisher + " : " + book_publication_date)
+            #print(str(i + 1) + " : " + book_title + " : " + book_info_url + " : " + book_author + " : " + book_publisher + " : " + book_publication_date)
             sql = """update aladin_book_rank set title=%s, url=%s, author=%s, publisher=%s, date=%s where rank=%s"""
             curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, book_publication_date, rank_number))
 

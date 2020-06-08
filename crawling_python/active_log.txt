@@ -1,0 +1,28 @@
+##### start #####
+2020-06-08 15:10:25.965337
+
+##### start #####
+2020-06-08 15:11:28.449228
+
+##### start #####
+2020-06-08 15:12:06.888271
+
+##### start #####
+2020-06-08 15:15:00.661833
+
+table : naver_trends_rank UPDATED
+1m updated # time : 2020/06/08 15:16
+table : naver_trends_rank UPDATED
+1m updated # time : 2020/06/08 15:17
+table : naver_trends_rank UPDATED
+1m updated # time : 2020/06/08 15:18
+table : naver_trends_rank UPDATED
+1m updated # time : 2020/06/08 15:19
+table : naver_trends_rank UPDATED
+1m updated # time : 2020/06/08 15:20
+table : zum_trends_rank UPDATED
+table : nate_trends_rank UPDATED
+10m updated # time : 2020/06/08 15:20
+10m done # time : 2020-06-08 15:20:07.166874
+table : naver_trends_rank UPDATED
+1m updated # time : 2020/06/08 15:21

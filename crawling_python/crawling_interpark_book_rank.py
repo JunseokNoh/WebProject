@@ -30,7 +30,10 @@ class InterparkBookCrawling(crawling.Crawling, ABC):
 
                 self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, "", "")
                 #print(str(i + 1) + " : " + BOOK_TITLE + " : " + BOOK_URL + " : " + BOOK_AUTHOR + " : " + BOOK_PUBLISHER)
-
+            f = open("./active_log.txt", "a")
+            f.write("table : interpark_book_rank UPDATED" + "\n")
+            print("table : interpark_book_rank UPDATED")
+            f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -52,9 +55,10 @@ class InterparkBookCrawling(crawling.Crawling, ABC):
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == book_title:
-            print("same interpark")
+            #print("same interpark")
+            pass
         else:
-            print(str(rank_number) + " : " + book_title + " : " + book_info_url + " : " + book_author + " : " + book_publisher)
+            #print(str(rank_number) + " : " + book_title + " : " + book_info_url + " : " + book_author + " : " + book_publisher)
             sql = """update interpark_book_rank set title=%s, url=%s, author=%s, publisher=%s where rank=%s"""
             curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, rank_number))
 

@@ -25,3 +25,6 @@
 2020-06-08 01:03:32.964622  'list' object has no attribute 'split'
 2020-06-08 13:25:35.680861 connect_db() missing 3 required positional arguments: 'tmp5', 'tmp6', and 'tmp7'
 2020-06-08 13:26:15.281303 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")
+2020-06-08 14:40:57.943967 'NoneType' object is not subscriptable
+2020-06-08 15:00:16.059253 'NoneType' object is not subscriptable
+2020-06-08 15:20:09.472937 not all arguments converted during string formatting
