@@ -164,7 +164,7 @@ def main():
                                                    'jsp_db',
                                                    'utf8')
 
-    #boxofficeMovieRank.crawler()
+    boxofficeMovieRank.crawler()
     #naverMovieRank.crawler()
     #naverMovieRatingRank.crawler()
     #daumMovieRank.crawler()
@@ -179,6 +179,6 @@ def main():
     #aladinBookRank.crawler()
     #kyoboBookRank.crawler()
     #yes24BookRank.crawler()
-    interBookRank.crawler()
+    #interBookRank.crawler()
 
 main()
