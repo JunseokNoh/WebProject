@@ -219,16 +219,17 @@
 <div class="row">
 
 <div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">인터 파크</span> </h3>
+	<!-- <h3 class="py-4 poppins"><span class="text-primary">인터 파크</span> </h3> -->
+	<a href="http://book.interpark.com" target="_blank"><img src="logo/interpark.jpg"/></a>
 		<div>기준 날짜 : <%=Inter_time%></div>
 		<!-- 추가해야할거 -->
-			<table class="table table-hover" border="1">
-				<thead >
+			<table class="table table-hover">
+				<thead>
 					<tr class="table-info">
-						<td>rank</td>
-						<td>title</td>
-						<td>대표저자</td>
-						<td>출판사</td>
+						<th>rank</th>
+						<th>title</th>
+						<th>대표저자</th>
+						<th>출판사</th>
 					</tr>
 				</thead>
 	<%
@@ -258,17 +259,21 @@
 	<br><br>
 </div>
 
+
 <br>
 <div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">교보 문고</span> </h3>
+	<!-- <h3 class="py-4 poppins"><span class="text-primary">교보 문고</span> </h3>  -->
+	<a href="http://www.kyobobook.co.kr/" target="_blank"><img src="logo/kyobo.png"/></a>
 		<div>기준 날짜 : <%=Kyobo_time%></div>
-			<table border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-					<td>대표저자</td>
-					<td>출판사</td>
-				</tr>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th>rank</th>
+						<th>title</th>
+						<th>대표저자</th>
+						<th>출판사</th>
+					</tr>
+				</thead>
 	<%
 			count = 0;
 			while(Kyobo_RS.next())
@@ -278,7 +283,8 @@
 				String url = Kyobo_RS.getString("url");
 				String author = Kyobo_RS.getString("author");
 				String publisher = Kyobo_RS.getString("publisher");
-	%>
+	%>		
+			<tbody>
 				<tr>
 					<td><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
@@ -289,21 +295,25 @@
 				count++;
 			}
 	%>
+			</tbody>
 	</table>
 	<br><br>
 </div>
 
 <br>
 <div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">YES24</span> </h3>
+	<!-- <h3 class="py-4 poppins"><span class="text-primary">YES24</span> </h3> -->
+	<a href="http://www.yes24.com/" target="_blank"><img src="logo/yes24.png"/></a>
 		<div>기준 날짜 : <%=Yes_time%></div>
-			<table border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-					<td>대표저자</td>
-					<td>출판사</td>
-				</tr>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th>rank</th>
+						<th>title</th>
+						<th>대표저자</th>
+						<th>출판사</th>
+					</tr>
+				</thead>
 	<%
 			count = 0;
 			while(Yes_RS.next())
@@ -314,6 +324,7 @@
 				String author = Yes_RS.getString("author");
 				String publisher = Yes_RS.getString("publisher");
 	%>
+			<tbody>
 				<tr>
 					<td><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
@@ -324,21 +335,25 @@
 				count++;
 			}
 	%>
+			</tbody>
 	</table>
 	<br><br>
 </div>
 
 <br>
 <div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">알라딘</span> </h3>
+	<!-- <h3 class="py-4 poppins"><span class="text-primary">알라딘</span> </h3> -->
+	<a href="https://www.aladin.co.kr/" target="_blank"><img src="logo/aladin.jpg"/></a>
 		<div>기준 날짜 : <%=Aladin_time%></div>
-			<table border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-					<td>대표저자</td>
-					<td>출판사</td>
-				</tr>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th>rank</th>
+						<th>title</th>
+						<th>대표저자</th>
+						<th>출판사</th>
+					</tr>
+				</thead>
 	<%
 			count = 0;
 			while(Aladin_RS.next())
@@ -349,6 +364,7 @@
 				String author = Aladin_RS.getString("author");
 				String publisher = Aladin_RS.getString("publisher");
 	%>
+			<tbody>
 				<tr>
 					<td><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
@@ -359,6 +375,7 @@
 				count++;
 			}
 	%>
+			</tbody>
 	</table>
 	<br><br>
 </div>
