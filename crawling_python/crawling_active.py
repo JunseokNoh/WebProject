@@ -166,9 +166,9 @@ def main():
 
     #boxofficeMovieRank.crawler()
     #naverMovieRank.crawler()
-    naverMovieRatingRank.crawler()
+    #naverMovieRatingRank.crawler()
     #daumMovieRank.crawler()
-    #googleTrendsRank.crawler()
+    googleTrendsRank.crawler()
     #zumTrendsRank.crawler()
     #naverTrendsRank.crawler()
     #nateTrendsRank.crawler()

@@ -31,7 +31,7 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
                 soup[i] = soup[i].split("?geo")[1].split("#")[0]
                 RANK_NAME = parse.unquote(soup[i])[22:]
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
-                # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
+                #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
 
         except Exception as e:
             super().error_logging(str(e))
@@ -47,8 +47,8 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        # sql = """insert into zum_trends_rank (rank, title, url) values (%s, %s, %s)"""
-        # curs.execute(sql, (rank_number, title, info_url))
+        #sql = """insert into google_trends_rank (rank, title, url) values (%s, %s, %s)"""
+        #curs.execute(sql, (rank_number, title, info_url))
 
         sql = """select title from google_trends_rank where rank = %s"""
         curs.execute(sql, rank_number)
@@ -56,7 +56,7 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
         if row[0] == title:
             print("same google trend")
         else:
-            print(str(rank_number) + " : " + title)
+            print(rank_number + " : " + title + " : " + info_url)
             sql = """update google_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, rank_number))
 
