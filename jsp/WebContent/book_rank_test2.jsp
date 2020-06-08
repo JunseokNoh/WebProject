@@ -167,7 +167,6 @@
 <span class="navbar-toggler-icon"></span> </button> 
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-
 <ul class="navbar-nav mr-auto"> 
 	
 
@@ -245,7 +244,7 @@
 			<tbody>
 				<tr>
 					<td style="text-align:center;" title='<%=author%>'><%=rank%></td>
-					<td title='<%=author%>'><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td title='<%=author%>'><a href=<%=url%> target="_blank"><img src="./logo/testpic.jpg" style="max-width:100px; max-height:100px"></img><%=title%></a></td>
 				</tr>
 	<%
 				count++;

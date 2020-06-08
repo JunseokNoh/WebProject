@@ -30,6 +30,9 @@
 		PreparedStatement Nate_PS = null;
 		ResultSet Nate_RS = null;
 		
+		PreparedStatement Google_PS = null;
+		ResultSet Google_RS = null;
+		
 		String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
 		String MYSQL_SERVER_USERNAME = "yoobi";
 		String MYSQL_SERVER_PASSWORD = "toor";
@@ -37,22 +40,33 @@
 		String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
-
+		//Naver//
 		String naver_query = "select * from naver_trends_rank";
 		Naver_PS = con.prepareStatement(naver_query);
 		Naver_RS = Naver_PS.executeQuery();
-		
+		//zum//
 		String zum_query = "select * from zum_trends_rank";
 		Zum_PS = con.prepareStatement(zum_query);
 		Zum_RS = Zum_PS.executeQuery();
-		
+		//nate//
 		String nate_query = "select * from nate_trends_rank";
 		Nate_PS = con.prepareStatement(nate_query);
 		Nate_RS = Nate_PS.executeQuery();
 		
+		//google//
+		String Google_query = "select timedata from time_data where type='10m'";
+		Google_PS = con.prepareStatement(Google_query);
+		Google_RS = Google_PS.executeQuery();
+		Google_RS.next();
+		String time = Google_RS.getString("timedata");
+		
+		Google_query = "select * from google_trends_rank";
+		Google_PS = con.prepareStatement(Google_query);
+		Google_RS = Google_PS.executeQuery();
+		
 		Date nowTime = new Date();
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
-
+		
 	%>
 			
 <html>
@@ -68,6 +82,10 @@
 
 	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
 	  
+  
+<!-- 추가해야할거 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./css/table.css">
 
 <style type="text/css">
 
@@ -85,6 +103,11 @@
 
 <body>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+ <!-- 추가해야할거 -->
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -99,9 +122,10 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-velosofy"> 
 	<div class="container"> 
 <nav class="navbar navbar-light"> 
-	<a class="navbar-brand " href="./index.jsp"> 
-	<img alt="Free Video Templates" class="d-inline-block align-top" height="30" src="https://www.velosofy.com/img/logo.png" title="Free Video Templates" width="30"/> 
-	홈페이지이름
+		<a class="navbar-brand " href="./index.jsp"> 
+		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
+		홈페이지이름
+		</a> 
 	</a> 
 </nav> 
 
@@ -166,14 +190,16 @@
 
 <div class="row">
 	
-	<div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">네이버 실시간</span> </h3>
-	<div>기준 날짜 : <%= sf.format(nowTime) %></div>
-			<table border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-				</tr>
+	<div class="col-md-3 templates" >
+			<h3>네이버</h3>
+			<h6>기준 날짜 : <%=time%></h6>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+					</tr>
+				</thead>
 	<%
 			int count = 0;
 			while(Naver_RS.next())
@@ -183,8 +209,9 @@
 				String url = Naver_RS.getString("url");
 				url = url.replaceAll(" ", "+");
 	%>
+				<tbody>
 				<tr>
-					<td><%=rank%></td>
+					<td style="text-align:center;"><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
@@ -193,20 +220,23 @@
 
 		
 	%>
-	</table>
+				</tbody>
+		</table>
 		<br><br>
 	</div>
 
 	<br>
 	
 	<div class="col-md-3 templates" style="width:100%;">
-		<h3 class="py-4 poppins"><span class="text-primary">Zum 실시간</span> </h3>
-		<div>기준 날짜 : <%= sf.format(nowTime) %></div>
-			<table border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-				</tr>
+			<h3>Zum</h3>
+			<h6>기준 날짜 : <%=time%></h6>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+					</tr>
+				</thead>
 	<%
 			count = 0;
 			while(Zum_RS.next())
@@ -214,9 +244,11 @@
 				String rank = Zum_RS.getString("rank");
 				String title = Zum_RS.getString("title");
 				String url = Zum_RS.getString("url");
-				url = url.replaceAll(" ", "+");	%>
+				url = url.replaceAll(" ", "+");	
+	%>
+				<tbody>
 				<tr>
-					<td><%=rank%></td>
+					<td style="text-align:center;"><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
@@ -225,19 +257,57 @@
 		
 		
 	%>
+				</tbody>
 	</table>
 		<br><br>
 	</div>
 
 	<br>
 	<div class="col-md-3 templates" style="width:100%;">
-		<h3 class="py-4 poppins"><span class="text-primary">네이트 실시간</span> </h3>
-		<div>기준 날짜 : <%= sf.format(nowTime) %></div>
-			<table border="1">
+			<h3>구글</h3>
+			<h6>기준 날짜 : <%=time%></h6>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+					</tr>
+				</thead>
+	<%
+			count = 0;
+			while(Google_RS.next())
+			{
+				String rank = Google_RS.getString("rank");
+				String title = Google_RS.getString("title");				
+				String url = Google_RS.getString("url");
+				url = url.replaceAll(" ", "+");
+	%>
+				<tbody>
 				<tr>
-					<td>rank</td>
-					<td>title</td>
+					<td style="text-align:center;"><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
+	<%
+				count++;
+			}
+
+	%>
+			</tbody>
+			</table>
+		<br><br>
+	</div>
+
+	<br>
+	<div class="col-md-3 templates" style="width:100%;">
+		<h3>네이트</h3>
+			<h6>기준 날짜 : <%=time%></h6>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+					</tr>
+				</thead>
 	<%
 			count = 0;
 			while(Nate_RS.next())
@@ -247,8 +317,9 @@
 				String url = "https://search.daum.net/nate?thr=sbma&w=tot&q=" + title.replaceAll(" ","+");
 
 	%>
+			<tbody>
 				<tr>
-					<td><%=rank%></td>
+					<td style="text-align:center;"><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
@@ -256,13 +327,8 @@
 			}
 
 	%>
+			</tbody>
 			</table>
-		<br><br>
-	</div>
-
-	<br>
-	<div class="col-md-3 templates" style="width:100%;">
-		
 		<br><br>
 	</div>
 

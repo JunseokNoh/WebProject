@@ -45,6 +45,7 @@
 	HashMap<String, Object> codeResult = mapper.readValue(codeResponse, HashMap.class);
 	request.setAttribute("codeResult", codeResult);
 %>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -102,7 +103,6 @@
 
 <ul class="navbar-nav mr-auto"> 
 	
-
 	<li class="nav-item dropdown"> 
 	<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="category-dropdown"> 카테고리 </a> 
 	<div aria-labelledby="category-dropdown" class="dropdown-menu dropdown-menu-right mt-n1"> 

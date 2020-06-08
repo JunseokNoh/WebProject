@@ -19,8 +19,17 @@
 -->
 <%
 		Connection con = null;
-		PreparedStatement naver_movie_PS = null;
-		ResultSet naver_movie_RS = null;
+		PreparedStatement Boxoffice_PS = null;
+		ResultSet Boxoffice_RS = null;
+		
+		PreparedStatement Naver_PS = null;
+		ResultSet Naver_RS = null;
+		
+		PreparedStatement Daum_PS = null;
+		ResultSet Daum_RS = null;
+		
+		PreparedStatement Naver_rate_PS = null;
+		ResultSet Naver_rate_RS = null;
 		
 		String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
 		String MYSQL_SERVER_USERNAME = "yoobi";
@@ -29,14 +38,48 @@
 		String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
-
-		String naver_movie_query = "select * from naver_movie_rank";
-		naver_movie_PS = con.prepareStatement(naver_movie_query);
-		naver_movie_RS = naver_movie_PS.executeQuery();
-
-		Date nowTime = new Date();
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
-
+		/*박스오피스*/
+		String Boxoffice_query = "select timedata from time_data where type='1d'";
+		Boxoffice_PS = con.prepareStatement(Boxoffice_query);
+		Boxoffice_RS = Boxoffice_PS.executeQuery();
+		Boxoffice_RS.next();
+		String Boxoffice_time = Boxoffice_RS.getString("timedata");	
+		
+		Boxoffice_query = "select * from boxoffice_movie_rank";
+		Boxoffice_PS = con.prepareStatement(Boxoffice_query);
+		Boxoffice_RS = Boxoffice_PS.executeQuery();
+		/*네이버 영화*/
+		String Naver_query = "select timedata from time_data where type='1d'";
+		Naver_PS = con.prepareStatement(Naver_query);
+		Naver_RS = Naver_PS.executeQuery();
+		Naver_RS.next();
+		String Naver_time = Naver_RS.getString("timedata");	
+		
+		Naver_query = "select * from naver_movie_rank";
+		Naver_PS = con.prepareStatement(Naver_query);
+		Naver_RS = Naver_PS.executeQuery();
+		
+		/*다음 영화*/
+		String Daum_query = "select timedata from time_data where type='1d'";
+		Daum_PS = con.prepareStatement(Daum_query);
+		Daum_RS = Daum_PS.executeQuery();
+		Daum_RS.next();
+		String Daum_time = Daum_RS.getString("timedata");	
+		
+		Daum_query = "select * from daum_movie_rank";
+		Daum_PS = con.prepareStatement(Daum_query);
+		Daum_RS = Daum_PS.executeQuery();
+		
+		/*네이버 영화 평점순*/
+		String Naver_rate_query = "select timedata from time_data where type='1d'";
+		Naver_rate_PS = con.prepareStatement(Naver_rate_query);
+		Naver_rate_RS = Naver_rate_PS.executeQuery();
+		Naver_rate_RS.next();
+		String Naver_rate_time = Naver_rate_RS.getString("timedata");	
+		
+		Naver_rate_query = "select * from naver_movie_rating_rank";
+		Naver_rate_PS = con.prepareStatement(Naver_rate_query);
+		Naver_rate_RS = Naver_rate_PS.executeQuery();
 	%>
 	
 <%
@@ -84,6 +127,10 @@
 	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
 	  
 
+<!-- 추가해야할거 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./css/table.css">
+
 <style type="text/css">
 
 	#movie_1{
@@ -100,6 +147,11 @@
 
 <body>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+ <!-- 추가해야할거 -->
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -115,9 +167,9 @@
 	<div class="container"> 
 <nav class="navbar navbar-light"> 
 	<a class="navbar-brand " href="./index.jsp"> 
-	<img alt="Free Video Templates" class="d-inline-block align-top" height="30" src="https://www.velosofy.com/img/logo.png" title="Free Video Templates" width="30"/> 
-	홈페이지이름
-	</a> 
+		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
+		홈페이지이름
+		</a> 
 </nav> 
 
 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"> 
@@ -175,21 +227,60 @@
 
 <div class="row">
 
-<div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">네이버 영화</span> </h3>
-	기준 날짜 : <%= sf.format(nowTime) %>
-			<table border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-				</tr>
+<div class="col-md-6 templates" style="width:100%;">
+			<h3>박스오피스</h3>
+			<h6>기준 날짜 : <%=Boxoffice_time%></h6>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+						<th class="table-th" style="width:10%; text-align:center;">관객수</th>
+					</tr>
+				</thead>
 	<%
 			int count = 0;
-			while(naver_movie_RS.next())
+			while(Boxoffice_RS.next())
 			{
-				String rank = naver_movie_RS.getString("rank");
-				String title = naver_movie_RS.getString("title");
-				String url = "https://movie.naver.com" + naver_movie_RS.getString("url");
+				String rank = Boxoffice_RS.getString("rank");
+				String title = Boxoffice_RS.getString("title");
+				String attendance = Boxoffice_RS.getString("attendance");
+				String url = Boxoffice_RS.getString("url");	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=attendance%></td>
+				</tr>
+	<%
+				count++;
+				if(count >= 20){
+					break;
+				}
+			}
+	
+	%>
+	</table>
+	<br><br>
+</div>
+
+	<br>
+	<div class="col-md-6 templates" style="width:100%;">
+			<h3>네이버 </h3>
+			<h6>기준 날짜 : <%=Naver_time%></h6>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+					</tr>
+				</thead>
+	<%
+			count = 0;
+			while(Naver_RS.next())
+			{
+				String rank = Naver_RS.getString("rank");
+				String title = Naver_RS.getString("title");
+				String url = "https://movie.naver.com" + Naver_RS.getString("url");
 	%>
 				<tr>
 					<td><%=rank%></td>
@@ -208,17 +299,76 @@
 </div>
 
 <br>
-<div class="col-md-3 templates" style="width:100%;">
+<div class="col-md-6 templates" style="width:100%;">
+			<h3>다음 영화</h3>
+			<h6>기준 날짜 : <%=Daum_time%></h6>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+						<th class="table-th" style="width:10%; text-align:center;">관객수</th>
+					</tr>
+				</thead>
+	<%
+			count = 0;
+			while(Daum_RS.next())
+			{
+				String rank = Daum_RS.getString("rank");
+				String title = Daum_RS.getString("title");
+				String ticketing = Daum_RS.getString("ticketing");
+				String url = Daum_RS.getString("url");	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=ticketing%></td>
+				</tr>
+	<%
+				count++;
+				if(count >= 20){
+					break;
+				}
+			}
+	
+	%>
+	</table>
 	<br><br>
 </div>
 
 <br>
-<div class="col-md-3 templates" style="width:100%;">
-<br><br>
-</div>
-
-<br>
-<div class="col-md-3 templates" style="width:100%;">
+<div class="col-md-6 templates" style="width:100%;">
+			<h3>네이버 영화 평점순</h3>
+			<h6>기준 날짜 : <%=Naver_rate_time%></h6>
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+						<th class="table-th" style="width:10%; text-align:center;">평 점</th>
+					</tr>
+				</thead>
+	<%
+			count = 0;
+			while(Naver_rate_RS.next())
+			{
+				String rank = Naver_rate_RS.getString("rank");
+				String title = Naver_rate_RS.getString("title");
+				String rating = Naver_rate_RS.getString("rating");
+				String url = Naver_rate_RS.getString("url");	%>
+				<tr>
+					<td><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td><%=rating%></td>
+				</tr>
+	<%
+				count++;
+				if(count >= 20){
+					break;
+				}
+			}
+	
+	%>
+	</table>
 	<br><br>
 </div>
 

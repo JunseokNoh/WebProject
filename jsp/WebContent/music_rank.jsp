@@ -93,8 +93,11 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
 
-	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
+<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
 	  
+<!-- 추가해야할거 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./css/table.css">
 
 <style type="text/css">
 
@@ -112,6 +115,7 @@
 
 <body>
 
+
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -126,10 +130,10 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-velosofy"> 
 	<div class="container"> 
 <nav class="navbar navbar-light"> 
-	<a class="navbar-brand " href="./index.jsp"> 
-	<img alt="Free Video Templates" class="d-inline-block align-top" height="30" src="https://www.velosofy.com/img/logo.png" title="Free Video Templates" width="30"/> 
-	홈페이지이름
-	</a> 
+		<a class="navbar-brand " href="./index.jsp"> 
+		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
+		홈페이지이름
+		</a> 
 </nav> 
 
 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"> 
@@ -187,21 +191,19 @@
 <div class="container pb-5"> 
 
 
-
-
-
 <div class="row">
 
-	<div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">멜론 차트</span> </h3>
-		<div>기준 날짜 : <%=time%></div>
-			<table class="table table-striped table-hover" border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-					<td>artist</td>
-					
+	<div class="col-md-6 templates" style="width:100%;">
+		<h3 >멜론 차트</h3>
+		<h6>기준 날짜 : <%=time%></h6>
+			<table class="table table-hover">
+				<thead>	
+				<tr class="table-info">
+					<th class="table-th" style="width:5%; text-align:center;">순위</th>
+					<th class="table-th" style="width:5%; text-align:center;">제목</th>
+					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
 				</tr>
+				</thead>
 	<%
 			int count = 0;
 			while(Melon_RS.next())
@@ -215,7 +217,7 @@
 				String album_url = Melon_RS.getString("album_url");
 	%>
 				<tr>
-					<td><%=rank%></td>
+					<td style="text-align:center;"><%=rank%></td>
 					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
 					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
 									</tr>
@@ -227,54 +229,19 @@
 		</table>
 		<br><br>
 	</div>
-
-	<br>
-	<div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">벅스 차트</span> </h3>
-		<div>기준 날짜 : <%=Bugs_time%></div>
-			<table border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-					<td>artist</td>
-
-				</tr>
-	<%
-			count = 0;
-			while(Bugs_RS.next())
-			{
-				String rank = Bugs_RS.getString("rank");
-				String title = Bugs_RS.getString("song_title");
-				String title_url = Bugs_RS.getString("song_url");
-				String artist = Bugs_RS.getString("song_artist");
-				String artist_url = Bugs_RS.getString("artist_url");
-				String album = Bugs_RS.getString("album_title");
-				String album_url = Bugs_RS.getString("album_url");
-	%>
-				<tr>
-					<td><%=rank%></td>
-					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
-					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
-									</tr>
-	<%
-				count++;
-			}
 	
-	%>
-		</table>
-		<br><br>
-	</div>
-
 	<br>
-	<div class="col-md-3 templates" style="width:100%;">
-	<h3 class="py-4 poppins"><span class="text-primary">지니 차트</span> </h3>
-		<div>기준 날짜 : <%=Genie_time%></div>
-			<table border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-					<td>artist</td>
+	<div class="col-md-6 templates" style="width:100%;">
+		<h3 >지니 뮤직</h3>
+		<h6>기준 날짜 : <%=Genie_time%></h6>
+			<table class="table table-hover">
+			<thead>
+				<tr class="table-info">
+					<th class="table-th" style="width:5%; text-align:center;">순위</th>
+					<th class="table-th" style="width:5%; text-align:center;">제목</th>
+					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
 				</tr>
+			</thead>
 	<%
 			count = 0;
 			while(Genie_RS.next())
@@ -288,7 +255,7 @@
 				String album_url = Genie_RS.getString("album_url");
 	%>
 				<tr>
-					<td><%=rank%></td>
+					<td style="text-align:center;"><%=rank%></td>
 					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
 					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
 				</tr>
@@ -299,17 +266,58 @@
 		</table>
 		<br><br>
 	</div>
+	
+	<br>
+	<div class="col-md-6 templates" style="width:100%;">
+		<h3 >벅스 차트</h3>
+		<h6>기준 날짜 : <%=Bugs_time%></h6>
+		
+			<table class="table table-hover">
+				<thead>
+				<tr class="table-info">
+					<th class="table-th" style="width:5%; text-align:center;">순위</th>
+					<th class="table-th" style="width:5%; text-align:center;">제목</th>
+					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
+				</tr>
+				</thead>
+	<%
+			count = 0;
+			while(Bugs_RS.next())
+			{
+				String rank = Bugs_RS.getString("rank");
+				String title = Bugs_RS.getString("song_title");
+				String title_url = Bugs_RS.getString("song_url");
+				String artist = Bugs_RS.getString("song_artist");
+				String artist_url = Bugs_RS.getString("artist_url");
+				String album = Bugs_RS.getString("album_title");
+				String album_url = Bugs_RS.getString("album_url");
+	%>
+				<tr>
+					<td style="text-align:center;"><%=rank%></td>
+					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
+					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
+									</tr>
+	<%
+				count++;
+			}
+	
+	%>
+		</table>
+		<br><br>
+	</div>
 
 	<br>
-	<div class="col-md-3 templates" style="width:100%;">
-		<h3 class="py-4 poppins"><span class="text-primary">빌보드 차트</span> </h3>
-			기준 날짜 : <%= sf.format(nowTime) %>
-			<table border="1">
-				<tr>
-					<td>rank</td>
-					<td>title</td>
-					<td>artist</td>
-				</tr>
+	<div class="col-md-6 templates" style="width:100%;">
+				<h3 >빌보드 차트</h3>
+		<h6>기준 날짜 : <%=sf.format(nowTime)%></h6>
+		<table class="table table-hover">
+			<thead>
+			<tr class="table-info">
+				<th class="table-th" style="width:5%; text-align:center;">순위</th>
+				<th class="table-th" style="width:5%; text-align:center;">제목</th>
+				<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
+			</tr>
+			</thead>
 	<%
 			count = 0;
 			while(Billboard_RS.next())
@@ -319,7 +327,7 @@
 				String artist = Billboard_RS.getString("artist");
 	%>
 				<tr>
-					<td><%=rank%></td>
+					<td style="text-align:center;"><%=rank%></td>
 					<td><%=title%></td>
 					<td><%=artist%></td>
 				</tr>
