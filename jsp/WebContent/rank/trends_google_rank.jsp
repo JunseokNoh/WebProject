@@ -26,19 +26,17 @@
 			PS = con.prepareStatement(query);
 			RS = PS.executeQuery();
 			RS.next();
-			String time = RS.getString("timedata");	
-				
-			query = "select * from yes24_book_rank";
+			String time = RS.getString("timedata");
+			
+			query = "select * from google_trends_rank";
 			PS = con.prepareStatement(query);
 			RS = PS.executeQuery();
-	%>
+%>
 			기준 날짜 : <%=time%>
 			<table border="1">
 				<tr>
 					<td>rank</td>
 					<td>title</td>
-					<td>대표저자</td>
-					<td>출판사</td>
 				</tr>
 	<%
 			int count = 0;
@@ -47,14 +45,11 @@
 				String rank = RS.getString("rank");
 				String title = RS.getString("title");
 				String url = RS.getString("url");
-				String author = RS.getString("author");
-				String publisher = RS.getString("publisher");
+				url = url.replaceAll(" ", "+");
 	%>
 				<tr>
 					<td><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
-					<td><%=author%></td>
-					<td><%=publisher%></td>
 				</tr>
 	<%
 				count++;

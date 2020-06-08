@@ -22,13 +22,13 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 
-			String query = "select timedata from time_data where type='10m'";
+			String query = "select timedata from time_data where type='1h'";
 			PS = con.prepareStatement(query);
 			RS = PS.executeQuery();
 			RS.next();
 			String time = RS.getString("timedata");	
 				
-			query = "select * from bugs_music_rank";
+			query = "select * from genie_music_rank";
 			PS = con.prepareStatement(query);
 			RS = PS.executeQuery();
 	%>

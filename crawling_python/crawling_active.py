@@ -176,55 +176,49 @@ def main():
     f.write(str(time_for_log) + "\n\n")
     print(str(time_for_log) + "\n")
     f.close()
+
+    check = time_for_log.minute + 1
+
     while True:
         # 1m
-        time.sleep(60)
         now = datetime.datetime.now()
-        naverTrendsRank.crawler()
-        setTimeDate.connect_db("1m")
+        time.sleep(1)
 
-        if now.minute % 10 == 0:
-            # 10m
-            googleTrendsRank.crawler()
-            zumTrendsRank.crawler()
-            nateTrendsRank.crawler()
-            setTimeDate.connect_db("10m")
-            f = open("./active_log.txt", "a")
-            f.write("10m done # time : " + str(now) + "\n")
-            f.close()
+        if now.minute == check:
+            check = now.minute + 1
+            naverTrendsRank.crawler()
+            setTimeDate.connect_db("1m")
 
-        if now.minute == 0 and (6 < now.hour <= 24 or now.hour == 1):
-            # 1h without am2 ~ am6
-            bugsMusicRank.crawler()
-            melonMusicRank.crawler()
-            genieMusicRank.crawler()
-            setTimeDate.connect_db("1h")
-            f = open("./active_log.txt", "a")
-            f.write("1h done # time : " + str(now) + "\n")
-            f.close()
+            if now.minute % 10 == 0:
+                # 10m
+                googleTrendsRank.crawler()
+                zumTrendsRank.crawler()
+                nateTrendsRank.crawler()
+                setTimeDate.connect_db("10m")
 
-        if now.hour == 6 and now.minute == 0:
-            # 1d 6am
-            boxofficeMovieRank.crawler()
-            naverMovieRank.crawler()
-            naverMovieRatingRank.crawler()
-            daumMovieRank.crawler()
-            aladinBookRank.crawler()  # 일간
-            yes24BookRank.crawler()  # 일간
-            interBookRank.crawler()  # 일간인데 13:00 존재
-            setTimeDate.connect_db("1d")
-            f = open("./active_log.txt", "a")
-            f.write("1d done # time : " + str(now) + "\n")
-            f.close()
+            if now.minute == 0 and (6 < now.hour <= 24 or now.hour == 1):
+                # 1h without am2 ~ am6
+                bugsMusicRank.crawler()
+                melonMusicRank.crawler()
+                genieMusicRank.crawler()
+                setTimeDate.connect_db("1h")
 
-        if now.hour == 6 and now.minute == 0 and now.weekday() == 2:
-            # 1w every wednesday
-            kyoboBookRank.crawler()  # 주간
-            billboardMusicRank.crawler()  # 주간
-            setTimeDate.connect_db("1w")
-            f = open("./active_log.txt", "a")
-            f.write("1w done # time : " + str(now) + "\n")
-            f.close()
+            if now.hour == 6 and now.minute == 0:
+                # 1d 6am
+                boxofficeMovieRank.crawler()
+                naverMovieRank.crawler()
+                naverMovieRatingRank.crawler()
+                daumMovieRank.crawler()
+                aladinBookRank.crawler()  # 일간
+                yes24BookRank.crawler()  # 일간
+                interBookRank.crawler()  # 일간인데 13:00 존재
+                setTimeDate.connect_db("1d")
+
+            if now.hour == 6 and now.minute == 0 and now.weekday() == 2:
+                # 1w every wednesday
+                kyoboBookRank.crawler()  # 주간
+                billboardMusicRank.crawler()  # 주간
+                setTimeDate.connect_db("1w")
 
 
 main()

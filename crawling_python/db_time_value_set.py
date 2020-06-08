@@ -1,5 +1,6 @@
 import pymysql
 import time
+import datetime
 
 
 class DBTimeValueSet:
@@ -26,9 +27,10 @@ class DBTimeValueSet:
             now = "%04d/%02d/%02d %02d:%02d" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min)
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
+            time_for_log = datetime.datetime.now()
             f = open("./active_log.txt", "a")
-            f.write("1m updated # time : " + now + "\n")
-            print("1m updated # time : " + now)
+            f.write("1m updated # time : " + str(time_for_log) + "\n")
+            print("1m updated # time : " + str(time_for_log))
             f.close()
 
         elif type == '10m':
@@ -36,9 +38,10 @@ class DBTimeValueSet:
             now = "%04d/%02d/%02d %02d:%02d" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min)
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
+            time_for_log = datetime.datetime.now()
             f = open("./active_log.txt", "a")
-            f.write("10m updated # time : " + now + "\n")
-            print("10m updated # time : " + now)
+            f.write("10m updated # time : " + str(time_for_log) + "\n")
+            print("10m updated # time : " + str(time_for_log))
             f.close()
 
         elif type == '1h':
@@ -46,9 +49,10 @@ class DBTimeValueSet:
             now = "%04d/%02d/%02d %02d" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour)
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
+            time_for_log = datetime.datetime.now()
             f = open("./active_log.txt", "a")
-            f.write("1h updated # time : " + now + "\n")
-            print("1h updated # time : " + now)
+            f.write("1h updated # time : " + str(time_for_log) + "\n")
+            print("1h updated # time : " + str(time_for_log))
             f.close()
 
         elif type == '1d':
@@ -56,9 +60,10 @@ class DBTimeValueSet:
             now = "%04d/%02d/%02d" % (now.tm_year, now.tm_mon, now.tm_mday - 1)
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
+            time_for_log = datetime.datetime.now()
             f = open("./active_log.txt", "a")
-            f.write("1d updated # time : " + now + "\n")
-            print("1d updated # time : " + now)
+            f.write("1d updated # time : " + str(time_for_log) + "\n")
+            print("1d updated # time : " + str(time_for_log))
             f.close()
 
         elif type == '1w':
@@ -66,9 +71,10 @@ class DBTimeValueSet:
             now = "%04d/%02d/%02d" % (now.tm_year, now.tm_mon, now.tm_mday - 1)
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
+            time_for_log = datetime.datetime.now()
             f = open("./active_log.txt", "a")
-            f.write("1w updated # time : " + now + "\n")
-            print("1w updated # time : " + now)
+            f.write("1w updated # time : " + str(time_for_log) + "\n")
+            print("1w updated # time : " + str(time_for_log))
             f.close()
 
         conn.commit()
