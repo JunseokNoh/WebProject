@@ -133,3 +133,178 @@ table : genie_music_rank UPDATED
 2020-06-08 18:10:27.648507
 
 1m updated # time : 2020-06-08 18:11:01.849966
+##### start #####
+2020-06-08 20:06:21.039978
+
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:07:02.178164
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:08:02.264529
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:09:01.313461
+table : google_trends_rank UPDATED
+table : zum_trends_rank UPDATED
+table : nate_trends_rank UPDATED
+10m updated # time : 2020-06-08 20:10:03.534823
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:10:05.170337
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:11:02.254170
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:12:01.885163
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:13:00.792659
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:14:02.483220
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:15:01.344571
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:16:01.837662
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:17:02.790194
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:18:02.622772
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:19:02.305248
+table : google_trends_rank UPDATED
+table : zum_trends_rank UPDATED
+table : nate_trends_rank UPDATED
+10m updated # time : 2020-06-08 20:20:03.433684
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:20:05.106683
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:21:01.900948
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:22:02.779005
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:23:02.949933
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:24:02.152263
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:25:01.485804
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:26:05.917554
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:27:02.956733
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:28:01.900895
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:29:02.655267
+table : google_trends_rank UPDATED
+table : zum_trends_rank UPDATED
+table : nate_trends_rank UPDATED
+10m updated # time : 2020-06-08 20:30:03.721429
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:30:05.075760
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:31:01.383590
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:32:02.223257
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:33:02.361471
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:34:01.250434
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:35:02.336234
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:36:02.357609
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:37:02.506674
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:38:01.476707
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:39:02.174405
+table : google_trends_rank UPDATED
+table : zum_trends_rank UPDATED
+table : nate_trends_rank UPDATED
+10m updated # time : 2020-06-08 20:40:02.954708
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:40:04.441098
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:41:02.444241
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:42:02.112663
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:43:02.111343
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:44:01.162260
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:45:01.422881
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:46:01.359208
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:47:02.292888
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:48:02.197166
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:49:01.969753
+table : google_trends_rank UPDATED
+table : zum_trends_rank UPDATED
+table : nate_trends_rank UPDATED
+10m updated # time : 2020-06-08 20:50:03.345815
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:50:04.816060
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:51:01.754217
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:52:02.494921
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:53:02.337982
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:54:02.050407
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:55:00.924120
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:56:01.629315
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:57:03.664428
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:58:02.255934
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 20:59:02.176202
+table : bugs_music_rank UPDATED
+table : melon_music_rank UPDATED
+table : genie_music_rank UPDATED
+1h updated # time : 2020-06-08 21:00:15.952929
+table : google_trends_rank UPDATED
+table : zum_trends_rank UPDATED
+table : nate_trends_rank UPDATED
+10m updated # time : 2020-06-08 21:00:18.848666
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:00:20.374772
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:01:02.516298
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:02:01.448246
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:03:02.526923
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:04:02.374938
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:05:01.272766
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:06:02.190296
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:07:02.070446
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:08:02.483147
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:09:01.455206
+table : google_trends_rank UPDATED
+table : zum_trends_rank UPDATED
+table : nate_trends_rank UPDATED
+10m updated # time : 2020-06-08 21:10:05.188336
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:10:06.860970
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:11:02.555554
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:12:02.235305
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:13:01.244769
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:14:02.108946
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:15:02.201804
+table : naver_trends_rank UPDATED
+1m updated # time : 2020-06-08 21:16:01.113799

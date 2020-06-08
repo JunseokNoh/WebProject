@@ -182,9 +182,6 @@ def main():
     while True:
         # 1m
         now = datetime.datetime.now()
-        if now.minute == 59:
-            check = 1
-        time.sleep(1)
 
         if now.minute == check:
             check = now.minute + 1
@@ -222,6 +219,10 @@ def main():
 
             naverTrendsRank.crawler()
             setTimeDate.connect_db("1m")
+
+        if now.minute == 59:
+            check = 0
+        time.sleep(1)
 
 
 
