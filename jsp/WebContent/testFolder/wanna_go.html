@@ -1,0 +1,27 @@
+<HTML>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<style>
+    div {margin-bottom:1000px;}
+</style>
+<script>
+    function fnMove(value){
+        var offset = $("#div" + value).offset();
+        $('html, body').animate({scrollTop : offset.top}, 0);
+    }
+</script>
+ <BODY>
+	 <select name="fruit" onchange="fnMove(value)">
+	  <option value="1">div1로 이동</option>
+	  <option value="2">div2로 이동</option>
+	  <option value="3">div3로 이동</option>
+	</select>
+	
+    <button onclick="fnMove('1')">div1로 이동</button>
+    <button onclick="fnMove('2')">div2로 이동</button>
+    <button onclick="fnMove('3')">div3로 이동</button>
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+    <div id="div3">div3</div>
+ </BODY>
+</HTML>
+

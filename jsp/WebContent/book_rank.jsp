@@ -106,14 +106,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
  <!-- 추가해야할거 -->
  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-40481198-1', 'auto');
-    ga('send', 'pageview');
-</script>
+<script src="./js/script.js"></script>
 
 <div id="app"> 
 
@@ -169,8 +162,7 @@
 <div class="container"> 
 
 <h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>도서&nbsp</span>순위</h1> 
-
-<h2 class="lead text-muted">부제목 </h2> 
+<br>
 
 </div> 
 </section> 
@@ -179,8 +171,18 @@
 
 
 <div class="row">
-
-	<div class="col-md-6 templates">
+	 <div class="col-md-12 templates"> 
+		<select class="select_box1" name="select" onchange="fnMove(value)">
+		  <option>선택</option>
+		  <option value="1">인터파크</option>
+		  <option value="2">교보문고</option>
+		  <option value="3">YES24</option>
+		  <option value="4">알라딘</option>
+		</select>
+	</div>
+	<br>
+	
+	<div id="div1" class="col-md-6 templates">
 			<h3>인터파크</h3>
 			<h6><%=Inter_time%></h6>
 			<table class="table table-hover">
@@ -221,7 +223,7 @@
 
 
 <br>
-<div class="col-md-6 templates" >
+<div id="div2" class="col-md-6 templates" >
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">교보 문고</span> </h3>  -->
 			<h3>교보문고</h3>
 			<h6><%=Kyobo_time%></h6>
@@ -260,7 +262,7 @@
 </div>
 
 <br>
-<div class="col-md-6 templates" style="width:100%;">
+<div id="div3" class="col-md-6 templates" style="width:100%;">
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">YES24</span> </h3> -->
 			<h3>YES24</h3>
 			<h6><%=Yes_time%></h6>
@@ -299,7 +301,7 @@
 </div>
 
 <br>
-<div class="col-md-6 templates" >
+<div id="div4" class="col-md-6 templates" >
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">알라딘</span> </h3> -->
 			<h3>알라딘</h3>
 			<h6><%=Aladin_time%></h6>
@@ -346,25 +348,6 @@
 </main> 
 
 <script src="https://www.velosofy.com/js/app.js"></script>
-
-<script>
-    const keywords = ["포털 ", "음악 ", "영화 ", "도서 "];
-    $(document).ready(function() {
-        let i = 1;
-        setInterval(function() {
-            const newKeyword = keywords[i];
-            $("#keyword").animate({ opacity: 0 }, function() {
-                $(this).text(newKeyword).animate({ opacity: 1 });
-            });
-            if (i+1 === keywords.length) {
-                i = 0;
-            } else {
-                i++;
-            }
-        }, 3500);
-    });
-</script>
-
 	
 </body>
 </html>

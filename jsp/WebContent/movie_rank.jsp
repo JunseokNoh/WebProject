@@ -111,15 +111,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
  <!-- 추가해야할거 -->
  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-40481198-1', 'auto');
-    ga('send', 'pageview');
-</script>
+<script src="./js/script.js"></script>
 
 <div id="app"> 
 
@@ -172,8 +164,7 @@
 <div class="container"> 
 
 <h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>영화&nbsp</span>순위</h1> 
-
-<h2 class="lead text-muted">부제목 </h2> 
+<br>
 
 </div> 
 </section> 
@@ -186,10 +177,20 @@
 
 
 <div class="row">
+	 <div class="col-md-12 templates"> 
+		<select class="select_box1" name="select" onchange="fnMove(value)">
+		  <option>선택</option>
+		  <option value="1">박스오피스</option>
+		  <option value="2">인기검색어</option>
+		  <option value="3">예매율</option>
+		  <option value="4">평점순</option>
+		</select>
+	</div>
+	<br>
 
-<div class="col-md-6 templates" style="width:100%;">
+<div id="div1" class="col-md-6 templates" style="width:100%;">
 			<h3>박스오피스</h3>
-			<h6>기준 날짜 : <%=Boxoffice_time%></h6>
+			<h6><%=Boxoffice_time%></h6>
 			<table class="table table-hover">
 			<!--  
 				<thead>
@@ -228,9 +229,9 @@
 </div>
 
 	<br>
-	<div class="col-md-6 templates" style="width:100%;">
-			<h3>네이버 </h3>
-			<h6>기준 날짜 : <%=Naver_time%></h6>
+	<div id="div2" class="col-md-6 templates" style="width:100%;">
+			<h3>인기 검색어</h3>
+			<h6><%=Naver_time%></h6>
 			<table class="table table-hover">
 			<!-- 
 				<thead>
@@ -267,9 +268,9 @@
 </div>
 
 <br>
-<div class="col-md-6 templates" style="width:100%;">
-			<h3>다음 영화</h3>
-			<h6>기준 날짜 : <%=Daum_time%></h6>
+<div id="div3" class="col-md-6 templates" style="width:100%;">
+			<h3>예매율</h3>
+			<h6><%=Daum_time%></h6>
 			<table class="table table-hover">
 			<!--
 				<thead>
@@ -307,9 +308,9 @@
 </div>
 
 <br>
-<div class="col-md-6 templates" style="width:100%;">
-			<h3>네이버 영화 평점순</h3>
-			<h6>기준 날짜 : <%=Naver_rate_time%></h6>
+<div id="div4" class="col-md-6 templates" style="width:100%;">
+			<h3>평점순</h3>
+			<h6><%=Naver_rate_time%></h6>
 			<table class="table table-hover">
 				<!--  
 				<thead>
@@ -356,23 +357,6 @@
 
 <script src="https://www.velosofy.com/js/app.js"></script>
 
-<script>
-    const keywords = ["포털 ", "음악 ", "영화 ", "도서 "];
-    $(document).ready(function() {
-        let i = 1;
-        setInterval(function() {
-            const newKeyword = keywords[i];
-            $("#keyword").animate({ opacity: 0 }, function() {
-                $(this).text(newKeyword).animate({ opacity: 1 });
-            });
-            if (i+1 === keywords.length) {
-                i = 0;
-            } else {
-                i++;
-            }
-        }, 3500);
-    });
-</script>
 
 	
 </body>

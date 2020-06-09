@@ -9,57 +9,70 @@
 * @설명 : 일별 박스오피스 REST 호출 - 서버측에서 호출하는 방식 예제
 ------------------------------------------------------------
 -->
-	<%
-		Connection con = null;
-		//Naver
-		PreparedStatement Naver_PS = null;
-		ResultSet Naver_RS = null;
-		//Zum
-		PreparedStatement Zum_PS = null;
-		ResultSet Zum_RS = null;
+<%
+	Connection con = null;
+	PreparedStatement Melon_PS = null;
+	ResultSet Melon_RS = null;
+	
+	PreparedStatement Bugs_PS = null;
+	ResultSet Bugs_RS = null;
+	
+	PreparedStatement Genie_PS = null;
+	ResultSet Genie_RS = null;
+	
+	PreparedStatement Billboard_PS = null;
+	ResultSet Billboard_RS = null;
+	
+	String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
+	String MYSQL_SERVER_USERNAME = "yoobi";
+	String MYSQL_SERVER_PASSWORD = "toor";
+	String MYSQL_DATABASE = "jsp_db";
+	String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
+	Class.forName("com.mysql.jdbc.Driver");
+	con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
+	
+	/*멜론*/
+	String Melon_query = "select timedata from time_data where type='10m'";
+	Melon_PS = con.prepareStatement(Melon_query);
+	Melon_RS = Melon_PS.executeQuery();
+	Melon_RS.next();
+	String time = Melon_RS.getString("timedata");	
 		
-		PreparedStatement Nate_PS = null;
-		ResultSet Nate_RS = null;
+	Melon_query = "select * from melon_music_rank";
+	Melon_PS = con.prepareStatement(Melon_query);
+	Melon_RS = Melon_PS.executeQuery();
+	
+	/*벅스*/
+	String Bugs_query = "select timedata from time_data where type='10m'";
+	Bugs_PS = con.prepareStatement(Bugs_query);
+	Bugs_RS = Bugs_PS.executeQuery();
+	Bugs_RS.next();
+	String Bugs_time = Bugs_RS.getString("timedata");	
 		
-		PreparedStatement Google_PS = null;
-		ResultSet Google_RS = null;
+	Bugs_query = "select * from bugs_music_rank";
+	Bugs_PS = con.prepareStatement(Bugs_query);
+	Bugs_RS = Bugs_PS.executeQuery();
+	
+	/*지니 뮤직*/
+	String Genie_query = "select timedata from time_data where type='10m'";
+	Genie_PS = con.prepareStatement(Genie_query);
+	Genie_RS = Genie_PS.executeQuery();
+	Genie_RS.next();
+	String Genie_time = Genie_RS.getString("timedata");	
 		
-		String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
-		String MYSQL_SERVER_USERNAME = "yoobi";
-		String MYSQL_SERVER_PASSWORD = "toor";
-		String MYSQL_DATABASE = "jsp_db";
-		String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
-		Class.forName("com.mysql.jdbc.Driver");
-		con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
-		//Naver//
-		String naver_query = "select * from naver_trends_rank";
-		Naver_PS = con.prepareStatement(naver_query);
-		Naver_RS = Naver_PS.executeQuery();
-		//zum//
-		String zum_query = "select * from zum_trends_rank";
-		Zum_PS = con.prepareStatement(zum_query);
-		Zum_RS = Zum_PS.executeQuery();
-		//nate//
-		String nate_query = "select * from nate_trends_rank";
-		Nate_PS = con.prepareStatement(nate_query);
-		Nate_RS = Nate_PS.executeQuery();
-		
-		//google//
-		String Google_query = "select timedata from time_data where type='10m'";
-		Google_PS = con.prepareStatement(Google_query);
-		Google_RS = Google_PS.executeQuery();
-		Google_RS.next();
-		String time = Google_RS.getString("timedata");
-		
-		Google_query = "select * from google_trends_rank";
-		Google_PS = con.prepareStatement(Google_query);
-		Google_RS = Google_PS.executeQuery();
-		
-		Date nowTime = new Date();
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
-		
-	%>
+	Genie_query = "select * from genie_music_rank";
+	Genie_PS = con.prepareStatement(Genie_query);
+	Genie_RS = Genie_PS.executeQuery();
 			
+	/*빌보드*/
+	String Billboard_query = "select * from billboard_music_rank";
+	Billboard_PS = con.prepareStatement(Billboard_query);
+	Billboard_RS = Billboard_PS.executeQuery();
+
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
+
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -71,9 +84,8 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
 
-	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
+<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
 	  
-  
 <!-- 추가해야할거 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./css/table.css">
@@ -94,10 +106,6 @@
 
 <body>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
- <!-- 추가해야할거 -->
- <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -117,7 +125,6 @@
 		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
 		홈페이지이름
 		</a> 
-	</a> 
 </nav> 
 
 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"> 
@@ -162,7 +169,7 @@
 
 <div class="container"> 
 
-<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>포털&nbsp</span>순위</h1> 
+<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>음악&nbsp</span>순위</h1> 
 
 <h2 class="lead text-muted">부제목 </h2> 
 <!-- 
@@ -175,23 +182,58 @@
 <div class="container pb-5"> 
 
 
-
-
-
-
 <div class="row">
-	
 
+	<div class="col-md-12 templates" style="width:100%;">
+		<h3 >멜론 차트</h3>
+		<h6><%=time%></h6>
+			<table class="table table-hover">
+				<!--  
+				<thead>	
+				<tr class="table-info">
+					<th class="table-th" style="width:5%; text-align:center;">순위</th>
+					<th class="table-th" style="width:5%; text-align:center;">제목</th>
+					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
+				</tr>
+				</thead>
+				-->
+	<%
+			int count = 0;
+			while(Melon_RS.next())
+			{
+				String rank = Melon_RS.getString("rank");
+				String title = Melon_RS.getString("song_title");
+				String title_url = Melon_RS.getString("song_url");
+				String artist = Melon_RS.getString("song_artist");
+				String artist_url = Melon_RS.getString("artist_url");
+				String album = Melon_RS.getString("album_title");
+				String album_url = Melon_RS.getString("album_url");
+	%>
+				<tr>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
+					
+				</tr>
+	<%
+				count++;
+			}
+			
+	%>
+		</table>
+		<br><br>
+	</div>
+	
 	<br>
-	
-	
-
-	<br>
-	
-
-	<br>
 
 
+<!-- 
+<div class="text-right">
+<a class="btn btn-primary" href="/templates/featured">
+                Show 200 more featured templates
+            </a>
+</div>
+ -->
  
  </div>
 </div>

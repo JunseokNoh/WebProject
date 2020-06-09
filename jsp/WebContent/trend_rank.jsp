@@ -163,8 +163,7 @@
 <div class="container"> 
 
 <h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>포털&nbsp</span>순위</h1> 
-
-<h2 class="lead text-muted">부제목 </h2> 
+<br>
 <!-- 
 <a class="btn btn-primary my-2" href="https://www.velosofy.com/templates">Find a template</a> 
 <a class="btn btn-secondary my-2" href="https://www.velosofy.com/submit">Submit a template</a> 
