@@ -1,4 +1,8 @@
-<HTML>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <style>
     div {
@@ -64,20 +68,12 @@
     
     $(document).ready(function(){
 
-    	// ¿œ¥‹ πˆ∆∞¿ª º˚±‰¥Ÿ
-    	$("#back-top").hide();
+    	// ÏùºÎã® Î≤ÑÌäºÏùÑ Ïà®Í∏¥Îã§
 
-    	// Ω∫≈©∑—¿Ã µ«∏È πˆ∆∞¿Ã ≥™≈∏≥≠¥Ÿ. 
+    	// Ïä§ÌÅ¨Î°§Ïù¥ ÎêòÎ©¥ Î≤ÑÌäºÏù¥ ÎÇòÌÉÄÎÇúÎã§. 
     	$(function () {
-    	   $(window).scroll(function () {
-    	        if ($(this).scrollTop() > 100) {
-    	              $('#back-top').fadeIn();
-    	         } else {
-    	              $('#back-top').fadeOut();
-    	         }
-    	});
 
-    	// πˆ∆∞ ≈¨∏Ø«œ∏È, ∏« ¿ß∑Œ ¿Ãµø!! 
+    	// Î≤ÑÌäº ÌÅ¥Î¶≠ÌïòÎ©¥, Îß® ÏúÑÎ°ú Ïù¥Îèô!! 
     	$('#back-top a').click(function () {
     	        $('body,html').animate({
     	              scrollTop: 0
@@ -89,25 +85,12 @@
     	});
     
 </script>
- <BODY>
-	 <select name="fruit" onchange="fnMove(value)">
-	  <option value="1">div1∑Œ ¿Ãµø</option>
-	  <option value="2">div2∑Œ ¿Ãµø</option>
-	  <option value="3">div3∑Œ ¿Ãµø</option>
-	</select>
-	
-    <button onclick="fnMove('1')">div1∑Œ ¿Ãµø</button>
-    <button onclick="fnMove('2')">div2∑Œ ¿Ãµø</button>
-    <button onclick="fnMove('3')">div3∑Œ ¿Ãµø</button>
-    <div id="div1">div1</div>
-    <div id="div2">div2</div>
-    <div id="div3">div3</div>
-    <button id="back-to-top" style=""onclick="MoveTop()">zzzz</button>
-    
+</head>
+<body>
+
     <p id="back-top">
   		 <a href="#top">Back To Top</a>
 	</p>
     
- </BODY>
-</HTML>
-
+</body>
+</html>

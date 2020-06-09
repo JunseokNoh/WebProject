@@ -9,7 +9,11 @@
     
     function fnMove(value){
         var offset = $("#div" + value).offset();
-        $('html, body').animate({scrollTop : offset.top}, 0);
+        $('html, body').animate({scrollTop : offset.top - 50}, 0);
+    }
+    
+    function backToTop(){
+        $('html, body').animate({scrollTop : 0}, 2);
     }
     
     const keywords = ["포털 ", "음악 ", "영화 ", "도서 "];
@@ -26,4 +30,17 @@
                 i++;
             }
         }, 3500);
+        
+        $(window).scroll( function(){
+            /* 2 */
+            $('#backtoTop').each( function(){
+
+            	 var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+                 var bottom_of_window = $(window).scrollTop() + $(window).height();
+                 
+                 if( bottom_of_window > bottom_of_element ){
+                     $(this).animate({'opacity':'1','margin-left':'0px'},700);
+                 }
+            }); 
+        });
     });

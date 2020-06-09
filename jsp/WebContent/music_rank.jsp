@@ -89,6 +89,7 @@
 <!-- 추가해야할거 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./css/table.css">
+<script src="https://www.w3schools.com/lib/w3.js"></script>
 
 <style type="text/css">
 
@@ -104,7 +105,7 @@
 	
 </head>
 
-<body>
+<body id="header">
 
 <script src="./js/script.js"></script>
 
@@ -162,7 +163,8 @@
 
 <div class="container"> 
 
-<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>음악&nbsp</span>순위</h1> 
+<h1  class="poppins" style="font-size:50px;">실시간&nbsp<span>음악&nbsp</span>순위</h1> 
+<br>
 <!-- 
 <a class="btn btn-primary my-2" href="https://www.velosofy.com/templates">Find a template</a> 
 <a class="btn btn-secondary my-2" href="https://www.velosofy.com/submit">Submit a template</a> 
@@ -343,7 +345,16 @@
 		<br><br>
 	</div>
 
-
+<!-- 
+<div w3-include-html="./nav/music_nav.html"></div>
+<script>
+	w3.includeHTML();
+</script>
+ -->
+ 
+<div id="backtoTop" style=" position: fixed; bottom: 5px; right: 5px;">
+	<a href="#header" style="color:black;"><i class="fa fa-chevron-up" style="width:50px; height:50px; font-size:35px; aria-hidden="true"></i></a>
+</div>
 <!-- 
 <div class="text-right">
 <a class="btn btn-primary" href="/templates/featured">
