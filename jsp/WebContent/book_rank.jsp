@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService"%>
-<%@page import="org.codehaus.jackson.map.ObjectMapper"%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.Collection"%>
-<%@page import="net.sf.json.JSONObject"%>
-<%@page import="net.sf.json.util.JSONBuilder"%>
-<%@page import="net.sf.json.JSONArray"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
@@ -191,14 +182,16 @@
 
 	<div class="col-md-6 templates">
 			<h3>인터파크</h3>
-			<h6>기준 날짜 : <%=Inter_time%></h6>
+			<h6><%=Inter_time%></h6>
 			<table class="table table-hover">
+				<!-- 
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:5%; text-align:center;">순 위</th>
 						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
+				 -->
 	<%
 			
 			int count = 0;
@@ -213,8 +206,8 @@
 	%>
 			<tbody>
 				<tr>
-					<td style="text-align:center;" title='<%=author%>'><%=rank%></td>
-					<td title='<%=author%>'><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
+					<td title='<%=author%>' style=" font-weight:700; width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -231,14 +224,16 @@
 <div class="col-md-6 templates" >
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">교보 문고</span> </h3>  -->
 			<h3>교보문고</h3>
-			<h6>기준 날짜 : <%=Kyobo_time%></h6>
+			<h6><%=Kyobo_time%></h6>
 			<table class="table table-hover">
+			<!--
 				<thead>
 					<tr class="table-info">
 						<th style="width:5%; text-align:center;">순 위</th>
 						<th style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			count = 0;
 			while(Kyobo_RS.next())
@@ -252,8 +247,8 @@
 	%>		
 			<tbody>
 				<tr>
-					<td style="text-align:center;" title='<%=author%>'><%=rank%></td>
-					<td title='<%=author%>'><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
+					<td title='<%=author%>' style=" font-weight:700; width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -268,14 +263,16 @@
 <div class="col-md-6 templates" style="width:100%;">
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">YES24</span> </h3> -->
 			<h3>YES24</h3>
-			<h6>기준 날짜 : <%=Yes_time%></h6>
+			<h6><%=Yes_time%></h6>
 			<table class="table table-hover">
+			<!--
 				<thead>
 					<tr class="table-info">
 						<th style="width:5%; text-align:center;">순 위</th>
 						<th style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			count = 0;
 			while(Yes_RS.next())
@@ -289,8 +286,8 @@
 	%>
 			<tbody>
 				<tr>
-					<td style="text-align:center;" title='<%=author%>'><%=rank%></td>
-					<td title='<%=author%>'><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
+					<td title='<%=author%>' style=" font-weight:700; width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -305,14 +302,16 @@
 <div class="col-md-6 templates" >
 	<!-- <h3 class="py-4 poppins"><span class="text-primary">알라딘</span> </h3> -->
 			<h3>알라딘</h3>
-			<h6>기준 날짜 : <%=Aladin_time%></h6>
+			<h6><%=Aladin_time%></h6>
 			<table class="table table-hover" >
+			<!-- 
 				<thead>
 					<tr class="table-info">
 						<th style="width:5%; text-align:center;">순 위</th>
 						<th style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			count = 0;
 			while(Aladin_RS.next())
@@ -326,8 +325,8 @@
 	%>
 			<tbody>
 				<tr>
-					<td style="text-align:center;" title='<%=author%>'><%=rank%></td>
-					<td title='<%=author%>'><a id="atag" href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
+					<td title='<%=author%>' style=" font-weight:700; width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;

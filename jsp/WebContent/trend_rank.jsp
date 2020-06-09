@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService"%>
-<%@page import="org.codehaus.jackson.map.ObjectMapper"%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.Collection"%>
-<%@page import="net.sf.json.JSONObject"%>
-<%@page import="net.sf.json.util.JSONBuilder"%>
-<%@page import="net.sf.json.JSONArray"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
@@ -213,8 +204,8 @@
 	%>
 				<tbody>
 				<tr>
-					<td style="text-align:center;"><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="text-align:center;font-weight:700;width:5%;"><%=rank%></td>
+					<td style="font-weight:700;width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -252,8 +243,8 @@
 	%>
 				<tbody>
 				<tr>
-					<td style="text-align:center;"><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="text-align:center;font-weight:700;width:5%;"><%=rank%></td>
+					<td style="font-weight:700;width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -290,8 +281,8 @@
 	%>
 				<tbody>
 				<tr>
-					<td style="text-align:center;"><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="text-align:center;font-weight:700;width:5%;"><%=rank%></td>
+					<td style="font-weight:700;width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -327,8 +318,8 @@
 	%>
 			<tbody>
 				<tr>
-					<td style="text-align:center;"><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="text-align:center;font-weight:700;width:5%;"><%=rank%></td>
+					<td style="font-weight:700;width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
