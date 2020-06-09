@@ -1,4 +1,17 @@
 @charset "UTF-8";
+	/*상단네비*/
+	.navbar{
+
+	}
+	
+	.navbar div nav a{
+
+	}
+	
+	body{
+		/*background-color:#181818;
+		color:white;*/
+	}
 	table{
 		border-right:none;
 		border-left:none;
@@ -16,10 +29,12 @@
 		text-align:right;
 	}
 	
+	.table-hover tbody tr td{
+		color : black;
+	}
+	
 	.table-hover tbody tr td a{
-		color: black;
-		
-			
+		color : black;
 	}
 	
 	.table-hover tbody tr td a:hover{

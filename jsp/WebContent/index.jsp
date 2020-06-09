@@ -187,41 +187,5 @@
     });
 </script>
 
-	<!--
-	<c:out value="${dailyResult.boxOfficeResult.boxofficeType}" />
-	<c:out value="${dailyResult.boxOfficeResult.showRange}" />
-	<br />
-
-	
-	<form action="">
-		일자:
-		<input type="text" name="targetDt" value="<%=targetDt%>">
-		최대 출력갯수:
-		<input type="text" name="itemPerPage" value="<%=itemPerPage%>">
-		영화구분:
-		<select name="multiMovieYn">
-			<option value="">-전체-</option>
-			<option value="Y" <c:if test="${param.multiMovieYn eq 'Y'}"> selected="seleted"</c:if>>다양성영화</option>
-			<option value="N" <c:if test="${param.multiMovieYn eq 'N'}"> selected="seleted"</c:if>>상업영화</option>
-		</select>
-		국적:
-		<select name="repNationCd">
-			<option value="">-전체-</option>
-			<option value="K" <c:if test="${param.repNationCd eq 'K'}"> selected="seleted"</c:if>>한국</option>
-			<option value="F" <c:if test="${param.repNationCd eq 'F'}"> selected="seleted"</c:if>>외국</option>
-		</select>
-		지역:
-		<select name="wideAreaCd">
-			<option value="">-전체-</option>
-			<c:forEach items="${codeResult.codes}" var="code">
-				<option value="<c:out value="${code.fullCd}"/>"
-					<c:if test="${param.wideAreaCd eq code.fullCd}"> selected="seleted"</c:if>
-				><c:out value="${code.korNm}" /></option>
-			</c:forEach>
-		</select>
-		</br>
-		<input type="submit" name="" value="조회">
-		
-	</form> -->
 </body>
 </html>

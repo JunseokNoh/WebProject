@@ -195,8 +195,9 @@
 
 	<div class="col-md-6 templates" style="width:100%;">
 		<h3 >멜론 차트</h3>
-		<h6>기준 날짜 : <%=time%></h6>
+		<h6><%=time%></h6>
 			<table class="table table-hover">
+				<!--  
 				<thead>	
 				<tr class="table-info">
 					<th class="table-th" style="width:5%; text-align:center;">순위</th>
@@ -204,6 +205,7 @@
 					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
 				</tr>
 				</thead>
+				-->
 	<%
 			int count = 0;
 			while(Melon_RS.next())
@@ -217,10 +219,11 @@
 				String album_url = Melon_RS.getString("album_url");
 	%>
 				<tr>
-					<td style="text-align:center;"><%=rank%></td>
-					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
-					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
-									</tr>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
+					
+				</tr>
 	<%
 				count++;
 			}
@@ -233,8 +236,9 @@
 	<br>
 	<div class="col-md-6 templates" style="width:100%;">
 		<h3 >지니 뮤직</h3>
-		<h6>기준 날짜 : <%=Genie_time%></h6>
+		<h6><%=Genie_time%></h6>
 			<table class="table table-hover">
+			<!-- 
 			<thead>
 				<tr class="table-info">
 					<th class="table-th" style="width:5%; text-align:center;">순위</th>
@@ -242,6 +246,7 @@
 					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
 				</tr>
 			</thead>
+			 -->
 	<%
 			count = 0;
 			while(Genie_RS.next())
@@ -255,9 +260,10 @@
 				String album_url = Genie_RS.getString("album_url");
 	%>
 				<tr>
-					<td style="text-align:center;"><%=rank%></td>
-					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
-					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a>
+					</td>
 				</tr>
 	<%
 				count++;
@@ -270,9 +276,10 @@
 	<br>
 	<div class="col-md-6 templates" style="width:100%;">
 		<h3 >벅스 차트</h3>
-		<h6>기준 날짜 : <%=Bugs_time%></h6>
+		<h6><%=Bugs_time%></h6>
 		
 			<table class="table table-hover">
+			<!-- 
 				<thead>
 				<tr class="table-info">
 					<th class="table-th" style="width:5%; text-align:center;">순위</th>
@@ -280,6 +287,7 @@
 					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
 				</tr>
 				</thead>
+			 -->
 	<%
 			count = 0;
 			while(Bugs_RS.next())
@@ -293,10 +301,11 @@
 				String album_url = Bugs_RS.getString("album_url");
 	%>
 				<tr>
-					<td style="text-align:center;"><%=rank%></td>
-					<td><a href=<%=title_url%> target="_blank"><%=title%></a></td>
-					<td><a href=<%=artist_url%> target="_blank"><%=artist%></a></td>
-									</tr>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a>
+					</td>
+				</tr>
 	<%
 				count++;
 			}
@@ -309,8 +318,9 @@
 	<br>
 	<div class="col-md-6 templates" style="width:100%;">
 				<h3 >빌보드 차트</h3>
-		<h6>기준 날짜 : <%=sf.format(nowTime)%></h6>
+		<h6><%=sf.format(nowTime)%></h6>
 		<table class="table table-hover">
+			<!-- 
 			<thead>
 			<tr class="table-info">
 				<th class="table-th" style="width:5%; text-align:center;">순위</th>
@@ -318,6 +328,7 @@
 				<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
 			</tr>
 			</thead>
+			 -->
 	<%
 			count = 0;
 			while(Billboard_RS.next())
@@ -327,9 +338,9 @@
 				String artist = Billboard_RS.getString("artist");
 	%>
 				<tr>
-					<td style="text-align:center;"><%=rank%></td>
-					<td><%=title%></td>
-					<td><%=artist%></td>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td ><a style=" font-weight:700"><%=title%></a><br>
+					<a style="font-size:13px; font-weight:10"><%=artist%></a></td>
 				</tr>
 	<%
 				count++;

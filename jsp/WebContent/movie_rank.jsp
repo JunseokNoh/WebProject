@@ -200,6 +200,7 @@
 			<h3>박스오피스</h3>
 			<h6>기준 날짜 : <%=Boxoffice_time%></h6>
 			<table class="table table-hover">
+			<!--  
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
@@ -207,6 +208,7 @@
 						<th class="table-th" style="width:10%; text-align:center;">관객수</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			int count = 0;
 			while(Boxoffice_RS.next())
@@ -214,11 +216,13 @@
 				String rank = Boxoffice_RS.getString("rank");
 				String title = Boxoffice_RS.getString("title");
 				String attendance = Boxoffice_RS.getString("attendance");
-				String url = Boxoffice_RS.getString("url");	%>
+				String url = Boxoffice_RS.getString("url");	
+	%>
 				<tr>
-					<td><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
-					<td><%=attendance%></td>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a  style="font-size:13px; font-weight:10"target="_blank"><%=attendance%></a>
+					</td>
 				</tr>
 	<%
 				count++;
@@ -237,12 +241,14 @@
 			<h3>네이버 </h3>
 			<h6>기준 날짜 : <%=Naver_time%></h6>
 			<table class="table table-hover">
+			<!-- 
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
 						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			count = 0;
 			while(Naver_RS.next())
@@ -251,9 +257,11 @@
 				String title = Naver_RS.getString("title");
 				String url = "https://movie.naver.com" + Naver_RS.getString("url");
 	%>
+
 				<tr>
-					<td><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					</td>
 				</tr>
 	<%
 				count++;
@@ -272,6 +280,7 @@
 			<h3>다음 영화</h3>
 			<h6>기준 날짜 : <%=Daum_time%></h6>
 			<table class="table table-hover">
+			<!--
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
@@ -279,6 +288,7 @@
 						<th class="table-th" style="width:10%; text-align:center;">관객수</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			count = 0;
 			while(Daum_RS.next())
@@ -288,9 +298,10 @@
 				String ticketing = Daum_RS.getString("ticketing");
 				String url = Daum_RS.getString("url");	%>
 				<tr>
-					<td><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
-					<td><%=ticketing%></td>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a  style="font-size:13px; font-weight:10"target="_blank"><%=ticketing%></a>
+					</td>
 				</tr>
 	<%
 				count++;
@@ -309,6 +320,7 @@
 			<h3>네이버 영화 평점순</h3>
 			<h6>기준 날짜 : <%=Naver_rate_time%></h6>
 			<table class="table table-hover">
+				<!--  
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
@@ -316,6 +328,7 @@
 						<th class="table-th" style="width:10%; text-align:center;">평 점</th>
 					</tr>
 				</thead>
+				-->
 	<%
 			count = 0;
 			while(Naver_rate_RS.next())
@@ -325,9 +338,10 @@
 				String rating = Naver_rate_RS.getString("rating");
 				String url = Naver_rate_RS.getString("url");	%>
 				<tr>
-					<td><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><%=title%></a></td>
-					<td><%=rating%></td>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a  style="font-size:13px; font-weight:10"target="_blank"><%=rating%></a>
+					</td>
 				</tr>
 	<%
 				count++;

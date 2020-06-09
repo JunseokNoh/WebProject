@@ -192,14 +192,16 @@
 	
 	<div class="col-md-3 templates" >
 			<h3>네이버</h3>
-			<h6>기준 날짜 : <%=time%></h6>
+			<h6 style="text-align:right;"><%=time%></h6>
 			<table class="table table-hover">
+			<!--  
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
 						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			int count = 0;
 			while(Naver_RS.next())
@@ -229,14 +231,16 @@
 	
 	<div class="col-md-3 templates" style="width:100%;">
 			<h3>Zum</h3>
-			<h6>기준 날짜 : <%=time%></h6>
+			<h6 style="text-align:right;"><%=time%></h6>
 			<table class="table table-hover">
+			<!--  
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
 						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			count = 0;
 			while(Zum_RS.next())
@@ -265,14 +269,16 @@
 	<br>
 	<div class="col-md-3 templates" style="width:100%;">
 			<h3>구글</h3>
-			<h6>기준 날짜 : <%=time%></h6>
+			<h6 style="text-align:right;"><%=time%></h6>
 			<table class="table table-hover">
+			<!--  
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
 						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			count = 0;
 			while(Google_RS.next())
@@ -300,14 +306,16 @@
 	<br>
 	<div class="col-md-3 templates" style="width:100%;">
 		<h3>네이트</h3>
-			<h6>기준 날짜 : <%=time%></h6>
+			<h6 style="text-align:right;"><%=time%></h6>
 			<table class="table table-hover">
+			<!--  
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
 						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
 					</tr>
 				</thead>
+			-->
 	<%
 			count = 0;
 			while(Nate_RS.next())
