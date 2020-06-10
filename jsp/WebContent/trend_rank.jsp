@@ -71,8 +71,9 @@
 <meta content="228490107301532" property="fb:admins"/> 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
-
-	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
+<script src="./js/script.js"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
 	  
   
 <!-- 추가해야할거 -->
@@ -93,7 +94,7 @@
 	
 </head>
 
-<body>
+<body id="header">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -180,8 +181,21 @@
 
 
 <div class="row">
-	
-	<div class="col-md-3 templates" >
+	<!-- yoobi delete it
+	<div class="col-md-12 templates">
+		<select class="select_box1" name="select" onchange="fnMove(value)">
+			<option>선택</option>
+			<option value="1">네이버</option>
+			<option value="2">Zum</option>
+			<option value="3">구글</option>
+			<option value="4">네이트</option>
+		</select>
+	</div>
+	-->
+	<br>
+
+	<div id="div1" class="col-md-3 templates" style="width:100%;">
+
 			<h3>네이버</h3>
 			<h6 style="text-align:right;"><%=naver_time%></h6>
 			<table class="table table-hover">
@@ -202,7 +216,7 @@
 				String url = Naver_RS.getString("url");
 				url = url.replaceAll(" ", "+");
 	%>
-				<tbody>
+
 				<tr>
 					<td style="text-align:center;font-weight:700;width:5%;"><%=rank%></td>
 					<td style="font-weight:700;width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
@@ -213,14 +227,13 @@
 
 		
 	%>
-				</tbody>
 		</table>
 		<br><br>
 	</div>
 
 	<br>
 	
-	<div class="col-md-3 templates" style="width:100%;">
+	<div id="div2" class="col-md-3 templates" style="width:100%;">
 			<h3>Zum</h3>
 			<h6 style="text-align:right;"><%=time%></h6>
 			<table class="table table-hover">
@@ -258,7 +271,7 @@
 	</div>
 
 	<br>
-	<div class="col-md-3 templates" style="width:100%;">
+	<div id="div3" class="col-md-3 templates" style="width:100%;">
 			<h3>구글</h3>
 			<h6 style="text-align:right;"><%=time%></h6>
 			<table class="table table-hover">
@@ -295,7 +308,7 @@
 	</div>
 
 	<br>
-	<div class="col-md-3 templates" style="width:100%;">
+	<div id="div4" class="col-md-3 templates" style="width:100%;">
 		<h3>네이트</h3>
 			<h6 style="text-align:right;"><%=time%></h6>
 			<table class="table table-hover">
@@ -331,6 +344,17 @@
 		<br><br>
 	</div>
 
+<div w3-include-html="./nav/trend_nav.html"></div>
+<script>
+	w3.includeHTML();
+</script>
+
+ 
+<div id="backtoTop" style=" position: fixed; bottom: 5px; right: 5px;">
+	<a href="#header" style="color:black;"><i class="fa fa-chevron-up" style="width:50px; height:50px; font-size:35px; aria-hidden="true">
+		</i>
+	</a>
+</div>
 
 <!-- 
 <div class="text-right">

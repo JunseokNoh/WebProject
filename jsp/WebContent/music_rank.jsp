@@ -174,6 +174,7 @@
 
 
 <div class="row">
+	<!-- yoobi delete it
 	 <div class="col-md-12 templates"> 
 		<select class="select_box1" name="select" onchange="fnMove(value)">
 		  <option>선택</option>
@@ -183,6 +184,7 @@
 		  <option value="4">빌보드</option>
 		</select>
 	</div>
+	-->
 	<br>
 	<div id="div1" class="col-md-6 templates" style="width:100%;">
 		<h3 >멜론 차트</h3>

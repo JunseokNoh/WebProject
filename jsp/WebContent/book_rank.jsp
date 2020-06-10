@@ -74,6 +74,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 
 <meta content="@VelosofyYT" name="twitter:creator"/> 
 <meta content="https://www.velosofy.com/img/card.png" name="twitter:image:src"/> 
@@ -86,6 +87,7 @@
 <!-- 추가해야할거 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./css/table.css">
+<script src="https://www.w3schools.com/lib/w3.js"></script>
 
 <style type="text/css">
 
@@ -101,7 +103,7 @@
 	
 </head>
 
-<body>
+<body id="header">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
  <!-- 추가해야할거 -->
@@ -171,6 +173,7 @@
 
 
 <div class="row">
+	<!-- yoobi delete it
 	 <div class="col-md-12 templates"> 
 		<select class="select_box1" name="select" onchange="fnMove(value)">
 		  <option>선택</option>
@@ -180,6 +183,7 @@
 		  <option value="4">알라딘</option>
 		</select>
 	</div>
+	-->
 	<br>
 	
 	<div id="div1" class="col-md-6 templates">
@@ -349,7 +353,6 @@
 				String author = Aladin_RS.getString("author");
 				String publisher = Aladin_RS.getString("publisher");
 	%>
-			<tbody>
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
 					<td style=" font-weight:700; width:30%;">
@@ -366,12 +369,21 @@
 				count++;
 			}
 	%>
-			</tbody>
 	</table>
 	<br><br>
 </div>
 
+<div w3-include-html="./nav/book_nav.html"></div>
+<script>
+	w3.includeHTML();
+</script>
 
+ 
+<div id="backtoTop" style=" position: fixed; bottom: 5px; right: 5px;">
+	<a href="#header" style="color:black;"><i class="fa fa-chevron-up" style="width:50px; height:50px; font-size:35px; aria-hidden="true">
+		</i>
+	</a>
+</div>
 </div>
 
  
@@ -383,7 +395,4 @@
 	
 </body>
 </html>
-
-
-
 
