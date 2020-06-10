@@ -26,7 +26,7 @@
 		con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 
 		/*인터 파크*/
-		String Inter_query = "select timedata from time_data where type='10m'";
+		String Inter_query = "select timedata from time_data where type='1d'";
 		Inter_PS = con.prepareStatement(Inter_query);
 		Inter_RS = Inter_PS.executeQuery();
 		Inter_RS.next();
@@ -37,7 +37,7 @@
 		Inter_RS = Inter_PS.executeQuery();
 		
 		/*교보 문고*/
-		String Kyobo_query = "select timedata from time_data where type='10m'";
+		String Kyobo_query = "select timedata from time_data where type='1d'";
 		Kyobo_PS = con.prepareStatement(Kyobo_query);
 		Kyobo_RS = Kyobo_PS.executeQuery();
 		Kyobo_RS.next();
@@ -48,7 +48,7 @@
 		Kyobo_RS = Kyobo_PS.executeQuery();
 		
 		/*예스24*/
-		String Yes_query = "select timedata from time_data where type='10m'";
+		String Yes_query = "select timedata from time_data where type='1d'";
 		Yes_PS = con.prepareStatement(Yes_query);
 		Yes_RS = Yes_PS.executeQuery();
 		Yes_RS.next();
@@ -59,7 +59,7 @@
 		Yes_RS = Yes_PS.executeQuery();
 		
 		/*알라딘*/
-		String Aladin_query = "select timedata from time_data where type='10m'";
+		String Aladin_query = "select timedata from time_data where type='1d'";
 		Aladin_PS = con.prepareStatement(Aladin_query);
 		Aladin_RS = Aladin_PS.executeQuery();
 		Aladin_RS.next();
