@@ -37,3 +37,11 @@
 2020-06-11 01:23:40.958818 list indices must be integers or slices, not str
 2020-06-11 01:24:33.405261 'data-chart-videos'
 2020-06-11 01:25:14.097131 'NoneType' object is not subscriptable
+2020-06-11 02:00:34.575821 'NoneType' object is not subscriptable
+2020-06-11 02:01:04.143652 'NoneType' object is not subscriptable
+2020-06-11 02:02:55.630917 'NoneType' object is not subscriptable
+2020-06-11 02:03:20.567104 'NoneType' object is not subscriptable
+2020-06-11 02:04:44.718113 'NoneType' object is not subscriptable
+2020-06-11 02:05:18.174897 'NoneType' object is not subscriptable
+2020-06-11 02:06:17.794460 'NoneType' object is not subscriptable
+2020-06-11 02:07:02.601636 'NoneType' object is not subscriptable

@@ -18,15 +18,17 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
             soup = BeautifulSoup(cont, 'lxml')
 
             # print(soup)
+            soup2 = soup.select("div.movie_rank_wrap > div.movie_audience_ranking._main_panel.v2 > div._content > ul > li > div.thumb")
             soup = soup.select("div.movie_rank_wrap > div.movie_audience_ranking._main_panel.v2 > div._content > ul > li > div.movie_info")
             # print(soup)
 
-            for i in range(len(soup)):
+            for i in range(20):
                 RANK_NAME = soup[i].find("strong").get_text()
                 RANK_ATTENDANCE = soup[i].select("dl.movie_item > dd")[1].get_text()
                 RANK_URL = "https://search.naver.com/search.naver" + soup[i].find("a", {"class": "movie_tit"})["href"]
-
-                self.connect_db(i, RANK_NAME, RANK_ATTENDANCE, RANK_URL, "", "", "")
+                IMAGE_URL = soup2[i].find("img")["src"]
+                #print(IMAGE_URL)
+                self.connect_db(i, RANK_NAME, RANK_ATTENDANCE, RANK_URL, IMAGE_URL, "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_ATTENDANCE)
             f = open("./active_log.txt", "a")
             f.write("table : boxoffice_movie_rank UPDATED" + "\n")
@@ -36,7 +38,7 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, movie_title, movie_attendance, movie_info_url, tmp5, tmp6, tmp7):
+    def connect_db(self, i, movie_title, movie_attendance, movie_info_url, image_url, tmp6, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -57,8 +59,8 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
             pass
         else:
             #print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_attendance)
-            sql = """update boxoffice_movie_rank set title=%s, attendance=%s, url=%s where rank=%s"""
-            curs.execute(sql, (movie_title, movie_attendance, movie_info_url, rank_number))
+            sql = """update boxoffice_movie_rank set title=%s, attendance=%s, url=%s, image_url=%s where rank=%s"""
+            curs.execute(sql, (movie_title, movie_attendance, movie_info_url, image_url, rank_number))
 
 
         conn.commit()

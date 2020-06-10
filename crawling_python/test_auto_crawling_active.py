@@ -173,7 +173,8 @@ def main():
     #melonMusicRank.crawler()
     #genieMusicRank.crawler()
     #bugsMusicRank.crawler()
-    billboardMusicRank.crawler()
+    #billboardMusicRank.crawler()
+    boxofficeMovieRank.crawler()
     '''
     f = open("./active_log.txt", "a")
     f.write("##### start #####\n")

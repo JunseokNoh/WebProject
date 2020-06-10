@@ -1025,3 +1025,8 @@ table : bugs_music_rank UPDATED
 table : billboard_music_rank UPDATED
 table : billboard_music_rank UPDATED
 table : billboard_music_rank UPDATED
+table : boxoffice_movie_rank UPDATED
+table : boxoffice_movie_rank UPDATED
+table : boxoffice_movie_rank UPDATED
+table : boxoffice_movie_rank UPDATED
+table : boxoffice_movie_rank UPDATED
