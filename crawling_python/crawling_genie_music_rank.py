@@ -42,8 +42,10 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
                 ALBUM_TITLE = soup[i].find("a", {"class": "albumtitle"}).get_text()
                 ALBUM_URL = "https://www.genie.co.kr/detail/albumInfo?axnm=" + soup[i].find("a", {"class": "cover"})[
                                                                                    "onclick"][18:26]
+                IMAGE_URL = soup[i].find("img")["src"]
 
-                self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL)
+                #print(IMAGE_URL)
+                self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL, IMAGE_URL)
                 #print(SONG_RANK + " : " + SONG_TITLE + " : " + SONG_ARTIST + " : " + ALBUM_TITLE +
                 #      "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
             f = open("./active_log.txt", "a")
@@ -54,7 +56,7 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url):
+    def connect_db(self, rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url, image_url):
 
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -76,8 +78,9 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
             pass
         else:
             #print(str(rank_number) + " : " + song_title + " : " + song_artist + " : " + album_title)
-            sql = """update genie_music_rank set song_title=%s, song_url=%s, song_artist=%s, artist_url=%s, album_title=%s, album_url=%s where rank=%s"""
-            curs.execute(sql, (song_title, song_url, song_artist, artist_url, album_title, album_url, rank_number))
+            sql = """update genie_music_rank set song_title=%s, song_url=%s, song_artist=%s, artist_url=%s, album_title=%s, album_url=%s, image_url=%s where rank=%s"""
+            curs.execute(sql, (song_title, song_url, song_artist, artist_url, album_title, album_url, image_url, rank_number))
 
         conn.commit()
         conn.close()
+        

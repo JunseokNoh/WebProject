@@ -33,3 +33,4 @@
 2020-06-11 00:13:32.895011 Failed to parse: 에잇(Prod.&Feat. SUGA of BTS)
 2020-06-11 00:17:53.409668 'list' object has no attribute 'find'
 2020-06-11 00:34:40.619911 HTTPSConnectionPool(host='www.melon.com', port=443): Max retries exceeded with url: /song/detail.htm?songId=32224272 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x00000223265C4788>: Failed to establish a new connection: [WinError 10060] 연결된 구성원으로부터 응답이 없어 연결하지 못했거나, 호스트로부터 응답이 없어 연결이 끊어졌습니다'))
+2020-06-11 00:45:53.016576 'NoneType' object is not subscriptable

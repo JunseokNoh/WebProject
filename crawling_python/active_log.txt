@@ -1016,3 +1016,6 @@ table : naver_trends_rank UPDATED
 1m updated # time : 2020-06-09 00:48:02.325533
 table : melon_music_rank UPDATED
 table : melon_music_rank UPDATED
+table : genie_music_rank UPDATED
+table : genie_music_rank UPDATED
+table : genie_music_rank UPDATED

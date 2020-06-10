@@ -169,7 +169,8 @@ def main():
                                                    'jsp_db',
                                                    'utf8')
 
-    melonMusicRank.crawler()
+    #melonMusicRank.crawler()
+    genieMusicRank.crawler()
     '''
     f = open("./active_log.txt", "a")
     f.write("##### start #####\n")
