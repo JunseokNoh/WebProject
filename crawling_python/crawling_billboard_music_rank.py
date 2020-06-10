@@ -12,26 +12,31 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
 
     def crawler(self):
         try:
+            header = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
             url = super().MAIN_URL()
-            req = requests.get(url)
+            req = requests.get(url, headers=header)
             cont = req.content
             soup = BeautifulSoup(cont, 'lxml')
 
-            #print(soup)
+            print(soup)
             soup = soup.select("div.chart-list.container > " +
                                "ol.chart-list__elements > "
                                "li.chart-list__element.display--flex")
             #print(soup)
-
+            """
             for i in range(len(soup)):
                 RANK_SONG_TITLE = soup[i].find("span", {"class": "chart-element__information__song"}).get_text()
                 RANK_SONG_ARTIST = soup[i].find("span", {"class": "chart-element__information__artist"}).get_text()
-                self.connect_db(i, RANK_SONG_TITLE, RANK_SONG_ARTIST, "", "", "", "")
+                IMAGE_URL = soup[i].find("span", {"class": "chart-element__image flex--no-shrink"})["style"]
+                print(IMAGE_URL)
+                #self.connect_db(i, RANK_SONG_TITLE, RANK_SONG_ARTIST, "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_SONG_TITLE + " : " + RANK_SONG_ARTIST)
             f = open("./active_log.txt", "a")
             f.write("table : billboard_music_rank UPDATED" + "\n")
             print("table : billboard_music_rank UPDATED")
             f.close()
+            """
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")

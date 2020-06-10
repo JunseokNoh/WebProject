@@ -1019,3 +1019,9 @@ table : melon_music_rank UPDATED
 table : genie_music_rank UPDATED
 table : genie_music_rank UPDATED
 table : genie_music_rank UPDATED
+table : bugs_music_rank UPDATED
+table : bugs_music_rank UPDATED
+table : bugs_music_rank UPDATED
+table : billboard_music_rank UPDATED
+table : billboard_music_rank UPDATED
+table : billboard_music_rank UPDATED

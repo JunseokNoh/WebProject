@@ -94,7 +94,8 @@ def main():
 
     # Music Fields
     billboardMusicRank = crawling_billboard_music_rank.BillboardMusicCrawling(
-        'https://www.billboard.com/charts/hot-100',
+        #'https://www.billboard.com/charts/hot-100',
+        'https://www.billboard.com/charts/billboard-200',
         'hackery00bi.iptime.org',
         '6666',
         'yoobi',
@@ -170,7 +171,9 @@ def main():
                                                    'utf8')
 
     #melonMusicRank.crawler()
-    genieMusicRank.crawler()
+    #genieMusicRank.crawler()
+    #bugsMusicRank.crawler()
+    billboardMusicRank.crawler()
     '''
     f = open("./active_log.txt", "a")
     f.write("##### start #####\n")
