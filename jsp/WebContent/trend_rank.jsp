@@ -4,11 +4,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
-<!--
-------------------------------------------------------------
-* @설명 : 일별 박스오피스 REST 호출 - 서버측에서 호출하는 방식 예제
-------------------------------------------------------------
--->
 	<%
 		Connection con = null;
 		//Naver
@@ -32,7 +27,13 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 		//Naver//
-		String naver_query = "select * from naver_trends_rank";
+		String naver_query = "select timedata from time_data where type='1m'";
+		Naver_PS = con.prepareStatement(naver_query);
+		Naver_RS = Naver_PS.executeQuery();
+		Naver_RS.next();
+		String naver_time = Naver_RS.getString("timedata");
+
+		naver_query = "select * from naver_trends_rank";
 		Naver_PS = con.prepareStatement(naver_query);
 		Naver_RS = Naver_PS.executeQuery();
 		//zum//
@@ -182,7 +183,7 @@
 	
 	<div class="col-md-3 templates" >
 			<h3>네이버</h3>
-			<h6 style="text-align:right;"><%=time%></h6>
+			<h6 style="text-align:right;"><%=naver_time%></h6>
 			<table class="table table-hover">
 			<!--  
 				<thead>
