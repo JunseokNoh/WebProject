@@ -216,6 +216,8 @@
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
 					<td style=" font-weight:700; width:30%;">
+						<img src="./book_image.jpg" width="100" height="150">
+						<br>
 						<a href=<%=url%> target="_blank">
 							<%=title%>
 						</a>

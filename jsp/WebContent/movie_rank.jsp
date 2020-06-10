@@ -211,7 +211,7 @@
 	%>
 				<tr>
 					<td style="text-align:center; font-weight:700;"><%=rank%></td>
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
+					<td><img src="./movie_image.jpg" width="100" height="150"><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=attendance%></a>
 					</td>
 				</tr>
@@ -251,7 +251,7 @@
 
 				<tr>
 					<td style="text-align:center; font-weight:700"><%=rank%></td>
-					<td><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<td><img src="./movie_image.jpg" width="100" height="150"><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
 					</td>
 				</tr>
 	<%
