@@ -3,12 +3,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
-<!--
-------------------------------------------------------------
-* @설명 : 일별 박스오피스 REST 호출 - 서버측에서 호출하는 방식 예제
-------------------------------------------------------------
--->
 <%
 	Connection con = null;
 	PreparedStatement Melon_PS = null;
@@ -32,7 +26,7 @@
 	con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
 	
 	/*멜론*/
-	String Melon_query = "select timedata from time_data where type='10m'";
+	String Melon_query = "select timedata from time_data where type='1h'";
 	Melon_PS = con.prepareStatement(Melon_query);
 	Melon_RS = Melon_PS.executeQuery();
 	Melon_RS.next();
@@ -43,7 +37,7 @@
 	Melon_RS = Melon_PS.executeQuery();
 	
 	/*벅스*/
-	String Bugs_query = "select timedata from time_data where type='10m'";
+	String Bugs_query = "select timedata from time_data where type='1h'";
 	Bugs_PS = con.prepareStatement(Bugs_query);
 	Bugs_RS = Bugs_PS.executeQuery();
 	Bugs_RS.next();
@@ -54,7 +48,7 @@
 	Bugs_RS = Bugs_PS.executeQuery();
 	
 	/*지니 뮤직*/
-	String Genie_query = "select timedata from time_data where type='10m'";
+	String Genie_query = "select timedata from time_data where type='1h'";
 	Genie_PS = con.prepareStatement(Genie_query);
 	Genie_RS = Genie_PS.executeQuery();
 	Genie_RS.next();
@@ -65,13 +59,15 @@
 	Genie_RS = Genie_PS.executeQuery();
 			
 	/*빌보드*/
-	String Billboard_query = "select * from billboard_music_rank";
+	String Billboard_query = "select timedata from time_data where type='1w'";
 	Billboard_PS = con.prepareStatement(Billboard_query);
 	Billboard_RS = Billboard_PS.executeQuery();
+	Billboard_RS.next();
+	String Billboard_time = Billboard_RS.getString("timedata");
 
-	Date nowTime = new Date();
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
-
+	Billboard_query = "select * from billboard_music_rank";
+	Billboard_PS = con.prepareStatement(Billboard_query);
+	Billboard_RS = Billboard_PS.executeQuery();
 %>
 <html>
 <head>
@@ -190,7 +186,7 @@
 	<br>
 	<div id="div1" class="col-md-6 templates" style="width:100%;">
 		<h3 >멜론 차트</h3>
-		<h6><%=time%></h6>
+		<h6><%=time%>시</h6>
 			<table class="table table-hover">
 				<!--  
 				<thead>	
@@ -231,7 +227,7 @@
 	<br>
 	<div id="div2" class="col-md-6 templates" style="width:100%;">
 		<h3 >지니 뮤직</h3>
-		<h6><%=Genie_time%></h6>
+		<h6><%=Genie_time%>시</h6>
 			<table class="table table-hover">
 			<!-- 
 			<thead>
@@ -271,7 +267,7 @@
 	<br>
 	<div id="div3" class="col-md-6 templates" style="width:100%;">
 		<h3 >벅스 차트</h3>
-		<h6><%=Bugs_time%></h6>
+		<h6><%=Bugs_time%>시</h6>
 		
 			<table class="table table-hover">
 			<!-- 
@@ -313,7 +309,7 @@
 	<br>
 	<div id="div4" class="col-md-6 templates" style="width:100%;">
 				<h3 >빌보드 차트</h3>
-		<h6><%=sf.format(nowTime)%></h6>
+		<h6><%=Billboard_time%></h6>
 		<table class="table table-hover">
 			<!-- 
 			<thead>
@@ -345,12 +341,12 @@
 		<br><br>
 	</div>
 
-<!-- 
+ 
 <div w3-include-html="./nav/music_nav.html"></div>
 <script>
 	w3.includeHTML();
 </script>
- -->
+
  
 <div id="backtoTop" style=" position: fixed; bottom: 5px; right: 5px;">
 	<a href="#header" style="color:black;"><i class="fa fa-chevron-up" style="width:50px; height:50px; font-size:35px; aria-hidden="true"></i></a>
