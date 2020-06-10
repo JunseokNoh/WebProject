@@ -210,10 +210,11 @@
 				String artist_url = Melon_RS.getString("artist_url");
 				String album = Melon_RS.getString("album_title");
 				String album_url = Melon_RS.getString("album_url");
+				String image_url = Melon_RS.getString("image_url");
 	%>
 				<tr>
 					<td style="text-align:center; font-weight:700"><%=rank%></td>
-					<td><img src="./music_image.jpg" width="60" height="60"></td>
+					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src="<%=image_url%>" width="60" height="60"></a></td>
 					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
 					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
 					
