@@ -204,12 +204,23 @@
 				String url = Inter_RS.getString("url");
 				String author = Inter_RS.getString("author");
 				String publisher = Inter_RS.getString("publisher");
+				/* yoobi delete it
 				author = "저자 : "+ author + "\n출판사 : " + publisher;
+				*/
 	%>
 			<tbody>
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
-					<td title='<%=author%>' style=" font-weight:700; width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style=" font-weight:700; width:30%;">
+						<a href=<%=url%> target="_blank">
+							<%=title%>
+						</a>
+						<br>
+						<a style="font-size:13px; font-weight:10" target="_blank">
+							<%=author%>
+						<a>
+					</td>
+					
 				</tr>
 	<%
 				count++;
@@ -245,12 +256,19 @@
 				String url = Kyobo_RS.getString("url");
 				String author = Kyobo_RS.getString("author");
 				String publisher = Kyobo_RS.getString("publisher");
-				author = "저자 : "+ author + "\n출판사 : " + publisher;
 	%>		
 			<tbody>
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
-					<td title='<%=author%>' style=" font-weight:700; width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style=" font-weight:700; width:30%;">
+						<a href=<%=url%> target="_blank">
+							<%=title%>
+						</a>
+						<br>
+						<a style="font-size:13px; font-weight:10" target="_blank">
+							<%=author%>
+						<a>
+					</td>
 				</tr>
 	<%
 				count++;
@@ -284,12 +302,19 @@
 				String url = Yes_RS.getString("url");
 				String author = Yes_RS.getString("author");
 				String publisher = Yes_RS.getString("publisher");
-				author = "저자 : "+ author + "\n출판사 : " + publisher;
 	%>
 			<tbody>
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
-					<td title='<%=author%>' style=" font-weight:700; width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style=" font-weight:700; width:30%;">
+						<a href=<%=url%> target="_blank">
+							<%=title%>
+						</a>
+						<br>
+						<a style="font-size:13px; font-weight:10" target="_blank">
+							<%=author%>
+						<a>
+					</td>
 				</tr>
 	<%
 				count++;
@@ -323,12 +348,19 @@
 				String url = Aladin_RS.getString("url");
 				String author = Aladin_RS.getString("author");
 				String publisher = Aladin_RS.getString("publisher");
-				author = "저자 : "+ author + "\n출판사 : " + publisher;
 	%>
 			<tbody>
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
-					<td title='<%=author%>' style=" font-weight:700; width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style=" font-weight:700; width:30%;">
+						<a href=<%=url%> target="_blank">
+							<%=title%>
+						</a>
+						<br>
+						<a style="font-size:13px; font-weight:10" target="_blank">
+							<%=author%>
+						<a>
+					</td>
 				</tr>
 	<%
 				count++;
