@@ -3,11 +3,6 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 
-<!--
-------------------------------------------------------------
-* @설명 : 일별 박스오피스 REST 호출 - 서버측에서 호출하는 방식 예제
-------------------------------------------------------------
--->
 <%
 		Connection con = null;
 		PreparedStatement Boxoffice_PS = null;
@@ -230,7 +225,7 @@
 
 	<br>
 	<div id="div2" class="col-md-6 templates" style="width:100%;">
-			<h3>인기 검색어</h3>
+			<h3>네이버(조회순)</h3>
 			<h6><%=Naver_time%></h6>
 			<table class="table table-hover">
 			<!-- 
@@ -269,7 +264,7 @@
 
 <br>
 <div id="div3" class="col-md-6 templates" style="width:100%;">
-			<h3>예매율</h3>
+			<h3>다음(예매율)</h3>
 			<h6><%=Daum_time%></h6>
 			<table class="table table-hover">
 			<!--
@@ -309,7 +304,7 @@
 
 <br>
 <div id="div4" class="col-md-6 templates" style="width:100%;">
-			<h3>평점순</h3>
+			<h3>네이버(평점순)</h3>
 			<h6><%=Naver_rate_time%></h6>
 			<table class="table table-hover">
 				<!--  
