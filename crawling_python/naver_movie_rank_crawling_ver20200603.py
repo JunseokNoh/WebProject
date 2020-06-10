@@ -20,7 +20,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 RESULT_PATH = './crawling_result/'
-MAIN_URL = 'https://trends.google.co.kr//trends/api/dailytrends?hl=ko&tz=-540&geo=KR&ns=15'
+MAIN_URL = 'https://movie.naver.com/movie/bi/mi/basic.nhn?code=182835'
 DATE = 0
 ARTICLE_URL = ''
 
@@ -45,14 +45,16 @@ def crawler():
             'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6,zh;q=0.5'
         }
         '''
-        req = requests.get(MAIN_URL)#, headers=header)  ## 주간 차트를 크롤링 할 것임
+        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
+        req = requests.get(MAIN_URL, headers=header)  ## 주간 차트를 크롤링 할 것임
+        #req = requests.get(MAIN_URL)#, headers=header)  ## 주간 차트를 크롤링 할 것임
         cont = req.content
         soup = BeautifulSoup(cont, 'lxml')
 
-        #print(soup)
+        print(soup)
 
         soup = str(soup)
-
+        '''
         soup = soup.split('"date"')
         #soup = soup[1].split('"')
         print(soup)
@@ -64,7 +66,7 @@ def crawler():
         # soup = soup.select("span.ellip.per90")
 
         # print(soup)
-        '''
+        
         for i in range(len(soup)):
             RANK_URL = soup[i].find("a")["href"]
             RANK_NAME = soup[i].find("a")["title"]

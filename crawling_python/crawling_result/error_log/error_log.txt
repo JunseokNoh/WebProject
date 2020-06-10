@@ -28,3 +28,4 @@
 2020-06-08 14:40:57.943967 'NoneType' object is not subscriptable
 2020-06-08 15:00:16.059253 'NoneType' object is not subscriptable
 2020-06-08 15:20:09.472937 not all arguments converted during string formatting
+2020-06-10 13:40:56.506268  super(): no arguments
