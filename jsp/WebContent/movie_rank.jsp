@@ -213,7 +213,7 @@
 				<tr>
 					<td style="text-align:center; font-weight:700;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
-					<a  style="font-size:13px; font-weight:10"target="_blank"><%=attendance%></a>
+					<a style="font-size:13px; font-weight:10" target="_blank"><%=attendance%></a>
 					</td>
 				</tr>
 	<%
@@ -248,11 +248,13 @@
 				String rank = Naver_RS.getString("rank");
 				String title = Naver_RS.getString("title");
 				String url = "https://movie.naver.com" + Naver_RS.getString("url");
+				String image_url = Naver_RS.getString("image_url");
 	%>
 
 				<tr>
 					<td style="text-align:center; font-weight:700"><%=rank%></td>
-					<td><img src="./movie_image.jpg" width="100" height="150"><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<td><a href=<%=url%> target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+						<a style="font-size:13px; font-weight:10"><br></a>
 					</td>
 				</tr>
 	<%
