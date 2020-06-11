@@ -29,7 +29,7 @@ class NaverMovieRatingCrawling(crawling.Crawling, ABC):
                 IMAGE_URL = self.get_image(RANK_URL)
                 self.connect_db(i, RANK_NAME, RANK_RATING, RANK_URL, IMAGE_URL, "", "", "")
                 # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_RATING)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : naver_movie_rating_rank UPDATED" + "\n")
             print("table : naver_movie_rating_rank UPDATED")
             f.close()
@@ -56,9 +56,9 @@ class NaverMovieRatingCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        # sql = """insert into naver_movie_rating_rank (rank, title, rating, url) values (%s, %s, %s, %s)"""
-        # curs.execute(sql, (rank_number, movie_title, movie_rating, movie_info_url))
-
+        sql = """insert into naver_movie_rating_rank (rank, title, rating, url, image_url) values (%s, %s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, movie_title, movie_rating, movie_info_url, image_url))
+        '''
         sql = """select title from naver_movie_rating_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -69,6 +69,6 @@ class NaverMovieRatingCrawling(crawling.Crawling, ABC):
             # print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_rating)
             sql = """update naver_movie_rating_rank set title=%s, rating=%s, url=%s, image_url=%s where rank=%s"""
             curs.execute(sql, (movie_title, movie_rating, movie_info_url, image_url, rank_number))
-
+        '''
         conn.commit()
         conn.close()

@@ -30,7 +30,7 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
                 #print(IMAGE_URL)
                 self.connect_db(i, RANK_NAME, RANK_ATTENDANCE, RANK_URL, IMAGE_URL, "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_ATTENDANCE)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : boxoffice_movie_rank UPDATED" + "\n")
             print("table : boxoffice_movie_rank UPDATED")
             f.close()
@@ -48,9 +48,9 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        #sql = """insert into boxoffice_movie_rank (rank, title, attendance, url) values (%s, %s, %s, %s)"""
-        #curs.execute(sql, (rank_number, movie_title, movie_attendance, movie_info_url))
-
+        sql = """insert into boxoffice_movie_rank (rank, title, attendance, url, image_url) values (%s, %s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, movie_title, movie_attendance, movie_info_url, image_url))
+        '''
         sql = """select title from boxoffice_movie_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -61,7 +61,7 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
             #print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_attendance)
             sql = """update boxoffice_movie_rank set title=%s, attendance=%s, url=%s, image_url=%s where rank=%s"""
             curs.execute(sql, (movie_title, movie_attendance, movie_info_url, image_url, rank_number))
-
+        '''
 
         conn.commit()
         conn.close()

@@ -23,9 +23,9 @@ class NateTrendsCrawling(crawling.Crawling, ABC):
 
             for i in range(len(soup)):
                 RANK_NAME = soup[i].find("a", {"class": "ik"}).find("span", {"class": "txt_rank"}).get_text()
-                self.connect_db(i, RANK_NAME, "", "", "", "", "")
+                self.connect_db(i, RANK_NAME, "", "", "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : nate_trends_rank UPDATED" + "\n")
             print("table : nate_trends_rank UPDATED")
             f.close()
@@ -33,7 +33,7 @@ class NateTrendsCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, title, tmp3, tmp4, tmp5, tmp6, tmp7):
+    def connect_db(self, i, title, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -43,9 +43,9 @@ class NateTrendsCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        #sql = """insert into nate_trends_rank (rank, title) values (%s, %s)"""
-        #curs.execute(sql, (rank_number, title))
-
+        sql = """insert into nate_trends_rank (rank, title) values (%s, %s)"""
+        curs.execute(sql, (rank_number, title))
+        '''
         sql = """select title from nate_trends_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -57,7 +57,7 @@ class NateTrendsCrawling(crawling.Crawling, ABC):
             #print(str(rank_number) + " : " + title)
             sql = """update nate_trends_rank set title=%s where rank=%s"""
             curs.execute(sql, (title, rank_number))
-
+        '''
 
         conn.commit()
         conn.close()

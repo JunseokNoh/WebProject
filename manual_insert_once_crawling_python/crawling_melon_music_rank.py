@@ -44,7 +44,7 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
                 self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL, IMAGE_URL)
                 #print(SONG_RANK + " : " + SONG_TITLE + " : " + SONG_ARTIST + " : " + ALBUM_TITLE +
                 #      "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : melon_music_rank UPDATED" + "\n")
             print("table : melon_music_rank UPDATED")
             f.close()
@@ -72,9 +72,9 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        #sql = """insert into melon_music_rank (rank, song_title, song_url, song_artist, artist_url, album_title, album_url) values (%s, %s, %s, %s, %s, %s, %s)"""
-        #curs.execute(sql, (rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url))
-
+        sql = """insert into melon_music_rank (rank, song_title, song_url, song_artist, artist_url, album_title, album_url, image_url) values (%s, %s, %s, %s, %s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url, image_url))
+        '''
         sql = """select song_title from melon_music_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -85,6 +85,6 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
             #print(str(rank_number) + " : " + song_title + " : " + song_artist + " : " + album_title)
             sql = """update melon_music_rank set song_title=%s, song_url=%s, song_artist=%s, artist_url=%s, album_title=%s, album_url=%s, image_url=%s where rank=%s"""
             curs.execute(sql, (song_title, song_url, song_artist, artist_url, album_title, album_url, image_url, rank_number))
-
+        '''
         conn.commit()
         conn.close()

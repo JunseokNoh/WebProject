@@ -26,7 +26,7 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
                 RANK_NAME = soup[i].find("a", {"class": "cont"}).find("span", {"class": "word"}).get_text()
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "", "")
                 # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : zum_trends_rank UPDATED" + "\n")
             print("table : zum_trends_rank UPDATED")
             f.close()
@@ -44,9 +44,9 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        # sql = """insert into zum_trends_rank (rank, title, url) values (%s, %s, %s)"""
-        # curs.execute(sql, (rank_number, title, info_url))
-
+        sql = """insert into zum_trends_rank (rank, title, url) values (%s, %s, %s)"""
+        curs.execute(sql, (rank_number, title, info_url))
+        '''
         sql = """select title from zum_trends_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -57,6 +57,6 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
             #print(str(rank_number) + " : " + title)
             sql = """update zum_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, rank_number))
-
+        '''
         conn.commit()
         conn.close()

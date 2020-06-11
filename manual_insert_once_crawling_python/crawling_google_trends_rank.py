@@ -32,7 +32,7 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
                 RANK_NAME = parse.unquote(soup[i])[22:]
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "", "")
                 # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : google_trends_rank UPDATED" + "\n")
             print("table : google_trends_rank UPDATED")
             f.close()

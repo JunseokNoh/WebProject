@@ -33,7 +33,7 @@ class Yes24BookCrawling(crawling.Crawling, ABC):
                 IMAGE_URL = self.get_image(BOOK_URL)
                 self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, IMAGE_URL, "", "")
                 #print(str(i + 1) + " : " + BOOK_TITLE + " : " + BOOK_URL + " : " + BOOK_AUTHOR + " : " + BOOK_PUBLISHER)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : yes24_book_rank UPDATED" + "\n")
             print("table : yes24_book_rank UPDATED")
             f.close()
@@ -61,9 +61,9 @@ class Yes24BookCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        #sql = """insert into yes24_book_rank (rank, title, url, author, publisher) values (%s, %s, %s, %s, %s)"""
-        #curs.execute(sql, (rank_number, book_title, book_info_url, book_author, book_publisher))
-
+        sql = """insert into yes24_book_rank (rank, title, url, author, publisher, image_url) values (%s, %s, %s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, book_title, book_info_url, book_author, book_publisher, image_url))
+        '''
         sql = """select title from yes24_book_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -74,6 +74,6 @@ class Yes24BookCrawling(crawling.Crawling, ABC):
             #print(str(rank_number) + " : " + book_title + " : " + " : " + book_author + " : " + book_publisher)
             sql = """update yes24_book_rank set title=%s, url=%s, author=%s, publisher=%s, image_url=%s where rank=%s"""
             curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, image_url, rank_number))
-
+        '''
         conn.commit()
         conn.close()

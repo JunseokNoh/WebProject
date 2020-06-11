@@ -38,7 +38,7 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
                 IMAGE_URL = self.get_image(RANK_URL)
                 self.connect_db(i, RANK_NAME, RANK_URL, IMAGE_URL, "", "", "", "")
             # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : naver_movie_rank UPDATED" + "\n")
             print("table : naver_movie_rank UPDATED")
             f.close()
@@ -66,6 +66,9 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
+        sql = """insert into naver_movie_rank (rank, title, info_url, image_url) values (%s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, title, info_url, image_url))
+        '''
         sql = """select title from naver_movie_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -76,6 +79,6 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
             # print("change value " + str(rank_number) + " : " + title)
             sql = """update naver_movie_rank set title=%s, url=%s, image_url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, image_url, rank_number))
-
+        '''
         conn.commit()
         conn.close()

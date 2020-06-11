@@ -29,7 +29,7 @@ class NaverTrendsCrawling(crawling.Crawling, ABC):
                 RANK_URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=" + RANK_NAME
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : naver_trends_rank UPDATED" + "\n")
             print("table : naver_trends_rank UPDATED")
             f.close()
@@ -37,7 +37,7 @@ class NaverTrendsCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, title, info_url, tmp4, tmp5, tmp6, tmp7):
+    def connect_db(self, i, title, info_url, tmp4, tmp5, tmp6, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -47,9 +47,9 @@ class NaverTrendsCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        #sql = """insert into naver_trends_rank (rank, title, url) values (%s, %s, %s)"""
-        #curs.execute(sql, (rank_number, title, info_url))
-
+        sql = """insert into naver_trends_rank (rank, title, url) values (%s, %s, %s)"""
+        curs.execute(sql, (rank_number, title, info_url))
+        '''
         sql = """select title from naver_trends_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -61,6 +61,6 @@ class NaverTrendsCrawling(crawling.Crawling, ABC):
             #print(str(rank_number) + " : " + title)
             sql = """update naver_trends_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, rank_number))
-
+        '''
         conn.commit()
         conn.close()

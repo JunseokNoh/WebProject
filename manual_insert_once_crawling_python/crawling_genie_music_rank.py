@@ -66,10 +66,10 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        #sql = """insert into genie_music_rank (rank, song_title, song_url, song_artist, artist_url, album_title, album_url) values (%s, %s, %s, %s, %s, %s, %s)"""
-        #curs.execute(sql, (rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url))
+        sql = """insert into genie_music_rank (rank, song_title, song_url, song_artist, artist_url, album_title, album_url, image_url) values (%s, %s, %s, %s, %s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url, image_url))
 
-
+        '''
         sql = """select song_title from genie_music_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -80,7 +80,6 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
             #print(str(rank_number) + " : " + song_title + " : " + song_artist + " : " + album_title)
             sql = """update genie_music_rank set song_title=%s, song_url=%s, song_artist=%s, artist_url=%s, album_title=%s, album_url=%s, image_url=%s where rank=%s"""
             curs.execute(sql, (song_title, song_url, song_artist, artist_url, album_title, album_url, image_url, rank_number))
-
+        '''
         conn.commit()
         conn.close()
-        

@@ -32,7 +32,7 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
 
                 self.connect_db(i, RANK_NAME, RANK_TICKETING, RANK_URL, IMAGE_URL, "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_TICKETING)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : daum_movie_rank UPDATED" + "\n")
             print("table : daum_movie_rank UPDATED")
             f.close()
@@ -50,9 +50,9 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        #sql = """insert into daum_movie_rank (rank, title, ticketing, url) values (%s, %s, %s, %s)"""
-        #curs.execute(sql, (rank_number, movie_title, movie_ticketing, movie_info_url))
-
+        sql = """insert into daum_movie_rank (rank, title, ticketing, url, image_url) values (%s, %s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, movie_title, movie_ticketing, movie_info_url, image_url))
+        '''
         sql = """select title from daum_movie_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -63,6 +63,6 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
             #print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_ticketing)
             sql = """update daum_movie_rank set title=%s, ticketing=%s, url=%s, image_url=%s where rank=%s"""
             curs.execute(sql, (movie_title, movie_ticketing, movie_info_url, image_url, rank_number))
-
+        '''
         conn.commit()
         conn.close()

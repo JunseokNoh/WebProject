@@ -32,7 +32,7 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
                 #print(IMAGE_URL)
                 self.connect_db(i, RANK_SONG_TITLE, RANK_SONG_ARTIST, "", "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_SONG_TITLE + " : " + RANK_SONG_ARTIST)
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("table : billboard_music_rank UPDATED" + "\n")
             print("table : billboard_music_rank UPDATED")
             f.close()
@@ -51,9 +51,9 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        # sql = """insert into billboard_music_rank (rank, title, artist) values (%s, %s, %s)"""
-        # curs.execute(sql, (rank_number, song_title, song_artist))
-
+        sql = """insert into billboard_music_rank (rank, title, artist) values (%s, %s, %s)"""
+        curs.execute(sql, (rank_number, title, artist))
+        '''
         sql = """select title from billboard_music_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
@@ -65,6 +65,6 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
             #print(str(i + 1) + " : " + title + " : " + artist)
             sql = """update billboard_music_rank set title=%s, artist=%s where rank=%s"""
             curs.execute(sql, (title, artist, rank_number))
-
+        '''
         conn.commit()
         conn.close()
