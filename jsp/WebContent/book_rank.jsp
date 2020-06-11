@@ -208,18 +208,14 @@
 				String url = Inter_RS.getString("url");
 				String author = Inter_RS.getString("author");
 				String publisher = Inter_RS.getString("publisher");
+				String image_url = Inter_RS.getString("image_url");
 				/* yoobi delete it
 				author = "저자 : "+ author + "\n출판사 : " + publisher;
 				*/
 	%>
-			<tbody>
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
-					<td style=" font-weight:700; width:30%;">
-						<img src="./book_image.jpg" width="100" height="150">
-						<br>
-						<a href=<%=url%> target="_blank">
-							<%=title%>
+					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>
 						</a>
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -232,7 +228,6 @@
 				count++;
 			}
 	%>
-			</tbody>
 	</table>
 	
 	<br><br>
