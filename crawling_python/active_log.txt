@@ -1039,3 +1039,6 @@ table : naver_movie_rank UPDATED
 table : naver_movie_rank UPDATED
 table : daum_movie_rank UPDATED
 table : daum_movie_rank UPDATED
+table : naver_movie_rating_rank UPDATED
+table : naver_movie_rating_rank UPDATED
+table : naver_movie_rating_rank UPDATED
