@@ -2,28 +2,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css"  href="../css/nav.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="../css/table.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 </head>
 <body>
-	<table style=" position: fixed; bottom: 165px; right: 25px; background-color:white;">
+	<table id="quick_nav" style=" font-size:11px; position: fixed; right:10px; background-color:white;">
 		<tr >
 			<td>
-				<input type="button" value="네이버" onclick="fnMove('1')">
+				<input class="btn btn-dark btn-sm" type="button" value="네이버" onclick="fnMove('1')">
 			</td>
 		</tr>
 		<tr >
 			<td>
-				<input type="button" value="Zum" onclick="fnMove('2')">
+				<input class="btn btn-dark btn-sm" type="button" value="Zum" onclick="fnMove('2')">
 			</td>
 		</tr>
 		<tr >
 			<td>
-				<input type="button" value="구글" onclick="fnMove('3')">
+				<input class="btn btn-dark btn-sm" type="button" value="구글" onclick="fnMove('3')">
 			</td>
 		</tr>
 		<tr >
 			<td>
-				<input type="button" value="네이트" onclick="fnMove('4')">
+				<input class="btn btn-dark btn-sm" type="button" value="네이트" onclick="fnMove('4')">
 			</td>
 		</tr>
 	</table>

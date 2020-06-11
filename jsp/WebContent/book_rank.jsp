@@ -87,6 +87,10 @@
 <!-- 추가해야할거 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./css/table.css">
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <script src="https://www.w3schools.com/lib/w3.js"></script>
 
 <style type="text/css">
@@ -307,7 +311,7 @@
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
 							<%=author%>
-						<a>
+						</a>
 					</td>
 					
 				</tr>
@@ -363,6 +367,8 @@
 	<br><br>
 </div>
 
+<script type="text/javascript" src="./js/slide.js"></script>
+
 <div w3-include-html="./nav/book_nav.html"></div>
 <script>
 	w3.includeHTML();
@@ -382,7 +388,7 @@
 </main> 
 
 <script src="https://www.velosofy.com/js/app.js"></script>
-	
+
 </body>
 </html>
 

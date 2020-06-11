@@ -344,6 +344,8 @@
 		<br><br>
 	</div>
 
+<script type="text/javascript" src="./js/slide.js"></script>
+ 
 <div w3-include-html="./nav/trend_nav.html"></div>
 <script>
 	w3.includeHTML();
@@ -371,23 +373,6 @@
 
 <script src="https://www.velosofy.com/js/app.js"></script>
 
-<script>
-    const keywords = ["포털 ", "음악 ", "영화 ", "도서 "];
-    $(document).ready(function() {
-        let i = 1;
-        setInterval(function() {
-            const newKeyword = keywords[i];
-            $("#keyword").animate({ opacity: 0 }, function() {
-                $(this).text(newKeyword).animate({ opacity: 1 });
-            });
-            if (i+1 === keywords.length) {
-                i = 0;
-            } else {
-                i++;
-            }
-        }, 3500);
-    });
-</script>
 
 </body>
 </html>

@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#quick_nav{
+	position: fixed; 
+	bottom: -100px; 
+	right: 10px; 
+	font-size:10px;
+}
+
+#quick_nav tr{
+
+}
+#quick_nav tr td{
+
+}
+
+.btn-dark{
+	width:80px;
+	height:30px;
+	font-size:15px;
+	transform:scale(1);
+	background-color:white;
+}
