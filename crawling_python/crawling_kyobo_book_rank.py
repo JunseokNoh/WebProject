@@ -29,8 +29,8 @@ class KyoboBookCrawling(crawling.Crawling, ABC):
                 BOOK_AUTHOR = temp[0].split("\r")[0]
                 BOOK_PUBLISHER = temp[1].split("\r")[0]
                 BOOK_PUBLICATION_DATE = temp[2].split("\r")[0][1:]
-
-                self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, BOOK_PUBLICATION_DATE, "")
+                IMAGE_URL = soup[i].find("img")["src"]
+                self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, BOOK_PUBLICATION_DATE, IMAGE_URL, "")
                 #print(str(i + 1) + " : " + BOOK_TITLE + " : " + BOOK_URL + " : " + BOOK_AUTHOR + " : " + BOOK_PUBLISHER + " : " + BOOK_PUBLICATION_DATE)
             f = open("./active_log.txt", "a")
             f.write("table : kyobo_book_rank UPDATED" + "\n")
@@ -40,7 +40,7 @@ class KyoboBookCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, book_title, book_info_url, book_author, book_publisher, book_publication_date, tmp7):
+    def connect_db(self, i, book_title, book_info_url, book_author, book_publisher, book_publication_date, image_url, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -61,8 +61,8 @@ class KyoboBookCrawling(crawling.Crawling, ABC):
             pass
         else:
             #print(str(rank_number) + " : " + book_title + " : " + book_author + " : " + book_publisher + " : " + book_publication_date)
-            sql = """update kyobo_book_rank set title=%s, url=%s, author=%s, publisher=%s, date=%s where rank=%s"""
-            curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, book_publication_date, rank_number))
+            sql = """update kyobo_book_rank set title=%s, url=%s, author=%s, publisher=%s, date=%s, image_url=%s where rank=%s"""
+            curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, book_publication_date, image_url, rank_number))
 
         conn.commit()
         conn.close()
