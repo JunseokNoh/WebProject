@@ -30,8 +30,8 @@ class Yes24BookCrawling(crawling.Crawling, ABC):
                 temp = soup[i][3].get_text().split("|");
                 BOOK_AUTHOR = temp[0][0:len(temp[0]) - 3]
                 BOOK_PUBLISHER = temp[1][1:]
-
-                self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, "", "")
+                IMAGE_URL = self.get_image(BOOK_URL)
+                self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, IMAGE_URL, "", "")
                 #print(str(i + 1) + " : " + BOOK_TITLE + " : " + BOOK_URL + " : " + BOOK_AUTHOR + " : " + BOOK_PUBLISHER)
             f = open("./active_log.txt", "a")
             f.write("table : yes24_book_rank UPDATED" + "\n")
@@ -41,7 +41,17 @@ class Yes24BookCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, book_title, book_info_url, book_author, book_publisher, tmp6, tmp7):
+    def get_image(self, URL):
+        URL = URL
+        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
+        req = requests.get(URL, headers=header)  ## 주간 차트를 크롤링 할 것임
+        cont = req.content
+        soup = BeautifulSoup(cont, 'lxml')
+        #print(soup)
+        soup = soup.select("em.imgBdr")
+        return soup[0].find("img")["src"]
+
+    def connect_db(self, i, book_title, book_info_url, book_author, book_publisher, image_url, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -62,8 +72,8 @@ class Yes24BookCrawling(crawling.Crawling, ABC):
             pass
         else:
             #print(str(rank_number) + " : " + book_title + " : " + " : " + book_author + " : " + book_publisher)
-            sql = """update yes24_book_rank set title=%s, url=%s, author=%s, publisher=%s where rank=%s"""
-            curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, rank_number))
+            sql = """update yes24_book_rank set title=%s, url=%s, author=%s, publisher=%s, image_url=%s where rank=%s"""
+            curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, image_url, rank_number))
 
         conn.commit()
         conn.close()

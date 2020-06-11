@@ -1046,3 +1046,5 @@ table : interpark_book_rank UPDATED
 table : interpark_book_rank UPDATED
 table : kyobo_book_rank UPDATED
 table : kyobo_book_rank UPDATED
+table : yes24_book_rank UPDATED
+table : yes24_book_rank UPDATED

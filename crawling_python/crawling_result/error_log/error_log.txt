@@ -48,3 +48,5 @@
 2020-06-11 11:32:44.368326 Invalid URL '/movie/bi/mi/basic.nhn?code=182835': No schema supplied. Perhaps you meant http:///movie/bi/mi/basic.nhn?code=182835?
 2020-06-11 11:38:10.308842 not all arguments converted during string formatting
 2020-06-11 14:43:27.459555 connect_db() missing 1 required positional argument: 'tmp8'
+2020-06-11 17:25:24.275548 HTTPSConnectionPool(host='movie.naver.comhttp', port=443): Max retries exceeded with url: //www.yes24.com/Product/Goods/89309569 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x00000155F7397388>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+2020-06-11 17:26:06.628004 HTTPSConnectionPool(host='movie.naver.comhttp', port=443): Max retries exceeded with url: //www.yes24.com/Product/Goods/89309569 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x000001EB701722C8>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
