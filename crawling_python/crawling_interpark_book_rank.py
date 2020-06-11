@@ -27,8 +27,8 @@ class InterparkBookCrawling(crawling.Crawling, ABC):
 
                 BOOK_AUTHOR = soup[i].find("div", {"class": "itemMeta"}).find("span", {"class": "author"}).get_text()
                 BOOK_PUBLISHER = soup[i].find("div", {"class": "itemMeta"}).find("span",{"class": "company"}).get_text()
-
-                self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, "", "")
+                IMAGE_URL = soup[i].find("img")["src"]
+                self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, IMAGE_URL, "", "")
                 #print(str(i + 1) + " : " + BOOK_TITLE + " : " + BOOK_URL + " : " + BOOK_AUTHOR + " : " + BOOK_PUBLISHER)
             f = open("./active_log.txt", "a")
             f.write("table : interpark_book_rank UPDATED" + "\n")
@@ -38,7 +38,7 @@ class InterparkBookCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, book_title, book_info_url, book_author, book_publisher, tmp6, tmp7):
+    def connect_db(self, i, book_title, book_info_url, book_author, book_publisher, image_url, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -59,8 +59,8 @@ class InterparkBookCrawling(crawling.Crawling, ABC):
             pass
         else:
             #print(str(rank_number) + " : " + book_title + " : " + book_info_url + " : " + book_author + " : " + book_publisher)
-            sql = """update interpark_book_rank set title=%s, url=%s, author=%s, publisher=%s where rank=%s"""
-            curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, rank_number))
+            sql = """update interpark_book_rank set title=%s, url=%s, author=%s, publisher=%s, image_url=%s where rank=%s"""
+            curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, image_url, rank_number))
 
         conn.commit()
         conn.close()

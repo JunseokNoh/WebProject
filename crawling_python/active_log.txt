@@ -1042,3 +1042,5 @@ table : daum_movie_rank UPDATED
 table : naver_movie_rating_rank UPDATED
 table : naver_movie_rating_rank UPDATED
 table : naver_movie_rating_rank UPDATED
+table : interpark_book_rank UPDATED
+table : interpark_book_rank UPDATED
