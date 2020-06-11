@@ -258,19 +258,20 @@
 				String publisher = Kyobo_RS.getString("publisher");
 				String image_url = Kyobo_RS.getString("image_url");
 	%>		
-			<tbody>
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
+					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
+						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
 							<%=author%>
-						</a>
+						<a>
+					</td>
+					
 				</tr>
 	<%
 				count++;
 			}
 	%>
-			</tbody>
 	</table>
 	<br><br>
 </div>
@@ -300,7 +301,6 @@
 				String publisher = Yes_RS.getString("publisher");
 				String image_url = Yes_RS.getString("image_url");
 	%>
-			<tbody>
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
@@ -315,7 +315,6 @@
 				count++;
 			}
 	%>
-			</tbody>
 	</table>
 	<br><br>
 </div>
