@@ -27,7 +27,7 @@ class NaverTrendsCrawling(crawling.Crawling, ABC):
             for i in range(len(soup)):
                 RANK_NAME = soup[i].find("span", {"class": "item_title"}).get_text()
                 RANK_URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=" + RANK_NAME
-                self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
+                self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
             f = open("./../../manual_active_log.txt", "a")
             f.write("table : naver_trends_rank UPDATED" + "\n")

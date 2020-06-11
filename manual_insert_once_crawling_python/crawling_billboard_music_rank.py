@@ -19,7 +19,7 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
             cont = req.content
             soup = BeautifulSoup(cont, 'lxml')
 
-            print(soup)
+            #print(soup)
             soup = soup.select("div.chart-list.container > " +
                                "ol.chart-list__elements > "
                                "li.chart-list__element.display--flex")

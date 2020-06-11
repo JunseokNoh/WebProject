@@ -58,3 +58,6 @@
 2020-06-11 17:47:16.220005 'list' object has no attribute 'find'
 2020-06-11 17:47:28.008613 'list' object has no attribute 'find'
 2020-06-11 17:47:47.212021 'list' object has no attribute 'find'
+2020-06-11 18:16:55.340317 connect_db() missing 1 required positional argument: 'tmp8'
+2020-06-11 18:16:57.863355 connect_db() missing 1 required positional argument: 'tmp8'
+2020-06-11 18:18:53.190867 (1054, "Unknown column 'info_url' in 'field list'")
