@@ -188,8 +188,6 @@ def main():
 
 	bugsMusicRank.crawler()
 	genieMusicRank.crawler()
-
-
 	melonMusicRank.crawler()
 
 	setTimeDate.connect_db("1h")

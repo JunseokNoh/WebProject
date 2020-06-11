@@ -28,7 +28,7 @@ class DBTimeValueSet:
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()
-            f = open("./../../active_log.txt", "a")
+            f = open("./../../manual_active_log.txt", "a")
             f.write("1m updated # time : " + str(time_for_log) + "\n")
             print("1m updated # time : " + str(time_for_log))
             f.close()
