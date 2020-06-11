@@ -28,8 +28,9 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
                 RANK_TICKETING = RANK_TICKETING[3:RANK_TICKETING.find("%") + 1]
 
                 RANK_URL = soup[i].find("a", {"class": "link_g"})["href"]
+                IMAGE_URL = soup[i].find("img")["src"]
 
-                self.connect_db(i, RANK_NAME, RANK_TICKETING, RANK_URL, "", "", "")
+                self.connect_db(i, RANK_NAME, RANK_TICKETING, RANK_URL, IMAGE_URL, "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_TICKETING)
             f = open("./active_log.txt", "a")
             f.write("table : daum_movie_rank UPDATED" + "\n")
@@ -39,7 +40,7 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, movie_title, movie_ticketing, movie_info_url, tmp5, tmp6, tmp7):
+    def connect_db(self, i, movie_title, movie_ticketing, movie_info_url, image_url, tmp6, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -60,8 +61,8 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
             pass
         else:
             #print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_ticketing)
-            sql = """update daum_movie_rank set title=%s, ticketing=%s, url=%s where rank=%s"""
-            curs.execute(sql, (movie_title, movie_ticketing, movie_info_url, rank_number))
+            sql = """update daum_movie_rank set title=%s, ticketing=%s, url=%s, image_url=%s where rank=%s"""
+            curs.execute(sql, (movie_title, movie_ticketing, movie_info_url, image_url, rank_number))
 
         conn.commit()
         conn.close()

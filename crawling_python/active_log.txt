@@ -1037,3 +1037,5 @@ table : genie_music_rank UPDATED
 table : bugs_music_rank UPDATED
 table : naver_movie_rank UPDATED
 table : naver_movie_rank UPDATED
+table : daum_movie_rank UPDATED
+table : daum_movie_rank UPDATED

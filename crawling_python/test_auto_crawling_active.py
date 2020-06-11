@@ -176,6 +176,7 @@ def main():
     #billboardMusicRank.crawler()
     #boxofficeMovieRank.crawler()
     #naverMovieRank.crawler()
+    daumMovieRank.crawler()
 
     '''
     f = open("./active_log.txt", "a")
