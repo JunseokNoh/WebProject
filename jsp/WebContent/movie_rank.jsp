@@ -332,10 +332,12 @@
 				String rank = Naver_rate_RS.getString("rank");
 				String title = Naver_rate_RS.getString("title");
 				String rating = Naver_rate_RS.getString("rating");
-				String url = Naver_rate_RS.getString("url");	%>
+				String url = Naver_rate_RS.getString("url");
+				String image_url = Naver_rate_RS.getString("image_url");
+	%>
 				<tr>
 					<td style="text-align:center; font-weight:700"><%=rank%></td>
-					<td><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=rating%></a>
 					</td>
 				</tr>
