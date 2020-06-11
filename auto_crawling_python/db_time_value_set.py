@@ -29,7 +29,7 @@ class DBTimeValueSet:
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()
             f = open("./../../active_log.txt", "a")
-            f.write("1m updated # time : " + str(time_for_log) + "\n")
+            f.write("1m updated # time : " + str(time_for_log) + "\n\n")
             print("1m updated # time : " + str(time_for_log))
             f.close()
 
@@ -40,7 +40,7 @@ class DBTimeValueSet:
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()
             f = open("./../../active_log.txt", "a")
-            f.write("10m updated # time : " + str(time_for_log) + "\n")
+            f.write("10m updated # time : " + str(time_for_log) + "\n\n")
             print("10m updated # time : " + str(time_for_log))
             f.close()
 
@@ -51,7 +51,7 @@ class DBTimeValueSet:
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()
             f = open("./../../active_log.txt", "a")
-            f.write("1h updated # time : " + str(time_for_log) + "\n")
+            f.write("1h updated # time : " + str(time_for_log) + "\n\n")
             print("1h updated # time : " + str(time_for_log))
             f.close()
 
@@ -62,7 +62,7 @@ class DBTimeValueSet:
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()
             f = open("./../../active_log.txt", "a")
-            f.write("1d updated # time : " + str(time_for_log) + "\n")
+            f.write("1d updated # time : " + str(time_for_log) + "\n\n")
             print("1d updated # time : " + str(time_for_log))
             f.close()
 
@@ -73,7 +73,7 @@ class DBTimeValueSet:
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()
             f = open("./active_log.txt", "a")
-            f.write("1w updated # time : " + str(time_for_log) + "\n")
+            f.write("1w updated # time : " + str(time_for_log) + "\n\n")
             print("1w updated # time : " + str(time_for_log))
             f.close()
 

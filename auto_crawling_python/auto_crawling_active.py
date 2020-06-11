@@ -170,8 +170,8 @@ def main():
                                                    'utf8')
 
     f = open("./active_log.txt", "a")
-    f.write("##### start #####\n")
-    print("##### start #####")
+    f.write("\n##### start #####\n")
+    print("\n##### start #####")
     time_for_log = datetime.datetime.now()
     f.write(str(time_for_log) + "\n\n")
     print(str(time_for_log) + "\n")
