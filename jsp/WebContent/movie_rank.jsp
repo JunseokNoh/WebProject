@@ -230,47 +230,6 @@
 
 	<br>
 	<div id="div2" class="col-md-6 templates" style="width:100%;">
-			<h3>네이버(조회순)</h3>
-			<h6><%=Naver_time%></h6>
-			<table class="table table-hover">
-			<!-- 
-				<thead>
-					<tr class="table-info">
-						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
-						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
-					</tr>
-				</thead>
-			-->
-	<%
-			count = 0;
-			while(Naver_RS.next())
-			{
-				String rank = Naver_RS.getString("rank");
-				String title = Naver_RS.getString("title");
-				String url = "https://movie.naver.com" + Naver_RS.getString("url");
-				String image_url = Naver_RS.getString("image_url");
-	%>
-
-				<tr>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
-					<td><a href=<%=url%> target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
-						<a style="font-size:13px; font-weight:10"><br></a>
-					</td>
-				</tr>
-	<%
-				count++;
-				if(count >= 20){
-					break;
-				}
-			}
-	
-	%>
-	</table>
-	<br><br>
-</div>
-
-<br>
-<div id="div3" class="col-md-6 templates" style="width:100%;">
 			<h3>다음(예매율)</h3>
 			<h6><%=Daum_time%></h6>
 			<table class="table table-hover">
@@ -312,7 +271,7 @@
 </div>
 
 <br>
-<div id="div4" class="col-md-6 templates" style="width:100%;">
+<div id="div3" class="col-md-6 templates" style="width:100%;">
 			<h3>네이버(평점순)</h3>
 			<h6><%=Naver_rate_time%></h6>
 			<table class="table table-hover">
@@ -339,6 +298,47 @@
 					<td style="text-align:center; font-weight:700"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=rating%></a>
+					</td>
+				</tr>
+	<%
+				count++;
+				if(count >= 20){
+					break;
+				}
+			}
+	
+	%>
+	</table>
+	<br><br>
+</div>
+
+<br>
+<div id="div4" class="col-md-6 templates" style="width:100%;">
+			<h3>네이버(조회순)</h3>
+			<h6><%=Naver_time%></h6>
+			<table class="table table-hover">
+			<!-- 
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+					</tr>
+				</thead>
+			-->
+	<%
+			count = 0;
+			while(Naver_RS.next())
+			{
+				String rank = Naver_RS.getString("rank");
+				String title = Naver_RS.getString("title");
+				String url = "https://movie.naver.com" + Naver_RS.getString("url");
+				String image_url = Naver_RS.getString("image_url");
+	%>
+
+				<tr>
+					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td><a href=<%=url%> target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+						<a style="font-size:13px; font-weight:10"><br></a>
 					</td>
 				</tr>
 	<%
