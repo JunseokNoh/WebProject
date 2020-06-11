@@ -169,7 +169,7 @@ def main():
 												   'jsp_db',
 												   'utf8')
 
-	f = open("./active_log.txt", "a")
+	f = open("./../../manual_active_log.txt", "a")
 	f.write("##### start #####\n")
 	print("##### start #####")
 	time_for_log = datetime.datetime.now()
