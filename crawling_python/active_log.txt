@@ -1030,3 +1030,10 @@ table : boxoffice_movie_rank UPDATED
 table : boxoffice_movie_rank UPDATED
 table : boxoffice_movie_rank UPDATED
 table : boxoffice_movie_rank UPDATED
+table : naver_movie_rank UPDATED
+table : naver_movie_rank UPDATED
+table : melon_music_rank UPDATED
+table : genie_music_rank UPDATED
+table : bugs_music_rank UPDATED
+table : naver_movie_rank UPDATED
+table : naver_movie_rank UPDATED

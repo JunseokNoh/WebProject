@@ -174,7 +174,9 @@ def main():
     #genieMusicRank.crawler()
     #bugsMusicRank.crawler()
     #billboardMusicRank.crawler()
-    boxofficeMovieRank.crawler()
+    #boxofficeMovieRank.crawler()
+    #naverMovieRank.crawler()
+
     '''
     f = open("./active_log.txt", "a")
     f.write("##### start #####\n")

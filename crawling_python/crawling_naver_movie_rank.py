@@ -35,7 +35,8 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
             for i in range(len(soup)):
                 RANK_URL = soup[i].find("a")["href"]
                 RANK_NAME = soup[i].find("a")["title"]
-                self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
+                IMAGE_URL = self.get_image(RANK_URL)
+                self.connect_db(i, RANK_NAME, RANK_URL, IMAGE_URL, "", "", "", "")
             # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
             f = open("./active_log.txt", "a")
             f.write("table : naver_movie_rank UPDATED" + "\n")
@@ -45,7 +46,17 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, title, info_url, tmp4, tmp5, tmp6, tmp7):
+    def get_image(self, URL):
+        URL = "https://movie.naver.com" + URL
+        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
+        req = requests.get(URL, headers=header)  ## 주간 차트를 크롤링 할 것임
+        cont = req.content
+        soup = BeautifulSoup(cont, 'lxml')
+        #print(soup)
+        soup = soup.select("div.poster")
+        return soup[0].find("img")["src"]
+
+    def connect_db(self, i, title, info_url, image_url, tmp5, tmp6, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -63,8 +74,8 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
             pass
         else:
             # print("change value " + str(rank_number) + " : " + title)
-            sql = """update naver_movie_rank set title=%s, url=%s where rank=%s"""
-            curs.execute(sql, (title, info_url, rank_number))
+            sql = """update naver_movie_rank set title=%s, url=%s, image_url=%s where rank=%s"""
+            curs.execute(sql, (title, info_url, image_url, rank_number))
 
         conn.commit()
         conn.close()

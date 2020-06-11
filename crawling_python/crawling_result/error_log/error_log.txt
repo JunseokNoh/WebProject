@@ -45,3 +45,5 @@
 2020-06-11 02:05:18.174897 'NoneType' object is not subscriptable
 2020-06-11 02:06:17.794460 'NoneType' object is not subscriptable
 2020-06-11 02:07:02.601636 'NoneType' object is not subscriptable
+2020-06-11 11:32:44.368326 Invalid URL '/movie/bi/mi/basic.nhn?code=182835': No schema supplied. Perhaps you meant http:///movie/bi/mi/basic.nhn?code=182835?
+2020-06-11 11:38:10.308842 not all arguments converted during string formatting
