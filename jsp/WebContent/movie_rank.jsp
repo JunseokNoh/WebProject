@@ -290,10 +290,12 @@
 				String rank = Daum_RS.getString("rank");
 				String title = Daum_RS.getString("title");
 				String ticketing = Daum_RS.getString("ticketing");
-				String url = Daum_RS.getString("url");	%>
+				String url = Daum_RS.getString("url");
+				String image_url = Daum_RS.getString("image_url");
+	%>
 				<tr>
 					<td style="text-align:center; font-weight:700"><%=rank%></td>
-					<td><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=ticketing%></a>
 					</td>
 				</tr>
