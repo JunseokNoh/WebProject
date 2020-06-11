@@ -38,7 +38,7 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
                 IMAGE_URL = self.get_image(RANK_URL)
                 self.connect_db(i, RANK_NAME, RANK_URL, IMAGE_URL, "", "", "", "")
             # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : naver_movie_rank UPDATED" + "\n")
             print("table : naver_movie_rank UPDATED")
             f.close()

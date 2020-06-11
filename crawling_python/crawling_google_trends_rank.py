@@ -30,9 +30,9 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
 
                 soup[i] = soup[i].split("?geo")[1].split("#")[0]
                 RANK_NAME = parse.unquote(soup[i])[22:]
-                self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
+                self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "", "")
                 # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : google_trends_rank UPDATED" + "\n")
             print("table : google_trends_rank UPDATED")
             f.close()
@@ -40,7 +40,7 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, title, info_url, tmp4, tmp5, tmp6, tmp7):
+    def connect_db(self, i, title, info_url, tmp4, tmp5, tmp6, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),

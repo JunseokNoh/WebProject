@@ -30,7 +30,7 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
                 #print(IMAGE_URL)
                 self.connect_db(i, RANK_NAME, RANK_ATTENDANCE, RANK_URL, IMAGE_URL, "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_ATTENDANCE)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : boxoffice_movie_rank UPDATED" + "\n")
             print("table : boxoffice_movie_rank UPDATED")
             f.close()

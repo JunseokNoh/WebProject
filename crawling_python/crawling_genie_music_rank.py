@@ -48,7 +48,7 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
                 self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL, IMAGE_URL)
                 #print(SONG_RANK + " : " + SONG_TITLE + " : " + SONG_ARTIST + " : " + ALBUM_TITLE +
                 #      "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : genie_music_rank UPDATED" + "\n")
             print("table : genie_music_rank UPDATED")
             f.close()

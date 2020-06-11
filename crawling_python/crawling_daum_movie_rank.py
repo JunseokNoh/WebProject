@@ -32,7 +32,7 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
 
                 self.connect_db(i, RANK_NAME, RANK_TICKETING, RANK_URL, IMAGE_URL, "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_TICKETING)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : daum_movie_rank UPDATED" + "\n")
             print("table : daum_movie_rank UPDATED")
             f.close()

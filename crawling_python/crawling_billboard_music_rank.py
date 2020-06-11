@@ -24,24 +24,24 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
                                "ol.chart-list__elements > "
                                "li.chart-list__element.display--flex")
             #print(soup)
-            """
+
             for i in range(len(soup)):
                 RANK_SONG_TITLE = soup[i].find("span", {"class": "chart-element__information__song"}).get_text()
                 RANK_SONG_ARTIST = soup[i].find("span", {"class": "chart-element__information__artist"}).get_text()
-                IMAGE_URL = soup[i].find("span", {"class": "chart-element__image flex--no-shrink"})["style"]
-                print(IMAGE_URL)
-                #self.connect_db(i, RANK_SONG_TITLE, RANK_SONG_ARTIST, "", "", "", "")
+                #IMAGE_URL = soup[i].find("span", {"class": "chart-element__image flex--no-shrink"})["style"]
+                #print(IMAGE_URL)
+                self.connect_db(i, RANK_SONG_TITLE, RANK_SONG_ARTIST, "", "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_SONG_TITLE + " : " + RANK_SONG_ARTIST)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : billboard_music_rank UPDATED" + "\n")
             print("table : billboard_music_rank UPDATED")
             f.close()
-            """
+
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, title, artist, tmp4, tmp5, tmp6, tmp7):
+    def connect_db(self, i, title, artist, tmp4, tmp5, tmp6, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),

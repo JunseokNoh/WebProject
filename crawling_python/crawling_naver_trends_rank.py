@@ -29,7 +29,7 @@ class NaverTrendsCrawling(crawling.Crawling, ABC):
                 RANK_URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=" + RANK_NAME
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : naver_trends_rank UPDATED" + "\n")
             print("table : naver_trends_rank UPDATED")
             f.close()

@@ -33,7 +33,7 @@ class Yes24BookCrawling(crawling.Crawling, ABC):
                 IMAGE_URL = self.get_image(BOOK_URL)
                 self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, IMAGE_URL, "", "")
                 #print(str(i + 1) + " : " + BOOK_TITLE + " : " + BOOK_URL + " : " + BOOK_AUTHOR + " : " + BOOK_PUBLISHER)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : yes24_book_rank UPDATED" + "\n")
             print("table : yes24_book_rank UPDATED")
             f.close()

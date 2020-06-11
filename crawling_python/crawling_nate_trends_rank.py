@@ -25,7 +25,7 @@ class NateTrendsCrawling(crawling.Crawling, ABC):
                 RANK_NAME = soup[i].find("a", {"class": "ik"}).find("span", {"class": "txt_rank"}).get_text()
                 self.connect_db(i, RANK_NAME, "", "", "", "", "")
                 #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : nate_trends_rank UPDATED" + "\n")
             print("table : nate_trends_rank UPDATED")
             f.close()

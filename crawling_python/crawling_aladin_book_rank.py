@@ -47,7 +47,7 @@ class AladinBookCrawling(crawling.Crawling, ABC):
                 #print(IMAGE_URL)
                 self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, BOOK_PUBLICATION_DATE, IMAGE_URL, "")
                 #print(str(i + 1) + " : " + BOOK_TITLE + " : " + BOOK_URL + " : " + BOOK_AUTHOR + " : " + BOOK_PUBLISHER + " : " + BOOK_PUBLICATION_DATE)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : aladin_book_rank UPDATED" + "\n")
             print("table : aladin_book_rank UPDATED")
             f.close()

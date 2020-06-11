@@ -24,9 +24,9 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
             for i in range(len(soup)):
                 RANK_URL = soup[i].find("a", {"class": "cont"})["href"]
                 RANK_NAME = soup[i].find("a", {"class": "cont"}).find("span", {"class": "word"}).get_text()
-                self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "")
+                self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "", "")
                 # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./active_log.txt", "a")
+            f = open("./../../active_log.txt", "a")
             f.write("table : zum_trends_rank UPDATED" + "\n")
             print("table : zum_trends_rank UPDATED")
             f.close()
@@ -34,7 +34,7 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, title, info_url, tmp4, tmp5, tmp6, tmp7):
+    def connect_db(self, i, title, info_url, tmp4, tmp5, tmp6, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
