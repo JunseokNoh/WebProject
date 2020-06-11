@@ -180,8 +180,8 @@ def main():
     #naverMovieRatingRank.crawler()
     #interBookRank.crawler()
     #kyoboBookRank.crawler()
-    yes24BookRank.crawler()
-    #aladinBookRank.crawler()
+    #yes24BookRank.crawler()
+    aladinBookRank.crawler()
 
     '''
     f = open("./active_log.txt", "a")

@@ -19,9 +19,15 @@ class AladinBookCrawling(crawling.Crawling, ABC):
 
             # print(soup)
             soup = soup.select("form#Myform > div.ss_book_box")
-            # print(soup)
 
             for i in range(len(soup)):
+                try:
+                    IMAGE_URL = soup[i].find("img", {"class": "i_cover"})["src"]
+                except Exception as e:
+                    #soup[i] = soup[i].select("span")
+                    IMAGE_URL = soup[i].find("img")["src"]
+                    if IMAGE_URL[-3:] == "png":
+                        continue
                 soup[i] = soup[i].select("div.ss_book_list")
                 soup[i] = soup[i][0].select("ul > li")
 
@@ -38,8 +44,8 @@ class AladinBookCrawling(crawling.Crawling, ABC):
 
                 BOOK_PUBLICATION_DATE = soup[i][index + 1].get_text()
                 BOOK_PUBLICATION_DATE = BOOK_PUBLICATION_DATE.split("|")[2][1:]
-
-                self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, BOOK_PUBLICATION_DATE, "")
+                #print(IMAGE_URL)
+                self.connect_db(i, BOOK_TITLE, BOOK_URL, BOOK_AUTHOR, BOOK_PUBLISHER, BOOK_PUBLICATION_DATE, IMAGE_URL, "")
                 #print(str(i + 1) + " : " + BOOK_TITLE + " : " + BOOK_URL + " : " + BOOK_AUTHOR + " : " + BOOK_PUBLISHER + " : " + BOOK_PUBLICATION_DATE)
             f = open("./active_log.txt", "a")
             f.write("table : aladin_book_rank UPDATED" + "\n")
@@ -49,7 +55,7 @@ class AladinBookCrawling(crawling.Crawling, ABC):
             super().error_logging(str(e))
             print("Error Detected")
 
-    def connect_db(self, i, book_title, book_info_url, book_author, book_publisher, book_publication_date, tmp7):
+    def connect_db(self, i, book_title, book_info_url, book_author, book_publisher, book_publication_date, image_url, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -70,8 +76,8 @@ class AladinBookCrawling(crawling.Crawling, ABC):
             pass
         else:
             #print(str(i + 1) + " : " + book_title + " : " + book_info_url + " : " + book_author + " : " + book_publisher + " : " + book_publication_date)
-            sql = """update aladin_book_rank set title=%s, url=%s, author=%s, publisher=%s, date=%s where rank=%s"""
-            curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, book_publication_date, rank_number))
+            sql = """update aladin_book_rank set title=%s, url=%s, author=%s, publisher=%s, date=%s, image_url=%s where rank=%s"""
+            curs.execute(sql, (book_title, book_info_url, book_author, book_publisher, book_publication_date, image_url, rank_number))
 
 
         conn.commit()
