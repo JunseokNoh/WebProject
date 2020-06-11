@@ -298,19 +298,18 @@
 				String url = Yes_RS.getString("url");
 				String author = Yes_RS.getString("author");
 				String publisher = Yes_RS.getString("publisher");
+				String image_url = Yes_RS.getString("image_url");
 	%>
 			<tbody>
 				<tr>
 					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
-					<td style=" font-weight:700; width:30%;">
-						<a href=<%=url%> target="_blank">
-							<%=title%>
-						</a>
+					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
 							<%=author%>
 						<a>
 					</td>
+					
 				</tr>
 	<%
 				count++;
