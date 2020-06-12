@@ -217,21 +217,21 @@
 				if(count == 0)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./gold.png" width="50" height="50"></td>
+					<td style="text-align:center; font-weight:700"><img src="./gold.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 1)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./silver.png" width="50" height="50"></td>
+					<td style="text-align:center; font-weight:700"><img src="./silver.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 2)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./bronze.png" width="50" height="50"></td>
+					<td style="text-align:center; font-weight:700"><img src="./bronze.png" width="45" height="45"></td>
 
 	<%
 				}
