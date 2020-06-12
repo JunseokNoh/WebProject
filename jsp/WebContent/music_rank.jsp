@@ -213,7 +213,35 @@
 				String image_url = Melon_RS.getString("image_url");
 	%>
 				<tr>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700"><img src="./gold.png" width="50" height="50"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700"><img src="./silver.png" width="50" height="50"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700"><img src="./bronze.png" width="50" height="50"></td>
+
+	<%
+				}
+				else
+				{
+	%>
 					<td style="text-align:center; font-weight:700"><%=rank%></td>
+	<%
+				}
+	%>
 					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src="<%=image_url%>" width="60" height="60"></a></td>
 					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
 					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
