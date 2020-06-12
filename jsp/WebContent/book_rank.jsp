@@ -130,32 +130,32 @@
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
 	
-	<ul class="navbar-nav mr-auto"> 
-		
-		<li class="nav-item dropdown"> 
-			<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="category-dropdown"> 카테고리 </a> 
-				<div aria-labelledby="category-dropdown" class="dropdown-menu dropdown-menu-right mt-n1"> 
-					<a class="dropdown-item" href="./trend_rank.jsp" >실시간 랭킹</a> 
-					<a class="dropdown-item" href="./music_rank.jsp" >음악 차트</a> 
-					<a class="dropdown-item" href="./movie_rank.jsp" >영화 차트</a> 
-					<a class="dropdown-item" href="./book_rank.jsp" >도서 차트</a> 
-				</div> 
-		</li> 
-		<li class="nav-item"> 
-			<a class="nav-link" href="https://www.velosofy.com/templates">자유게시판</a> 
-		</li> 
-	</ul> 
-	
-	
-	<ul class="navbar-nav ml-auto"> 
-		<li class="nav-item"> 
-			<a class="nav-link" href="https://www.velosofy.com/login">로그인</a> 
-		</li> 
-		<li class="nav-item"> 
-			<a class="nav-link" href="https://www.velosofy.com/register">회원가입</a> 
-		</li> 
-	</ul> 
+<ul class="navbar-nav mr-auto"> 
 
+<li class="nav-item"> 
+<a class="nav-link" href="./trend_rank.jsp">실시간 랭킹</a> 
+</li> 
+<li class="nav-item"> 
+<a class="nav-link" href="./music_rank.jsp">음악 차트</a> 
+</li> 
+<li class="nav-item"> 
+<a class="nav-link" href="./movie_rank.jsp">영화 차트</a> 
+</li> 
+<li class="nav-item"> 
+<a class="nav-link" href="./book_rank.jsp">도서 차트</a> 
+</li> 
+	<li class="nav-item"> 
+	<a class="nav-link" href="">자유게시판(준비중)</a> 
+	</li> 
+</ul>
+
+<ul class="navbar-nav ml-auto"> 
+<li class="nav-item"> 
+<a class="nav-link" href="">로그인(준비중)</a> 
+</li> 
+<li class="nav-item"> <a class="nav-link" href="">회원가입(준비중)</a> 
+</li> 
+</ul> 
 </div> 
 
 </div> 
