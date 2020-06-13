@@ -227,7 +227,7 @@
 		Aladin_RS = Aladin_PS.executeQuery();
 		
 		Date nowTime = new Date();
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 kk:mm:ss");
 		
 	%>
 			
@@ -265,6 +265,8 @@
 
 <body>
 
+
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
  <!-- 추가해야할거 -->
@@ -299,7 +301,7 @@
 <ul class="navbar-nav mr-auto"> 
 
 <li class="nav-item"> 
-<a class="nav-link" href="./trend_rank.jsp">실시간 랭킹</a> 
+<a class="nav-link" href="./trend_rank.jsp">실검 차트</a> 
 </li> 
 <li class="nav-item"> 
 <a class="nav-link" href="./music_rank.jsp">음악 차트</a> 
@@ -344,8 +346,12 @@
 <div class="container pb-5"> 
 
 
+	<div class="col-md-12 templates">
+		<h3 class="poppins">기준 : <%= sf.format(nowTime) %></h3><br>
+			<a href="https://forms.gle/Q7h9pUhqeLofirCE8" target="_blank"><img src="./to_google_form_button.PNG" width="250" height="45"></a>
+	</div>
 
-
+	<br>
 <div class="row">
 
 	<div id="div5" class="col-md-6 templates" style="" >
@@ -367,8 +373,8 @@
 				url = url.replaceAll(" ", "+");
 	%>
 				<tr>
-					<td style="width:20%; ">네이버</td>
-					<td style="font-weight:700;width:80%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="width:20%;">네이버</td>
+					<td style="font-weight:700;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -654,7 +660,7 @@
 	
 	<div id="div5" class="col-md-6 templates" >
 		<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 영화 TOP1<a id="lookMore" href="./music_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 영화 TOP1<a id="lookMore" href="./movie_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
 			<br>
 		</div>
 	
@@ -672,7 +678,6 @@
 				String image_url = Boxoffice_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="text-align:center; font-weight:700; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a style="font-size:13px; font-weight:10" target="_blank"><%=attendance%></a>
 					</td>
@@ -702,7 +707,6 @@
 				String image_url = Daum_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="text-align:center; font-weight:700; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=ticketing%></a>
 					</td>
@@ -741,7 +745,6 @@
 				String image_url = Naver_rate_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="text-align:center; font-weight:700; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=rating%></a>
 					</td>
@@ -771,7 +774,6 @@
 	%>
 
 				<tr>
-					<td style="text-align:center; font-weight:700; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
 						<a style="font-size:13px; font-weight:10"><br></a>
 					</td>
@@ -792,7 +794,7 @@
 	
 		<div id="div5" class="col-md-6 templates" >
 		<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 도서 TOP1<a id="lookMore" href="./music_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 도서 TOP1<a id="lookMore" href="./book_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
 		<br>
 		</div>
 	
@@ -816,7 +818,6 @@
 				*/
 	%>
 				<tr>
-					<td style="font-weight:700; text-align:center; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -850,7 +851,6 @@
 				String image_url = Kyobo_RS.getString("image_url");
 	%>		
 				<tr>
-					<td style="font-weight:700; text-align:center; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -891,7 +891,6 @@
 				String image_url = Yes_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="font-weight:700; text-align:center; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -925,7 +924,6 @@
 				String image_url = Aladin_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="font-weight:700; text-align:center; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -988,7 +986,7 @@
             });
             if (i+1 === keywords.length) {
                 i = 0;
-            } else {
+		} else {
                 i++;
             }
         }, 3500);
