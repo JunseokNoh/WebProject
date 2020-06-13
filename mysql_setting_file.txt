@@ -29,19 +29,39 @@ MYSQL TABLE : board
 
 ::command::
 mysql>
+create table aladin_book_rank
+(
+	`rank` varchar(20) not null,
+	`title` varchar(150) not null,
+	`url` text not null,
+	`author` varchar(150) not null,
+	`publisher` varchar(150) not null,
+	`date` varchar(20) not null,
+	`image_url` text not null
+);
+
+create table billboard_music_rank
+(
+	`rank` int(10) not null,
+	`song_title` varchar(150) not null,
+	`song_artist` varchar(150) not null
+);
+
 create table boxoffice_movie_rank
 (
 	`rank` int(10) not null,
 	`title` varchar(150) not null,
 	`attendance` varchar(20) not null,
-	`url` text not null
+	`url` text not null,
+	`image_url` text not null
 );
 
 create table naver_movie_rank
 (
 	`rank` int(10) not null,
 	`title` varchar(150) not null,
-	`url` text not null
+	`url` text not null,
+	`image_url` text not null
 );
 
 create table naver_movie_rating_rank
@@ -49,7 +69,8 @@ create table naver_movie_rating_rank
 	`rank` int(10) not null,
 	`title` varchar(150) not null,
 	`rating` varchar(20) not null,
-	`url` text not null
+	`url` text not null,
+	`image_url` text not null
 );
 
 create table daum_movie_rank
@@ -57,7 +78,8 @@ create table daum_movie_rank
 	`rank` int(10) not null,
 	`title` varchar(150) not null,
 	`ticketing` varchar(30) not null,
-	`url` text not null
+	`url` text not null,
+	`image_url` text not null
 );
 
 create table google_trends_rank
@@ -88,12 +110,6 @@ create table naver_trends_rank
 	`url` text not null
 );
 
-create table billboard_music_rank
-(
-	`rank` int(10) not null,
-	`song_title` varchar(150) not null,
-	`song_artist` varchar(150) not null
-);
 
 create table bugs_music_rank
 (
@@ -103,7 +119,8 @@ create table bugs_music_rank
 	`song_artist` varchar(150) not null,
 	`artist_url' text not null,
 	`album_title` varchar(150) not null,
-	`album_url` text not null
+	`album_url` text not null,
+	`image_url` text not null
 );
 
 create table genie_music_rank
@@ -114,7 +131,8 @@ create table genie_music_rank
 	`song_artist` varchar(150) not null,
 	`artist_url` text not null,
 	`album_title` varchar(150) not null,
-	`album_url` text not null
+	`album_url` text not null,
+	`image_url` text not null
 );
 
 create table melon_music_rank
@@ -125,7 +143,8 @@ create table melon_music_rank
 	`song_artist` varchar(150) not null,
 	`artist_url` text not null,
 	`album_title` varchar(150) not null,
-	`album_url` text not null
+	`album_url` text not null,
+	`image_url` text not null
 );
 
 create table aladin_book_rank
@@ -135,7 +154,8 @@ create table aladin_book_rank
 	`url` text not null,
 	`author` varchar(150) not null,
 	`publisher` varchar(150) not null,
-	`date` varchar(20) not null
+	`date` varchar(20) not null,
+	`image_url` text not null
 );
 
 create table kyobo_book_rank
@@ -145,7 +165,8 @@ create table kyobo_book_rank
 	`url` text not null,
 	`author` varchar(150) not null,
 	`publisher` varchar(150) not null,
-	`date` varchar(20) not null
+	`date` varchar(20) not null,
+	`image_url` text not null
 );
 
 create table yes24_book_rank
@@ -154,7 +175,8 @@ create table yes24_book_rank
 	`title` varchar(150) not null,
 	`url` text not null,
 	`author` varchar(150) not null,
-	`publisher` varchar(150) not null
+	`publisher` varchar(150) not null,
+	`image_url` text not null
 );
 
 create table interpark_book_rank
@@ -164,4 +186,16 @@ create table interpark_book_rank
 	`url` text not null,
 	`author` varchar(150) not null,
 	`publisher` varchar(150) not null
+);
+
+create table visitor_count
+(
+	`type` varchar(20) not null,
+	`count` int(10) not null
+);
+
+create table time_data
+(
+	`type` varchar(20) not null,
+	`timedata` varchar(150) not null	
 );
