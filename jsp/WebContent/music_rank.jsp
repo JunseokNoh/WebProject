@@ -217,28 +217,28 @@
 				if(count == 0)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./gold.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 1)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./silver.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 2)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./bronze.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
 
 	<%
 				}
 				else
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
 	<%
 				}
 	%>
@@ -288,28 +288,28 @@
 				if(count == 0)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./gold.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 1)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./silver.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 2)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./bronze.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
 
 	<%
 				}
 				else
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
 	<%
 				}
 	%>
@@ -359,28 +359,28 @@
 				if(count == 0)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./gold.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 1)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./silver.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 2)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./bronze.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
 
 	<%
 				}
 				else
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
 	<%
 				}
 	%>
@@ -426,28 +426,28 @@
 				if(count == 0)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./gold.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 1)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./silver.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
 
 	<%
 				}
 				else if(count == 2)
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><img src="./bronze.png" width="45" height="45"></td>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
 
 	<%
 				}
 				else
 				{
 	%>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
 	<%
 				}
 	%>

@@ -218,7 +218,36 @@
 				*/
 	%>
 				<tr>
-					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -261,9 +290,38 @@
 				String author = Kyobo_RS.getString("author");
 				String publisher = Kyobo_RS.getString("publisher");
 				String image_url = Kyobo_RS.getString("image_url");
-	%>		
+	%>	
 				<tr>
-					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -306,7 +364,36 @@
 				String image_url = Yes_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -349,7 +436,36 @@
 				String image_url = Aladin_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">

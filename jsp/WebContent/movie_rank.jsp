@@ -215,7 +215,36 @@
 				String image_url = Boxoffice_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="text-align:center; font-weight:700;"><%=rank%></td>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a style="font-size:13px; font-weight:10" target="_blank"><%=attendance%></a>
 					</td>
@@ -257,7 +286,36 @@
 				String image_url = Daum_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=ticketing%></a>
 					</td>
@@ -299,7 +357,36 @@
 				String image_url = Naver_rate_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=rating%></a>
 					</td>
@@ -338,9 +425,37 @@
 				String url = "https://movie.naver.com" + Naver_RS.getString("url");
 				String image_url = Naver_RS.getString("image_url");
 	%>
-
 				<tr>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
 					<td><a href=<%=url%> target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
 						<a style="font-size:13px; font-weight:10"><br></a>
 					</td>
