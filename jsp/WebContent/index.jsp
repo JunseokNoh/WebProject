@@ -4,11 +4,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
-<!--
-------------------------------------------------------------
-* @설명 : 일별 박스오피스 REST 호출 - 서버측에서 호출하는 방식 예제
-------------------------------------------------------------
--->
 	<%
 		Connection con = null;
 		//실검
@@ -355,8 +350,8 @@
 
 	<div id="div5" class="col-md-6 templates" style="" >
 	<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style="">실시간&nbsp<span>포털&nbsp</span>순위<a id="lookMore" href="./music_rank_jsp">더 보기</a></h3> 
-		<br>
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 실시간 검색 TOP1<a id="lookMore" href="./trend_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		
 	</div>
 	
 	<div id="div1" class="col-md-12 templates" style="display : inline-block;">
@@ -371,10 +366,8 @@
 				String url = Naver_RS.getString("url");
 				url = url.replaceAll(" ", "+");
 	%>
-
 				<tr>
 					<td style="width:20%; ">네이버</td>
-					<td style="width:5%; text-align:center;font-weight:700;width:5%;"><%=rank%></td>
 					<td style="font-weight:700;width:80%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
@@ -410,7 +403,6 @@
 				<tbody>
 				<tr>
 					<td style="width:20%;">Zum</td>
-					<td style="text-align:center;font-weight:700;width:5%;"><%=rank%></td>
 					<td style="font-weight:700;width:80%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
@@ -447,7 +439,6 @@
 				<tbody>
 				<tr>
 					<td style="width:20%">구글</td>
-					<td style="text-align:center;font-weight:700;width:5%;"><%=rank%></td>
 					<td style="font-weight:700;width:80%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
@@ -475,7 +466,6 @@
 			<tbody>
 				<tr>	
 					<td style="width:20%">네이트</td>
-					<td style="text-align:center;font-weight:700;width:5%;"><%=rank%></td>
 					<td style="font-weight:700;width:80%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
@@ -493,8 +483,7 @@
 	
 	<div id="div5" class="col-md-6 templates" >
 	<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style="">실시간&nbsp<span>음악&nbsp</span>순위<a id="lookMore" href="./music_rank_jsp">더 보기</a></h3> 
-		<br>
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 음악 TOP1<a id="lookMore" href="./music_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
 	</div>
 	
 	<div id="div1" class="col-md-12 templates" style="display : inline-block;">
@@ -524,8 +513,9 @@
 	%>
 				<tr>
 					<td style="width:20%;">멜론</td>
-					<td style="width:5%; text-align:center; font-weight:700"><%=rank%></td>
-					
+					<td>
+						<a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src=<%=image_url%> width="60" height="60"></a>
+					</td>
 					<td style="width:70%;"><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
 					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
 					
@@ -566,11 +556,12 @@
 	%>
 				<tr>
 					<td style="width:20%;">지니</td>
-					<td style="width:5%; text-align:center; font-weight:700"><%=rank%></td>
-					
-					<td style="width:70%;"><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
-					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a>
+					<td>
+						<a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src=<%=image_url%> width="60" height="60"></a>
 					</td>
+					<td style="width:70%;"><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
+	
 				</tr>
 	<%
 				count++;
@@ -608,10 +599,13 @@
 	%>
 				<tr>
 					<td style="width:20%;">벅스</td>
-					<td style="width:5%; text-align:center; font-weight:700"><%=rank%></td>
-					<td style="width:70%;" ><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
-					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a>
+					<td>
+						<a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src=<%=image_url%> width="60" height="60"></a>
 					</td>
+					<td style="width:70%;"><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
+	
+
 				</tr>
 	<%
 				count++;
@@ -643,10 +637,9 @@
 				String artist = Billboard_RS.getString("artist");
 	%>
 				<tr>
-					<td style="fwidth:20%;">빌보드</td>
-					<td style="width:5%; text-align:center; font-weight:700"><%=rank%></td>
-					<td style="width:70%;"><a style=" font-weight:700"><%=title%></a><br>
-					<a style="font-size:13px; font-weight:10"><%=artist%></a></td>
+					<td style="width:20%;">빌보드</td>
+					<td style="width:70%;"><a style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a style="font-size:13px; font-weight:10" target="_blank"><%=artist%></a></td>
 				</tr>
 	<%
 				count++;
@@ -661,7 +654,7 @@
 	
 	<div id="div5" class="col-md-6 templates" >
 		<div id="div0" class="col-md-12 templates" >
-			<h3 class="poppins" style="">실시간&nbsp<span>영화&nbsp</span>순위<a id="lookMore" href="./music_rank_jsp">더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 영화 TOP1<a id="lookMore" href="./music_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
 			<br>
 		</div>
 	
@@ -679,7 +672,7 @@
 				String image_url = Boxoffice_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="text-align:center; font-weight:700;"><%=rank%></td>
+					<td style="text-align:center; font-weight:700; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a style="font-size:13px; font-weight:10" target="_blank"><%=attendance%></a>
 					</td>
@@ -709,7 +702,7 @@
 				String image_url = Daum_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td style="text-align:center; font-weight:700; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=ticketing%></a>
 					</td>
@@ -748,7 +741,7 @@
 				String image_url = Naver_rate_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td style="text-align:center; font-weight:700; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
 					<a  style="font-size:13px; font-weight:10"target="_blank"><%=rating%></a>
 					</td>
@@ -778,7 +771,7 @@
 	%>
 
 				<tr>
-					<td style="text-align:center; font-weight:700"><%=rank%></td>
+					<td style="text-align:center; font-weight:700; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
 						<a style="font-size:13px; font-weight:10"><br></a>
 					</td>
@@ -799,7 +792,7 @@
 	
 		<div id="div5" class="col-md-6 templates" >
 		<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style="">실시간&nbsp<span>도서&nbsp</span>순위<a id="lookMore" href="./music_rank_jsp">더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 도서 TOP1<a id="lookMore" href="./music_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
 		<br>
 		</div>
 	
@@ -823,7 +816,7 @@
 				*/
 	%>
 				<tr>
-					<td style="font-weight:700; text-align:center; " title='<%=author%>'><%=rank%></td>
+					<td style="font-weight:700; text-align:center; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -857,7 +850,7 @@
 				String image_url = Kyobo_RS.getString("image_url");
 	%>		
 				<tr>
-					<td style="font-weight:700; text-align:center;" title='<%=author%>'><%=rank%></td>
+					<td style="font-weight:700; text-align:center; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -898,7 +891,7 @@
 				String image_url = Yes_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="font-weight:700; text-align:center; width:5%;" title='<%=author%>'><%=rank%></td>
+					<td style="font-weight:700; text-align:center; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
@@ -932,7 +925,7 @@
 				String image_url = Aladin_RS.getString("image_url");
 	%>
 				<tr>
-					<td style="font-weight:700; text-align:center;" title='<%=author%>'><%=rank%></td>
+					<td style="font-weight:700; text-align:center; visibility:hidden;"><%=rank%></td>
 					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
 						<br>
 						<a style="font-size:13px; font-weight:10" target="_blank">
