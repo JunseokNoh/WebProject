@@ -266,7 +266,6 @@
 <body>
 
 
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
  <!-- 추가해야할거 -->
@@ -313,15 +312,15 @@
 <a class="nav-link" href="./book_rank.jsp">도서 차트</a> 
 </li> 
 	<li class="nav-item"> 
-	<a class="nav-link" href="">자유게시판(준비중)</a> 
+	<a class="nav-link">자유게시판(준비중)</a> 
 	</li> 
 </ul>
 
 <ul class="navbar-nav ml-auto"> 
 <li class="nav-item"> 
-<a class="nav-link" href="">로그인(준비중)</a> 
+<a class="nav-link">로그인(준비중)</a> 
 </li> 
-<li class="nav-item"> <a class="nav-link" href="">회원가입(준비중)</a> 
+<li class="nav-item"> <a class="nav-link">회원가입(준비중)</a> 
 </li> 
 </ul> 
 
@@ -335,7 +334,6 @@
 
 <div class="container"> 
 
-<br>
 <!-- 
 <a class="btn btn-primary my-2" href="https://www.velosofy.com/templates">Find a template</a> 
 <a class="btn btn-secondary my-2" href="https://www.velosofy.com/submit">Submit a template</a> 
@@ -347,7 +345,6 @@
 
 
 	<div class="col-md-12 templates">
-		<h3 class="poppins">기준 : <%= sf.format(nowTime) %></h3><br>
 			<a href="https://forms.gle/Q7h9pUhqeLofirCE8" target="_blank"><img src="./to_google_form_button.PNG" width="250" height="45"></a>
 	</div>
 
@@ -992,6 +989,8 @@
         }, 3500);
     });
 </script>
+
+	<jsp:include page="visitor_count.jsp" flush="true"/>
 
 </body>
 </html>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,9 +59,9 @@
 		System.out.println("success today-count updating");
 	}
 %>
-
-<h3>누적 방문자 수 <%=total_count+1 %></h3>
-<h3>오늘 방문자 수 <%=today_count+1 %></h3>
-
+<hr>
+<p style="text-align:center; font-size:20px;"><strong>TODAY <%=today_count+1%> TOTAL <%=total_count+1 %></strong></p>
+<br>
+<br>
 </body>
 </html>

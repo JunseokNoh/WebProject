@@ -133,7 +133,7 @@
 <ul class="navbar-nav mr-auto"> 
 
 <li class="nav-item"> 
-<a class="nav-link" href="./trend_rank.jsp">실시간 랭킹</a> 
+<a class="nav-link" href="./trend_rank.jsp">실검 차트</a> 
 </li> 
 <li class="nav-item"> 
 <a class="nav-link" href="./music_rank.jsp">음악 차트</a> 
@@ -145,15 +145,15 @@
 <a class="nav-link" href="./book_rank.jsp">도서 차트</a> 
 </li> 
 	<li class="nav-item"> 
-	<a class="nav-link" href="">자유게시판(준비중)</a> 
+	<a class="nav-link">자유게시판(준비중)</a> 
 	</li> 
 </ul>
 
 <ul class="navbar-nav ml-auto"> 
 <li class="nav-item"> 
-<a class="nav-link" href="">로그인(준비중)</a> 
+<a class="nav-link">로그인(준비중)</a> 
 </li> 
-<li class="nav-item"> <a class="nav-link" href="">회원가입(준비중)</a> 
+<li class="nav-item"> <a class="nav-link">회원가입(준비중)</a> 
 </li> 
 </ul> 
 </div> 
@@ -167,7 +167,7 @@
 
 <div class="container"> 
 
-<h1 class="poppins" style="font-size:50px;">실시간&nbsp<span>도서&nbsp</span>순위</h1> 
+<h1 class="poppins" style="font-size:50px;">도서 차트</h1> 
 <br>
 
 </div> 
@@ -505,6 +505,7 @@
 
 <script src="https://www.velosofy.com/js/app.js"></script>
 
+	<jsp:include page="visitor_count.jsp" flush="true"/>
 </body>
 </html>
 

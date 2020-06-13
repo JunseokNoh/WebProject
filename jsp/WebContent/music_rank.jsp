@@ -124,7 +124,7 @@
 <ul class="navbar-nav mr-auto"> 
 
 <li class="nav-item"> 
-<a class="nav-link" href="./trend_rank.jsp">실시간 랭킹</a> 
+<a class="nav-link" href="./trend_rank.jsp">실검 차트</a> 
 </li> 
 <li class="nav-item"> 
 <a class="nav-link" href="./music_rank.jsp">음악 차트</a> 
@@ -136,15 +136,15 @@
 <a class="nav-link" href="./book_rank.jsp">도서 차트</a> 
 </li> 
 	<li class="nav-item"> 
-	<a class="nav-link" href="">자유게시판(준비중)</a> 
+	<a class="nav-link">자유게시판(준비중)</a> 
 	</li> 
 </ul>
 
 <ul class="navbar-nav ml-auto"> 
 <li class="nav-item"> 
-<a class="nav-link" href="">로그인(준비중)</a> 
+<a class="nav-link">로그인(준비중)</a> 
 </li> 
-<li class="nav-item"> <a class="nav-link" href="">회원가입(준비중)</a> 
+<li class="nav-item"> <a class="nav-link">회원가입(준비중)</a> 
 </li> 
 </ul> 
 
@@ -159,7 +159,7 @@
 
 <div class="container"> 
 
-<h1  class="poppins" style="font-size:50px;">실시간&nbsp<span>음악&nbsp</span>순위</h1> 
+<h1  class="poppins" style="font-size:50px;">음악 차트</h1> 
 <br>
 <!-- 
 <a class="btn btn-primary my-2" href="https://www.velosofy.com/templates">Find a template</a> 
@@ -258,7 +258,7 @@
 	
 	<br>
 	<div id="div2" class="col-md-6 templates" style="width:100%;">
-		<h3 >지니 뮤직</h3>
+		<h3 >지니 차트</h3>
 		<h6><%=Genie_time%>시</h6>
 			<table class="table table-hover">
 			<!-- 
@@ -493,5 +493,6 @@
    
 </script>
 
+	<jsp:include page="visitor_count.jsp" flush="true"/>
 </body>
 </html>
