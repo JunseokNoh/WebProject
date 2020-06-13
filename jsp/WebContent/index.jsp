@@ -637,8 +637,8 @@
 			while(Billboard_RS.next())
 			{
 				String rank = Billboard_RS.getString("rank");
-				String title = Billboard_RS.getString("title");
-				String artist = Billboard_RS.getString("artist");
+				String title = Billboard_RS.getString("song_title");
+				String artist = Billboard_RS.getString("song_artist");
 	%>
 				<tr>
 					<td style="width:20%;">빌보드</td>
