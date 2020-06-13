@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-#quick_nav{
-	position: fixed; 
-	bottom: -100px; 
-	right: 10px; 
-	font-size:10px;
-}
 
 #quick_nav tr{
 

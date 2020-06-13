@@ -453,8 +453,7 @@
 		<br><br>
 	</div>
 
-<script type="text/javascript" src="./js/slide.js"></script>
- 
+
 <div w3-include-html="./nav/trend_nav.html"></div>
 <script>
 	w3.includeHTML();
