@@ -1,3 +1,0 @@
-INDEX VERSION 1.131
-C:\Users\Yoobi\OneDrive - Moe, Inc\shared_folder\code\jsp\lab_final\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1617161609.index
-\jsp\src
