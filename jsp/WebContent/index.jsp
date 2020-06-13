@@ -371,8 +371,8 @@
 				url = url.replaceAll(" ", "+");
 	%>
 				<tr>
-					<td style="width:20%;">네이버</td>
-					<td style="font-weight:700;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="width:25%;">네이버</td>
+					<td style="font-weight:700; width:75%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -406,8 +406,8 @@
 	%>
 				<tbody>
 				<tr>
-					<td style="width:20%;">Zum</td>
-					<td style="font-weight:700;width:80%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="width:25%;">Zum</td>
+					<td style="font-weight:700;width:75%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -442,8 +442,8 @@
 	%>
 				<tbody>
 				<tr>
-					<td style="width:20%">구글</td>
-					<td style="font-weight:700;width:80%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="width:25%">구글</td>
+					<td style="font-weight:700;width:75%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
@@ -469,8 +469,8 @@
 	%>
 			<tbody>
 				<tr>	
-					<td style="width:20%">네이트</td>
-					<td style="font-weight:700;width:80%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+					<td style="width:25%">네이트</td>
+					<td style="font-weight:700;width:75%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
 				</tr>
 	<%
 				count++;
