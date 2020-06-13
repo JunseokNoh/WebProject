@@ -1,0 +1,113 @@
+<HTML>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<style>
+    div {
+    	margin-bottom:1000px;
+    }
+    
+	#back-top {
+	position: fixed;
+	bottom: 30px;
+	margin-left: -150px;
+	}
+	
+	#back-top a {
+	width: 108px;
+	display: block;
+	text-align: center;
+	font: 11px/100% Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #bbb;
+	
+	/* transition */
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+	}
+	#back-top a:hover {
+	color: #000;
+	}
+	
+	/* arrow icon (span tag) */
+	#back-top span {
+	width: 108px;
+	height: 108px;
+	display: block;
+	margin-bottom: 7px;
+	background: #ddd url(up-arrow.png) no-repeat center center;
+	
+	/* rounded corners */
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	
+	/* transition */
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+	}
+	#back-top a:hover span {
+	background-color: #777;
+	}
+    
+</style>
+<script>
+    function fnMove(value){
+        var offset = $("#div" + value).offset();
+        $('html, body').animate({scrollTop : offset.top}, 0);
+    }
+    
+    function MoveTop(){
+        $('html, body').animate({scrollTop : 0}, 100);
+    }
+    
+    $(document).ready(function(){
+
+    	// 일단 버튼을 숨긴다
+    	$("#back-top").hide();
+
+    	// 스크롤이 되면 버튼이 나타난다. 
+    	$(function () {
+    	   $(window).scroll(function () {
+    	        if ($(this).scrollTop() > 100) {
+    	              $('#back-top').fadeIn();
+    	         } else {
+    	              $('#back-top').fadeOut();
+    	         }
+    	});
+
+    	// 버튼 클릭하면, 맨 위로 이동!! 
+    	$('#back-top a').click(function () {
+    	        $('body,html').animate({
+    	              scrollTop: 0
+    	         }, 800);
+    	         return false;
+    	        });
+    	});
+
+    	});
+    
+</script>
+ <BODY>
+	 <select name="fruit" onchange="fnMove(value)">
+	  <option value="1">div1로 이동</option>
+	  <option value="2">div2로 이동</option>
+	  <option value="3">div3로 이동</option>
+	</select>
+	
+    <button onclick="fnMove('1')">div1로 이동</button>
+    <button onclick="fnMove('2')">div2로 이동</button>
+    <button onclick="fnMove('3')">div3로 이동</button>
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+    <div id="div3">div3</div>
+    <button id="back-to-top" style=""onclick="MoveTop()">zzzz</button>
+    
+    <p id="back-top">
+  		 <a href="#top">Back To Top</a>
+	</p>
+    
+ </BODY>
+</HTML>
+

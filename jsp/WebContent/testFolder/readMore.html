@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		input[type="checkbox"] {
+       display:none;
+}
+
+label {
+     color:blue;
+     text-decoration:underline;
+     margin-top:10px;
+     cursor:pointer;
+     display:inline-block;
+}
+
+label:after {
+     content:"more";  
+}
+
+input:checked ~ label:after {
+     content:"less";  
+}
+
+.inner {
+     max-height:100px;
+     overflow:hidden;
+     transition:all .3s ease;
+     width:100px;
+}
+
+input:checked + .inner {
+     max-height:500px;
+}
+	</style>
+</head>
+<body>
+	<div class="outer">
+     <input type="checkbox" id="readmore" />
+     <div class="inner">
+       CONTENT CONTENT CONTENT CONTENT
+       CONTENT CONTENT CONTENT CONTENT
+       CONTENT CONTENT CONTENT CONTENT
+       CONTENT CONTENT CONTENT CONTENT
+       CONTENT CONTENT CONTENT CONTENT
+       CONTENT CONTENT CONTENT CONTENT
+       CONTENT CONTENT CONTENT CONTENT
+     </div>
+     <label for="readmore">Read </label>
+</div>
+</body>
+</html>
