@@ -51,7 +51,7 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        # sql = """insert into billboard_music_rank (rank, title, artist) values (%s, %s, %s)"""
+        # sql = """insert into billboard_music_rank (rank, song_title, song_artist) values (%s, %s, %s)"""
         # curs.execute(sql, (rank_number, song_title, song_artist))
 
         sql = """select title from billboard_music_rank where rank = %s"""
@@ -63,7 +63,7 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
             pass
         else:
             #print(str(i + 1) + " : " + title + " : " + artist)
-            sql = """update billboard_music_rank set title=%s, artist=%s where rank=%s"""
+            sql = """update billboard_music_rank set song_title=%s, song_artist=%s where rank=%s"""
             curs.execute(sql, (title, artist, rank_number))
 
         conn.commit()
