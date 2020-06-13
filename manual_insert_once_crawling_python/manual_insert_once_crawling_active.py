@@ -177,7 +177,7 @@ def main():
 	print(str(time_for_log) + "\n")
 	f.close()
 
-
+	'''
 	naverTrendsRank.crawler()
 	setTimeDate.connect_db("1m")
 
@@ -200,7 +200,7 @@ def main():
 	yes24BookRank.crawler()  # 일간
 	interBookRank.crawler()  # 일간인데 13:00 존재
 	setTimeDate.connect_db("1d")
-
+	'''
 	kyoboBookRank.crawler()  # 주간
 	billboardMusicRank.crawler()  # 주간
 	setTimeDate.connect_db("1w")

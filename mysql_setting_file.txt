@@ -100,7 +100,6 @@ create table nate_trends_rank
 (
 	`rank` int(10) not null,
 	`title` varchar(150) not null,
-	`url` text not null
 );
 
 create table naver_trends_rank
@@ -117,7 +116,7 @@ create table bugs_music_rank
 	`song_title` varchar(150) not null,
 	`song_url` text not null,
 	`song_artist` varchar(150) not null,
-	`artist_url' text not null,
+	`artist_url` text not null,
 	`album_title` varchar(150) not null,
 	`album_url` text not null,
 	`image_url` text not null
@@ -185,7 +184,8 @@ create table interpark_book_rank
 	`title` varchar(150) not null,
 	`url` text not null,
 	`author` varchar(150) not null,
-	`publisher` varchar(150) not null
+	`publisher` varchar(150) not null,
+	`image_url` text not null
 );
 
 create table visitor_count

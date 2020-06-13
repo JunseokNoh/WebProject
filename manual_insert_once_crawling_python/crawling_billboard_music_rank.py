@@ -51,7 +51,7 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """insert into billboard_music_rank (rank, title, artist) values (%s, %s, %s)"""
+        sql = """insert into billboard_music_rank (rank, song_title, song_artist) values (%s, %s, %s)"""
         curs.execute(sql, (rank_number, title, artist))
         '''
         sql = """select title from billboard_music_rank where rank = %s"""
