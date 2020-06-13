@@ -60,7 +60,7 @@
 	}
 %>
 <hr>
-<p style="text-align:center; font-size:20px;"><strong>TODAY <%=today_count+1%> TOTAL <%=total_count+1 %></strong></p>
+<p style="text-align:center; font-size:20px;"><strong>TODAY <%=today_count+1%> / TOTAL <%=total_count+1 %></strong></p>
 <br>
 <br>
 </body>
