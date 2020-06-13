@@ -463,7 +463,7 @@
 		<br><br>
 	</div>
 
-<script type="text/javascript" src="./js/slide.js"></script>
+	<script type="text/javascript" src="./js/slide.js"></script>
  
 <div w3-include-html="./nav/music_nav.html"></div>
 <script>
