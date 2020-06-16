@@ -51,11 +51,14 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
         #sql = """insert into boxoffice_movie_rank (rank, title, attendance, url) values (%s, %s, %s, %s)"""
         #curs.execute(sql, (rank_number, movie_title, movie_attendance, movie_info_url))
 
-        sql = """select title from boxoffice_movie_rank where rank = %s"""
+        sql = """select title, attendance from boxoffice_movie_rank where rank = %s"""
         curs.execute(sql, rank_number)
         row = curs.fetchone()
         if row[0] == movie_title:
-            #print("same boxoffice")
+            # print("same boxoffice")
+            if row[1] != movie_attendance:
+                sql="""update boxoffice_movie_rank set attendance=%s where rank=%s"""
+                curs.execute(sql, (movie_attendance, rank_number))
             pass
         else:
             #print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_attendance)
