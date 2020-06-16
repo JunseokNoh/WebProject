@@ -58,6 +58,9 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
         row = curs.fetchone()
         if row[0] == movie_title:
             #print("same daum")
+            if row[1] != movie_ticketing:
+                sql = """update daum_movie_rank set ticketing=%s where rank=%s"""
+                curs.execute(sql, (movie_ticketing, rank_number))
             pass
         else:
             #print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_ticketing)
