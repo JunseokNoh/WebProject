@@ -29,24 +29,6 @@ MYSQL TABLE : board
 
 ::command::
 mysql>
-create table aladin_book_rank
-(
-	`rank` varchar(20) not null,
-	`title` varchar(150) not null,
-	`url` text not null,
-	`author` varchar(150) not null,
-	`publisher` varchar(150) not null,
-	`date` varchar(20) not null,
-	`image_url` text not null
-);
-
-create table billboard_music_rank
-(
-	`rank` int(10) not null,
-	`song_title` varchar(150) not null,
-	`song_artist` varchar(150) not null
-);
-
 create table boxoffice_movie_rank
 (
 	`rank` int(10) not null,
@@ -116,7 +98,6 @@ create table naver_trends_rank
 	`title` varchar(150) not null,
 	`url` text not null
 );
-
 
 create table bugs_music_rank
 (
@@ -218,4 +199,18 @@ create table time_data
 (
 	`type` varchar(20) not null,
 	`timedata` varchar(150) not null	
+);
+
+create table billboard_music_rank
+(
+	`rank` int(10) not null,
+	`song_title` varchar(150) not null,
+	`song_artist` varchar(150) not null
+);
+
+create table google_trends_us_rank
+(
+	`rank` int(10) not null,
+	`title` varchar(150) not null,
+	`url` text not null
 );
