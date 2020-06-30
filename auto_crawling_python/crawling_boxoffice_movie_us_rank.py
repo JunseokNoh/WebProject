@@ -30,8 +30,8 @@ class BoxofficeMovieUSCrawling(crawling.Crawling, ABC):
                 temp = soup[i].select("td.titleColumn > a")[0]["title"].split(" (dir.), ")
                 DIRECTOR_NAME = temp[0]
                 ACTOR_NAMES = temp[1]
-                # self.connect_db(i, RANK_NAME, RANK_ATTENDANCE, RANK_URL, IMAGE_URL, DIRECTOR_NAME, ACTOR_NAMES, "")
-                print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_ATTENDANCE + " : " + DIRECTOR_NAME + " : " + ACTOR_NAMES)
+                self.connect_db(i, RANK_NAME, RANK_ATTENDANCE, RANK_URL, IMAGE_URL, DIRECTOR_NAME, ACTOR_NAMES, "")
+                # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_ATTENDANCE + " : " + DIRECTOR_NAME + " : " + ACTOR_NAMES)
             f = open("./../../active_log.txt", "a")
             f.write("table : boxoffice_movie_us_rank UPDATED" + "\n")
             print("table : boxoffice_movie_us_rank UPDATED")
