@@ -53,7 +53,9 @@ create table boxoffice_movie_rank
 	`title` varchar(150) not null,
 	`attendance` varchar(20) not null,
 	`url` text not null,
-	`image_url` text not null
+	`image_url` text not null,
+	`director_name` text not null,
+	`actor_names` text not null
 );
 
 create table naver_movie_rank
@@ -61,7 +63,9 @@ create table naver_movie_rank
 	`rank` int(10) not null,
 	`title` varchar(150) not null,
 	`url` text not null,
-	`image_url` text not null
+	`image_url` text not null,
+	`director_name` text not null,
+	`actor_names` text not null
 );
 
 create table naver_movie_rating_rank
@@ -70,7 +74,9 @@ create table naver_movie_rating_rank
 	`title` varchar(150) not null,
 	`rating` varchar(20) not null,
 	`url` text not null,
-	`image_url` text not null
+	`image_url` text not null,
+	`director_name` text not null,
+	`actor_names` text not null
 );
 
 create table daum_movie_rank
@@ -79,7 +85,9 @@ create table daum_movie_rank
 	`title` varchar(150) not null,
 	`ticketing` varchar(30) not null,
 	`url` text not null,
-	`image_url` text not null
+	`image_url` text not null,
+	`director_name` text not null,
+	`actor_names` text not null
 );
 
 create table google_trends_rank
