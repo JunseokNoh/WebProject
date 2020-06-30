@@ -214,3 +214,14 @@ create table google_trends_us_rank
 	`title` varchar(150) not null,
 	`url` text not null
 );
+
+create table boxoffice_movie_us_rank
+(
+	`rank` int(10) not null,
+	`title` varchar(150) not null,
+	`attendance` varchar(20) not null,
+	`url` text not null,
+	`image_url` text not null,
+	`director_name` text not null,
+	`actor_names` text not null
+);
