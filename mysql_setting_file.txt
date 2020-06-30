@@ -225,3 +225,12 @@ create table boxoffice_movie_us_rank
 	`director_name` text not null,
 	`actor_names` text not null
 );
+
+create table amazon_book_rank
+(
+	`rank` varchar(20) not null,
+	`title` varchar(150) not null,
+	`url` text not null,
+	`author` varchar(150) not null,
+	`image_url` text not null
+);
