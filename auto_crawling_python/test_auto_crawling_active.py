@@ -6,14 +6,18 @@ import crawling_google_trends_rank
 import crawling_nate_trends_rank
 import crawling_naver_trends_rank
 import crawling_zum_trends_rank
-import crawling_billboard_music_rank
 import crawling_bugs_music_rank
 import crawling_genie_music_rank
 import crawling_melon_music_rank
+import crawling_flo_music_rank
 import crawling_aladin_book_rank
 import crawling_kyobo_book_rank
 import crawling_yes24_book_rank
 import crawling_interpark_book_rank
+import crawling_billboard_music_rank
+import crawling_google_trends_us_rank
+import crawling_boxoffice_movie_us_rank
+import crawling_amazon_book_rank
 import db_time_value_set
 
 import datetime
@@ -93,15 +97,7 @@ def main():
                                                                   'utf8')
 
     # Music Fields
-    billboardMusicRank = crawling_billboard_music_rank.BillboardMusicCrawling(
-        #'https://www.billboard.com/charts/hot-100',
-        'https://www.billboard.com/charts/billboard-200',
-        'hackery00bi.iptime.org',
-        '6666',
-        'yoobi',
-        'toor',
-        'jsp_db',
-        'utf8')
+
 
     bugsMusicRank = crawling_bugs_music_rank.BugsMusicCrawling('https://music.bugs.co.kr/chart',
                                                                'hackery00bi.iptime.org',
@@ -126,6 +122,15 @@ def main():
                                                                   'toor',
                                                                   'jsp_db',
                                                                   'utf8')
+
+    floMusicRank = auto_crawling_python.crawling_flo_music_rank.FloMusicCrawling(
+        'https://www.music-flo.com/api/display/v1/browser/chart/1/track/list?size=100&timestamp=1593522061633',
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
 
     # Book Fields
     aladinBookRank = crawling_aladin_book_rank.AladinBookCrawling(
@@ -163,6 +168,44 @@ def main():
         'jsp_db',
         'utf8')
 
+    # Foreign Fields
+    billboardMusicRank = crawling_billboard_music_rank.BillboardMusicCrawling(
+        # 'https://www.billboard.com/charts/hot-100',
+        'https://www.billboard.com/charts/billboard-200',
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
+    googleTrendsUSRank = auto_crawling_python.crawling_google_trends_us_rank.GoogleTrendsUSCrawling(
+        'https://trends.google.co.kr//trends/api/dailytrends?hl=ko&tz=-540&geo=US&ns=15',
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
+    boxofficeMovieUSRank = auto_crawling_python.crawling_boxoffice_movie_us_rank.BoxofficeMovieUSCrawling(
+        'https://www.imdb.com/chart/boxoffice?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=4da9d9a5-d299-43f2-9c53-f0efa18182cd&pf_rd_r=VFM1Y18W9AQXQZW0QD8P&pf_rd_s=right-4&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_ql_1',
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
+    amazonBookRank = auto_crawling_python.crawling_amazon_book_rank.AmazonBookCrawling(
+        'https://www.amazon.com/best-sellers-books-Amazon/zgbs/books',
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
     setTimeDate = db_time_value_set.DBTimeValueSet('hackery00bi.iptime.org',
                                                    '6666',
                                                    'yoobi',
@@ -170,18 +213,26 @@ def main():
                                                    'jsp_db',
                                                    'utf8')
 
-    #melonMusicRank.crawler()
-    #genieMusicRank.crawler()
-    #bugsMusicRank.crawler()
-    #billboardMusicRank.crawler()
-    #boxofficeMovieRank.crawler()
-    #naverMovieRank.crawler()
-    #daumMovieRank.crawler()
-    #naverMovieRatingRank.crawler()
-    #interBookRank.crawler()
-    #kyoboBookRank.crawler()
-    #yes24BookRank.crawler()
-    aladinBookRank.crawler()
+    # boxofficeMovieRank.crawler()
+    # naverMovieRank.crawler()
+    # daumMovieRank.crawler()
+    # naverMovieRatingRank.crawler()
+
+    # melonMusicRank.crawler()
+    # genieMusicRank.crawler()
+    # bugsMusicRank.crawler()
+    # floMusicRank.crawler()
+
+    # interBookRank.crawler()
+    # kyoboBookRank.crawler()
+    # yes24BookRank.crawler()
+    # aladinBookRank.crawler()
+
+    # billboardMusicRank.crawler()
+    # googleTrendsUSRank.crawler()
+    # boxofficeMovieUSRank.crawler()
+    # amazonBookRank.crawler()
+
 
     '''
     f = open("./active_log.txt", "a")
