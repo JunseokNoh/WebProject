@@ -48,6 +48,9 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
+        sql = """delete from boxoffice_movie_rank"""
+        curs.execute(sql)
+
         sql = """insert into boxoffice_movie_rank (rank, title, attendance, url, image_url) values (%s, %s, %s, %s, %s)"""
         curs.execute(sql, (rank_number, movie_title, movie_attendance, movie_info_url, image_url))
         '''

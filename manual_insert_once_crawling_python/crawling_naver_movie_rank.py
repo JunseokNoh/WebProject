@@ -66,6 +66,9 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
+        sql = """delete from naver_movie_rank"""
+        curs.execute(sql)
+
         sql = """insert into naver_movie_rank (rank, title, url, image_url) values (%s, %s, %s, %s)"""
         curs.execute(sql, (rank_number, title, info_url, image_url))
         '''

@@ -44,6 +44,9 @@ class ZumTrendsCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
+        sql = """delete from zum_trends_rank"""
+        curs.execute(sql)
+
         sql = """insert into zum_trends_rank (rank, title, url) values (%s, %s, %s)"""
         curs.execute(sql, (rank_number, title, info_url))
         '''

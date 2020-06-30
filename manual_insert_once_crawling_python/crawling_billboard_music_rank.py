@@ -51,6 +51,9 @@ class BillboardMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
+        sql = """delete from billboard_music_rank"""
+        curs.execute(sql)
+
         sql = """insert into billboard_music_rank (rank, song_title, song_artist) values (%s, %s, %s)"""
         curs.execute(sql, (rank_number, title, artist))
         '''
