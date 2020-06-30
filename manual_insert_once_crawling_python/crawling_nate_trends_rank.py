@@ -43,8 +43,9 @@ class NateTrendsCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """delete from nate_trends_rank"""
-        curs.execute(sql)
+        if rank_number == 1:
+            sql = """delete from nate_trends_rank"""
+            curs.execute(sql)
 
         sql = """insert into nate_trends_rank (rank, title) values (%s, %s)"""
         curs.execute(sql, (rank_number, title))

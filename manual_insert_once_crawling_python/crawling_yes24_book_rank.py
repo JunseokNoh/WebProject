@@ -61,8 +61,9 @@ class Yes24BookCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """delete from yes24_book_rank"""
-        curs.execute(sql)
+        if rank_number == 1:
+            sql = """delete from yes24_book_rank"""
+            curs.execute(sql)
 
         sql = """insert into yes24_book_rank (rank, title, url, author, publisher, image_url) values (%s, %s, %s, %s, %s, %s)"""
         curs.execute(sql, (rank_number, book_title, book_info_url, book_author, book_publisher, image_url))

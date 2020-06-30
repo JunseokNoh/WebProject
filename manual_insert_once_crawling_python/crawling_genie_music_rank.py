@@ -66,8 +66,9 @@ class GenieMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """delete from genie_music_rank"""
-        curs.execute(sql)
+        if rank_number == 1:
+            sql = """delete from genie_music_rank"""
+            curs.execute(sql)
 
         sql = """insert into genie_music_rank (rank, song_title, song_url, song_artist, artist_url, album_title, album_url, image_url) values (%s, %s, %s, %s, %s, %s, %s, %s)"""
         curs.execute(sql, (rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url, image_url))

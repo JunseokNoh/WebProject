@@ -50,8 +50,9 @@ class KyoboBookCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """delete from kyobo_book_rank"""
-        curs.execute(sql)
+        if rank_number == 1:
+            sql = """delete from kyobo_book_rank"""
+            curs.execute(sql)
 
         sql = """insert into kyobo_book_rank (rank, title, url, author, publisher, date, image_url) values (%s, %s, %s, %s, %s, %s, %s)"""
         curs.execute(sql, (rank_number, book_title, book_info_url, book_author, book_publisher, book_publication_date, image_url))
