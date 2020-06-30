@@ -30,17 +30,37 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
                 RANK_URL = soup[i].find("a", {"class": "link_g"})["href"]
                 IMAGE_URL = soup[i].find("img")["src"]
 
-                self.connect_db(i, RANK_NAME, RANK_TICKETING, RANK_URL, IMAGE_URL, "", "", "")
-                #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_TICKETING)
+                temp = self.get_names(RANK_URL)
+                DIRECTOR_NAME = temp[0]
+                ACTOR_NAMES = temp[1]
+
+                self.connect_db(i, RANK_NAME, RANK_TICKETING, RANK_URL, IMAGE_URL, DIRECTOR_NAME, ACTOR_NAMES, "")
+                # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_TICKETING + " : " + DIRECTOR_NAME + " : " + ACTOR_NAMES)
             f = open("./../../active_log.txt", "a")
             f.write("table : daum_movie_rank UPDATED" + "\n")
             print("table : daum_movie_rank UPDATED")
             f.close()
         except Exception as e:
             super().error_logging(str(e))
-            print("Error Detected")
+            print(str(e))
+            #print("Error Detected")
 
-    def connect_db(self, i, movie_title, movie_ticketing, movie_info_url, image_url, tmp6, tmp7, tmp8):
+    def get_names(self, URL):
+        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
+        req = requests.get(URL, headers=header)  ## 주간 차트를 크롤링 할 것임
+        cont = req.content
+        soup = BeautifulSoup(cont, 'lxml')
+        #print(soup)
+        soup = soup.select("div.movie_summary > dl")
+        temp = soup[2].select("dd")[1].get_text()[2:].lstrip().split(",")
+        temp_str = temp[0]
+        for i in range(1, len(temp)):
+            temp[i] = temp[i].lstrip()
+            temp_str = temp_str + ", " + temp[i]
+        result = [soup[2].select("dd")[0].find("a").get_text(), temp_str]
+        return result
+
+    def connect_db(self, i, movie_title, movie_ticketing, movie_info_url, image_url, director_name, actor_names, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -64,8 +84,8 @@ class DaumMovieCrawling(crawling.Crawling, ABC):
             pass
         else:
             #print(rank_number + " : " + movie_title + " : " + movie_info_url + " : " + movie_ticketing)
-            sql = """update daum_movie_rank set title=%s, ticketing=%s, url=%s, image_url=%s where rank=%s"""
-            curs.execute(sql, (movie_title, movie_ticketing, movie_info_url, image_url, rank_number))
+            sql = """update daum_movie_rank set title=%s, ticketing=%s, url=%s, image_url=%s, director_name=%s, actor_names=%s where rank=%s"""
+            curs.execute(sql, (movie_title, movie_ticketing, movie_info_url, image_url, director_name, actor_names, rank_number))
 
         conn.commit()
         conn.close()
