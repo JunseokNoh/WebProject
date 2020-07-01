@@ -108,3 +108,5 @@
 2020-07-01 20:24:23.784376 unsupported format character ',' (0x2c) at index 150
 2020-07-01 20:25:23.848275 not all arguments converted during string formatting
 2020-07-01 20:25:54.316561 name 'sql' is not defined
+2020-07-01 22:11:56.631024 (1048, "Column 'image_url' cannot be null")
+2020-07-01 22:14:09.395372 (1048, "Column 'image_url' cannot be null")

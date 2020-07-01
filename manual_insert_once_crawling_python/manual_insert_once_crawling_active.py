@@ -286,7 +286,7 @@ def main():
     # setTimeDate.connect_db("1m")
     # setTimeDate.connect_db("10m")
     # setTimeDate.connect_db("1h")
-    setTimeDate.connect_db("1d")
+    # setTimeDate.connect_db("1d")
 
     # Trend
     # naverTrendsRank.crawler()
@@ -325,7 +325,7 @@ def main():
 	# world
     # billboardMusicRank.crawler()  # 주간
     # amazonBookRank.crawler()
-    # boxofficeMovieUSRank.crawler()
+    boxofficeMovieUSRank.crawler()
     # googleTrendsUSRank.crawler()
 
     '''
