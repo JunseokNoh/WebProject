@@ -27,8 +27,8 @@ class GoogleplayAppCrawling(crawling.Crawling, ABC):
                 RANK_PUBLISHER = soup[i].select("div.appTitle > a > span.publisher")[0].get_text()
                 IMAGE_URL = soup[i].select("a > img")[0]["src"]
                 RANK_TYPE = str(i%3)
-                # self.connect_db(i//3, RANK_NAME, RANK_URL, IMAGE_URL, RANK_PUBLISHER, RANK_TYPE, "", "")
-                print(str(i // 3 + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_PUBLISHER + " : " + RANK_TYPE + " : " + IMAGE_URL)
+                self.connect_db(i//3, RANK_NAME, RANK_URL, IMAGE_URL, RANK_PUBLISHER, RANK_TYPE, "", "")
+                # print(str(i // 3 + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_PUBLISHER + " : " + RANK_TYPE + " : " + IMAGE_URL)
             f = open("./../../active_log.txt", "a")
             f.write("table : googleplay_app_rank UPDATED" + "\n")
             print("table : googleplay_app_rank UPDATED")
