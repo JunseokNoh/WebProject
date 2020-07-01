@@ -18,6 +18,12 @@ import crawling_billboard_music_rank
 import crawling_google_trends_us_rank
 import crawling_boxoffice_movie_us_rank
 import crawling_amazon_book_rank
+import crawling_googleplay_app_rank
+import crawling_googleplay_game_rank
+import crawling_appstore_app_rank
+import crawling_appstore_game_rank
+import crawling_onestore_app_rank
+import crawling_onestore_game_rank
 import db_time_value_set
 
 import datetime
@@ -206,6 +212,63 @@ def main():
         'jsp_db',
         'utf8')
 
+    # App Fields
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+
+    googleplayAppRank = auto_crawling_python.crawling_googleplay_app_rank.GoogleplayAppCrawling(
+        'https://www.mobileindex.com/app/get_rank_all?rt=r&mk=2&c=kr&t=app&rs=100&d=' + today,
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
+    googleplayGameRank = auto_crawling_python.crawling_googleplay_game_rank.GoogleplayGameCrawling(
+        'https://www.mobileindex.com/app/get_rank_all?rt=r&mk=2&c=kr&t=game&rs=100&d=' + today,
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
+    appstoreAppRank = auto_crawling_python.crawling_appstore_app_rank.AppstoreAppCrawling(
+        'https://www.mobileindex.com/app/get_rank_all?rt=r&mk=1&c=kr&t=app&rs=100&d=' + today,
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
+    appstoreGameRank = auto_crawling_python.crawling_appstore_game_rank.AppstoreGameCrawling(
+        'https://www.mobileindex.com/app/get_rank_all?rt=r&mk=1&c=kr&t=game&rs=100&d=' + today,
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
+    onestoreAppRank = auto_crawling_python.crawling_onestore_app_rank.OnestoreAppCrawling(
+        'https://www.mobileindex.com/app/get_rank_all?rt=r&mk=6&c=kr&t=app&rs=100&d=' + today,
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
+    onestoreGameRank = auto_crawling_python.crawling_onestore_game_rank.OnestoreGameCrawling(
+        'https://www.mobileindex.com/app/get_rank_all?rt=r&mk=6&c=kr&t=game&rs=100&d=' + today,
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
+
     setTimeDate = db_time_value_set.DBTimeValueSet('hackery00bi.iptime.org',
                                                    '6666',
                                                    'yoobi',
@@ -233,6 +296,12 @@ def main():
     # boxofficeMovieUSRank.crawler()
     # amazonBookRank.crawler()
 
+    # googleplayAppRank.crawler()
+    # googleplayGameRank.crawler()
+    # appstoreAppRank.crawler()
+    # appstoreGameRank.crawler()
+    # onestoreAppRank.crawler()
+    # onestoreGameRank.crawler()
 
     '''
     f = open("./active_log.txt", "a")
