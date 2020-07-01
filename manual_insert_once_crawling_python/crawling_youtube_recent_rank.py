@@ -6,35 +6,37 @@ from abc import *
 import crawling
 
 
-class BoxofficeMovieCrawling(crawling.Crawling, ABC):
+class YoutubeRecentCrawling(crawling.Crawling, ABC):
     def __init__(self, main_url, db_host, db_port, db_user, db_pw, db_name, db_charset):
         super().__init__(main_url, db_host, db_port, db_user, db_pw, db_name, db_charset)
 
     def crawler(self):
         try:
             url = super().MAIN_URL()
-            req = requests.get(url)
+            header = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'}
+            req = requests.get(super().MAIN_URL(), headers=header)  ## 주간 차트를 크롤링 할 것임
             cont = req.content
-            soup = BeautifulSoup(cont, 'lxml')
+            soup = BeautifulSoup(cont, 'html.parser')
 
-            # print(soup)
-            soup2 = soup.select("div.movie_rank_wrap > div.movie_audience_ranking._main_panel.v2 > div._content > ul > li > div.thumb")
-            soup = soup.select("div.movie_rank_wrap > div.movie_audience_ranking._main_panel.v2 > div._content > ul > li > div.movie_info")
-            # print(soup)
-
-            for i in range(20):
-                RANK_NAME = soup[i].find("strong").get_text()
-                RANK_ATTENDANCE = soup[i].select("dl.movie_item > dd")[1].get_text()
-                RANK_URL = "https://search.naver.com/search.naver" + soup[i].find("a", {"class": "movie_tit"})["href"]
-                IMAGE_URL = soup2[i].find("img")["src"]
-                #print(RANK_URL)
-                data = self.get_image(RANK_URL)
-                self.connect_db(i, RANK_NAME, RANK_ATTENDANCE, RANK_URL, data[0], data[1], data[2], "")
-                #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_ATTENDANCE)
-            f = open("./../../manual_active_log.txt", "a")
-            f.write("table : boxoffice_movie_rank UPDATED" + "\n")
-            print("table : boxoffice_movie_rank UPDATED")
-            f.close()
+            print(soup)
+            # soup2 = soup.select("div.movie_rank_wrap > div.movie_audience_ranking._main_panel.v2 > div._content > ul > li > div.thumb")
+            # soup = soup.select("div.movie_rank_wrap > div.movie_audience_ranking._main_panel.v2 > div._content > ul > li > div.movie_info")
+            # # print(soup)
+            #
+            # for i in range(20):
+            #     RANK_NAME = soup[i].find("strong").get_text()
+            #     RANK_ATTENDANCE = soup[i].select("dl.movie_item > dd")[1].get_text()
+            #     RANK_URL = "https://search.naver.com/search.naver" + soup[i].find("a", {"class": "movie_tit"})["href"]
+            #     IMAGE_URL = soup2[i].find("img")["src"]
+            #     #print(RANK_URL)
+            #     self.get_image(RANK_URL)
+            #     #self.connect_db(i, RANK_NAME, RANK_ATTENDANCE, RANK_URL, IMAGE_URL, "", "", "")
+            #     #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_ATTENDANCE)
+            # f = open("./../../manual_active_log.txt", "a")
+            # f.write("table : boxoffice_movie_rank UPDATED" + "\n")
+            # print("table : boxoffice_movie_rank UPDATED")
+            # f.close()
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
@@ -54,12 +56,11 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
 
         soup1 = soup.select("div.poster")
         soup2 = soup.select("dl.info_spec > dd")
+        print(soup1[0].find("img")["src"])
+        print(soup2[1])
+        print(soup2[2])
 
-        data = [soup1[0].find("img")["src"], soup2[1].select("p > a")[0].get_text(), soup2[2].select("p")[0].get_text()]
-
-        return data
-
-    def connect_db(self, i, movie_title, movie_attendance, movie_info_url, image_url, director_name, actor_names, tmp8):
+    def connect_db(self, i, movie_title, movie_attendance, movie_info_url, image_url, tmp6, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -73,8 +74,8 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
             sql = """delete from boxoffice_movie_rank"""
             curs.execute(sql)
 
-        sql = """insert into boxoffice_movie_rank (rank, title, attendance, url, image_url, director_name, actor_names) values (%s, %s, %s, %s, %s, %s, %s)"""
-        curs.execute(sql, (rank_number, movie_title, movie_attendance, movie_info_url, image_url, director_name, actor_names))
+        sql = """insert into boxoffice_movie_rank (rank, title, attendance, url, image_url) values (%s, %s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, movie_title, movie_attendance, movie_info_url, image_url))
         '''
         sql = """select title from boxoffice_movie_rank where rank = %s"""
         curs.execute(sql, rank_number)

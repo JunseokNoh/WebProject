@@ -61,3 +61,18 @@
 2020-06-11 18:16:55.340317 connect_db() missing 1 required positional argument: 'tmp8'
 2020-06-11 18:16:57.863355 connect_db() missing 1 required positional argument: 'tmp8'
 2020-06-11 18:18:53.190867 (1054, "Unknown column 'info_url' in 'field list'")
+2020-07-01 10:26:27.742899 'list' object has no attribute 'find'
+2020-07-01 10:26:34.010141 list index out of range
+2020-07-01 10:27:06.811479 list index out of range
+2020-07-01 10:27:13.699028 list index out of range
+2020-07-01 10:31:54.640908 HTTPSConnectionPool(host='movie.naver.comhttps', port=443): Max retries exceeded with url: //search.naver.com/search.naver?where=nexearch&sm=tab_etc&pkid=68&os=11348741&query=%23%EC%82%B4%EC%95%84%EC%9E%88%EB%8B%A4 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x0000020F57748108>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+2020-07-01 10:35:39.777685 'NoneType' object is not subscriptable
+2020-07-01 10:35:52.594682 'list' object has no attribute 'find'
+2020-07-01 10:36:40.304386 'list' object has no attribute 'find'
+2020-07-01 10:36:46.730180 'NoneType' object is not subscriptable
+2020-07-01 10:37:22.006865 'NoneType' object is not subscriptable
+2020-07-01 10:39:39.018735 list index out of range
+2020-07-01 11:09:03.585951 'list' object has no attribute 'get_text'
+2020-07-01 13:56:34.737155 not enough arguments for format string
+2020-07-01 13:57:17.868122 (1054, "Unknown column 'actor_name' in 'field list'")
+2020-07-01 14:34:14.013512 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")

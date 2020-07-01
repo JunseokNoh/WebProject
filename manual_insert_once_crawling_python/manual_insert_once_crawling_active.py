@@ -14,6 +14,7 @@ import crawling_aladin_book_rank
 import crawling_kyobo_book_rank
 import crawling_yes24_book_rank
 import crawling_interpark_book_rank
+import crawling_youtube_recent_rank
 import db_time_value_set
 
 import datetime
@@ -21,6 +22,15 @@ import time
 
 
 def main():
+	# videos
+	youtubeVideoRank = crawling_youtube_recent_rank.YoutubeRecentCrawling('https://www.mobileindex.com/app/get_rank_all?rt=r&mk=2&c=kr&t=app&rs=100&d=2020-06-30',
+		'hackery00bi.iptime.org',
+		'6666',
+		'yoobi',
+		'toor',
+		'jsp_db',
+		'utf8')
+
 	# Movie Fields
 	boxofficeMovieRank = crawling_boxoffice_movie_rank.BoxofficeMovieCrawling(
 		'https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&query=%EB%B0%95%EC%8A%A4%EC%98%A4%ED%94%BC%EC%8A%A4%20%ED%9D%A5%ED%96%89%EC%88%9C%EC%9C%84',
@@ -177,33 +187,33 @@ def main():
 	print(str(time_for_log) + "\n")
 	f.close()
 
-	'''
-	naverTrendsRank.crawler()
-	setTimeDate.connect_db("1m")
 
-	zumTrendsRank.crawler()
-	googleTrendsRank.crawler()
-	nateTrendsRank.crawler()
-	setTimeDate.connect_db("10m")
-
-	bugsMusicRank.crawler()
-	genieMusicRank.crawler()
-	melonMusicRank.crawler()
-
-	setTimeDate.connect_db("1h")
-
-	boxofficeMovieRank.crawler()
+	# naverTrendsRank.crawler()
+	# setTimeDate.connect_db("1m")
+	#
+	# zumTrendsRank.crawler()
+	# googleTrendsRank.crawler()
+	# nateTrendsRank.crawler()
+	# setTimeDate.connect_db("10m")
+	#
+	# bugsMusicRank.crawler()
+	# genieMusicRank.crawler()
+	# melonMusicRank.crawler()
+	#
+	# setTimeDate.connect_db("1h")
+	#
+	# boxofficeMovieRank.crawler()
 	naverMovieRank.crawler()
-	naverMovieRatingRank.crawler()
-	daumMovieRank.crawler()
-	aladinBookRank.crawler()  # 일간
-	yes24BookRank.crawler()  # 일간
-	interBookRank.crawler()  # 일간인데 13:00 존재
-	setTimeDate.connect_db("1d")
-	'''
-	kyoboBookRank.crawler()  # 주간
-	billboardMusicRank.crawler()  # 주간
-	setTimeDate.connect_db("1w")
+	# naverMovieRatingRank.crawler()
+	# daumMovieRank.crawler()
+	# aladinBookRank.crawler()  # 일간
+	# yes24BookRank.crawler()  # 일간
+	# interBookRank.crawler()  # 일간인데 13:00 존재
+	# setTimeDate.connect_db("1d")
+	#
+	# kyoboBookRank.crawler()  # 주간
+	# billboardMusicRank.crawler()  # 주간
+	# setTimeDate.connect_db("1w")
 
 	'''
     check = time_for_log.minute + 1
