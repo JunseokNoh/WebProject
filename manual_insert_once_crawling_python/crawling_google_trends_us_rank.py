@@ -31,7 +31,7 @@ class GoogleTrendsUSCrawling(crawling.Crawling, ABC):
                 soup[i] = soup[i].split("?geo")[1].split("#")[1]
                 RANK_NAME = soup[i].replace("%20", " ")
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "", "")
-                # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
+                print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
             f = open("./../../active_log.txt", "a")
             f.write("table : google_trends_us_rank UPDATED" + "\n")
             print("table : google_trends_us_rank UPDATED")
@@ -50,14 +50,21 @@ class GoogleTrendsUSCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        # sql = """insert into google_trends_us_rank (rank, title, url) values (%s, %s, %s)"""
-        # curs.execute(sql, (rank_number, title, info_url))
-        if rank_number == 1:
-            sql = """delete from google_trends_us_rank"""
+        if int(rank_number) == 1:
+            sql = """delete from boxoffice_movie_us_rank"""
             curs.execute(sql)
 
         sql = """insert into google_trends_us_rank (rank, title, url) values (%s, %s, %s)"""
         curs.execute(sql, (rank_number, title, info_url))
+
+        # sql = """insert into google_trends_us_rank (rank, title, url) values (%s, %s, %s)"""
+        # curs.execute(sql, (rank_number, title, info_url))
+        # if rank_number == 1:
+        #     sql = """delete from google_trends_us_rank"""
+        #     curs.execute(sql)
+        #
+        # sql = """insert into google_trends_us_rank (rank, title, url) values (%s, %s, %s)"""
+        # curs.execute(sql, (rank_number, title, info_url))
 
         '''
         row = curs.fetchone()

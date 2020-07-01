@@ -2,9 +2,12 @@ import pymysql
 import requests
 from bs4 import BeautifulSoup
 from abc import *
+import re
+import time
 
 import crawling
 
+count = 1
 
 class GoogleplayAppCrawling(crawling.Crawling, ABC):
     def __init__(self, main_url, db_host, db_port, db_user, db_pw, db_name, db_charset):
@@ -22,13 +25,21 @@ class GoogleplayAppCrawling(crawling.Crawling, ABC):
             # print(soup)
 
             for i in range(len(soup)):
-                RANK_URL = self.get_url("https://www.mobileindex.com/" + soup[i].find("a")["href"])
-                RANK_NAME = soup[i].select("div.appTitle > a > span.appname")[0].get_text()
-                RANK_PUBLISHER = soup[i].select("div.appTitle > a > span.publisher")[0].get_text()
-                IMAGE_URL = soup[i].select("a > img")[0]["src"]
-                RANK_TYPE = str(i%3)
-                self.connect_db(i//3, RANK_NAME, RANK_URL, IMAGE_URL, RANK_PUBLISHER, RANK_TYPE, "", "")
-                # print(str(i // 3 + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_PUBLISHER + " : " + RANK_TYPE + " : " + IMAGE_URL)
+                try:
+                    RANK_URL = self.get_url("https://www.mobileindex.com/" + soup[i].find("a")["href"])
+                    RANK_NAME = soup[i].select("div.appTitle > a > span.appname")[0].get_text()
+                    RANK_PUBLISHER = soup[i].select("div.appTitle > a > span.publisher")[0].get_text()
+                    IMAGE_URL = soup[i].select("a > img")[0]["src"]
+                    RANK_TYPE = str(i%3)
+                    self.connect_db(i//3, RANK_NAME, RANK_URL, IMAGE_URL, RANK_PUBLISHER, RANK_TYPE, "", "")
+                    print(str(i // 3 + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_PUBLISHER + " : " + RANK_TYPE + " : " + IMAGE_URL)
+                except Exception as e:
+                    RANK_NAME = re.compile('[가-힣|a-z|A-Z]+').findall(RANK_NAME)
+                    RANK_NAME2 = ""
+                    for j in RANK_NAME:
+                        RANK_NAME2 += j + " "
+                    self.connect_db(i // 3, RANK_NAME2, RANK_URL, IMAGE_URL, RANK_PUBLISHER, RANK_TYPE, "", "")
+
             f = open("./../../active_log.txt", "a")
             f.write("table : googleplay_app_rank UPDATED" + "\n")
             print("table : googleplay_app_rank UPDATED")
@@ -51,6 +62,8 @@ class GoogleplayAppCrawling(crawling.Crawling, ABC):
             return soup[14].find("a")["href"]
 
     def connect_db(self, i, name, info_url, image_url, publisher, rank_type, tmp7, tmp8):
+        global count
+
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -60,16 +73,24 @@ class GoogleplayAppCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        sql = """select name from googleplay_app_rank where rank = %s and rank_type = %s"""
-        curs.execute(sql, rank_number, rank_type)
-        row = curs.fetchone()
-        if row[0] == name:
-            # print("same googleplay app")
-            pass
-        else:
-            # print("change value " + str(rank_number) + " : " + title)
-            sql = """update googleplay_app_rank set name=%s, url=%s, image_url=%s, publisher=%s where rank=%s and rank_type = %s"""
-            curs.execute(sql, (name, info_url, image_url, publisher, rank_number, rank_type))
+        if count == 1:
+            sql = """delete from googleplay_app_rank"""
+            curs.execute(sql)
+            count += 1
+
+        sql = """insert into googleplay_app_rank (rank, name, rank_type, url, publisher, image_url) values (%s, %s, %s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, name, rank_type, info_url, publisher, image_url))
+
+        # sql = """select name from googleplay_app_rank where rank = %s and rank_type = %s"""
+        # curs.execute(sql, rank_number, rank_type)
+        # row = curs.fetchone()
+        # if row[0] == name:
+        #     # print("same googleplay app")
+        #     pass
+        # else:
+        #     # print("change value " + str(rank_number) + " : " + title)
+        #     sql = """update googleplay_app_rank set name=%s, url=%s, image_url=%s, publisher=%s where rank=%s and rank_type = %s"""
+        #     curs.execute(sql, (name, info_url, image_url, publisher, rank_number, rank_type))
 
         conn.commit()
         conn.close()

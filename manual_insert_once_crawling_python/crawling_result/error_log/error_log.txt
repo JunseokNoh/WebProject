@@ -87,3 +87,24 @@
 2020-07-01 16:46:33.035453 list index out of range
 2020-07-01 16:49:23.250337 list index out of range
 2020-07-01 17:08:48.354441 list index out of range
+2020-07-01 17:45:08.405925 (1146, "Table 'jsp_db._book_rank' doesn't exist")
+2020-07-01 17:45:42.504180 (1406, "Data too long for column 'title' at row 1")
+2020-07-01 17:46:44.179847 (1406, "Data too long for column 'title' at row 1")
+2020-07-01 17:58:02.727157 (1136, "Column count doesn't match value count at row 1")
+2020-07-01 18:08:59.119847 (1366, "Incorrect string value: '\\xF0\\x9F\\x91\\xA9\\xE2\\x80...' for column 'name' at row 1")
+2020-07-01 18:09:02.046029 (1146, "Table 'jsp_db.onestore_app_rank' doesn't exist")
+2020-07-01 18:11:55.552231 (1366, "Incorrect string value: '\\xF0\\x9F\\x91\\xA9\\xE2\\x80...' for column 'name' at row 1")
+2020-07-01 18:25:19.332070 (1241, 'Operand should contain 1 column(s)')
+2020-07-01 18:29:25.861640 'list' object cannot be interpreted as an integer
+2020-07-01 18:33:39.942335 unsupported operand type(s) for //: 'str' and 'int'
+2020-07-01 18:52:59.270878 (1146, "Table 'jsp_db.googleplay_game_rank' doesn't exist")
+2020-07-01 20:10:59.703857 (1146, "Table 'jsp_db.boxoffice_movie_us_rank' doesn't exist")
+2020-07-01 20:14:21.297922 (1146, "Table 'jsp_db.google_trends_us_rank' doesn't exist")
+2020-07-01 20:18:09.850228 unsupported format character ',' (0x2c) at index 150
+2020-07-01 20:18:41.439053 unsupported format character ',' (0x2c) at index 150
+2020-07-01 20:19:10.157677 unsupported format character ',' (0x2c) at index 150
+2020-07-01 20:22:14.951493 unsupported format character ',' (0x2c) at index 150
+2020-07-01 20:22:56.209521 unsupported format character ',' (0x2c) at index 150
+2020-07-01 20:24:23.784376 unsupported format character ',' (0x2c) at index 150
+2020-07-01 20:25:23.848275 not all arguments converted during string formatting
+2020-07-01 20:25:54.316561 name 'sql' is not defined
