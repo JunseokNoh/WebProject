@@ -1,10 +1,11 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
+<%@ page import="java.util.*" %>
+
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-
 	<%
 		Connection con = null;
 		//실검
@@ -261,7 +262,8 @@
 		padding-bottom:10px
 	}
 </style>
-	
+
+
 </head>
 
 <body>
@@ -345,45 +347,85 @@
 <div class="container pb-5"> 
 
 
-	<div class="col-md-12 templates">
-			<a href="https://forms.gle/Q7h9pUhqeLofirCE8" target="_blank"><img src="./to_google_form_button.PNG" width="250" height="45"></a>
-	</div>
 
 	<br>
 <div class="row">
 
 	<div id="div5" class="col-md-6 templates" style="" >
 	<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 실시간 검색 TOP1<a id="lookMore" href="./trend_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 실시간 검색 TOP3<a id="lookMore" href="./trend_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
 		
 	</div>
-	
+			
 	<div id="div1" class="col-md-12 templates" style="display : inline-block;">
 
-			<table class="table table-hover">
+			<table id="naver" class="table table-hover">
 	<%
 			int count = 0;
+	
+			String[] Naver_Url_list = new String[3];
+			String[] Naver_Title_list = new String[3];
+			
 			while(Naver_RS.next())
 			{
 				String rank = Naver_RS.getString("rank");
 				String title = Naver_RS.getString("title");
 				String url = Naver_RS.getString("url");
 				url = url.replaceAll(" ", "+");
-	%>
-				<tr>
-					<td style="width:25%;">네이버</td>
-					<td style="font-weight:700; width:75%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
-				</tr>
-	<%
+				String Id = Integer.toString(count);
+				Naver_Url_list[count] = url;
+				Naver_Title_list[count] = title;
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
-
-		
 	%>
+			<tbody id="naver_tbody">
+				<tr id="naver_0">
+					<td style="width:25%">네이버</td>
+					<td style="width:10%; float:left; font-weight:bold;">1</td>
+					<td style="font-weight:700;width:75%;"><a href=<%=Naver_Url_list[0]%> target="_blank"><%=Naver_Title_list[0]%></a></td>
+				</tr>
+			</tbody>
+
+			
 		</table>
+			<script type="text/javascript">
+					var naver_url = ["<%=Naver_Url_list[0]%>","<%=Naver_Url_list[1]%>","<%=Naver_Url_list[2]%>" ];
+					var naver_title = ["<%=Naver_Title_list[0]%>","<%=Naver_Title_list[1]%>","<%=Naver_Title_list[2]%>" ];
+					var naver_index = 1;
+					var naver_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#naver_tbody").empty(
+								);
+							
+							naver_rank = naver_index + 1;
+							$("#naver_tbody").append(
+									"<tr id=naver_" + naver_index + ">"+
+										 
+										" </td>" +" <td style='width:25%;'> " + " 네이버 " + 
+										" </td>" +
+										"<td style='width:10%; float:left; font-weight:bold;'>" + naver_rank +"</td>"+
+										"<td style='font-weight:700; width:75%; margin:10%;'>" + "<a href=" + naver_url[naver_index]+ " target='_blank'>" + naver_title[naver_index] + "</a>"
+										+"</td>"
+									+"</tr>"
+								);
+							naver_index ++;
+							if(naver_index == 3){
+								naver_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
+	
+
 	
 	<div id="div2" class="col-md-12 templates" style="display : inline-block;">
 			<table class="table table-hover">
@@ -397,28 +439,66 @@
 			-->
 	<%
 			count = 0;
+			String[] Zum_Url_list = new String[3];
+			String[] Zum_Title_list = new String[3];
+	
 			while(Zum_RS.next())
 			{
 				String rank = Zum_RS.getString("rank");
 				String title = Zum_RS.getString("title");
 				String url = Zum_RS.getString("url");
 				url = url.replaceAll(" ", "+");	
-	%>
-				<tbody>
-				<tr>
-					<td style="width:25%;">Zum</td>
-					<td style="font-weight:700;width:75%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
-				</tr>
-	<%
+				Zum_Url_list[count] = url;
+				Zum_Title_list[count] = title;
+				
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 		
 		
 	%>
+				<tbody id="Zum_tbody">
+					<tr id="Zum_0">
+						<td style="width:25%">Zum</td>
+						<td style="width:10%; float:left; font-weight:bold;">1</td>
+						<td style="font-weight:700;width:75%;"><a href=<%=Zum_Url_list[0]%> target="_blank"><%=Zum_Title_list[0]%></a></td>
+					</tr>
 				</tbody>
-	</table>
+			</table>
+			<script type="text/javascript">
+					var Zum_url = ["<%=Zum_Url_list[0]%>","<%=Zum_Url_list[1]%>","<%=Zum_Url_list[2]%>" ];
+					var Zum_title = ["<%=Zum_Title_list[0]%>","<%=Zum_Title_list[1]%>","<%=Zum_Title_list[2]%>" ];
+					var Zum_index = 1;
+					var Zum_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Zum_tbody").empty(
+								);
+							
+							Zum_rank = Zum_index + 1;
+							$("#Zum_tbody").append(
+									"<tr id=Zum_" + Zum_index + ">"+
+										 
+										" </td>" +" <td style='width:25%;'> " + " Zum " + 
+										" </td>" +
+										"<td style='width:10%; float:left; font-weight:bold;'>" + Zum_rank +"</td>"+
+										"<td style='font-weight:700; width:75%; margin:10%;'>" + "<a href=" + Zum_url[Zum_index]+ " target='_blank'>" + Zum_title[Zum_index] + "</a>"
+										+"</td>"
+									+"</tr>"
+								);
+							Zum_index ++;
+							if(Zum_index == 3){
+								Zum_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 	<div></div>
 	<div id="div3" class="col-md-12 templates" style="display : inline-block;">
@@ -433,77 +513,156 @@
 			-->
 	<%
 			count = 0;
+			String[] Google_Url_list = new String[3];
+			String[] Google_Title_list = new String[3];
+			
 			while(Google_RS.next())
 			{
 				String rank = Google_RS.getString("rank");
 				String title = Google_RS.getString("title");				
 				String url = Google_RS.getString("url");
 				url = url.replaceAll(" ", "+");
+				Google_Url_list[count] = url;
+				Google_Title_list[count] = title;
 	%>
-				<tbody>
-				<tr>
-					<td style="width:25%">구글</td>
-					<td style="font-weight:700;width:75%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
-				</tr>
+
 	<%
 				count++;
-			if(count >= 1)
-				break;
+				if(count >= 3)
+					break;
 			}
-
 	%>
-			</tbody>
+				<tbody id="Google_tbody">
+					<tr id="Google_0">
+						<td style="width:25%">구글</td>
+						<td style="width:10%; float:left; font-weight:bold;">1</td>
+						<td style="font-weight:700;width:75%;"><a href=<%=Google_Url_list[0]%> target="_blank"><%=Google_Title_list[0]%></a></td>
+					</tr>
+				</tbody>
 			</table>
+			<script type="text/javascript">
+					var Google_url = ["<%=Google_Url_list[0]%>","<%=Google_Url_list[1]%>","<%=Google_Url_list[2]%>" ];
+					var Google_title = ["<%=Google_Title_list[0]%>","<%=Google_Title_list[1]%>","<%=Google_Title_list[2]%>" ];
+					var Google_index = 1;
+					var Google_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Google_tbody").empty(
+								);
+							
+							Google_rank = Google_index + 1;
+							$("#Google_tbody").append(
+									"<tr id=Google_" + Google_index + ">"+
+										 
+										" </td>" +" <td style='width:25%;'> " + " 구글 " + 
+										" </td>" +
+										"<td style='width:10%; float:left; font-weight:bold;'>" + Google_rank +"</td>"+
+										"<td style='font-weight:700; width:75%; margin:10%;'>" + "<a href=" + Google_url[Google_index]+ " target='_blank'>" + Google_title[Google_index] + "</a>"
+										+"</td>"
+									+"</tr>"
+								);
+							Google_index ++;
+							if(Google_index == 3){
+								Google_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 
 	<div id="div4" class="col-md-12 templates" style="display : inline-block;">
 			<table class="table table-hover">
 	<%
 			count = 0;
+			String[] Nate_Url_list = new String[3];
+			String[] Nate_Title_list = new String[3];
+			
 			while(Nate_RS.next())
 			{
 				String rank = Nate_RS.getString("rank");
 				String title = Nate_RS.getString("title");
 				String url = "https://search.daum.net/nate?thr=sbma&w=tot&q=" + title.replaceAll(" ","+");
-
+				Nate_Url_list[count] = url;
+				Nate_Title_list[count] = title;
 	%>
-			<tbody>
-				<tr>	
-					<td style="width:25%">네이트</td>
-					<td style="font-weight:700;width:75%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
-				</tr>
 	<%
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 
 	%>
-			</tbody>
+				<tbody id="Nate_tbody">
+					<tr id="Nate_0">
+						<td style="width:25%">네이트</td>
+						<td style="width:10%; float:left; font-weight:bold;">1</td>
+						<td style="font-weight:700;width:75%;"><a href=<%=Nate_Url_list[0]%> target="_blank"><%=Nate_Title_list[0]%></a></td>
+					</tr>
+				</tbody>
+			
 			</table>
+			<script type="text/javascript">
+					var Nate_url = ["<%=Nate_Url_list[0]%>","<%=Nate_Url_list[1]%>","<%=Nate_Url_list[2]%>" ];
+					var Nate_title = ["<%=Nate_Title_list[0]%>","<%=Nate_Title_list[1]%>","<%=Nate_Title_list[2]%>" ];
+					var Nate_index = 1;
+					var Nate_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Nate_tbody").empty(
+								);
+							
+							Nate_rank = Nate_index + 1;
+							$("#Nate_tbody").append(
+									"<tr id=Nate_" + Nate_index + ">"+
+										 
+										" </td>" +" <td style='width:25%;'> " + " 네이트 " + 
+										" </td>" +
+										"<td style='width:10%; float:left; font-weight:bold;'>" + Nate_rank +"</td>"+
+										"<td style='font-weight:700; width:75%; margin:10%;'>" + "<a href=" + Nate_url[Nate_index]+ " target='_blank'>" + Nate_title[Nate_index] + "</a>"
+										+"</td>"
+									+"</tr>"
+								);
+							Nate_index ++;
+							if(Nate_index == 3){
+								Nate_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 	<br><br>
 	</div>
 	
 	<div id="div5" class="col-md-6 templates" >
 	<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 음악 TOP1<a id="lookMore" href="./music_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 음악 TOP3<a id="lookMore" href="./music_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
 	</div>
 	
 	<div id="div1" class="col-md-12 templates" style="display : inline-block;">
 		
 			<table class="table table-hover">
-				<!--  
-				<thead>	
-				<tr class="table-info">
-					<th class="table-th" style="width:5%; text-align:center;">순위</th>
-					<th class="table-th" style="width:5%; text-align:center;">제목</th>
-					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
-				</tr>
-				</thead>
-				-->
 	<%
 			count = 0;
+	
+			String[] Melon_artist_list = new String[3];
+			String[] Melon_artistURL_list = new String[3];
+			
+			String[] Melon_Title_list = new String[3];
+			String[] Melon_TitleURL_list = new String[3];
+			
+			String[] Melon_albumURL_list = new String[3];
+			String[] Melon_imageURL_list = new String[3];
+			
 			while(Melon_RS.next())
 			{
 				String rank = Melon_RS.getString("rank");
@@ -514,39 +673,99 @@
 				String album = Melon_RS.getString("album_title");
 				String album_url = Melon_RS.getString("album_url");
 				String image_url = Melon_RS.getString("image_url");
-	%>
-				<tr>
-					<td style="width:20%;">멜론</td>
-					<td>
-						<a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src=<%=image_url%> width="60" height="60"></a>
-					</td>
-					<td style="width:70%;"><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
-					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
+				
+				Melon_artist_list[count] = artist;
+				Melon_artistURL_list[count] = artist_url;
 					
-				</tr>
+				Melon_Title_list[count] = title;
+				Melon_TitleURL_list[count] = title_url;
+				
+				Melon_albumURL_list[count] = album_url;
+				Melon_imageURL_list[count] = image_url;
+	%>
+				
 	<%
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 			
 	%>
-		</table>
+					<tbody id="Melon_tbody">
+						<tr id="Melon_0">
+							<td style="width:20%;">멜론</td>
+							<td style="width:10%; float:left; font-weight:bold;">1</td>
+							<td>
+								<a href=<%=Melon_TitleURL_list[0]%> style=" font-weight:700" target="_blank"><img src=<%=Melon_imageURL_list[0]%> width="60" height="60"></a>
+							</td>
+							<td style="width:70%;"><a href=<%=Melon_TitleURL_list[0]%> style=" font-weight:700;" target="_blank"><%=Melon_Title_list[0]%></a>
+							<br>
+							<a href=<%=Melon_artistURL_list[0]%> style="font-size:13px; font-weight:10;"target="_blank"><%=Melon_artist_list[0]%></a>
+							</td>
+							
+						</tr>
+					</tbody>
+			</table>
+		<script type="text/javascript">
+					var Melon_artist = ["<%=Melon_artist_list[0]%>","<%=Melon_artist_list[1]%>","<%=Melon_artist_list[2]%>" ];
+					var Melon_artist_URL = ["<%=Melon_artistURL_list[0]%>","<%=Melon_artistURL_list[1]%>","<%=Melon_artistURL_list[2]%>" ];
+					
+					var Melon_title = ["<%=Melon_Title_list[0]%>","<%=Melon_Title_list[1]%>","<%=Melon_Title_list[2]%>" ];
+					var Melon_title_URL = ["<%=Melon_TitleURL_list[0]%>","<%=Melon_TitleURL_list[1]%>","<%=Melon_TitleURL_list[2]%>" ];
+					
+					var Melon_album_URL = ["<%=Melon_albumURL_list[0]%>","<%=Melon_albumURL_list[1]%>","<%=Melon_albumURL_list[2]%>" ];
+					var Melon_image_URL = ["<%=Melon_imageURL_list[0]%>","<%=Melon_imageURL_list[1]%>","<%=Melon_imageURL_list[2]%>" ];
+					
+					var Melon_index = 1;
+					var Melon_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Melon_tbody").empty(
+								);
+							
+							Melon_rank = Melon_index + 1;
+							$("#Melon_tbody").append(
+									"<tr id= Melon_" + Melon_index +">"+
+										"<td style='width:20%;'>" + "멜론" + "</td>"
+										+"<td style='width:10%; float:left; font-weight:bold;'>" +Melon_rank+ "</td>"+
+										"<td>"+
+											"<a href=" + Melon_title_URL[Melon_index] + " style='font-weight:bold'"+ "target='_blank'>" + "<img src=" + Melon_image_URL[Melon_index] + 
+											"width='60' height='60'></a>"
+										+"</td>"+
+										"<td style='width:70%;'>" + "<a href=" + Melon_title_URL[Melon_index]+ " style='font-weight:bold;'" + "target='_blank'>" + Melon_title[Melon_index] + "</a>"
+										+"<br>"
+										+"<a href=" + Melon_artist_URL[Melon_index]+ " style='font-size:13px; font-weight:10;'" + "target='_blank'>"+ Melon_artist[Melon_index] +"</a>"
+										+"</td>"
+									+"</tr>"
+								);
+							Melon_index ++;
+							if(Melon_index == 3){
+								Melon_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>	
 	
 	<div id="div2" class="col-md-12 templates" style="display : inline-block;">
 			<table class="table table-hover">
-			<!-- 
-			<thead>
-				<tr class="table-info">
-					<th class="table-th" style="width:5%; text-align:center;">순위</th>
-					<th class="table-th" style="width:5%; text-align:center;">제목</th>
-					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
-				</tr>
-			</thead>
-			 -->
 	<%
 			count = 0;
+	
+			String[] Genie_artist_list = new String[3];
+			String[] Genie_artistURL_list = new String[3];
+			
+			String[] Genie_Title_list = new String[3];
+			String[] Genie_TitleURL_list = new String[3];
+			
+			String[] Genie_albumURL_list = new String[3];
+			String[] Genie_imageURL_list = new String[3];
+	
 			while(Genie_RS.next())
 			{
 				String rank = Genie_RS.getString("rank");
@@ -557,39 +776,99 @@
 				String album = Genie_RS.getString("album_title");
 				String album_url = Genie_RS.getString("album_url");
 				String image_url = Genie_RS.getString("image_url");
+				
+				Genie_artist_list[count] = artist;
+				Genie_artistURL_list[count] = artist_url;
+					
+				Genie_Title_list[count] = title;
+				Genie_TitleURL_list[count] = title_url;
+				
+				Genie_albumURL_list[count] = album_url;
+				Genie_imageURL_list[count] = image_url;
 	%>
-				<tr>
-					<td style="width:20%;">지니</td>
-					<td>
-						<a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src=<%=image_url%> width="60" height="60"></a>
-					</td>
-					<td style="width:70%;"><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
-					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
-	
-				</tr>
 	<%
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 	%>
+					<tbody id="Genie_tbody">
+						<tr id="Genie_0">
+							<td style="width:20%;">지니</td>
+							<td style="width:10%; float:left; font-weight:bold;">1</td>
+							<td>
+								<a href=<%=Genie_TitleURL_list[0]%> style=" font-weight:700" target="_blank"><img src=<%=Genie_imageURL_list[0]%> width="60" height="60"></a>
+							</td>
+							<td style="width:70%;"><a href=<%=Genie_TitleURL_list[0]%> style=" font-weight:700;" target="_blank"><%=Genie_Title_list[0]%></a>
+							<br>
+							<a href=<%=Genie_artistURL_list[0]%> style="font-size:13px; font-weight:10;"target="_blank"><%=Genie_artist_list[0]%></a>
+							</td>
+							
+						</tr>
+					</tbody>
 		</table>
+		<script type="text/javascript">
+					var Genie_artist = ["<%=Genie_artist_list[0]%>","<%=Genie_artist_list[1]%>","<%=Genie_artist_list[2]%>" ];
+					var Genie_artist_URL = ["<%=Genie_artistURL_list[0]%>","<%=Genie_artistURL_list[1]%>","<%=Genie_artistURL_list[2]%>" ];
+					
+					var Genie_title = ["<%=Genie_Title_list[0]%>","<%=Genie_Title_list[1]%>","<%=Genie_Title_list[2]%>" ];
+					var Genie_title_URL = ["<%=Genie_TitleURL_list[0]%>","<%=Genie_TitleURL_list[1]%>","<%=Genie_TitleURL_list[2]%>" ];
+					
+					var Genie_album_URL = ["<%=Genie_albumURL_list[0]%>","<%=Genie_albumURL_list[1]%>","<%=Genie_albumURL_list[2]%>" ];
+					var Genie_image_URL = ["<%=Genie_imageURL_list[0]%>","<%=Genie_imageURL_list[1]%>","<%=Genie_imageURL_list[2]%>" ];
+					
+					var Genie_index = 1;
+					var Genie_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Genie_tbody").empty(
+								);
+							
+							Genie_rank = Genie_index + 1;
+							$("#Genie_tbody").append(
+									"<tr id= Genie_" + Genie_index +">"+
+										"<td style='width:20%;'>" + "지니" + "</td>"
+										+"<td style='width:10%; float:left; font-weight:bold;'>" +Genie_rank+ "</td>"+
+										"<td>"+
+											"<a href=" + Genie_title_URL[Genie_index] + " style='font-weight:bold'"+ "target='_blank'>" + "<img src="+Genie_image_URL[Genie_index]+ 
+											" width='60' height='60'></a>"
+										+"</td>"+
+										"<td style='width:70%;'>" + "<a href=" + Genie_title_URL[Genie_index]+ " style='font-weight:bold;'" + "target='_blank'>" + Genie_title[Genie_index] + "</a>"
+										+"<br>"
+										+"<a href=" + Genie_artist_URL[Genie_index]+ " style='font-size:13px; font-weight:10;'" + "target='_blank'>"+ Genie_artist[Genie_index] +"</a>"
+										+"</td>"
+									+"</tr>"
+								);
+							Genie_index ++;
+							if(Genie_index == 3){
+								Genie_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 	
 	<div id="div3" class="col-md-12 templates" style="display:inline-block;">
 		
 			<table class="table table-hover">
-			<!-- 
-				<thead>
-				<tr class="table-info">
-					<th class="table-th" style="width:5%; text-align:center;">순위</th>
-					<th class="table-th" style="width:5%; text-align:center;">제목</th>
-					<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
-				</tr>
-				</thead>
-			 -->
+
 	<%
 			count = 0;
+	
+			String[] Bugs_artist_list = new String[3];
+			String[] Bugs_artistURL_list = new String[3];
+			
+			String[] Bugs_Title_list = new String[3];
+			String[] Bugs_TitleURL_list = new String[3];
+			
+			String[] Bugs_albumURL_list = new String[3];
+			String[] Bugs_imageURL_list = new String[3];
+
 			while(Bugs_RS.next())
 			{
 				String rank = Bugs_RS.getString("rank");
@@ -600,40 +879,93 @@
 				String album = Bugs_RS.getString("album_title");
 				String album_url = Bugs_RS.getString("album_url");
 				String image_url = Bugs_RS.getString("image_url");
+				
+				Bugs_artist_list[count] = artist;
+				Bugs_artistURL_list[count] = artist_url;
+					
+				Bugs_Title_list[count] = title;
+				Bugs_TitleURL_list[count] = title_url;
+				
+				Bugs_albumURL_list[count] = album_url;
+				Bugs_imageURL_list[count] = image_url;
 	%>
-				<tr>
-					<td style="width:20%;">벅스</td>
-					<td>
-						<a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src=<%=image_url%> width="60" height="60"></a>
-					</td>
-					<td style="width:70%;"><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
-					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a></td>
 	
-
-				</tr>
+	
 	<%
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 	
 	%>
+						<tbody id="Bugs_tbody">
+						<tr id="Bugs_0">
+							<td style="width:20%;">벅스</td>
+							<td style="width:10%; float:left; font-weight:bold;">1</td>
+							<td>
+								<a href=<%=Bugs_TitleURL_list[0]%> style=" font-weight:700" target="_blank"><img src=<%=Bugs_imageURL_list[0]%> width="60" height="60"></a>
+							</td>
+							<td style="width:70%;"><a href=<%=Bugs_TitleURL_list[0]%> style=" font-weight:700;" target="_blank"><%=Bugs_Title_list[0]%></a>
+							<br>
+							<a href=<%=Bugs_artistURL_list[0]%> style="font-size:13px; font-weight:10;"target="_blank"><%=Bugs_artist_list[0]%></a>
+							</td>
+							
+						</tr>
+					</tbody>
 		</table>
+		<script type="text/javascript">
+					var Bugs_artist = ["<%=Bugs_artist_list[0]%>","<%=Bugs_artist_list[1]%>","<%=Bugs_artist_list[2]%>" ];
+					var Bugs_artist_URL = ["<%=Bugs_artistURL_list[0]%>","<%=Bugs_artistURL_list[1]%>","<%=Bugs_artistURL_list[2]%>" ];
+					
+					var Bugs_title = ["<%=Bugs_Title_list[0]%>","<%=Bugs_Title_list[1]%>","<%=Bugs_Title_list[2]%>" ];
+					var Bugs_title_URL = ["<%=Bugs_TitleURL_list[0]%>","<%=Bugs_TitleURL_list[1]%>","<%=Bugs_TitleURL_list[2]%>" ];
+					
+					var Bugs_album_URL = ["<%=Bugs_albumURL_list[0]%>","<%=Bugs_albumURL_list[1]%>","<%=Bugs_albumURL_list[2]%>" ];
+					var Bugs_image_URL = ["<%=Bugs_imageURL_list[0]%>","<%=Bugs_imageURL_list[1]%>","<%=Bugs_imageURL_list[2]%>" ];
+					
+					var Bugs_index = 1;
+					var Bugs_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Bugs_tbody").empty(
+								);
+							
+							Bugs_rank = Bugs_index + 1;
+							$("#Bugs_tbody").append(
+									"<tr id= Bugs_" + Bugs_index +">"+
+										"<td style='width:20%;'>" + "벅스" + "</td>"
+										+"<td style='width:10%; float:left; font-weight:bold;'>" +Bugs_rank+ "</td>"+
+										"<td>"+
+											"<a href=" + Bugs_title_URL[Bugs_index] + " style='font-weight:bold'"+ "target='_blank'>" + "<img src="+Bugs_image_URL[Bugs_index]+ 
+											" width='60' height='60'></a>"
+										+"</td>"+
+										"<td style='width:70%;'>" + "<a href=" + Bugs_title_URL[Bugs_index]+ " style='font-weight:bold;'" + "target='_blank'>" + Bugs_title[Bugs_index] + "</a>"
+										+"<br>"
+										+"<a href=" + Bugs_artist_URL[Bugs_index]+ " style='font-size:13px; font-weight:10;'" + "target='_blank'>"+ Bugs_artist[Bugs_index] +"</a>"
+										+"</td>"
+									+"</tr>"
+								);
+							Bugs_index ++;
+							if(Bugs_index == 3){
+								Bugs_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
+			
 	</div>
 
 	<div id="div4" class="col-md-12 templates" style="display:inline-block;">
 		<table class="table table-hover">
-			<!-- 
-			<thead>
-			<tr class="table-info">
-				<th class="table-th" style="width:5%; text-align:center;">순위</th>
-				<th class="table-th" style="width:5%; text-align:center;">제목</th>
-				<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
-			</tr>
-			</thead>
-			 -->
+
 	<%
 			count = 0;
+	
 			while(Billboard_RS.next())
 			{
 				String rank = Billboard_RS.getString("rank");
@@ -652,13 +984,14 @@
 			}
 	%>
 			</table>
+			
 	</div>
 	<br><br>
 	</div>
 	
 	<div id="div5" class="col-md-6 templates" >
 		<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 영화 TOP1<a id="lookMore" href="./movie_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 영화 TOP3<a id="lookMore" href="./movie_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
 			<br>
 		</div>
 	
@@ -667,6 +1000,15 @@
 			<table class="table table-hover">
 	<%
 			count = 0;
+	
+			String[] Boxoffice_rank_list = new String[3];
+			String[] Boxoffice_title_list = new String[3];
+			
+			String[] Boxoffice_attendance_list = new String[3];
+			String[] Boxoffice_url_list = new String[3];
+			
+			String[] Boxoffice_image_url_list = new String[3];
+			
 			while(Boxoffice_RS.next())
 			{
 				String rank = Boxoffice_RS.getString("rank");
@@ -674,21 +1016,73 @@
 				String attendance = Boxoffice_RS.getString("attendance");
 				String url = Boxoffice_RS.getString("url");
 				String image_url = Boxoffice_RS.getString("image_url");
+				
+				Boxoffice_rank_list[count] = rank;
+				Boxoffice_title_list[count] = title;
+				Boxoffice_attendance_list[count] = attendance;
+				Boxoffice_url_list[count] = url;
+				Boxoffice_image_url_list[count] = image_url;
 	%>
-				<tr>
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
-					<a style="font-size:13px; font-weight:10" target="_blank"><%=attendance%></a>
-					</td>
-				</tr>
+				
 	<%
 				count++;
-				if(count >= 1){
+				if(count >= 3){
 					break;
 				}
 			}
 	
 	%>
+				<tbody id = "Boxoffice_tbody">
+					<tr id = "Boxoffice_0">
+						<td style="width:10%; float:left; font-weight:bold;">1</td>
+						<td><a href=<%=Boxoffice_url_list[0]%> style=" font-weight:700;" target="_blank"><img src="<%=Boxoffice_image_url_list[0]%>" width="100" height="150"></a><br><a href=<%=Boxoffice_url_list[0]%> style=" font-weight:700;" target="_blank"><%=Boxoffice_title_list[0]%></a><br>
+						<a style="font-size:13px; font-weight:10" target="_blank"><%=Boxoffice_attendance_list[0]%></a>
+						</td>
+					</tr>
+				</tbody>
 	</table>
+			<script type="text/javascript">
+					var Boxoffice_rank = ["<%=Boxoffice_rank_list[0]%>","<%=Boxoffice_rank_list[1]%>","<%=Boxoffice_rank_list[2]%>" ];
+					var Boxoffice_title = ["<%=Boxoffice_title_list[0]%>","<%=Boxoffice_title_list[1]%>","<%=Boxoffice_title_list[2]%>" ];
+					
+					var Boxoffice_attendance = ["<%=Boxoffice_attendance_list[0]%>","<%=Boxoffice_attendance_list[1]%>","<%=Boxoffice_attendance_list[2]%>" ];
+					var Boxoffice_url = ["<%=Boxoffice_url_list[0]%>","<%=Boxoffice_url_list[1]%>","<%=Boxoffice_url_list[2]%>" ];
+					
+					var Boxoffice_image_url = ["<%=Boxoffice_image_url_list[0]%>","<%=Boxoffice_image_url_list[1]%>","<%=Boxoffice_image_url_list[2]%>" ];
+
+					var Boxoffice_index = 1;
+					var Boxoffice_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Boxoffice_tbody").empty(
+								);
+							
+							Boxoffice_rank = Boxoffice_index + 1;
+							$("#Boxoffice_tbody").append(
+									
+									"<tr id = Boxoffice_" + Boxoffice_index + ">"
+										+ "<td style='width:10%; float:left; font-weight:bold;'>"+ Boxoffice_rank+"</td>"
+										+ "<td><a href=" + Boxoffice_url[Boxoffice_index] + " style=' font-weight:700;' target='_blank'>"
+										+"<img src=" + Boxoffice_image_url[Boxoffice_index] + " width='100' height='150'></a>"
+										+"<br><a href="+ Boxoffice_url[Boxoffice_index] + " style=' font-weight:700;' target='_blank'>"+ 
+										Boxoffice_title[Boxoffice_index]+ "</a><br>" +
+										"<a style='font-size:13px; font-weight:10' target='_blank'>" + Boxoffice_attendance[Boxoffice_index]+ "</a>"
+										+ "</td>"
+									+"</tr>"
+								
+								);
+							Boxoffice_index ++;
+							if(Boxoffice_index == 3){
+								Boxoffice_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>	
 	
 	<div id="div2" class="col-md-5 templates" style="display : inline-block;">
@@ -696,6 +1090,15 @@
 			<table class="table table-hover">
 	<%
 			count = 0;
+	
+			String[] Daum_rank_list = new String[3];
+			String[] Daum_title_list = new String[3];
+			
+			String[] Daum_ticketing_list = new String[3];
+			String[] Daum_url_list = new String[3];
+			
+			String[] Daum_image_url_list = new String[3];
+	
 			while(Daum_RS.next())
 			{
 				String rank = Daum_RS.getString("rank");
@@ -703,37 +1106,90 @@
 				String ticketing = Daum_RS.getString("ticketing");
 				String url = Daum_RS.getString("url");
 				String image_url = Daum_RS.getString("image_url");
+				
+				Daum_rank_list[count] = rank;
+				Daum_title_list[count] = title;
+				Daum_ticketing_list[count] = ticketing;
+				Daum_url_list[count] = url;
+				Daum_image_url_list[count] = image_url;
 	%>
-				<tr>
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
-					<a  style="font-size:13px; font-weight:10"target="_blank"><%=ticketing%></a>
-					</td>
-				</tr>
+
 	<%
 				count++;
-				if(count >= 1){
+				
+				if(count >= 3){
 					break;
 				}
 			}
-	
 	%>
+			<tbody id = "Daum_tbody">
+				<tr id = "Daum_0">
+					<td style="width:10%; float:left; font-weight:bold;">1</td>
+					<td><a href=<%=Daum_url_list[0]%> style=" font-weight:700;" target="_blank"><img src="<%=Daum_image_url_list[0]%>" width="100" height="150"></a><br><a href=<%=Daum_url_list[0]%> style=" font-weight:700;" target="_blank"><%=Daum_title_list[0]%></a><br>
+					<a style="font-size:13px; font-weight:10" target="_blank"><%=Daum_ticketing_list[0]%></a>
+					</td>
+				</tr>
+			</tbody>
 	</table>
+		<script type="text/javascript">
+					var Daum_rank = ["<%=Daum_rank_list[0]%>","<%=Daum_rank_list[1]%>","<%=Daum_rank_list[2]%>" ];
+					var Daum_title = ["<%=Daum_title_list[0]%>","<%=Daum_title_list[1]%>","<%=Daum_title_list[2]%>" ];
+					
+					var Daum_ticketing = ["<%=Daum_ticketing_list[0]%>","<%=Daum_ticketing_list[1]%>","<%=Daum_ticketing_list[2]%>" ];
+					var Daum_url = ["<%=Daum_url_list[0]%>","<%=Daum_url_list[1]%>","<%=Daum_url_list[2]%>" ];
+					
+					var Daum_image_url = ["<%=Daum_image_url_list[0]%>","<%=Daum_image_url_list[1]%>","<%=Daum_image_url_list[2]%>" ];
+
+					var Daum_index = 1;
+					var Daum_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Daum_tbody").empty(
+								);
+							
+							Daum_rank = Daum_index + 1;
+							$("#Daum_tbody").append(
+									
+									"<tr id = Daum_" + Daum_index + ">"
+										+ "<td style='width:10%; float:left; font-weight:bold;'>"+ Daum_rank+"</td>"
+										+ "<td><a href=" + Daum_url[Daum_index] + " style=' font-weight:700;' target='_blank'>"
+										+"<img src=" + Daum_image_url[Daum_index] + " width='100' height='150'></a>"
+										+"<br><a href="+ Daum_url[Daum_index] + " style=' font-weight:700;' target='_blank'>"+ 
+										Daum_title[Daum_index]+ " </a><br>" +
+										"<a style='font-size:13px; font-weight:10' target='_blank'>" + Daum_ticketing[Daum_index]+ "</a>"
+										+ "</td>"
+									+"</tr>"
+								
+								);
+							Daum_index ++;
+							if(Daum_index == 3){
+								Daum_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 	
 	<div id="div3" class="col-md-5 templates" style="display:inline-block;">
 		<div id="div1" class="col-md-12 templates" >평점순</div>
 			<table class="table table-hover">
-				<!--  
-				<thead>
-					<tr class="table-info">
-						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
-						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
-						<th class="table-th" style="width:10%; text-align:center;">평 점</th>
-					</tr>
-				</thead>
-				-->
+
 	<%
 			count = 0;
+	
+			String[] Naver_rate_rank_list = new String[3];
+			String[] Naver_rate_title_list = new String[3];
+			
+			String[] Naver_rate_rating_list = new String[3];
+			String[] Naver_rate_url_list = new String[3];
+			
+			String[] Naver_rate_image_url_list = new String[3];
+		
 			while(Naver_rate_RS.next())
 			{
 				String rank = Naver_rate_RS.getString("rank");
@@ -741,21 +1197,73 @@
 				String rating = Naver_rate_RS.getString("rating");
 				String url = Naver_rate_RS.getString("url");
 				String image_url = Naver_rate_RS.getString("image_url");
+				
+				Naver_rate_rank_list[count] = rank;
+				Naver_rate_title_list[count] = title;
+				Naver_rate_rating_list[count] = rating;
+				Naver_rate_url_list[count] = url;
+				Naver_rate_image_url_list[count] = image_url;
 	%>
-				<tr>
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
-					<a  style="font-size:13px; font-weight:10"target="_blank"><%=rating%></a>
-					</td>
-				</tr>
+
 	<%
 				count++;
-				if(count >= 1){
+				if(count >= 3){
 					break;
 				}
 			}
 	
 	%>
+			<tbody id = "Naver_rate_tbody">
+				<tr id = "Naver_rate_0">
+					<td style="width:10%; float:left; font-weight:bold;">1</td>
+					<td><a href=<%=Naver_rate_url_list[0]%> style=" font-weight:700;" target="_blank"><img src="<%=Naver_rate_image_url_list[0]%>" width="100" height="150"></a><br><a href=<%=Naver_rate_url_list[0]%> style=" font-weight:700;" target="_blank"><%=Naver_rate_title_list[0]%></a><br>
+					<a style="font-size:13px; font-weight:10" target="_blank"><%=Naver_rate_rating_list[0]%></a>
+					</td>
+				</tr>
+			</tbody>
 	</table>
+		<script type="text/javascript">
+					var Naver_rate_rank = ["<%=Naver_rate_rank_list[0]%>","<%=Naver_rate_rank_list[1]%>","<%=Naver_rate_rank_list[2]%>" ];
+					var Naver_rate_title = ["<%=Naver_rate_title_list[0]%>","<%=Naver_rate_title_list[1]%>","<%=Naver_rate_title_list[2]%>" ];
+					
+					var Naver_rate_rating = ["<%=Naver_rate_rating_list[0]%>","<%=Naver_rate_rating_list[1]%>","<%=Naver_rate_rating_list[2]%>" ];
+					var Naver_rate_url = ["<%=Naver_rate_url_list[0]%>","<%=Naver_rate_url_list[1]%>","<%=Naver_rate_url_list[2]%>" ];
+					
+					var Naver_rate_image_url = ["<%=Naver_rate_image_url_list[0]%>","<%=Naver_rate_image_url_list[1]%>","<%=Naver_rate_image_url_list[2]%>" ];
+
+					var Naver_rate_index = 1;
+					var Naver_rate_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Naver_rate_tbody").empty(
+								);
+							
+							Naver_rate_rank = Naver_rate_index + 1;
+							$("#Naver_rate_tbody").append(
+									
+									"<tr id = Naver_rate_" + Naver_rate_index + ">"
+										+ "<td style='width:10%; float:left; font-weight:bold;'>"+ Naver_rate_rank+"</td>"
+										+ "<td><a href=" + Naver_rate_url[Naver_rate_index] + " style=' font-weight:700;' target='_blank'>"
+										+"<img src=" + Naver_rate_image_url[Naver_rate_index] + " width='100' height='150'></a>"
+										+"<br><a href="+ Naver_rate_url[Naver_rate_index] + " style=' font-weight:700;' target='_blank'>"+ 
+										Naver_rate_title[Naver_rate_index]+ " </a><br>" +
+										"<a style='font-size:13px; font-weight:10' target='_blank'>" + Naver_rate_rating[Naver_rate_index]+ "</a>"
+										+ "</td>"
+									+"</tr>"
+								
+								);
+							Naver_rate_index ++;
+							if(Naver_rate_index == 3){
+								Naver_rate_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 
 	<div id="div4" class="col-md-5 templates" style="display:inline-block;">
@@ -763,29 +1271,87 @@
 			<table class="table table-hover">
 	<%
 			count = 0;
+	
+			String[] Naver_movie_rank_list = new String[3];
+			String[] Naver_movie_title_list = new String[3];
+			
+			String[] Naver_movie_url_list = new String[3];
+			
+			String[] Naver_movie_image_url_list = new String[3];
+	
 			while(Naver_movie_RS.next())
 			{
 				String rank = Naver_movie_RS.getString("rank");
 				String title = Naver_movie_RS.getString("title");
 				String url = "https://movie.naver.com" + Naver_movie_RS.getString("url");
 				String image_url = Naver_movie_RS.getString("image_url");
+				
+				Naver_movie_rank_list[count] = rank;
+				Naver_movie_title_list[count] = title;
+				Naver_movie_url_list[count] = url;
+				Naver_movie_image_url_list[count] = image_url;
 	%>
 
-				<tr>
-					<td><a href=<%=url%> target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
-						<a style="font-size:13px; font-weight:10"><br></a>
-					</td>
-				</tr>
+
 	<%
 				count++;
-				if(count >= 1){
+				if(count >= 3){
 					break;
 				}
 			}
 	
 	%>
+			<tbody id = "Naver_movie_tbody">
+				<tr id = "Naver_movie_0">
+					<td style="width:10%; float:left; font-weight:bold;">1</td>
+					<td><a href=<%=Naver_movie_url_list[0]%> style=" font-weight:700;" target="_blank"><img src="<%=Naver_movie_image_url_list[0]%>" width="100" height="150"></a><br>
+					<a href=<%=Naver_movie_url_list[0]%> style=" font-weight:700;" target="_blank"><%=Naver_movie_title_list[0]%></a><br>
+					
+					</td>
+				</tr>
+			</tbody>
 	</table>
-	
+			<script type="text/javascript">
+					var Naver_movie_rank = ["<%=Naver_movie_rank_list[0]%>","<%=Naver_movie_rank_list[1]%>","<%=Naver_movie_rank_list[2]%>" ];
+					var Naver_movie_title = ["<%=Naver_movie_title_list[0]%>","<%=Naver_movie_title_list[1]%>","<%=Naver_movie_title_list[2]%>" ];
+					
+					var Naver_movie_url = ["<%=Naver_movie_url_list[0]%>","<%=Naver_movie_url_list[1]%>","<%=Naver_movie_url_list[2]%>" ];
+					
+					var Naver_movie_image_url = ["<%=Naver_movie_image_url_list[0]%>","<%=Naver_movie_image_url_list[1]%>","<%=Naver_movie_image_url_list[2]%>" ];
+
+					var Naver_movie_index = 1;
+					var Naver_movie_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Naver_movie_tbody").empty(
+								);
+							
+							Naver_movie_rank = Naver_movie_index + 1;
+							$("#Naver_movie_tbody").append(
+									
+									"<tr id = Naver_rate_" + Naver_movie_index + ">"
+										+ "<td style='width:10%; float:left; font-weight:bold;'>"+ Naver_movie_rank+"</td>"
+										+ "<td><a href=" + Naver_movie_url[Naver_movie_index] + " style=' font-weight:700;' target='_blank'>"
+										+"<img src=" + Naver_movie_image_url[Naver_movie_index] + " width='100' height='150'></a>"
+										+"<br><a href="+ Naver_movie_url[Naver_movie_index] + " style=' font-weight:700;' target='_blank'>"+ 
+										Naver_movie_title[Naver_movie_index]+ " </a><br>" +
+										
+										 "</td>"
+									+"</tr>"
+								
+								);
+							Naver_movie_index ++;
+							if(Naver_movie_index == 3){
+								Naver_movie_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 
 	</div>
@@ -831,6 +1397,7 @@
 			}
 	%>
 	</table>
+		
 	</div>	
 	
 	<div id="div2" class="col-md-5 templates" style="display : inline-block;">

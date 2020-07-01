@@ -14,8 +14,8 @@
 	PreparedStatement Genie_PS = null;
 	ResultSet Genie_RS = null;
 	
-	PreparedStatement Billboard_PS = null;
-	ResultSet Billboard_RS = null;
+	PreparedStatement flo_PS = null;
+	ResultSet flo_RS = null;
 	
 	String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
 	String MYSQL_SERVER_USERNAME = "yoobi";
@@ -58,16 +58,16 @@
 	Genie_PS = con.prepareStatement(Genie_query);
 	Genie_RS = Genie_PS.executeQuery();
 			
-	/*빌보드*/
-	String Billboard_query = "select timedata from time_data where type='1w'";
-	Billboard_PS = con.prepareStatement(Billboard_query);
-	Billboard_RS = Billboard_PS.executeQuery();
-	Billboard_RS.next();
-	String Billboard_time = Billboard_RS.getString("timedata");
+	/*플로*/
+	String flo_query = "select timedata from time_data where type='1h'";
+	flo_PS = con.prepareStatement(flo_query);
+	flo_RS = flo_PS.executeQuery();
+	flo_RS.next();
+	String flo_time = flo_RS.getString("timedata");
 
-	Billboard_query = "select * from billboard_music_rank";
-	Billboard_PS = con.prepareStatement(Billboard_query);
-	Billboard_RS = Billboard_PS.executeQuery();
+	flo_query = "select * from flo_music_rank";
+	flo_PS = con.prepareStatement(flo_query);
+	flo_RS = flo_PS.executeQuery();
 %>
 <html>
 <head>
@@ -85,8 +85,6 @@
 <!-- 추가해야할거 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./css/table.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
 <script src="https://www.w3schools.com/lib/w3.js"></script>
 
 <style type="text/css">
@@ -115,7 +113,7 @@
 <nav class="navbar navbar-light"> 
 		<a class="navbar-brand " href="./index.jsp"> 
 		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
-		홈페이지이름
+		랭킹.pw
 		</a> 
 </nav> 
 
@@ -160,11 +158,8 @@
 <section id="landing" style="height"> 
 
 <div class="container"> 
-	<h1  class="poppins" style="font-size:50px;">음악 차트</h1>
-	<form action="search_music_rank.jsp" method="post" style="float:right;">
-		<input type="text" name="search_text">
-		<input type="submit" value="검색">
-	</form>
+
+<h1  class="poppins" style="font-size:50px;">음악 차트</h1> 
 <br>
 <!-- 
 <a class="btn btn-primary my-2" href="https://www.velosofy.com/templates">Find a template</a> 
@@ -205,6 +200,7 @@
 				</thead>
 				-->
 	<%
+			int count = 0;
 			while(Melon_RS.next())
 			{
 				String rank = Melon_RS.getString("rank");
@@ -218,21 +214,21 @@
 	%>
 				<tr>
 	<%
-				if(rank.equals("1"))
+				if(count == 0)
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
 
 	<%
 				}
-				else if(rank.equals("2"))
+				else if(count == 1)
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
 
 	<%
 				}
-				else if(rank.equals("3"))
+				else if(count == 2)
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
@@ -252,6 +248,7 @@
 					
 				</tr>
 	<%
+				count++;
 			}
 			
 	%>
@@ -274,6 +271,7 @@
 			</thead>
 			 -->
 	<%
+			count = 0;
 			while(Genie_RS.next())
 			{
 				String rank = Genie_RS.getString("rank");
@@ -287,21 +285,21 @@
 	%>
 				<tr>
 	<%
-				if(rank.equals("1"))
+				if(count == 0)
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
 
 	<%
 				}
-				else if(rank.equals("2"))
+				else if(count == 1)
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
 
 	<%
 				}
-				else if(rank.equals("3"))
+				else if(count == 2)
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
@@ -321,6 +319,7 @@
 					</td>
 				</tr>
 	<%
+				count++;
 			}
 	%>
 		</table>
@@ -343,6 +342,7 @@
 				</thead>
 			 -->
 	<%
+			count = 0;
 			while(Bugs_RS.next())
 			{
 				String rank = Bugs_RS.getString("rank");
@@ -353,6 +353,78 @@
 				String album = Bugs_RS.getString("album_title");
 				String album_url = Bugs_RS.getString("album_url");
 				String image_url = Bugs_RS.getString("image_url");
+	%>
+				<tr>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
+					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src="<%=image_url%>" width="60" height="60"></a></td>
+					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a>
+					</td>
+				</tr>
+	<%
+				count++;
+			}
+	
+	%>
+		</table>
+		<br><br>
+	</div>
+
+	<br>
+	<div id="div4" class="col-md-6 templates" style="width:100%;">
+				<h3 >플로 차트</h3>
+		<h6><%=flo_time%></h6>
+		<table class="table table-hover">
+			<!-- 
+			<thead>
+			<tr class="table-info">
+				<th class="table-th" style="width:5%; text-align:center;">순위</th>
+				<th class="table-th" style="width:5%; text-align:center;">제목</th>
+				<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
+			</tr>
+			</thead>
+			 -->
+	<%
+			count = 0;
+			while(flo_RS.next())
+			{
+				String rank = flo_RS.getString("rank");
+				String title = flo_RS.getString("song_title");
+				String title_url = flo_RS.getString("song_url");
+				String artist = flo_RS.getString("song_artist");
+				String artist_url = flo_RS.getString("artist_url");
+				String album_title = flo_RS.getString("album_title");
+				String album_url = flo_RS.getString("album_url");
+				String image_url = flo_RS.getString("image_url");
 	%>
 				<tr>
 	<%
@@ -387,73 +459,10 @@
 
 					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src="<%=image_url%>" width="60" height="60"></a></td>
 					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
-					<a href=<%=artist_url%> style="font-size:13px; font-weight:10"target="_blank"><%=artist%></a>
-					</td>
+						<a href=<%=artist_url%> style="font-size:13px; font-weight:10" target="_blank"><%=artist%></a></td>
 				</tr>
 	<%
-			}
-	
-	%>
-		</table>
-		<br><br>
-	</div>
-
-	<br>
-	<div id="div4" class="col-md-6 templates" style="width:100%;">
-				<h3 >빌보드 차트</h3>
-		<h6><%=Billboard_time%></h6>
-		<table class="table table-hover">
-			<!-- 
-			<thead>
-			<tr class="table-info">
-				<th class="table-th" style="width:5%; text-align:center;">순위</th>
-				<th class="table-th" style="width:5%; text-align:center;">제목</th>
-				<th class="table-th" style="width:5%; text-align:center;">아티스트</th>
-			</tr>
-			</thead>
-			 -->
-	<%
-			while(Billboard_RS.next())
-			{
-				String rank = Billboard_RS.getString("rank");
-				String title = Billboard_RS.getString("song_title");
-				String artist = Billboard_RS.getString("song_artist");
-	%>
-				<tr>
-	<%
-				if(rank.equals("1"))
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
-
-	<%
-				}
-				else if(rank.equals("2"))
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
-
-	<%
-				}
-				else if(rank.equals("3"))
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
-
-	<%
-				}
-				else
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
-	<%
-				}
-	%>
-
-					<td ><a style=" font-weight:700"><%=title%></a><br>
-					<a style="font-size:13px; font-weight:10"><%=artist%></a></td>
-				</tr>
-	<%
+				count++;
 			}
 	%>
 			</table>
