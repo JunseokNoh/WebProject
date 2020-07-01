@@ -211,6 +211,8 @@
 				String rank = Boxoffice_RS.getString("rank");
 				String title = Boxoffice_RS.getString("title");
 				String attendance = Boxoffice_RS.getString("attendance");
+				String director_name = Boxoffice_RS.getString("director_name");
+				String actor_names = Boxoffice_RS.getString("actor_names");
 				String url = Boxoffice_RS.getString("url");
 				String image_url = Boxoffice_RS.getString("image_url");
 	%>
@@ -243,11 +245,13 @@
 					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
 	<%
 				}
-	%>
-
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
-					<a style="font-size:13px; font-weight:10" target="_blank"><%=attendance%></a>
-					</td>
+	%>			
+					<td width="110"><a href=<%=url%> style="font-size:20px;font-weight:700" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a></td>
+					<td><a href=<%=url%> style=" font-weight:1000" target="_blank"><%=title%></a><br><br>
+					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">감독: <%=director_name%></div></a>
+					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">배우: <%=actor_names%></div></a><br>
+					<a style="font-size:13px; font-weight:15"target="_blank"><%=attendance%></a></td>
+					
 				</tr>
 	<%
 				count++;
@@ -282,6 +286,8 @@
 				String rank = Daum_RS.getString("rank");
 				String title = Daum_RS.getString("title");
 				String ticketing = Daum_RS.getString("ticketing");
+				String director_name = Daum_RS.getString("director_name");
+				String actor_names = Daum_RS.getString("actor_names");
 				String url = Daum_RS.getString("url");
 				String image_url = Daum_RS.getString("image_url");
 	%>
@@ -316,9 +322,12 @@
 				}
 	%>
 
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
-					<a  style="font-size:13px; font-weight:10"target="_blank"><%=ticketing%></a>
-					</td>
+					<td width="110"><a href=<%=url%> style="font-size:20px;font-weight:700" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a></td>
+					<td><a href=<%=url%> style=" font-weight:1000" target="_blank"><%=title%></a><br><br>
+					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">감독: <%=director_name%></div></a>
+					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">배우: <%=actor_names%></div></a><br>
+					<a style="font-size:13px; font-weight:15"target="_blank"><%=ticketing%></a></td>
+					
 				</tr>
 	<%
 				count++;
@@ -353,6 +362,8 @@
 				String rank = Naver_rate_RS.getString("rank");
 				String title = Naver_rate_RS.getString("title");
 				String rating = Naver_rate_RS.getString("rating");
+				String director_name = Naver_rate_RS.getString("director_name");
+				String actor_names = Naver_rate_RS.getString("actor_names");
 				String url = Naver_rate_RS.getString("url");
 				String image_url = Naver_rate_RS.getString("image_url");
 	%>
@@ -387,9 +398,11 @@
 				}
 	%>
 
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a><br>
-					<a  style="font-size:13px; font-weight:10"target="_blank"><%=rating%></a>
-					</td>
+					<td width="110"><a href=<%=url%> style="font-size:20px;font-weight:700" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a></td>
+					<td><a href=<%=url%> style=" font-weight:1000" target="_blank"><%=title%></a><br><br>
+					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">감독: <%=director_name%></div></a>
+					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">배우: <%=actor_names%></div></a><br>
+					<a style="font-size:13px; font-weight:15"target="_blank"><%=rating%></a></td>
 				</tr>
 	<%
 				count++;
@@ -424,6 +437,8 @@
 				String title = Naver_RS.getString("title");
 				String url = "https://movie.naver.com" + Naver_RS.getString("url");
 				String image_url = Naver_RS.getString("image_url");
+				String director_name = Naver_RS.getString("director_name");
+				String actor_names = Naver_RS.getString("actor_names");
 	%>
 				<tr>
 	<%
@@ -456,9 +471,12 @@
 				}
 	%>
 
-					<td><a href=<%=url%> target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
-						<a style="font-size:13px; font-weight:10"><br></a>
+					<td width="110"><a href=<%=url%> style="font-size:20px;font-weight:700" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a></td>
+					<td><a href=<%=url%> style=" font-weight:1000" target="_blank"><%=title%></a><br><br>
+					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">감독: <%=director_name%></div></a>
+					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">배우: <%=actor_names%></div></a><br>
 					</td>
+					
 				</tr>
 	<%
 				count++;
