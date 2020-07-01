@@ -30,8 +30,8 @@
 		PreparedStatement Genie_PS = null;
 		ResultSet Genie_RS = null;
 		
-		PreparedStatement Billboard_PS = null;
-		ResultSet Billboard_RS = null;		
+		PreparedStatement flo_PS = null;
+		ResultSet flo_RS = null;
 		///영화
 		PreparedStatement Boxoffice_PS = null;
 		ResultSet Boxoffice_RS = null;
@@ -128,16 +128,16 @@
 		Genie_PS = con.prepareStatement(Genie_query);
 		Genie_RS = Genie_PS.executeQuery();
 				
-		/*빌보드*/
-		String Billboard_query = "select timedata from time_data where type='1w'";
-		Billboard_PS = con.prepareStatement(Billboard_query);
-		Billboard_RS = Billboard_PS.executeQuery();
-		Billboard_RS.next();
-		String Billboard_time = Billboard_RS.getString("timedata");
+		/*플로*/
+		String flo_query = "select timedata from time_data where type='1h'";
+		flo_PS = con.prepareStatement(flo_query);
+		flo_RS = flo_PS.executeQuery();
+		flo_RS.next();
+		String flo_time = flo_RS.getString("timedata");
 	
-		Billboard_query = "select * from billboard_music_rank";
-		Billboard_PS = con.prepareStatement(Billboard_query);
-		Billboard_RS = Billboard_PS.executeQuery();
+		flo_query = "select * from flo_music_rank";
+		flo_PS = con.prepareStatement(flo_query);
+		flo_RS = flo_PS.executeQuery();
 	
 		///영화
 		/*박스오피스*/
@@ -236,15 +236,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>랭킹.pw</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<meta content="@VelosofyYT" name="twitter:creator"/> 
-<meta content="https://www.velosofy.com/img/card.png" name="twitter:image:src"/> 
-<meta content="228490107301532" property="fb:admins"/> 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
 
-	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
+<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
 	  
   
 <!-- 추가해야할거 -->
@@ -283,53 +280,7 @@
     ga('send', 'pageview');
 </script>
 
-<div id="app"> 
-
-<nav class="navbar navbar-expand-md navbar-light navbar-velosofy"> 
-	<div class="container"> 
-<nav class="navbar navbar-light"> 
-		<a class="navbar-brand " href="./index.jsp"> 
-		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
-		홈페이지이름
-		</a> 
-	</a> 
-</nav> 
-
-<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"> 
-<span class="navbar-toggler-icon"></span> </button> 
-
-<div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-
-<ul class="navbar-nav mr-auto"> 
-
-<li class="nav-item"> 
-<a class="nav-link" href="./trend_rank.jsp">실검 차트</a> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./music_rank.jsp">음악 차트</a> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./movie_rank.jsp">영화 차트</a> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./book_rank.jsp">도서 차트</a> 
-</li> 
-	<li class="nav-item"> 
-	<a class="nav-link">자유게시판(준비중)</a> 
-	</li> 
-</ul>
-
-<ul class="navbar-nav ml-auto"> 
-<li class="nav-item"> 
-<a class="nav-link">로그인(준비중)</a> 
-</li> 
-<li class="nav-item"> <a class="nav-link">회원가입(준비중)</a> 
-</li> 
-</ul> 
-
-</div> 
-</div>
-</nav>
+<jsp:include page="header.jsp" flush="true"/>
 
 <main> 
 
@@ -429,14 +380,7 @@
 	
 	<div id="div2" class="col-md-12 templates" style="display : inline-block;">
 			<table class="table table-hover">
-			<!--  
-				<thead>
-					<tr class="table-info">
-						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
-						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
-					</tr>
-				</thead>
-			-->
+
 	<%
 			count = 0;
 			String[] Zum_Url_list = new String[3];
@@ -965,25 +909,103 @@
 
 	<%
 			count = 0;
-	
-			while(Billboard_RS.next())
+			
+			String[] flo_artist_list = new String[3];
+			String[] flo_artistURL_list = new String[3];
+			
+			String[] flo_Title_list = new String[3];
+			String[] flo_TitleURL_list = new String[3];
+			
+			String[] flo_albumURL_list = new String[3];
+			String[] flo_imageURL_list = new String[3];
+
+			while(flo_RS.next())
 			{
-				String rank = Billboard_RS.getString("rank");
-				String title = Billboard_RS.getString("song_title");
-				String artist = Billboard_RS.getString("song_artist");
+				String rank = flo_RS.getString("rank");
+				String title = flo_RS.getString("song_title");
+				String title_url = flo_RS.getString("song_url");
+				String artist = flo_RS.getString("song_artist");
+				String artist_url = flo_RS.getString("artist_url");
+				String album = flo_RS.getString("album_title");
+				String album_url = flo_RS.getString("album_url");
+				String image_url = flo_RS.getString("image_url");
+				
+				flo_artist_list[count] = artist;
+				flo_artistURL_list[count] = artist_url;
+					
+				flo_Title_list[count] = title;
+				flo_TitleURL_list[count] = title_url;
+				
+				flo_albumURL_list[count] = album_url;
+				flo_imageURL_list[count] = image_url;
 	%>
-				<tr>
-					<td style="width:20%;">빌보드</td>
-					<td style="width:70%;"><a style=" font-weight:700" target="_blank"><%=title%></a><br>
-					<a style="font-size:13px; font-weight:10" target="_blank"><%=artist%></a></td>
-				</tr>
+				
 	<%
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 	%>
+				<tbody id = "flo_tbody">
+				<tr id="flo_0">
+							<td style="width:20%;">플로</td>
+							<td style="width:10%; float:left; font-weight:bold;">1</td>
+							<td>
+								<a href=<%=flo_TitleURL_list[0]%> style=" font-weight:700" target="_blank"><img src=<%=flo_imageURL_list[0]%> width="60" height="60"></a>
+							</td>
+							<td style="width:70%;"><a href=<%=flo_TitleURL_list[0]%> style=" font-weight:700;" target="_blank"><%=flo_Title_list[0]%></a>
+							<br>
+							<a href=<%=flo_artistURL_list[0]%> style="font-size:13px; font-weight:10;"target="_blank"><%=flo_artist_list[0]%></a>
+							</td>
+							
+				</tr>
+				</tbody>
+				
 			</table>
+			<script type="text/javascript">
+					var flo_artist = ["<%=flo_artist_list[0]%>","<%=flo_artist_list[1]%>","<%=flo_artist_list[2]%>" ];
+					var flo_artist_URL = ["<%=flo_artistURL_list[0]%>","<%=flo_artistURL_list[1]%>","<%=flo_artistURL_list[2]%>" ];
+					
+					var flo_title = ["<%=flo_Title_list[0]%>","<%=flo_Title_list[1]%>","<%=flo_Title_list[2]%>" ];
+					var flo_title_URL = ["<%=flo_TitleURL_list[0]%>","<%=flo_TitleURL_list[1]%>","<%=flo_TitleURL_list[2]%>" ];
+					
+					var flo_album_URL = ["<%=flo_albumURL_list[0]%>","<%=flo_albumURL_list[1]%>","<%=flo_albumURL_list[2]%>" ];
+					var flo_image_URL = ["<%=flo_imageURL_list[0]%>","<%=flo_imageURL_list[1]%>","<%=flo_imageURL_list[2]%>" ];
+					
+					var flo_index = 1;
+					var flo_rank = 0;
+
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#flo_tbody").empty(
+								);
+							
+							flo_rank = flo_index + 1;
+							$("#flo_tbody").append(
+									"<tr id= flo_" + flo_index +">"+
+										"<td style='width:20%;'>" + "플로" + "</td>"
+										+"<td style='width:10%; float:left; font-weight:bold;'>" +flo_rank+ "</td>"+
+										"<td>"+
+											"<a href=" + flo_title_URL[flo_index] + " style='font-weight:bold'"+ "target='_blank'>" + "<img src="+flo_image_URL[flo_index]+ 
+											" width='60' height='60'></a>"
+										+"</td>"+
+										"<td style='width:70%;'>" + "<a href=" + flo_title_URL[flo_index]+ " style='font-weight:bold;'" + "target='_blank'>" + flo_title[flo_index] + "</a>"
+										+"<br>"
+										+"<a href=" + flo_artist_URL[flo_index]+ " style='font-size:13px; font-weight:10;'" + "target='_blank'>"+ flo_artist[flo_index] +"</a>"
+										+"</td>"
+									+"</tr>"
+								);
+							flo_index ++;
+							if(flo_index == 3){
+								flo_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 			
 	</div>
 	<br><br>
@@ -1358,17 +1380,25 @@
 	
 		<div id="div5" class="col-md-6 templates" >
 		<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 도서 TOP1<a id="lookMore" href="./book_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 도서 TOP3<a id="lookMore" href="./book_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
 		<br>
 		</div>
 	
-	<div id="div1" class="col-md-5 templates" style="display : inline-block;">
+		<div id="div1" class="col-md-5 templates" style="display : inline-block;">
 			<div id="div1" class="col-md-12 templates" >인터파크</div>
-			<table class="table table-hover">
+				<table class="table table-hover">
 
 	<%
 			
 			count = 0;
+			
+			String[] Inter_rank_list = new String[3];
+			String[] Inter_title_list = new String[3];
+			String[] Inter_url_list = new String[3];
+			String[] Inter_author_list = new String[3];
+			String[] Inter_publisher_list = new String[3];
+			String[] Inter_image_url_list = new String[3];
+			
 			while(Inter_RS.next())
 			{
 				String rank = Inter_RS.getString("rank");
@@ -1377,27 +1407,78 @@
 				String author = Inter_RS.getString("author");
 				String publisher = Inter_RS.getString("publisher");
 				String image_url = Inter_RS.getString("image_url");
-				/* yoobi delete it
-				author = "저자 : "+ author + "\n출판사 : " + publisher;
-				*/
+				
+				Inter_rank_list[count] = rank;
+				Inter_title_list[count] = title;
+				Inter_url_list[count]  = url;
+				Inter_author_list[count]  = author;
+				Inter_publisher_list[count]  = publisher;
+				Inter_image_url_list[count]  = image_url;
 	%>
-				<tr>
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
-						<br>
-						<a style="font-size:13px; font-weight:10" target="_blank">
-							<%=author%>
-						<a>
-					</td>
-					
-				</tr>
+
 	<%
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 	%>
+			<tbody id="Inter_tbody">
+				<tr id="Inter_0"> 
+					<td style="width:10%; float:left; font-weight:bold;">1</td>
+					<td><a href=<%=Inter_url_list[0]%> style=" font-weight:700;" target="_blank"><img src=<%=Inter_image_url_list[0]%> width="100" height="150"></a><br><a href=<%=Inter_url_list[0]%> style=" font-weight:700;" target="_blank"><%=Inter_title_list[0]%></a>	
+						<br>
+						<a style="font-size:13px; font-weight:10" target="_blank">
+							<%=Inter_author_list[0]%>
+						</a>
+					</td>
+				</tr>
+			</tbody>
 	</table>
-		
+		<script type="text/javascript">
+					
+					var Inter_rank= ["<%=Inter_rank_list[0]%>","<%=Inter_rank_list[1]%>","<%=Inter_rank_list[2]%>" ];
+					var Inter_title = ["<%=Inter_title_list[0]%>","<%=Inter_title_list[1]%>","<%=Inter_title_list[2]%>" ];
+					var Inter_url  = ["<%=Inter_url_list[0]%>","<%=Inter_url_list[1]%>","<%=Inter_url_list[2]%>" ];
+					var Inter_author  = ["<%=Inter_author_list[0]%>","<%=Inter_author_list[1]%>","<%=Inter_author_list[2]%>" ];
+					var Inter_publisher  = ["<%=Inter_publisher_list[0]%>","<%=Inter_publisher_list[1]%>","<%=Inter_publisher_list[2]%>" ];
+					var Inter_image_url  = ["<%=Inter_image_url_list[0]%>","<%=Inter_image_url_list[1]%>","<%=Inter_image_url_list[2]%>" ];
+
+					var Inter_index = 1;
+					var Inter_rank = 0;
+					
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Inter_tbody").empty(
+									
+							);
+							
+							Inter_rank = Inter_index + 1;
+							
+							$("#Inter_tbody").append(
+								"<tr id=Inter_" + Inter_index + ">" 
+									+ "<td style='width:10%; float:left; font-weight:bold;'>"+ Inter_rank +"</td>"
+									+ "<td>" + "<a href=" + Inter_url[Inter_index] + " style='font-weight:700;' target='_blank'>"
+									+ "<img src=" + Inter_image_url[Inter_index] + " width='100' height='150'></a>"
+									+ "<br>" 
+									+"<a href=" + Inter_url[Inter_index] + " style='font-weight:700;' target='_blank'>" + Inter_title[Inter_index] + "</a>"
+										+"<br>"
+									 + "<a style='font-size:13px; font-weight:10' target='_blank'>"+ Inter_author[Inter_index]
+									+"</a>"
+									+ "</td>"	
+								+"</tr>"
+							);
+							
+							Inter_index ++;
+							if(Inter_index == 3){
+								Inter_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>	
 	
 	<div id="div2" class="col-md-5 templates" style="display : inline-block;">
@@ -1406,6 +1487,14 @@
 
 	<%
 			count = 0;
+	
+			String[] Kyobo_rank_list = new String[3];
+			String[] Kyobo_title_list = new String[3];
+			String[] Kyobo_url_list = new String[3];
+			String[] Kyobo_author_list = new String[3];
+			String[] Kyobo_publisher_list = new String[3];
+			String[] Kyobo_image_url_list = new String[3];
+
 			while(Kyobo_RS.next())
 			{
 				String rank = Kyobo_RS.getString("rank");
@@ -1414,38 +1503,100 @@
 				String author = Kyobo_RS.getString("author");
 				String publisher = Kyobo_RS.getString("publisher");
 				String image_url = Kyobo_RS.getString("image_url");
+				
+				Kyobo_rank_list[count] = rank;
+				Kyobo_title_list[count] = title;
+				Kyobo_url_list[count]  = url;
+				Kyobo_author_list[count]  = author;
+				Kyobo_publisher_list[count]  = publisher;
+				Kyobo_image_url_list[count]  = image_url;
+
+
 	%>		
-				<tr>
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
-						<br>
-						<a style="font-size:13px; font-weight:10" target="_blank">
-							<%=author%>
-						<a>
-					</td>
-					
-				</tr>
+
 	<%
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 	%>
+	
+		
+			<tbody id="Kyobo_tbody">
+				<tr id="Kyobo_0"> 
+					<td style="width:10%; float:left; font-weight:bold;">1</td>
+					<td><a href=<%=Kyobo_url_list[0]%> style=" font-weight:700;" target="_blank"><img src=<%=Kyobo_image_url_list[0]%> width="100" height="150"></a><br><a href=<%=Kyobo_url_list[0]%> style=" font-weight:700;" target="_blank"><%=Kyobo_title_list[0]%></a>	
+						<br>
+						<a style="font-size:13px; font-weight:10" target="_blank">
+							<%=Kyobo_author_list[0]%>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		
 	</table>
+		
+<script type="text/javascript">
+					
+					var Kyobo_rank= ["<%=Kyobo_rank_list[0]%>","<%=Kyobo_rank_list[1]%>","<%=Kyobo_rank_list[2]%>" ];
+					var Kyobo_title = ["<%=Kyobo_title_list[0]%>","<%=Kyobo_title_list[1]%>","<%=Kyobo_title_list[2]%>" ];
+					var Kyobo_url  = ["<%=Kyobo_url_list[0]%>","<%=Kyobo_url_list[1]%>","<%=Kyobo_url_list[2]%>" ];
+					var Kyobo_author  = ["<%=Kyobo_author_list[0]%>","<%=Kyobo_author_list[1]%>","<%=Kyobo_author_list[2]%>" ];
+					var Kyobo_publisher  = ["<%=Kyobo_publisher_list[0]%>","<%=Kyobo_publisher_list[1]%>","<%=Kyobo_publisher_list[2]%>" ];
+					var Kyobo_image_url  = ["<%=Kyobo_image_url_list[0]%>","<%=Kyobo_image_url_list[1]%>","<%=Kyobo_image_url_list[2]%>" ];
+
+					var Kyobo_index = 1;
+					var Kyobo_rank = 0;
+					
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Kyobo_tbody").empty(
+									
+							);
+							
+							Kyobo_rank = Kyobo_index + 1;
+							
+							$("#Kyobo_tbody").append(
+								"<tr id=Kyobo_" + Kyobo_index + ">" 
+									+ "<td style='width:10%; float:left; font-weight:bold;'>"+ Kyobo_rank +"</td>"
+									+ "<td>" + "<a href=" + Kyobo_url[Kyobo_index] + " style='font-weight:700;' target='_blank'>"
+									+ "<img src=" + Kyobo_image_url[Kyobo_index] + " width='100' height='150'></a>"
+									+ "<br>" 
+									+"<a href=" + Kyobo_url[Kyobo_index] + " style='font-weight:700;' target='_blank'>" + Kyobo_title[Kyobo_index] + "</a>"
+										+"<br>"
+									 + "<a style='font-size:13px; font-weight:10' target='_blank'>"+ Kyobo_author[Kyobo_index]
+									+"</a>"
+									+ "</td>"	
+								+"</tr>"
+							);
+							
+							Kyobo_index ++;
+							if(Kyobo_index == 3){
+								Kyobo_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 	
 	<div id="div3" class="col-md-5 templates" style="display:inline-block;">
 			<div id="div1" class="col-md-12 templates" >YES24</div>
 			<table class="table table-hover">
-			<!--
-				<thead>
-					<tr class="table-info">
-						<th style="width:5%; text-align:center;">순 위</th>
-						<th style="width:30%; text-align:center;">제 목</th>
-					</tr>
-				</thead>
-			-->
+
 	<%
 			count = 0;
+	
+			String[] Yes_rank_list = new String[3];
+			String[] Yes_title_list = new String[3];
+			String[] Yes_url_list = new String[3];
+			String[] Yes_author_list = new String[3];
+			String[] Yes_publisher_list = new String[3];
+			String[] Yes_image_url_list = new String[3];
+
 			while(Yes_RS.next())
 			{
 				String rank = Yes_RS.getString("rank");
@@ -1454,31 +1605,96 @@
 				String author = Yes_RS.getString("author");
 				String publisher = Yes_RS.getString("publisher");
 				String image_url = Yes_RS.getString("image_url");
+				
+				Yes_rank_list[count] = rank;
+				Yes_title_list[count] = title;
+				Yes_url_list[count]  = url;
+				Yes_author_list[count]  = author;
+				Yes_publisher_list[count]  = publisher;
+				Yes_image_url_list[count]  = image_url;
+
+
 	%>
-				<tr>
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
-						<br>
-						<a style="font-size:13px; font-weight:10" target="_blank">
-							<%=author%>
-						</a>
-					</td>
-					
-				</tr>
+
 	<%
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 	%>
+		<tbody id="Yes_tbody">
+				<tr id="Yes_0"> 
+					<td style="width:10%; float:left; font-weight:bold;">1</td>
+					<td><a href=<%=Yes_url_list[0]%> style=" font-weight:700;" target="_blank"><img src=<%=Yes_image_url_list[0]%> width="100" height="150"></a><br><a href=<%=Yes_url_list[0]%> style=" font-weight:700;" target="_blank"><%=Yes_title_list[0]%></a>	
+						<br>
+						<a style="font-size:13px; font-weight:10" target="_blank">
+							<%=Yes_author_list[0]%>
+						</a>
+					</td>
+				</tr>
+			</tbody>
 	</table>
+		
+<script type="text/javascript">
+					
+					var Yes_rank= ["<%=Yes_rank_list[0]%>","<%=Yes_rank_list[1]%>","<%=Yes_rank_list[2]%>" ];
+					var Yes_title = ["<%=Yes_title_list[0]%>","<%=Yes_title_list[1]%>","<%=Yes_title_list[2]%>" ];
+					var Yes_url  = ["<%=Yes_url_list[0]%>","<%=Yes_url_list[1]%>","<%=Yes_url_list[2]%>" ];
+					var Yes_author  = ["<%=Yes_author_list[0]%>","<%=Yes_author_list[1]%>","<%=Yes_author_list[2]%>" ];
+					var Yes_publisher  = ["<%=Yes_publisher_list[0]%>","<%=Yes_publisher_list[1]%>","<%=Yes_publisher_list[2]%>" ];
+					var Yes_image_url  = ["<%=Yes_image_url_list[0]%>","<%=Yes_image_url_list[1]%>","<%=Yes_image_url_list[2]%>" ];
+
+					var Yes_index = 1;
+					var Yes_rank = 0;
+					
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Yes_tbody").empty(
+									
+							);
+							
+							Yes_rank = Yes_index + 1;
+							
+							$("#Yes_tbody").append(
+								"<tr id=Yes_" + Yes_index + ">" 
+									+ "<td style='width:10%; float:left; font-weight:bold;'>"+ Yes_rank +"</td>"
+									+ "<td>" + "<a href=" + Yes_url[Yes_index] + " style='font-weight:700;' target='_blank'>"
+									+ "<img src=" + Yes_image_url[Yes_index] + " width='100' height='150'></a>"
+									+ "<br>" 
+									+"<a href=" + Yes_url[Yes_index] + " style='font-weight:700;' target='_blank'>" + Yes_title[Yes_index] + "</a>"
+										+"<br>"
+									 + "<a style='font-size:13px; font-weight:10' target='_blank'>"+ Yes_author[Yes_index]
+									+"</a>"
+									+ "</td>"	
+								+"</tr>"
+							);
+							
+							Yes_index ++;
+							if(Yes_index == 3){
+								Yes_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 
 	<div id="div4" class="col-md-5 templates" style="display:inline-block;">
 		<div id="div1" class="col-md-12 templates" >알라딘</div>
 		<table class="table table-hover" >
-
+	
 	<%
 			count = 0;
+			String[] Aladin_rank_list = new String[3];
+			String[] Aladin_title_list = new String[3];
+			String[] Aladin_url_list = new String[3];
+			String[] Aladin_author_list = new String[3];
+			String[] Aladin_publisher_list = new String[3];
+			String[] Aladin_image_url_list = new String[3];
+
 			while(Aladin_RS.next())
 			{
 				String rank = Aladin_RS.getString("rank");
@@ -1487,31 +1703,88 @@
 				String author = Aladin_RS.getString("author");
 				String publisher = Aladin_RS.getString("publisher");
 				String image_url = Aladin_RS.getString("image_url");
+				
+				Aladin_rank_list[count] = rank;
+				Aladin_title_list[count] = title;
+				Aladin_url_list[count]  = url;
+				Aladin_author_list[count]  = author;
+				Aladin_publisher_list[count]  = publisher;
+				Aladin_image_url_list[count]  = image_url;
+
+
 	%>
-				<tr>
-					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
-						<br>
-						<a style="font-size:13px; font-weight:10" target="_blank">
-							<%=author%>
-						<a>
-					</td>
-					
-				</tr>
 
 	<%
 				count++;
-				if(count >= 1)
+				if(count >= 3)
 					break;
 			}
 	%>
+		
+			<tbody id="Aladin_tbody">
+				<tr id="Aladin_0"> 
+					<td style="width:10%; float:left; font-weight:bold;">1</td>
+					<td><a href=<%=Aladin_url_list[0]%> style=" font-weight:700;" target="_blank"><img src=<%=Aladin_image_url_list[0]%> width="100" height="150"></a><br><a href=<%=Aladin_url_list[0]%> style=" font-weight:700;" target="_blank"><%=Aladin_title_list[0]%></a>	
+						<br>
+						<a style="font-size:13px; font-weight:10" target="_blank">
+							<%=Aladin_author_list[0]%>
+						</a>
+					</td>
+				</tr>
+			</tbody>
 	</table>
+		
+<script type="text/javascript">
+					
+					var Aladin_rank= ["<%=Aladin_rank_list[0]%>","<%=Aladin_rank_list[1]%>","<%=Aladin_rank_list[2]%>" ];
+					var Aladin_title = ["<%=Aladin_title_list[0]%>","<%=Aladin_title_list[1]%>","<%=Aladin_title_list[2]%>" ];
+					var Aladin_url  = ["<%=Aladin_url_list[0]%>","<%=Aladin_url_list[1]%>","<%=Aladin_url_list[2]%>" ];
+					var Aladin_author  = ["<%=Aladin_author_list[0]%>","<%=Aladin_author_list[1]%>","<%=Aladin_author_list[2]%>" ];
+					var Aladin_publisher  = ["<%=Aladin_publisher_list[0]%>","<%=Aladin_publisher_list[1]%>","<%=Aladin_publisher_list[2]%>" ];
+					var Aladin_image_url  = ["<%=Aladin_image_url_list[0]%>","<%=Aladin_image_url_list[1]%>","<%=Aladin_image_url_list[2]%>" ];
+
+					var Aladin_index = 1;
+					var Aladin_rank = 0;
+					
+					$(document).ready(function(){
+
+						setInterval(function()
+						{
+							$("#Aladin_tbody").empty(
+									
+							);
+							
+							Aladin_rank = Aladin_index + 1;
+							
+							$("#Aladin_tbody").append(
+								"<tr id=Aladin_" + Aladin_index + ">" 
+									+ "<td style='width:10%; float:left; font-weight:bold;'>"+ Aladin_rank +"</td>"
+									+ "<td>" + "<a href=" + Aladin_url[Aladin_index] + " style='font-weight:700;' target='_blank'>"
+									+ "<img src=" + Aladin_image_url[Aladin_index] + " width='100' height='150'></a>"
+									+ "<br>" 
+									+"<a href=" + Aladin_url[Aladin_index] + " style='font-weight:700;' target='_blank'>" + Aladin_title[Aladin_index] + "</a>"
+										+"<br>"
+									 + "<a style='font-size:13px; font-weight:10' target='_blank'>"+ Aladin_author[Aladin_index]
+									+"</a>"
+									+ "</td>"	
+								+"</tr>"
+							);
+							
+							Aladin_index ++;
+							if(Aladin_index == 3){
+								Aladin_index = 0;
+							}
+							
+						},5000);
+						
+					});
+			</script>
 	</div>
 	
 	</div>
 
 <script type="text/javascript" src="./js/slide.js"></script>
  
-<div w3-include-html="./nav/trend_nav.html"></div>
 <script>
 	w3.includeHTML();
 </script>

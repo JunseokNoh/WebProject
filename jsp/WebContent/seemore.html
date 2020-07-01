@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script text="javascript/text">
+    $(document).ready(function(){
+
+        $('.box').each(function(){
+            var content = $(this).children('.content');
+            var content_txt = content.text();
+            var content_txt_short = content_txt.substring(0,100)+"...";
+            var btn_more = $('<a href="javascript:void(0)" class="more">더보기</a>');
+
+            
+            $(this).append(btn_more);
+            
+            if(content_txt.length >= 100){
+                content.html(content_txt_short)
+                
+            }else{
+                btn_more.hide()
+            }
+            
+            btn_more.click(toggle_content);
+            // 아래 bind가 안 되는 이유는??
+            // btn_more.bind('click',toggle_content);
+
+            function toggle_content(){
+                if($(this).hasClass('short')){
+                    // 접기 상태
+                    $(this).html('더보기');
+                    content.html(content_txt_short)
+                    $(this).removeClass('short');
+                }else{
+                    // 더보기 상태
+                    $(this).html('접기');
+                    content.html(content_txt);
+                    $(this).addClass('short');
+
+                }
+            }
+        });
+    });
+  </script>
+  
+    <style>
+        .box{margin:30px;}
+        .content{
+            width:400px;
+            padding:10px;
+            border:1px solid #ddd;
+            font: 400 1rem/1.5rem 'NotoSansKR';
+        }
+    </style>
+    
+</head>
+<body>
+		<div class="box">
+	    <div class="content">
+	    편하긴 엄청 편합니다. 단지 발볼이 조금 넓으신 분들은 신으실때 불편할수도...? 신다보면 괜찮을거같아요 편하긴 엄청 편합니다. 단지 발볼이 조금 넓으신 분들은 신으실때 불편할수도...? 신다보면 괜찮을거같아요 다보면 괜찮을거 다보면 괜찮을거
+	    </div>
+		</div>
+	<div class="box">
+	    <div class="content">
+	            시 맘에드는 상품입니다. 검정은 진리...가볍고 편하네요
+	    </div>
+	</div>
+	<div class="box">
+	    <div class="content">
+	        저는 트레포일 타이즈 네이비 색상에 파이어버드 트랙 탑 네 <br/>
+	        이비 색상을 같이 코디해 보았습니다 타이즈에는 오버핏 티셔츠나 <br/>
+	        맨투맨 저지를 입는 게 꾸민 듯 안 꾸민 듯 이쁘다고 생각을 하는데요 봄<br/><br/>
+	        <br/>
+	        여름 가을 상의만 바꿔주면 어디든 어울리는 정말 기본 타이즈라서 추<br/>
+	        천에 추천을 드립니다
+	    </div>
+	</div>
+	</body>
+</html>

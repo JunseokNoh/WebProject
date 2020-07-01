@@ -14,8 +14,8 @@
 	PreparedStatement Genie_PS = null;
 	ResultSet Genie_RS = null;
 	
-	PreparedStatement Billboard_PS = null;
-	ResultSet Billboard_RS = null;
+	PreparedStatement flo_PS = null;
+	ResultSet flo_RS = null;
 	
 	String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
 	String MYSQL_SERVER_USERNAME = "yoobi";
@@ -68,27 +68,25 @@
 	Genie_PS.setString(2, search_keyword);
 	Genie_RS = Genie_PS.executeQuery();
 			
-	/*빌보드*/
-	String Billboard_query = "select timedata from time_data where type='1w'";
-	Billboard_PS = con.prepareStatement(Billboard_query);
-	Billboard_RS = Billboard_PS.executeQuery();
-	Billboard_RS.next();
-	String Billboard_time = Billboard_RS.getString("timedata");
+	/*플로*/
+	String flo_query = "select timedata from time_data where type='1h'";
+	flo_PS = con.prepareStatement(flo_query);
+	flo_RS = flo_PS.executeQuery();
+	flo_RS.next();
+	String flo_time = flo_RS.getString("timedata");
 
-	Billboard_query = "select * from billboard_music_rank where song_title like ? or song_artist like ?";
-	Billboard_PS = con.prepareStatement(Billboard_query);
-	Billboard_PS.setString(1, search_keyword);
-	Billboard_PS.setString(2, search_keyword);
-	Billboard_RS = Billboard_PS.executeQuery();
+	flo_query = "select * from flo_music_rank where song_title like ? or song_artist like ?";
+	flo_PS = con.prepareStatement(flo_query);
+	flo_PS.setString(1, search_keyword);
+	flo_PS.setString(2, search_keyword);
+	flo_RS = flo_PS.executeQuery();
 %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>랭킹.pw</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<meta content="@VelosofyYT" name="twitter:creator"/> 
-<meta content="https://www.velosofy.com/img/card.png" name="twitter:image:src"/> 
-<meta content="228490107301532" property="fb:admins"/> 
+
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
 
@@ -405,8 +403,8 @@
 
 	<br>
 	<div id="div4" class="col-md-6 templates" style="width:100%;">
-				<h3 >빌보드 차트</h3>
-		<h6><%=Billboard_time%></h6>
+				<h3 >플로 차트</h3>
+		<h6><%=flo_time%></h6>
 		<table class="table table-hover">
 			<!-- 
 			<thead>
@@ -418,11 +416,16 @@
 			</thead>
 			 -->
 	<%
-			while(Billboard_RS.next())
-			{
-				String rank = Billboard_RS.getString("rank");
-				String title = Billboard_RS.getString("song_title");
-				String artist = Billboard_RS.getString("song_artist");
+	while(flo_RS.next())
+	{
+		String rank = flo_RS.getString("rank");
+		String title = flo_RS.getString("song_title");
+		String title_url = flo_RS.getString("song_url");
+		String artist = flo_RS.getString("song_artist");
+		String artist_url = flo_RS.getString("artist_url");
+		String album_title = flo_RS.getString("album_title");
+		String album_url = flo_RS.getString("album_url");
+		String image_url = flo_RS.getString("image_url");
 	%>
 				<tr>
 	<%
@@ -436,7 +439,7 @@
 				else if(rank.equals("2"))
 				{
 	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+				<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
 
 	<%
 				}
@@ -454,8 +457,9 @@
 				}
 	%>
 
-					<td ><a style=" font-weight:700"><%=title%></a><br>
-					<a style="font-size:13px; font-weight:10"><%=artist%></a></td>
+					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><img src="<%=image_url%>" width="60" height="60"></a></td>
+					<td><a href=<%=title_url%> style=" font-weight:700" target="_blank"><%=title%></a><br>
+						<a href=<%=artist_url%> style="font-size:13px; font-weight:10" target="_blank"><%=artist%></a></td>
 				</tr>
 	<%
 			}

@@ -68,17 +68,18 @@
 </li> 
 <li class="nav-item"> 
 <a class="nav-link" href="./book_rank.jsp">도서 차트</a> 
-<li class="nav-item"> 
-<a class="nav-link" href="./app_rank.jsp">앱 차트</a> 
 </li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./app_game_rank.jsp">모바일 게임 차트</a> 
-</li> 
+	<li class="nav-item"> 
+	<a class="nav-link">자유게시판(준비중)</a> 
+	</li> 
+</ul>
 
 <ul class="navbar-nav ml-auto"> 
-	<li class="nav-item"> 
-		<a class="nav-link" href="./foreign_rank.jsp">해외 차트</a> 
-	</li> 
+<li class="nav-item"> 
+<a class="nav-link">로그인(준비중)</a> 
+</li> 
+<li class="nav-item"> <a class="nav-link">회원가입(준비중)</a> 
+</li> 
 </ul> 
 
 </div> 

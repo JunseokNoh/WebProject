@@ -38,7 +38,7 @@
 	}
 	
 	.table-hover tbody tr td a:hover{
-		color : #03A8D8;
+		color : gray;
 		text-decoration: underline;
 	}
 	

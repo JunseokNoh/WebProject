@@ -72,11 +72,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<meta content="@VelosofyYT" name="twitter:creator"/> 
-<meta content="https://www.velosofy.com/img/card.png" name="twitter:image:src"/> 
-<meta content="228490107301532" property="fb:admins"/> 
+<title>랭킹.pw</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script> 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
 
@@ -97,6 +94,11 @@
 		padding-top:10px;
 		padding-bottom:10px
 	}
+	
+	::placeholder {
+	  font-size: 13px;
+	  text-align:center;
+	}
 </style>
 	
 </head>
@@ -114,6 +116,10 @@
 <div class="container"> 
 
 <h1  class="poppins" style="font-size:50px;">음악 차트</h1> 
+	<form class="form-inline" action="search_music_rank.jsp" method="post" style="float:right;">
+      <input type="text" name="search_text" style="margin-right:5px;" placeholder="가수명 또는 노래 제목 입력">
+      <input class="btn btn-dark btn-sm" style="width:70px" type="submit" value="검색">
+   </form>
 <br>
 <!-- 
 <a class="btn btn-primary my-2" href="https://www.velosofy.com/templates">Find a template</a> 

@@ -79,11 +79,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>랭킹.pw</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<meta content="@VelosofyYT" name="twitter:creator"/> 
-<meta content="https://www.velosofy.com/img/card.png" name="twitter:image:src"/> 
-<meta content="228490107301532" property="fb:admins"/> 
+
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
 <script src="./js/script.js"></script>
@@ -125,53 +123,7 @@
     ga('send', 'pageview');
 </script>
 
-<div id="app"> 
-
-<nav class="navbar navbar-expand-md navbar-light navbar-velosofy"> 
-	<div class="container"> 
-<nav class="navbar navbar-light"> 
-		<a class="navbar-brand " href="./index.jsp"> 
-		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
-		홈페이지이름
-		</a> 
-	</a> 
-</nav> 
-
-<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"> 
-<span class="navbar-toggler-icon"></span> </button> 
-
-<div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-<ul class="navbar-nav mr-auto"> 
-
-<li class="nav-item"> 
-<a class="nav-link" href="./trend_rank.jsp">실검 차트</a> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./music_rank.jsp">음악 차트</a> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./movie_rank.jsp">영화 차트</a> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./book_rank.jsp">도서 차트</a> 
-</li> 
-	<li class="nav-item"> 
-	<a class="nav-link">자유게시판(준비중)</a> 
-	</li> 
-</ul>
-
-<ul class="navbar-nav ml-auto"> 
-<li class="nav-item"> 
-<a class="nav-link">로그인(준비중)</a> 
-</li> 
-<li class="nav-item"> <a class="nav-link" >회원가입(준비중)</a> 
-</li> 
-</ul> 
-
-</div> 
-
-</div> 
-</nav> 
+<jsp:include page="header.jsp" flush="true"/>
 
 <main> 
 
@@ -277,7 +229,7 @@
 	<br>
 	
 	<div id="div2" class="col-md-6 templates" style="width:100%;">
-	<h3>Boxoffice Movie</h3>
+	<h3>Boxoffice</h3>
 			<h6 style="text-align:right;"><%=movie_time%></h6>
 			<table class="table table-hover">
 			<!--  
@@ -485,7 +437,7 @@
 	</div>
 
 
-<div w3-include-html="./nav/trend_nav.html"></div>
+<div w3-include-html="./nav/foriegn_nav.html"></div>
 <script>
 	w3.includeHTML();
 </script>
