@@ -61,7 +61,7 @@ class NaverMovieRatingCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        if rank_number == 1:
+        if int(rank_number) == 1:
             sql = """delete from naver_movie_rating_rank"""
             curs.execute(sql)
 

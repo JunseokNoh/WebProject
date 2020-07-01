@@ -52,7 +52,7 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
 
         # sql = """insert into google_trends_rank (rank, title, url) values (%s, %s, %s)"""
         # curs.execute(sql, (rank_number, title, info_url))
-        if rank_number == 1:
+        if int(rank_number) == 1:
             sql = """delete from google_trends_rank"""
             curs.execute(sql)
 
