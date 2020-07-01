@@ -69,7 +69,7 @@ class BoxofficeMovieCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        if rank_number == 1:
+        if int(rank_number) == 1:
             sql = """delete from boxoffice_movie_rank"""
             curs.execute(sql)
 

@@ -55,7 +55,7 @@ class BugsMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        if rank_number == 1:
+        if int(rank_number) == 1:
             sql = """delete from bugs_music_rank"""
             curs.execute(sql)
 

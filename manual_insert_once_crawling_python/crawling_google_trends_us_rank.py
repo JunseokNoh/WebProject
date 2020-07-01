@@ -7,7 +7,7 @@ from urllib import parse
 import crawling
 
 
-class GoogleTrendsCrawling(crawling.Crawling, ABC):
+class GoogleTrendsUSCrawling(crawling.Crawling, ABC):
     def __init__(self, main_url, db_host, db_port, db_user, db_pw, db_name, db_charset):
         super().__init__(main_url, db_host, db_port, db_user, db_pw, db_name, db_charset)
 
@@ -18,7 +18,7 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
             cont = req.content
             soup = BeautifulSoup(cont, 'lxml')
 
-            # print(soup)
+            #print(soup)
             soup = soup.find("p").get_text()
             soup = soup.split("\"date\":\"")[1]
             soup = soup.split("\"shareUrl\":\"")[1:]
@@ -28,13 +28,13 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
                 soup[i] = soup[i].split("\"}")[0]
                 RANK_URL = soup[i]
 
-                soup[i] = soup[i].split("?geo")[1].split("#")[0]
-                RANK_NAME = parse.unquote(soup[i])[22:]
+                soup[i] = soup[i].split("?geo")[1].split("#")[1]
+                RANK_NAME = soup[i].replace("%20", " ")
                 self.connect_db(i, RANK_NAME, RANK_URL, "", "", "", "", "")
                 # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
-            f = open("./../../manual_active_log.txt", "a")
-            f.write("table : google_trends_rank UPDATED" + "\n")
-            print("table : google_trends_rank UPDATED")
+            f = open("./../../active_log.txt", "a")
+            f.write("table : google_trends_us_rank UPDATED" + "\n")
+            print("table : google_trends_us_rank UPDATED")
             f.close()
         except Exception as e:
             super().error_logging(str(e))
@@ -50,23 +50,23 @@ class GoogleTrendsCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        # sql = """insert into google_trends_rank (rank, title, url) values (%s, %s, %s)"""
+        # sql = """insert into google_trends_us_rank (rank, title, url) values (%s, %s, %s)"""
         # curs.execute(sql, (rank_number, title, info_url))
-        if int(rank_number) == 1:
-            sql = """delete from google_trends_rank"""
+        if rank_number == 1:
+            sql = """delete from google_trends_us_rank"""
             curs.execute(sql)
 
-        sql = """insert into google_trends_rank (rank, title, url) values (%s, %s, %s)"""
+        sql = """insert into google_trends_us_rank (rank, title, url) values (%s, %s, %s)"""
         curs.execute(sql, (rank_number, title, info_url))
 
         '''
         row = curs.fetchone()
         if row[0] == title:
-            #print("same google trend")
+            #print("same google trend US")
             pass
         else:
             #print(rank_number + " : " + title + " : " + info_url)
-            sql = """update google_trends_rank set title=%s, url=%s where rank=%s"""
+            sql = """update google_trends_us_rank set title=%s, url=%s where rank=%s"""
             curs.execute(sql, (title, info_url, rank_number))
         '''
         conn.commit()

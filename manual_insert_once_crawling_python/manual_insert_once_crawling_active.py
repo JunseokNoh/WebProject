@@ -188,32 +188,32 @@ def main():
 	f.close()
 
 
-	# naverTrendsRank.crawler()
-	# setTimeDate.connect_db("1m")
-	#
-	# zumTrendsRank.crawler()
-	# googleTrendsRank.crawler()
-	# nateTrendsRank.crawler()
-	# setTimeDate.connect_db("10m")
-	#
-	# bugsMusicRank.crawler()
-	# genieMusicRank.crawler()
-	# melonMusicRank.crawler()
-	#
-	# setTimeDate.connect_db("1h")
-	#
-	# boxofficeMovieRank.crawler()
+	naverTrendsRank.crawler()
+	setTimeDate.connect_db("1m")
+
+	zumTrendsRank.crawler()
+	googleTrendsRank.crawler()
+	nateTrendsRank.crawler()
+	setTimeDate.connect_db("10m")
+
+	bugsMusicRank.crawler()
+	genieMusicRank.crawler()
+	melonMusicRank.crawler()
+
+	setTimeDate.connect_db("1h")
+
+	boxofficeMovieRank.crawler()
 	naverMovieRank.crawler()
-	# naverMovieRatingRank.crawler()
-	# daumMovieRank.crawler()
-	# aladinBookRank.crawler()  # 일간
-	# yes24BookRank.crawler()  # 일간
-	# interBookRank.crawler()  # 일간인데 13:00 존재
-	# setTimeDate.connect_db("1d")
-	#
-	# kyoboBookRank.crawler()  # 주간
-	# billboardMusicRank.crawler()  # 주간
-	# setTimeDate.connect_db("1w")
+	naverMovieRatingRank.crawler()
+	daumMovieRank.crawler()
+	aladinBookRank.crawler()  # 일간
+	yes24BookRank.crawler()  # 일간
+	interBookRank.crawler()  # 일간인데 13:00 존재
+	setTimeDate.connect_db("1d")
+
+	kyoboBookRank.crawler()  # 주간
+	billboardMusicRank.crawler()  # 주간
+	setTimeDate.connect_db("1w")
 
 	'''
     check = time_for_log.minute + 1
