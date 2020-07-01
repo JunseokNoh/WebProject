@@ -295,7 +295,7 @@
 
 	<div id="div5" class="col-md-6 templates" style="" >
 	<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 실시간 검색 TOP3<a id="lookMore" href="./trend_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 실시간 검색 TOP3<a id="lookMore" href="./t" style="font-size: medium;"> 더 보기</a></h3> 
 		
 	</div>
 			
@@ -580,7 +580,7 @@
 	
 	<div id="div5" class="col-md-6 templates" >
 	<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 음악 TOP3<a id="lookMore" href="./music_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 음악 TOP3<a id="lookMore" href="./mu" style="font-size: medium;"> 더 보기</a></h3> 
 	</div>
 	
 	<div id="div1" class="col-md-12 templates" style="display : inline-block;">
@@ -1004,7 +1004,7 @@
 	
 	<div id="div5" class="col-md-6 templates" >
 		<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 영화 TOP3<a id="lookMore" href="./movie_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 영화 TOP3<a id="lookMore" href="./mo" style="font-size: medium;"> 더 보기</a></h3> 
 			<br>
 		</div>
 	
@@ -1371,7 +1371,7 @@
 	
 		<div id="div5" class="col-md-6 templates" >
 		<div id="div0" class="col-md-12 templates" >
-		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 도서 TOP3<a id="lookMore" href="./book_rank.jsp" style="font-size: medium;"> 더 보기</a></h3> 
+		<h3 class="poppins" style=""><img src="./top1_trophy.png" width="45" height="45"> 도서 TOP3<a id="lookMore" href="./b" style="font-size: medium;"> 더 보기</a></h3> 
 		<br>
 		</div>
 	
