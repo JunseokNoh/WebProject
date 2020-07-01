@@ -204,7 +204,7 @@ def main():
 	#
 	# boxofficeMovieRank.crawler()
 	# naverMovieRank.crawler()
-	naverMovieRatingRank.crawler()
+	# naverMovieRatingRank.crawler()
 	# daumMovieRank.crawler()
 	# aladinBookRank.crawler()  # 일간
 	# yes24BookRank.crawler()  # 일간
