@@ -25,11 +25,11 @@ class FloMusicCrawling(crawling.Crawling, ABC):
             for i in range(len(dict)):
                 SONG_RANK = str(i + 1)
                 SONG_TITLE = dict[i]['name']
-                SONG_URL = "https://www.music-flo.com/search/all?keyword=" + SONG_TITLE
+                SONG_URL = "https://www.music-flo.com/search/all?keyword=" + str(SONG_TITLE).replace(" ", "%20")
                 SONG_ARTIST = dict[i]['representationArtist']['name']
-                ARTIST_URL = "https://www.music-flo.com/search/all?keyword=" + SONG_ARTIST
+                ARTIST_URL = "https://www.music-flo.com/search/all?keyword=" + str(SONG_ARTIST).replace(" ", "%20")
                 ALBUM_TITLE = dict[i]['album']['title']
-                ALBUM_URL = "https://www.music-flo.com/search/all?keyword=" + ALBUM_TITLE
+                ALBUM_URL = "https://www.music-flo.com/search/all?keyword=" + str(ALBUM_TITLE).replace(" ", "%20")
                 IMAGE_URL = dict[i]['album']['imgList'][0]['url']
 
                 #print(IMAGE_URL)
