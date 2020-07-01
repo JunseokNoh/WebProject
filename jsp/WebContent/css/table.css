@@ -20,7 +20,8 @@
 	}
 	
 	.table-hover tbody tr:hover{
-		background-color:rgba(190,229,235,0.2);
+		color:#212529;
+		background-color:rgba(0,0,0,.075);
 		transform:scale(1.01);
 	}
 	
