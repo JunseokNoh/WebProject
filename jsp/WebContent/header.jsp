@@ -74,12 +74,9 @@
 <li class="nav-item"> 
 <a class="nav-link" href="./ag">모바일 게임 차트</a> 
 </li> 
-
-<ul class="navbar-nav ml-auto"> 
-	<li class="nav-item"> 
-		<a class="nav-link" href="./f">해외 차트</a> 
-	</li> 
-</ul> 
+<li class="nav-item"> 
+<a class="nav-link" href="./f">해외 차트</a> 
+</li> 
 
 </div> 
 
