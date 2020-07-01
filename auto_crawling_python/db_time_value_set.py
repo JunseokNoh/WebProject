@@ -56,8 +56,8 @@ class DBTimeValueSet:
             f.close()
 
         elif type == '1d':
-            now = time.localtime()
-            now = "%04d/%02d/%02d" % (now.tm_year, now.tm_mon, now.tm_mday - 1)
+            now = time.localtime() - 86400
+            now = "%04d/%02d/%02d" % (now.tm_year, now.tm_mon, now.tm_mday)
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()

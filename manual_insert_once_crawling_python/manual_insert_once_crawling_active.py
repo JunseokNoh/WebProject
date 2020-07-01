@@ -283,6 +283,11 @@ def main():
     print(str(time_for_log) + "\n")
     f.close()
 
+    # setTimeDate.connect_db("1m")
+    # setTimeDate.connect_db("10m")
+    # setTimeDate.connect_db("1h")
+    setTimeDate.connect_db("1d")
+
     # Trend
     # naverTrendsRank.crawler()
     # zumTrendsRank.crawler()
