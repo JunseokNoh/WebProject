@@ -217,7 +217,7 @@ create table boxoffice_movie_us_rank
 create table amazon_book_rank
 (
 	`rank` varchar(20) not null,
-	`title` varchar(150) not null,
+	`title` text not null,
 	`url` text not null,
 	`author` varchar(150) not null,
 	`image_url` text not null
