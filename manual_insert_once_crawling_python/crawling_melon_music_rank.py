@@ -26,24 +26,23 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
 
             for i in range(len(soup)):
                 SONG_RANK = soup[i].find("div", {"class": "t_center"}).find("span", {"class": "rank"}).get_text()
-
                 SONG_TITLE = soup[i].find("div", {"class": "wrap_song_info"}).find("div", {"class": "rank01"}).find("span").find("a").get_text()
                 SONG_URL = soup[i].find("a", {"class": "song_info"})["href"]
                 SONG_URL = "https://www.melon.com/song/detail.htm?songId=" + SONG_URL[36:44]
-
+                SONG_URL = SONG_URL.replace("'", "")
                 SONG_ARTIST = soup[i].find("div", {"class": "wrap_song_info"}).find("div", {"class": "rank02"}).find(
                     "span").find("a").get_text()
                 ARTIST_URL = soup[i].find("div", {"class": "wrap_song_info"}).find("div", {"class": "rank02"}).find("span").find(
                     "a")["href"]
                 ARTIST_URL = "https://www.melon.com/artist/timeline.htm?artistId=" + ARTIST_URL[38:44]
-
                 ALBUM_TITLE = soup[i].find("a", {"class": "image_typeAll"})["title"]
                 ALBUM_URL = soup[i].find("a", {"class": "image_typeAll"})["href"]
                 ALBUM_URL = "https://www.melon.com/album/detail.htm?albumId=" + ALBUM_URL[37:45]
+                ALBUM_URL = ALBUM_URL.replace("'", "")
                 IMAGE_URL = self.get_image(SONG_URL)
                 self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL, IMAGE_URL)
                 #print(SONG_RANK + " : " + SONG_TITLE + " : " + SONG_ARTIST + " : " + ALBUM_TITLE +
-                #      "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
+                 #     "\n" + SONG_URL + "\n" + ARTIST_URL + "\n" + ALBUM_URL)
             f = open("./../../manual_active_log.txt", "a")
             f.write("table : melon_music_rank UPDATED" + "\n")
             print("table : melon_music_rank UPDATED")
@@ -72,7 +71,7 @@ class MelonMusicCrawling(crawling.Crawling, ABC):
                                charset=super().DB_CHARSET())
         curs = conn.cursor()
 
-        if rank_number == 1:
+        if int(rank_number) == 1:
             sql = """delete from melon_music_rank"""
             curs.execute(sql)
 
