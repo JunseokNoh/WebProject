@@ -35,7 +35,7 @@ class DBTimeValueSet:
 
         elif type == '10m':
             now = time.localtime()
-            now = "%04d/%02d/%02d %02d:%02d" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min)
+            now = "%04d/%02d/%02d %02d:%02d" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min / 10)
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()

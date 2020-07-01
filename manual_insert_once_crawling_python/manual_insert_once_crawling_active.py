@@ -141,13 +141,14 @@ def main():
                                                                   'toor',
                                                                   'jsp_db',
                                                                   'utf8')
-    floMusicRank = crawling_flo_music_rank.FloMusicCrawling('https://www.music-flo.com/api/display/v1/browser/chart/1/track/list?size=100&timestamp=1593522061633',
-		'hackery00bi.iptime.org',
-		'6666',
-		'yoobi',
-		'toor',
-		'jsp_db',
-		'utf8')
+    floMusicRank = crawling_flo_music_rank.FloMusicCrawling(
+        'https://www.music-flo.com/api/display/v1/browser/chart/1/track/list?size=100&timestamp=1593522061633',
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
 
     # Book Fields
     amazonBookRank = crawling_amazon_book_rank.AmazonBookCrawling(
@@ -258,22 +259,22 @@ def main():
                                                    'utf8')
 
     googleTrendsUSRank = crawling_google_trends_us_rank.GoogleTrendsUSCrawling(
-		'https://trends.google.co.kr//trends/api/dailytrends?hl=ko&tz=-540&geo=US&ns=15',
-		'hackery00bi.iptime.org',
-		'6666',
-		'yoobi',
-		'toor',
-		'jsp_db',
-		'utf8')
+        'https://trends.google.co.kr//trends/api/dailytrends?hl=ko&tz=-540&geo=US&ns=15',
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
 
     boxofficeMovieUSRank = crawling_boxoffice_movie_us_rank.BoxofficeMovieUSCrawling(
-		'https://www.imdb.com/chart/boxoffice?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=4da9d9a5-d299-43f2-9c53-f0efa18182cd&pf_rd_r=VFM1Y18W9AQXQZW0QD8P&pf_rd_s=right-4&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_ql_1',
-		'hackery00bi.iptime.org',
-		'6666',
-		'yoobi',
-		'toor',
-		'jsp_db',
-		'utf8')
+        'https://www.imdb.com/chart/boxoffice?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=4da9d9a5-d299-43f2-9c53-f0efa18182cd&pf_rd_r=VFM1Y18W9AQXQZW0QD8P&pf_rd_s=right-4&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_ql_1',
+        'hackery00bi.iptime.org',
+        '6666',
+        'yoobi',
+        'toor',
+        'jsp_db',
+        'utf8')
 
     f = open("./../../manual_active_log.txt", "a")
     f.write("##### start #####\n")
@@ -301,31 +302,31 @@ def main():
     # floMusicRank.crawler()
 
     # Movie
-	# boxofficeMovieRank.crawler()
-	# naverMovieRank.crawler()
-	# naverMovieRatingRank.crawler()
-	# daumMovieRank.crawler()
+    # boxofficeMovieRank.crawler()
+    # naverMovieRank.crawler()
+    # naverMovieRatingRank.crawler()
+    # daumMovieRank.crawler()
 
-	# Book
-	# aladinBookRank.crawler()  # 일간
-	# yes24BookRank.crawler()  # 일간
-	# interBookRank.crawler()  # 일간인데 13:00 존재
-	# kyoboBookRank.crawler()  # 주간
+    # Book
+    # aladinBookRank.crawler()  # 일간
+    # yes24BookRank.crawler()  # 일간
+    # interBookRank.crawler()  # 일간인데 13:00 존재
+    # kyoboBookRank.crawler()  # 주간
 
-	# MOBILE APPS
+    # MOBILE APPS
     # appstoreAppRank.crawler()
     # googleplayAppRank.crawler()
     # onestoreAppRank.crawler()
 
-	# MOBILE GAMES
+    # MOBILE GAMES
     # appstoreGameRank.crawler()
     # googleplayGameRank.crawler()
     # onestoreGameRank.crawler()
 
-	# world
+    # world
     # billboardMusicRank.crawler()  # 주간
     # amazonBookRank.crawler()
-    boxofficeMovieUSRank.crawler()
+    # boxofficeMovieUSRank.crawler()
     # googleTrendsUSRank.crawler()
 
     '''

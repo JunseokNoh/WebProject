@@ -31,7 +31,7 @@ class BugsMusicCrawling(crawling.Crawling, ABC):
                 ARTIST_URL = soup[i].find("p", {"class": "artist"}).find("a")["href"]
                 ALBUM_TITLE = soup[i].find("a", {"class": "album"}).get_text()
                 ALBUM_URL = soup[i].find("a", {"class": "album"})["href"]
-                IMAGE_URL = soup[i].find("img")["src"]
+                IMAGE_URL = self.get_image(SONG_URL)
 
                 #print(IMAGE_URL)
                 self.connect_db(SONG_RANK, SONG_TITLE, SONG_URL, SONG_ARTIST, ARTIST_URL, ALBUM_TITLE, ALBUM_URL, IMAGE_URL)
@@ -44,6 +44,14 @@ class BugsMusicCrawling(crawling.Crawling, ABC):
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
+
+    def get_image(self, URL):
+        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
+        req = requests.get(URL, headers=header)  ## 주간 차트를 크롤링 할 것임
+        cont = req.content
+        soup = BeautifulSoup(cont, 'lxml')
+
+        return soup.select("li.big > a > img")[0]["src"]
 
     def connect_db(self, rank_number, song_title, song_url, song_artist, artist_url, album_title, album_url, image_url):
 
