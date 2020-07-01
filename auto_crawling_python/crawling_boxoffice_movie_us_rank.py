@@ -25,7 +25,7 @@ class BoxofficeMovieUSCrawling(crawling.Crawling, ABC):
                 RANK_NAME = soup[i].select("td.titleColumn > a")[0].get_text()
                 RANK_URL = "https://www.imdb.com" + soup[i].select("td.posterColumn > a")[0]["href"]
                 RANK_ATTENDANCE = soup[i].select("span.secondaryInfo")[0].get_text()
-                IMAGE_URL = soup[i].select("td.posterColumn > a > img")[0]["src"]
+                IMAGE_URL = self.get_image(RANK_URL)
                 #print(IMAGE_URL)
                 temp = soup[i].select("td.titleColumn > a")[0]["title"].split(" (dir.), ")
                 DIRECTOR_NAME = temp[0]
@@ -39,6 +39,15 @@ class BoxofficeMovieUSCrawling(crawling.Crawling, ABC):
         except Exception as e:
             super().error_logging(str(e))
             print("Error Detected")
+
+    def get_image(self, URL):
+        header = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36'}
+        req = requests.get(URL, headers=header)  ## 주간 차트를 크롤링 할 것임
+        cont = req.content
+        soup = BeautifulSoup(cont, 'lxml')
+
+        return soup.select("div.poster > a > img")[0]["src"]
 
     def connect_db(self, i, movie_title, movie_attendance, movie_info_url, image_url, director_name, actor_names, tmp8):
         rank_number = i + 1
