@@ -35,8 +35,9 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
             for i in range(len(soup)):
                 RANK_URL = soup[i].find("a")["href"]
                 RANK_NAME = soup[i].find("a")["title"]
-                IMAGE_URL = self.get_image(RANK_URL)
-                self.connect_db(i, RANK_NAME, RANK_URL, IMAGE_URL, "", "", "", "")
+                data = self.get_image(RANK_URL)
+                self.connect_db(i, RANK_NAME, RANK_URL, data[0], data[1], data[2], "", "")
+                #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
             # print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL)
             f = open("./../../manual_active_log.txt", "a")
             f.write("table : naver_movie_rank UPDATED" + "\n")
@@ -53,10 +54,14 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
         cont = req.content
         soup = BeautifulSoup(cont, 'lxml')
         #print(soup)
-        soup = soup.select("div.poster")
-        return soup[0].find("img")["src"]
+        soup1 = soup.select("div.poster")
+        soup2 = soup.select("dl.info_spec > dd")
 
-    def connect_db(self, i, title, info_url, image_url, tmp5, tmp6, tmp7, tmp8):
+        data = [soup1[0].find("img")["src"], soup2[1].select("p > a")[0].get_text(), soup2[2].select("p")[0].get_text()]
+
+        return data
+
+    def connect_db(self, i, title, info_url, image_url, director_name, actor_names, tmp7, tmp8):
         rank_number = i + 1
         conn = pymysql.connect(host=super().DB_HOST(),
                                port=int(super().DB_PORT()),
@@ -70,8 +75,8 @@ class NaverMovieCrawling(crawling.Crawling, ABC):
             sql = """delete from naver_movie_rank"""
             curs.execute(sql)
 
-        sql = """insert into naver_movie_rank (rank, title, url, image_url) values (%s, %s, %s, %s)"""
-        curs.execute(sql, (rank_number, title, info_url, image_url))
+        sql = """insert into naver_movie_rank (rank, title, url, image_url, director_name, actor_names) values (%s, %s, %s, %s, %s, %s)"""
+        curs.execute(sql, (rank_number, title, info_url, image_url, director_name, actor_names))
         '''
         sql = """select title from naver_movie_rank where rank = %s"""
         curs.execute(sql, rank_number)
