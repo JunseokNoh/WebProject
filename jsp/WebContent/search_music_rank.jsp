@@ -21,9 +21,13 @@
 	String MYSQL_SERVER_USERNAME = "yoobi";
 	String MYSQL_SERVER_PASSWORD = "toor";
 	String MYSQL_DATABASE = "jsp_db";
-	String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
+	String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC&useUnicode=true&characterEncoding=euckr";
 	Class.forName("com.mysql.jdbc.Driver");
 	con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
+	
+	request.setCharacterEncoding("UTF-8");
+	System.out.println(request.getParameter("search_text"));
+	String search_keyword = "%" + request.getParameter("search_text") + "%";
 	
 	/*멜론*/
 	String Melon_query = "select timedata from time_data where type='1h'";
@@ -32,8 +36,10 @@
 	Melon_RS.next();
 	String time = Melon_RS.getString("timedata");	
 		
-	Melon_query = "select * from melon_music_rank";
+	Melon_query = "select * from melon_music_rank where song_title like ? or song_artist like ?";
 	Melon_PS = con.prepareStatement(Melon_query);
+	Melon_PS.setString(1, search_keyword);
+	Melon_PS.setString(2, search_keyword);
 	Melon_RS = Melon_PS.executeQuery();
 	
 	/*벅스*/
@@ -43,8 +49,10 @@
 	Bugs_RS.next();
 	String Bugs_time = Bugs_RS.getString("timedata");	
 		
-	Bugs_query = "select * from bugs_music_rank";
+	Bugs_query = "select * from bugs_music_rank where song_title like ? or song_artist like ?";
 	Bugs_PS = con.prepareStatement(Bugs_query);
+	Bugs_PS.setString(1, search_keyword);
+	Bugs_PS.setString(2, search_keyword);
 	Bugs_RS = Bugs_PS.executeQuery();
 	
 	/*지니 뮤직*/
@@ -54,8 +62,10 @@
 	Genie_RS.next();
 	String Genie_time = Genie_RS.getString("timedata");	
 		
-	Genie_query = "select * from genie_music_rank";
+	Genie_query = "select * from genie_music_rank where song_title like ? or song_artist like ?";
 	Genie_PS = con.prepareStatement(Genie_query);
+	Genie_PS.setString(1, search_keyword);
+	Genie_PS.setString(2, search_keyword);
 	Genie_RS = Genie_PS.executeQuery();
 			
 	/*빌보드*/
@@ -65,8 +75,10 @@
 	Billboard_RS.next();
 	String Billboard_time = Billboard_RS.getString("timedata");
 
-	Billboard_query = "select * from billboard_music_rank";
+	Billboard_query = "select * from billboard_music_rank where song_title like ? or song_artist like ?";
 	Billboard_PS = con.prepareStatement(Billboard_query);
+	Billboard_PS.setString(1, search_keyword);
+	Billboard_PS.setString(2, search_keyword);
 	Billboard_RS = Billboard_PS.executeQuery();
 %>
 <html>
@@ -85,8 +97,6 @@
 <!-- 추가해야할거 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./css/table.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
 <script src="https://www.w3schools.com/lib/w3.js"></script>
 
 <style type="text/css">
@@ -160,11 +170,12 @@
 <section id="landing" style="height"> 
 
 <div class="container"> 
-	<h1  class="poppins" style="font-size:50px;">음악 차트</h1>
-	<form action="search_music_rank.jsp" method="post" style="float:right;">
-		<input type="text" name="search_text">
+
+<h1  class="poppins" style="font-size:50px;">음악 차트</h1>
+<form action="search_music_rank.jsp" method="post" style="float:right;">
+		<input type="text" name="search_text" value=<%=request.getParameter("search_text")%>>
 		<input type="submit" value="검색">
-	</form>
+</form>
 <br>
 <!-- 
 <a class="btn btn-primary my-2" href="https://www.velosofy.com/templates">Find a template</a> 
@@ -222,21 +233,18 @@
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
-
 	<%
 				}
 				else if(rank.equals("2"))
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
-
 	<%
 				}
 				else if(rank.equals("3"))
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
-
 	<%
 				}
 				else
@@ -291,21 +299,18 @@
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
-
 	<%
 				}
 				else if(rank.equals("2"))
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
-
 	<%
 				}
 				else if(rank.equals("3"))
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
-
 	<%
 				}
 				else
@@ -439,7 +444,6 @@
 				{
 	%>
 					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
-
 	<%
 				}
 				else
