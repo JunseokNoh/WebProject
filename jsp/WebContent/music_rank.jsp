@@ -102,56 +102,10 @@
 </head>
 
 <body id="header">
+<jsp:include page="header.jsp" flush="true"/>
 
 <script src="./js/script.js"></script>
 
-
-<div id="app"> 
-
-<nav class="navbar navbar-expand-md navbar-light navbar-velosofy"> 
-	<div class="container"> 
-<nav class="navbar navbar-light"> 
-		<a class="navbar-brand " href="./index.jsp"> 
-		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
-		랭킹.pw
-		</a> 
-</nav> 
-
-<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"> 
-<span class="navbar-toggler-icon"></span> </button> 
-
-<div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-<ul class="navbar-nav mr-auto"> 
-
-<li class="nav-item"> 
-<a class="nav-link" href="./trend_rank.jsp">실검 차트</a> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./music_rank.jsp">음악 차트</a> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./movie_rank.jsp">영화 차트</a> 
-</li> 
-<li class="nav-item"> 
-<a class="nav-link" href="./book_rank.jsp">도서 차트</a> 
-</li> 
-	<li class="nav-item"> 
-	<a class="nav-link">자유게시판(준비중)</a> 
-	</li> 
-</ul>
-
-<ul class="navbar-nav ml-auto"> 
-<li class="nav-item"> 
-<a class="nav-link">로그인(준비중)</a> 
-</li> 
-<li class="nav-item"> <a class="nav-link">회원가입(준비중)</a> 
-</li> 
-</ul> 
-
-</div> 
-
-</div> 
-</nav> 
 
 <main> 
 
