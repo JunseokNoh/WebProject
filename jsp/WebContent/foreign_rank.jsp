@@ -1,21 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%
+
+	<%
 		Connection con = null;
-		PreparedStatement Boxoffice_PS = null;
-		ResultSet Boxoffice_RS = null;
+		//Naver
+		PreparedStatement Trends_PS = null;
+		ResultSet Trends_RS = null;
+		//Zum
+		PreparedStatement Music_PS = null;
+		ResultSet Music_RS = null;
 		
-		PreparedStatement Naver_PS = null;
-		ResultSet Naver_RS = null;
+		PreparedStatement Movie_PS = null;
+		ResultSet Movie_RS = null;
 		
-		PreparedStatement Daum_PS = null;
-		ResultSet Daum_RS = null;
-		
-		PreparedStatement Naver_rate_PS = null;
-		ResultSet Naver_rate_RS = null;
+		PreparedStatement Book_PS = null;
+		ResultSet Book_RS = null;
 		
 		String MYSQL_SERVER ="hackery00bi.iptime.org:6666";
 		String MYSQL_SERVER_USERNAME = "yoobi";
@@ -24,50 +26,56 @@
 		String URL = "jdbc:mysql://" + MYSQL_SERVER + "/" + MYSQL_DATABASE + "?serverTimezone=UTC";
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(URL, MYSQL_SERVER_USERNAME, MYSQL_SERVER_PASSWORD);
-		/*박스오피스*/
-		String Boxoffice_query = "select timedata from time_data where type='1d'";
-		Boxoffice_PS = con.prepareStatement(Boxoffice_query);
-		Boxoffice_RS = Boxoffice_PS.executeQuery();
-		Boxoffice_RS.next();
-		String Boxoffice_time = Boxoffice_RS.getString("timedata");	
 		
-		Boxoffice_query = "select * from boxoffice_movie_rank";
-		Boxoffice_PS = con.prepareStatement(Boxoffice_query);
-		Boxoffice_RS = Boxoffice_PS.executeQuery();
-		/*네이버 영화*/
-		String Naver_query = "select timedata from time_data where type='1d'";
-		Naver_PS = con.prepareStatement(Naver_query);
-		Naver_RS = Naver_PS.executeQuery();
-		Naver_RS.next();
-		String Naver_time = Naver_RS.getString("timedata");	
+		//Trends//
+		String trends_query = "select timedata from time_data where type='10m'";
+		Trends_PS = con.prepareStatement(trends_query);
+		Trends_RS = Trends_PS.executeQuery();
+		Trends_RS.next();
+		String trends_time = Trends_RS.getString("timedata");
+
+		trends_query = "select * from google_trends_us_rank";
+		Trends_PS = con.prepareStatement(trends_query);
+		Trends_RS = Trends_PS.executeQuery();
 		
-		Naver_query = "select * from naver_movie_rank";
-		Naver_PS = con.prepareStatement(Naver_query);
-		Naver_RS = Naver_PS.executeQuery();
+		//Music//
+		String music_query = "select timedata from time_data where type='1d'";
+		Music_PS = con.prepareStatement(music_query);
+		Music_RS = Music_PS.executeQuery();
+		Music_RS.next();
+		String music_time = Music_RS.getString("timedata");
 		
-		/*다음 영화*/
-		String Daum_query = "select timedata from time_data where type='1d'";
-		Daum_PS = con.prepareStatement(Daum_query);
-		Daum_RS = Daum_PS.executeQuery();
-		Daum_RS.next();
-		String Daum_time = Daum_RS.getString("timedata");	
+		music_query = "select * from billboard_music_rank";
+		Music_PS = con.prepareStatement(music_query);
+		Music_RS = Music_PS.executeQuery();
 		
-		Daum_query = "select * from daum_movie_rank";
-		Daum_PS = con.prepareStatement(Daum_query);
-		Daum_RS = Daum_PS.executeQuery();
+		//Movie//
+		String movie_query = "select timedata from time_data where type='1d'";
+		Movie_PS = con.prepareStatement(movie_query);
+		Movie_RS = Movie_PS.executeQuery();
+		Movie_RS.next();
+		String movie_time = Movie_RS.getString("timedata");
 		
-		/*네이버 영화 평점순*/
-		String Naver_rate_query = "select timedata from time_data where type='1d'";
-		Naver_rate_PS = con.prepareStatement(Naver_rate_query);
-		Naver_rate_RS = Naver_rate_PS.executeQuery();
-		Naver_rate_RS.next();
-		String Naver_rate_time = Naver_rate_RS.getString("timedata");	
+		movie_query = "select * from boxoffice_movie_us_rank";
+		Movie_PS = con.prepareStatement(movie_query);
+		Movie_RS = Movie_PS.executeQuery();
 		
-		Naver_rate_query = "select * from naver_movie_rating_rank";
-		Naver_rate_PS = con.prepareStatement(Naver_rate_query);
-		Naver_rate_RS = Naver_rate_PS.executeQuery();
+		//Book//
+		String book_query = "select timedata from time_data where type='1d'";
+		Book_PS = con.prepareStatement(book_query);
+		Book_RS = Book_PS.executeQuery();
+		Book_RS.next();
+		String book_time = Book_RS.getString("timedata");
+		
+		book_query = "select * from amazon_book_rank";
+		Book_PS = con.prepareStatement(book_query);
+		Book_RS = Book_PS.executeQuery();
+		
+		Date nowTime = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
+		
 	%>
-	
+			
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -78,12 +86,11 @@
 <meta content="228490107301532" property="fb:admins"/> 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
 <link href="https://www.velosofy.com/css/app.css" rel="stylesheet"/> 
-
-	<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
-	  
-
+<script src="./js/script.js"></script>
 <script src="https://www.w3schools.com/lib/w3.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<meta charset="utf-8"/> <meta content="width=device-width, initial-scale=1" name="viewport"/> 
+	  
+  
 <!-- 추가해야할거 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./css/table.css">
@@ -108,24 +115,32 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
  <!-- 추가해야할거 -->
  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script src="./js/script.js"></script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-40481198-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
 <div id="app"> 
 
 <nav class="navbar navbar-expand-md navbar-light navbar-velosofy"> 
 	<div class="container"> 
 <nav class="navbar navbar-light"> 
-	<a class="navbar-brand " href="./index.jsp"> 
+		<a class="navbar-brand " href="./index.jsp"> 
 		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
 		홈페이지이름
 		</a> 
+	</a> 
 </nav> 
 
 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"> 
 <span class="navbar-toggler-icon"></span> </button> 
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-
 <ul class="navbar-nav mr-auto"> 
 
 <li class="nav-item"> 
@@ -149,7 +164,7 @@
 <li class="nav-item"> 
 <a class="nav-link">로그인(준비중)</a> 
 </li> 
-<li class="nav-item"> <a class="nav-link">회원가입(준비중)</a> 
+<li class="nav-item"> <a class="nav-link" >회원가입(준비중)</a> 
 </li> 
 </ul> 
 
@@ -164,9 +179,12 @@
 
 <div class="container"> 
 
-<h1 class="poppins" style="font-size:50px;">영화 차트</h1> 
+<h1 class="poppins" style="font-size:50px;">해외 차트</h1> 
 <br>
-
+<!-- 
+<a class="btn btn-primary my-2" href="https://www.velosofy.com/templates">Find a template</a> 
+<a class="btn btn-secondary my-2" href="https://www.velosofy.com/submit">Submit a template</a> 
+ -->
 </div> 
 </section> 
 
@@ -179,42 +197,39 @@
 
 <div class="row">
 	<!-- yoobi delete it
-	 <div class="col-md-12 templates"> 
+	<div class="col-md-12 templates">
 		<select class="select_box1" name="select" onchange="fnMove(value)">
-		  <option>선택</option>
-		  <option value="1">박스오피스</option>
-		  <option value="2">인기검색어</option>
-		  <option value="3">예매율</option>
-		  <option value="4">평점순</option>
+			<option>선택</option>
+			<option value="1">네이버</option>
+			<option value="2">Zum</option>
+			<option value="3">구글</option>
+			<option value="4">네이트</option>
 		</select>
 	</div>
 	-->
 	<br>
 
-<div id="div1" class="col-md-6 templates" style="width:100%;">
-			<h3>박스오피스</h3>
-			<h6><%=Boxoffice_time%></h6>
+	<div id="div1" class="col-md-6 templates" style="width:100%;">
+
+			<h3>Google Trends</h3>
+			<h6 style="text-align:right;"><%=trends_time%></h6>
 			<table class="table table-hover">
 			<!--  
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
 						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
-						<th class="table-th" style="width:10%; text-align:center;">관객수</th>
 					</tr>
 				</thead>
 			-->
 	<%
 			int count = 0;
-			while(Boxoffice_RS.next())
+			while(Trends_RS.next())
 			{
-				String rank = Boxoffice_RS.getString("rank");
-				String title = Boxoffice_RS.getString("title");
-				String attendance = Boxoffice_RS.getString("attendance");
-				String director_name = Boxoffice_RS.getString("director_name");
-				String actor_names = Boxoffice_RS.getString("actor_names");
-				String url = Boxoffice_RS.getString("url");
-				String image_url = Boxoffice_RS.getString("image_url");
+				String rank = Trends_RS.getString("rank");
+				String title = Trends_RS.getString("title");
+				String url = Trends_RS.getString("url");
+				url = url.replaceAll(" ", "+");
 	%>
 				<tr>
 	<%
@@ -245,8 +260,78 @@
 					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
 	<%
 				}
-	%>			
-					<td width="110"><a href=<%=url%> style="font-size:20px;font-weight:700" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a></td>
+	%>
+
+					<td style="font-weight:700;width:30%;"><a href=<%=url%> target="_blank"><%=title%></a></td>
+				</tr>
+	<%
+				count++;
+			}
+
+		
+	%>
+		</table>
+		<br><br>
+	</div>
+
+	<br>
+	
+	<div id="div2" class="col-md-6 templates" style="width:100%;">
+	<h3>Boxoffice Movie</h3>
+			<h6 style="text-align:right;"><%=movie_time%></h6>
+			<table class="table table-hover">
+			<!--  
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+					</tr>
+				</thead>
+			-->
+	<%
+			count = 0;
+			while(Movie_RS.next())
+			{
+				String rank = Movie_RS.getString("rank");
+				String title = Movie_RS.getString("title");
+				String attendance = Movie_RS.getString("attendance");
+				String director_name = Movie_RS.getString("director_name");
+				String actor_names = Movie_RS.getString("actor_names");
+				String url = Movie_RS.getString("url");
+				String image_url = Movie_RS.getString("image_url");
+	%>
+				<tr>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
+					<td width="110"><a href=<%=url%> style="font-size:20px;font-weight:700" target="_blank"><img src="<%=image_url%>" width="80" height="120"></a></td>
 					<td><a href=<%=url%> style=" font-weight:1000" target="_blank"><%=title%></a><br><br>
 					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">감독: <%=director_name%></div></a>
 					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">배우: <%=actor_names%></div></a><br>
@@ -255,173 +340,20 @@
 				</tr>
 	<%
 				count++;
-				if(count >= 20){
-					break;
-				}
 			}
-	
+
 	%>
-	</table>
-	<br><br>
-</div>
+			</table>
+			
+		<br><br>
+	</div>
 
 	<br>
-	<div id="div2" class="col-md-6 templates" style="width:100%;">
-			<h3>다음(예매율)</h3>
-			<h6><%=Daum_time%></h6>
+	<div id="div3" class="col-md-6 templates" style="width:100%;">
+		<h3>Billboard Music</h3>
+			<h6 style="text-align:right;"><%=music_time%></h6>
 			<table class="table table-hover">
-			<!--
-				<thead>
-					<tr class="table-info">
-						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
-						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
-						<th class="table-th" style="width:10%; text-align:center;">관객수</th>
-					</tr>
-				</thead>
-			-->
-	<%
-			count = 0;
-			while(Daum_RS.next())
-			{
-				String rank = Daum_RS.getString("rank");
-				String title = Daum_RS.getString("title");
-				String ticketing = Daum_RS.getString("ticketing");
-				String director_name = Daum_RS.getString("director_name");
-				String actor_names = Daum_RS.getString("actor_names");
-				String url = Daum_RS.getString("url");
-				String image_url = Daum_RS.getString("image_url");
-	%>
-				<tr>
-	<%
-				if(count == 0)
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
-
-	<%
-				}
-				else if(count == 1)
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
-
-	<%
-				}
-				else if(count == 2)
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
-
-	<%
-				}
-				else
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
-	<%
-				}
-	%>
-
-					<td width="110"><a href=<%=url%> style="font-size:20px;font-weight:700" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a></td>
-					<td><a href=<%=url%> style=" font-weight:1000" target="_blank"><%=title%></a><br><br>
-					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">감독: <%=director_name%></div></a>
-					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">배우: <%=actor_names%></div></a><br>
-					<a style="font-size:13px; font-weight:15"target="_blank"><%=ticketing%></a></td>
-					
-				</tr>
-	<%
-				count++;
-				if(count >= 20){
-					break;
-				}
-			}
-	
-	%>
-	</table>
-	<br><br>
-</div>
-
-<br>
-<div id="div3" class="col-md-6 templates" style="width:100%;">
-			<h3>네이버(평점순)</h3>
-			<h6><%=Naver_rate_time%></h6>
-			<table class="table table-hover">
-				<!--  
-				<thead>
-					<tr class="table-info">
-						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
-						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
-						<th class="table-th" style="width:10%; text-align:center;">평 점</th>
-					</tr>
-				</thead>
-				-->
-	<%
-			count = 0;
-			while(Naver_rate_RS.next())
-			{
-				String rank = Naver_rate_RS.getString("rank");
-				String title = Naver_rate_RS.getString("title");
-				String rating = Naver_rate_RS.getString("rating");
-				String director_name = Naver_rate_RS.getString("director_name");
-				String actor_names = Naver_rate_RS.getString("actor_names");
-				String url = Naver_rate_RS.getString("url");
-				String image_url = Naver_rate_RS.getString("image_url");
-	%>
-				<tr>
-	<%
-				if(count == 0)
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
-
-	<%
-				}
-				else if(count == 1)
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
-
-	<%
-				}
-				else if(count == 2)
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
-
-	<%
-				}
-				else
-				{
-	%>
-					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
-	<%
-				}
-	%>
-
-					<td width="110"><a href=<%=url%> style="font-size:20px;font-weight:700" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a></td>
-					<td><a href=<%=url%> style=" font-weight:1000" target="_blank"><%=title%></a><br><br>
-					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">감독: <%=director_name%></div></a>
-					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">배우: <%=actor_names%></div></a><br>
-					<a style="font-size:13px; font-weight:15"target="_blank"><%=rating%></a></td>
-				</tr>
-	<%
-				count++;
-				if(count >= 20){
-					break;
-				}
-			}
-	
-	%>
-	</table>
-	<br><br>
-</div>
-
-<br>
-<div id="div4" class="col-md-6 templates" style="width:100%;">
-			<h3>네이버(조회순)</h3>
-			<h6><%=Naver_time%></h6>
-			<table class="table table-hover">
-			<!-- 
+			<!--  
 				<thead>
 					<tr class="table-info">
 						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
@@ -431,14 +363,11 @@
 			-->
 	<%
 			count = 0;
-			while(Naver_RS.next())
+			while(Music_RS.next())
 			{
-				String rank = Naver_RS.getString("rank");
-				String title = Naver_RS.getString("title");
-				String url = "https://movie.naver.com" + Naver_RS.getString("url");
-				String image_url = Naver_RS.getString("image_url");
-				String director_name = Naver_RS.getString("director_name");
-				String actor_names = Naver_RS.getString("actor_names");
+				String rank = Music_RS.getString("rank");
+				String title = Music_RS.getString("song_title");
+				String artist = Music_RS.getString("song_artist");
 	%>
 				<tr>
 	<%
@@ -471,27 +400,92 @@
 				}
 	%>
 
-					<td width="110"><a href=<%=url%> style="font-size:20px;font-weight:700" target="_blank"><img src="<%=image_url%>" width="100" height="150"></a></td>
-					<td><a href=<%=url%> style=" font-weight:1000" target="_blank"><%=title%></a><br><br>
-					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">감독: <%=director_name%></div></a>
-					<a style="font-size:13px; font-weight:400"target="_blank"><div style="width:230px;white-space:nowrap; overflow:hidden;text-overflow:ellipsis;">배우: <%=actor_names%></div></a><br>
+					<td ><a style=" font-weight:700"><%=title%></a><br>
+					<a style="font-size:13px; font-weight:10"><%=artist%></a></td>
+				</tr>
+	<%
+				count++;
+			}
+		
+		
+	%>
+	</table>
+		<br><br>
+	</div>
+
+	<br>
+	<div id="div4" class="col-md-6 templates" style="width:100%;">
+		<h3>Amazon Best Seller</h3>
+			<h6 style="text-align:right;"><%=book_time%></h6>
+			<table class="table table-hover">
+			<!--  
+				<thead>
+					<tr class="table-info">
+						<th class="table-th" style="width:10%; text-align:center;">순 위</th>
+						<th class="table-th" style="width:30%; text-align:center;">제 목</th>
+					</tr>
+				</thead>
+			-->
+	<%
+			count = 0;
+			while(Book_RS.next())
+			{
+				String rank = Book_RS.getString("rank");
+				String title = Book_RS.getString("title");
+				String url = Book_RS.getString("url");
+				String author = Book_RS.getString("author");
+				String image_url = Book_RS.getString("image_url");
+
+	%>
+				<tr>
+	<%
+				if(count == 0)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./gold.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 1)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./silver.png" width="45" height="45"></td>
+
+	<%
+				}
+				else if(count == 2)
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><img src="./bronze.png" width="45" height="45"></td>
+
+	<%
+				}
+				else
+				{
+	%>
+					<td style="text-align:center; font-weight:700; width:5%"><%=rank%></td>
+	<%
+				}
+	%>
+
+					<td><a href=<%=url%> style=" font-weight:700;" target="_blank"><img src="<%=image_url%>" width="110" height="110"></a><br><a href=<%=url%> style=" font-weight:700;" target="_blank"><%=title%></a>	
+						<br>
+						<a style="font-size:13px; font-weight:10" target="_blank">
+							<%=author%>
+						</a>
 					</td>
-					
 				</tr>
 	<%
 				count++;
-				if(count >= 20){
-					break;
-				}
 			}
-	
+
 	%>
-	</table>
-	<br><br>
-</div>
+			</table>
+		<br><br>
+	</div>
 
 
-<div w3-include-html="./nav/movie_nav.html"></div>
+<div w3-include-html="./nav/trend_nav.html"></div>
 <script>
 	w3.includeHTML();
 </script>
@@ -502,17 +496,23 @@
 		</i>
 	</a>
 </div>
-</div>
 
+<!-- 
+<div class="text-right">
+<a class="btn btn-primary" href="/templates/featured">
+                Show 200 more featured templates
+            </a>
+</div>
+ -->
  
+ </div>
 </div>
 
 </main> 
 
 <script src="https://www.velosofy.com/js/app.js"></script>
 
-
-	
 	<jsp:include page="visitor_count.jsp" flush="true"/>
+
 </body>
 </html>
