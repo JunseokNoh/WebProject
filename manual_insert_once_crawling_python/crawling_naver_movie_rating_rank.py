@@ -30,8 +30,8 @@ class NaverMovieRatingCrawling(crawling.Crawling, ABC):
                 IMAGE_URL = temp[0]
                 DIRECTOR_NAME = temp[1]
                 ACTOR_NAMES = temp[2]
-                #self.connect_db(i, RANK_NAME, RANK_RATING, RANK_URL, IMAGE_URL, DIRECTOR_NAME, ACTOR_NAMES, "")
-                print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_RATING + " : " + DIRECTOR_NAME + " : " + ACTOR_NAMES)
+                self.connect_db(i, RANK_NAME, RANK_RATING, RANK_URL, IMAGE_URL, DIRECTOR_NAME, ACTOR_NAMES, "")
+                #print(str(i + 1) + " : " + RANK_NAME + " : " + RANK_URL + " : " + RANK_RATING + " : " + DIRECTOR_NAME + " : " + ACTOR_NAMES)
             f = open("./../../active_log.txt", "a")
             f.write("table : naver_movie_rating_rank UPDATED" + "\n")
             print("table : naver_movie_rating_rank UPDATED")
