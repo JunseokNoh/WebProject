@@ -203,8 +203,8 @@ def main():
 	# setTimeDate.connect_db("1h")
 	#
 	# boxofficeMovieRank.crawler()
-	naverMovieRank.crawler()
-	# naverMovieRatingRank.crawler()
+	# naverMovieRank.crawler()
+	naverMovieRatingRank.crawler()
 	# daumMovieRank.crawler()
 	# aladinBookRank.crawler()  # 일간
 	# yes24BookRank.crawler()  # 일간

@@ -76,3 +76,8 @@
 2020-07-01 13:56:34.737155 not enough arguments for format string
 2020-07-01 13:57:17.868122 (1054, "Unknown column 'actor_name' in 'field list'")
 2020-07-01 14:34:14.013512 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")
+2020-07-01 14:43:41.372079 not all arguments converted during string formatting
+2020-07-01 16:08:17.575350 (2003, "Can't connect to MySQL server on 'hackery00bi.iptime.org' (timed out)")
+2020-07-01 16:10:47.133078 list index out of range
+2020-07-01 16:27:24.839366 list index out of range
+2020-07-01 16:28:13.228706 list index out of range
