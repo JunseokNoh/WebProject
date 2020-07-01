@@ -1,7 +1,7 @@
 import pymysql
 import time
 import datetime
-
+import math
 
 class DBTimeValueSet:
     def __init__(self, db_host, db_port, db_user, db_pw, db_name, db_charset):
@@ -35,7 +35,8 @@ class DBTimeValueSet:
 
         elif type == '10m':
             now = time.localtime()
-            now = "%04d/%02d/%02d %02d:%02d" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min / 10)
+            now = "%04d/%02d/%02d %02d:%02d" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, int(str(math.floor(now.tm_min / 10)) + "0"))
+            print(now)
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()
