@@ -45,7 +45,7 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-velosofy"> 
 	<div class="container"> 
 <nav class="navbar navbar-light"> 
-		<a class="navbar-brand " href="./index.jsp"> 
+		<a class="navbar-brand " href="./m"> 
 		<i class="fa fa-trophy" aria-hidden="true" style="width:30px"></i>
 		랭킹.pw
 		</a> 
@@ -58,26 +58,26 @@
 <ul class="navbar-nav mr-auto"> 
 
 <li class="nav-item"> 
-<a class="nav-link" href="./trend_rank.jsp">실검 차트</a> 
+<a class="nav-link" href="./t">실검 차트</a> 
 </li> 
 <li class="nav-item"> 
-<a class="nav-link" href="./music_rank.jsp">음악 차트</a> 
+<a class="nav-link" href="./mu">음악 차트</a> 
 </li> 
 <li class="nav-item"> 
-<a class="nav-link" href="./movie_rank.jsp">영화 차트</a> 
+<a class="nav-link" href="./mo">영화 차트</a> 
 </li> 
 <li class="nav-item"> 
-<a class="nav-link" href="./book_rank.jsp">도서 차트</a> 
+<a class="nav-link" href="./b">도서 차트</a> 
 <li class="nav-item"> 
-<a class="nav-link" href="./app_rank.jsp">앱 차트</a> 
+<a class="nav-link" href="./a">앱 차트</a> 
 </li> 
 <li class="nav-item"> 
-<a class="nav-link" href="./app_game_rank.jsp">모바일 게임 차트</a> 
+<a class="nav-link" href="./ag">모바일 게임 차트</a> 
 </li> 
 
 <ul class="navbar-nav ml-auto"> 
 	<li class="nav-item"> 
-		<a class="nav-link" href="./foreign_rank.jsp">해외 차트</a> 
+		<a class="nav-link" href="./f">해외 차트</a> 
 	</li> 
 </ul> 
 
