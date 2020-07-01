@@ -21,7 +21,7 @@ class DBTimeValueSet:
                                charset=self.DB_CHARSET())
         curs = conn.cursor()
 
-        #print(type)
+        # print(type)
         if type == '1m':
             now = time.localtime()
             now = "%04d/%02d/%02d %02d:%02d" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min)
@@ -55,14 +55,16 @@ class DBTimeValueSet:
             print("1h updated # time : " + str(time_for_log))
             f.close()
 
+
         elif type == '1d':
-            now = time.localtime() - 86400
-            now = "%04d/%02d/%02d" % (now.tm_year, now.tm_mon, now.tm_mday)
+            today = datetime.date.today()
+            yesterday = today - datetime.timedelta(1)
+            now = "%04d/%02d/%02d" % (yesterday.year, yesterday.month, yesterday.day)
             sql = """update time_data set timedata=%s where type=%s"""
             curs.execute(sql, (now, type))
             time_for_log = datetime.datetime.now()
-            f = open("./../../active_log.txt", "a")
-            f.write("1d updated # time : " + str(time_for_log) + "\n\n")
+            f = open("./../../manual_active_log.txt", "a")
+            f.write("1d updated # time : " + str(time_for_log) + "\n")
             print("1d updated # time : " + str(time_for_log))
             f.close()
 
